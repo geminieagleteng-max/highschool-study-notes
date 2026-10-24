@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【國文】261019_方包《左忠毅公軼事》</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --border: #e2e8f0;
+      --border-focus: #cbd5e1;
+      --tag-bg: #e0f2fe;
+      --tag-text: #0369a1;
+      --header-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans TC', 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.8;
+      font-size: 16px;
+      padding: 30px 16px 60px;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.06), 0 2px 6px -1px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    header.hero {
+      background: var(--header-gradient);
+      color: #ffffff;
+      padding: 36px 40px 30px;
+      position: relative;
+    }
+    header.hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      color: #f1f5f9;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    header.hero h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.5px;
+    }
+    header.hero .meta {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .content-body {
+      padding: 40px 48px;
+    }
+    @media (max-width: 640px) {
+      .content-body { padding: 24px 20px; }
+      header.hero { padding: 28px 24px 22px; }
+      header.hero h1 { font-size: 1.5rem; }
+    }
+    h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 2.2em;
+      margin-bottom: 0.9em;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h2:first-of-type { margin-top: 0.5em; }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1e3a8a;
+      margin-top: 1.6em;
+      margin-bottom: 0.6em;
+      padding-left: 10px;
+      border-left: 4px solid var(--accent);
+    }
+    p { margin-bottom: 1.1em; }
+    ul, ol { margin-bottom: 1.2em; padding-left: 1.8em; }
+    li { margin-bottom: 0.4em; }
+    .mermaid {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 16px;
+      margin: 1.6em 0;
+      text-align: center;
+      overflow-x: auto;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 1.6em 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    thead th {
+      background: #f1f5f9;
+      color: #1e293b;
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+    tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) { background: #fafafa; }
+    tbody tr:hover { background: #f0f7ff; }
+    tbody tr:last-child td { border-bottom: none; }
+    code {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      background: #f1f5f9;
+      color: #b91c1c;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 1.4em 0;
+      font-size: 0.92em;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; }
+    blockquote {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 14px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 1.4em 0;
+      color: #1e40af;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2.2em 0; }
+    .katex-display {
+      margin: 1.2em 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 6px 0;
+    }
+    .katex { font-size: 1.05em; }
+    
+    /* NotebookLM 原生 D3 互動心智圖樣式 */
+    .mindmap-box {
+      margin: 2em 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .mindmap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .mindmap-title {
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mindmap-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .mm-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: #334155;
+      transition: all 0.2s;
+    }
+    .mm-btn:hover { background: #f1f5f9; }
+    #tree-svg-container {
+      width: 100%;
+      height: 520px;
+      background: #ffffff;
+      cursor: grab;
+    }
+    #tree-svg-container:active { cursor: grabbing; }
+    .node circle {
+      cursor: pointer;
+      stroke-width: 2.5px;
+      transition: all 0.2s;
+    }
+    .node circle:hover { transform: scale(1.25); }
+    .node text {
+      font-size: 13px;
+      font-weight: 500;
+      font-family: inherit;
+      fill: #1e293b;
+      cursor: pointer;
+      paint-order: stroke fill;
+      stroke: #ffffff;
+      stroke-width: 4.5px;
+      stroke-linejoin: round;
+      user-select: none;
+    }
+    .link {
+      fill: none;
+      stroke: #cbd5e1;
+      stroke-width: 1.8px;
+      stroke-opacity: 0.85;
+      transition: stroke-width 0.2s;
+    }
+    .link:hover { stroke: #94a3b8; stroke-width: 2.5px; }
+
+    footer.doc-foot {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      background: #fcfdfe;
+    }
+    .print-btn {
+      position: absolute;
+      top: 36px;
+      right: 40px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .print-btn:hover { background: rgba(255,255,255,0.25); }
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      body {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+      }
+      .container {
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+      }
+      .print-btn, .mindmap-btns {
+        display: none !important;
+      }
+      header.hero {
+        background: var(--header-gradient) !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+        padding: 24px 30px !important;
+        margin-bottom: 20px !important;
+      }
+      header.hero h1 {
+        color: #ffffff !important;
+        font-size: 1.6rem !important;
+      }
+      header.hero .badge {
+        background: rgba(255,255,255,0.2) !important;
+        color: #ffffff !important;
+      }
+      header.hero .meta {
+        color: #cbd5e1 !important;
+      }
+      .content-body {
+        padding: 10px 0 !important;
+      }
+      h1, h2, h3, h4, table, tr, pre, .mermaid, .mindmap-box, blockquote {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      h2, h3 {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <div class="badge">📖 高中課堂互動圖文筆記</div>
+      <button class="print-btn" onclick="window.print()">🖨️ 列印 / 另存 PDF</button>
+      <h1>【國文】261019_方包《左忠毅公軼事》</h1>
+      <div class="meta">
+        <span>⏱️ 數位筆記儀表板</span>
+        <span>🏷️ 含可縮放互動心智圖、時間軸與觀念對比</span>
+      </div>
+    </header>
+    <div class="content-body">
+      
+      <div class="mindmap-box">
+        <div class="mindmap-header">
+          <div class="mindmap-title">
+            <span>🧠 本課核心知識脈絡（NotebookLM 原生互動心智圖 • 支援縮放與展開）</span>
+          </div>
+          <div class="mindmap-btns">
+            <button class="mm-btn" onclick="expandAll()">展開全部</button>
+            <button class="mm-btn" onclick="collapseAll()">收合分支</button>
+            <button class="mm-btn" onclick="resetZoom()">重設視角</button>
+          </div>
+        </div>
+        <div id="tree-svg-container"></div>
+      </div>
+        
+      <h2>📖 課堂主題與核心摘要 (Class Overview)</h2>
+<p>本堂課為國文選文《左忠毅公軼事》之首堂講解。課堂前半段梳理清代古文演變，特別是桐城派於清末經曾國藩倡導加入「經世濟民（經濟）」精神之脈絡；後半段進入課文題解、複雜人物關係（左光斗、史可法、魏忠賢與作者方包之親戚鏈）及明代廠衛制度背景，並詳細剖析第一段左光斗「風雪微行、愛才賞識史可法」之核心故事。</p>
+<div class="mermaid">
+graph LR
+  Root["左忠毅公軼事與古文演進"] --> A["清代古文與桐城派演變"]
+  Root --> B["《左忠毅公軼事》背景與人物"]
+  Root --> C["課文第一段：左公賞識史可法"]
+
+  A --> A1["曾國藩倡導『經世濟民』之經濟內容"]
+  B --> B1["題解：軼事（雜記正史未載之傳聞）"]
+  B --> B2["人物網絡：左光斗、史可法、魏忠賢、方包"]
+  C --> C1["微行視學：風雪嚴寒中入寺考察寒士"]
+  C --> C2["解貂覆客 & 掩戶：賞識才華與親切呵護"]
+  C --> C3["面數第一 & 拜夫人：寄予繼承志業之重託"]
+</div>
+<h2>💡 核心知識點與觀念詳解 (Key Concepts)</h2>
+<h3>1. 清代古文演變與桐城派發展</h3>
+<ul>
+<li><strong>曾國藩的提倡與「經世濟民」</strong>：</li>
+<li>清代末年古文一度衰微，直到曾國藩帶領「湘軍」平定太平天國之亂後，因其英雄形象引發崇拜，帶動讀書人重新學習桐城派古文。</li>
+<li>曾國藩主張古文除考據、義理、文章外，更必須融入<strong>「經濟」</strong>內容。</li>
+<li><strong>古今語義轉變</strong>：古文中的「經濟」指<strong>「經世濟民」</strong>（經營社會、拯救人民）；現代指稱為錢財/財經的「經濟」，則是清末由日文翻譯傳入的概念。</li>
+<li><strong>段考叮嚀</strong>：老師強調此段脈絡較短要先記熟，避免第三次段考加入明代六七個複雜派別時混淆。</li>
+</ul>
+<h3>2. 《左忠毅公軼事》題解與寫作背景</h3>
+<ul>
+<li><strong>「軼事」體裁特色</strong>：</li>
+<li>亦作「異事」、「異狀」，屬於傳記史料分支，專門記載正史未記載的逸聞瑣事，著重選取代表性事蹟凸顯人物性格。</li>
+<li>不同於一般史書從出生異象（如傳聞岳飛出生時紅光滿室）寫到大的流水帳寫法。</li>
+<li><strong>篇名「左忠毅公」之涵義</strong>：</li>
+<li>「左光斗」為本名；「忠毅」為其死後追贈之諡號。篇名特別冠以「忠毅」，因全篇內容緊扣「忠」與「義」兩大精神指標。</li>
+<li><strong>採訪聽聞與人物脈絡</strong>：</li>
+<li>作者方包（桐城人）與左光斗為同鄉。</li>
+<li><strong>採訪傳播鏈</strong>：左光斗 → 女婿方塗山 → 與方包父親（親戚兼好友）交好 → 方包聽父親轉述左光斗與史可法的事蹟而撰寫成文。</li>
+<li><strong>政治背景與對立面</strong>：明末東林黨（楊漣、左光斗）彈劾魏忠賢（閹黨/九千歲，掌握廠衛特務機構如錦衣衛、東廠）24 條大罪 → 魏忠賢先發制人污陷左光斗貪污下獄虐待致死 → 後續清算閹黨，左公恢復名譽追諡忠毅。</li>
+<li><strong>史可法之承志</strong>：史可法為左光斗學生，明末死守揚州城抗清，經歷「揚州十日」，後人於揚州梅花嶺設「衣冠塚」（見「梅花嶺」即聯想史可法）。</li>
+</ul>
+<h3>3. 第一段課文：左光斗「微行視學」與識拔史可法</h3>
+<ul>
+<li><strong>【流程圖】左公識才與拔擢過程</strong>：</li>
+</ul>
+<div class="mermaid">
+graph TD
+    A["風雪嚴寒，微行視學（盡忠職守、不擺官架場）"] --> B["走訪寺廟（關心貧寒無依學生）"]
+    B --> C["見史可法伏案睡覺，閱讀其剛寫好的文章"]
+    C --> D["深感其才華：解貂覆客（脫下貂皮大衣蓋其身）"]
+    D --> E["貼心掩戶（幫忙關門防寒，問和尚其姓名）"]
+    E --> F["鄉試考場面數第一（驚訝注視，擇優拔擢）"]
+    F --> G["召入拜夫人：坦言『吾諸兒庸碌，繼吾志者唯此生』"]
+</div>
+<ul>
+<li><strong>課文文句與細節剖析</strong>：</li>
+<li>「先君子常言」：引用去世父親的話，旨在增加文章的可信度與真實性。</li>
+<li>「微行」：暗中出行，不擺官員排場，避免地方官員做表面功夫或騷擾百姓。</li>
+<li>「解貂覆客」與「掩戶」：脫下貂皮大衣覆蓋史可法、離開時親自關門，展現左公對優秀人才才華的賞識與極致貼心的呵護。</li>
+<li>
+<p>「拜夫人」：將史可法介紹給妻子，並感慨自家兒子平庸，唯有史可法能繼承自己的報國志業，對其寄予厚望。</p>
+</li>
+<li>
+<p><strong>【觀念對比表】主要歷史人物與派別對比</strong>：</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">人物 / 派別</th>
+<th style="text-align: left;">身份與政治立場</th>
+<th style="text-align: left;">關鍵事蹟與代表象徵</th>
+<th style="text-align: left;">在課文/歷史中的角色</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>左光斗</strong></td>
+<td style="text-align: left;">明末東林黨領袖，掌管教育官員</td>
+<td style="text-align: left;">彈劾魏忠賢 24 大罪，遭廠衛下獄虐待致死；追諡「忠毅」</td>
+<td style="text-align: left;">本文核心主角，愛才重義、盡忠職守</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>史可法</strong></td>
+<td style="text-align: left;">左光斗學生，明末忠臣</td>
+<td style="text-align: left;">死守揚州城抵抗清軍；後人於揚州梅花嶺設衣冠塚</td>
+<td style="text-align: left;">本文配角/承志者，繼承左公報國精神</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>魏忠賢</strong></td>
+<td style="text-align: left;">閹黨首領（太監），人稱「九千歲」</td>
+<td style="text-align: left;">擅權專政，掌握廠衛（錦衣衛、東廠），污陷忠良</td>
+<td style="text-align: left;">政治對立面（反派）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>方包</strong></td>
+<td style="text-align: left;">清代桐城派代表古文家</td>
+<td style="text-align: left;">經由父親聽聞方塗山（左光斗女婿）轉述而撰寫本文</td>
+<td style="text-align: left;">本文作者，桐城派古文家</td>
+</tr>
+</tbody>
+</table>
+<h2>⚠️ 老師強調考點與易錯陷阱 (Exam Focus &amp; Pitfalls)</h2>
+<ul>
+<li><strong>稱謂與日常應用文易錯陷阱</strong>：</li>
+<li><strong>「家大舍小令外人」</strong>：稱呼自己尊長用「家」（家父、家母）；稱呼自己卑幼用「舍」（舍弟、舍妹）。稱呼對方親友用「令」（令尊、令堂、令師）。</li>
+<li><strong>「先考」與「先妣」</strong>：「先考」指去世的父親；「先妣」指去世的母親。</li>
+<li><strong>「小女」 vs 「小女子」</strong>：<strong>「小女」是指「自己的女兒」</strong>！女性自我介紹絕不可自稱「小女」（否則等於稱自己為女兒），應自稱「小女子」。</li>
+<li><strong>「如喪考妣」</strong>：形容極度悲傷（好像父母去世一樣），不可用於父母真的去世時。</li>
+<li><strong>成語字形字義陷阱</strong>：</li>
+<li><strong>「矍鑠」</strong>：老而強健。<strong>只能用於老人家</strong>（例如「老當益壯，精神矍鑠」），不可用於年輕人在球場上的精神抖擻。</li>
+<li><strong>門戶之別</strong>：</li>
+<li>「掩戶」之「戶」：指單扇門（推開雙扇的才叫門）。幫史可法關的是單扇門，而非窗戶。</li>
+</ul>
+<h2>🔑 記憶口訣與解題技巧 (Mnemonics &amp; Shortcuts)</h2>
+<ul>
+<li><strong>稱謂記憶口訣</strong>：「家大舍小令外人」（稱己尊長用『家』，稱己卑幼用『舍』，稱人親屬用『令』）。</li>
+<li><strong>史可法解題關鍵字</strong>：題目中若出現「揚州」、「揚州十日」、「梅花嶺」、「衣冠塚」，即可直接判斷對應歷史人物為「史可法」。</li>
+<li><strong>古今語義破題判斷</strong>：</li>
+<li>古文「經濟」＝「經世濟民」（經營社會、救濟人民，強調實用治國）。</li>
+<li>現代「經濟」＝「錢財/財經」（清末日文翻譯引進的概念）。</li>
+</ul>
+<h2>📝 課後作業與待辦事項 (Homework &amp; Tasks)</h2>
+<ul>
+<li>無特定作業（建議課後參閱補充講義第 67 頁關於明代廠衛制度與歷史背景，並預習課文第二段內容）。</li>
+</ul>
+<hr />
+<h2>📚 專有名詞與重要公式/定義 (Glossary &amp; Formulas)</h2>
+<ul>
+<li><strong>經世濟民</strong>：古文中「經濟」之本義，意指經營社會、改善社會、拯救人民。</li>
+<li><strong>軼事（異事）</strong>：傳記史料分支，專門記載正史未記載之逸聞瑣事，著重刻畫人物性格。</li>
+<li><strong>微行</strong>：尊貴者或官員隱匿身份、穿著平民衣服暗中出行或巡視。</li>
+<li><strong>廠衛</strong>：明代直屬於皇帝之特務機構。包括「錦衣衛」與「廠」（東廠、西廠、內行廠），集逮捕、審訊、處刑權力於一身。</li>
+<li><strong>衣冠塚</strong>：因找不到死者遺體，僅埋葬其生前衣服鞋帽以供後人祭奠之墳墓（如史可法於揚州梅花嶺之塚）。</li>
+</ul>
+<h2>🧠 課後自測題 (Quick Review Quiz)</h2>
+<ul>
+<li><strong>題目 1</strong>：下列關於日常應用文稱謂的用法，何者完全正確？</li>
+<li>(A) 少女小美向長輩自我介紹：「小女今年十七歲，請多指教。」</li>
+<li>(B) 聽到同學父親過世，小明慰問說：「得知令尊去逝，令人悲傷如喪考妣。」</li>
+<li>(C) 向他人介紹自己的弟弟，應稱為「舍弟」。</li>
+<li>(D) 稱呼對方的老師，可尊稱為「家師」。</li>
+<li>
+<p><em>簡析與答案</em>：<strong>答案為 (C)</strong>。(A) 小美應自稱「小女子」，「小女」是指自己的女兒；(B)「如喪考妣」用於未真的去世時形容極度悲傷，真的去世不可加「如」；(D) 稱呼對方老師應稱為「令師」。</p>
+</li>
+<li>
+<p><strong>題目 2</strong>：左光斗在風雪嚴寒中「解貂覆客」並「掩戶」，其背後最主要的心理與意圖為何？</p>
+</li>
+<li>
+<p><em>簡析與答案</em>：並非男女私情，而是因為左光斗閱讀了史可法伏案所寫的文章後，深受其卓越才華折服，因而對貧寒優異的青年學子產生深切的愛護與拔擢之心。</p>
+</li>
+<li>
+<p><strong>題目 3</strong>：古文中曾國藩主張桐城派古文需具備「經濟」內容，此處的「經濟」與現代所稱的「經濟」有何差異？</p>
+</li>
+<li><em>簡析與答案</em>：古文「經濟」係指「經世濟民」（經營社會、拯救百姓）；現代「經濟」則指財經、金錢發展（係清末由日文翻譯傳入之詞彙）。</li>
+</ul>
+<hr />
+<p>這份筆記已完整涵蓋本次課堂講述的所有內容！若你需要對明代廠衛制度或第二段課文做進一步探討，隨時告訴我！</p>
+    </div>
+    <footer class="doc-foot">
+      自動生成於 NotebookLM Study Assistant • 專為高中學生課後複習與考前衝刺打造
+    </footer>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.mermaid) {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'neutral',
+          fontFamily: "'Noto Sans TC', 'Inter', sans-serif",
+          flowchart: { curve: 'basis', htmlLabels: true },
+          securityLevel: 'loose'
+        });
+      }
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+  
+  <script>
+    (function() {
+      const treeData = {"name": "清代古文與桐城派演變", "children": [{"name": "曾國藩倡導『經世濟民』之經濟內容"}]};
+      const container = document.getElementById("tree-svg-container");
+      if (!container || !treeData) return;
+
+      const width = container.clientWidth || 880;
+      const height = 520;
+
+      const svg = d3.select("#tree-svg-container")
+        .append("svg")
+        .attr("width", "100%")
+        .attr("height", height)
+        .attr("viewBox", [0, 0, width, height]);
+
+      const g = svg.append("g");
+
+      const zoom = d3.zoom()
+        .scaleExtent([0.25, 2.5])
+        .on("zoom", (e) => g.attr("transform", e.transform));
+
+      svg.call(zoom);
+
+      const root = d3.hierarchy(treeData);
+      root.x0 = height / 2;
+      root.y0 = 0;
+
+      let i = 0;
+      const duration = 380;
+      // [dy, dx]: 垂直節距 58px (確保上下不重疊), 水平層級 320px (確保長文字不穿透父層)
+      const treeLayout = d3.tree().nodeSize([58, 320]);
+
+      function splitNodeText(text, maxChars) {
+        if (!text) return [""];
+        if (text.length <= maxChars) return [text];
+
+        // 優先在括號處斷行，例如：世風日下之自身矛盾對比（擇師教子 vs. 於身恥師）
+        const parenIdx = text.search(/[（(]/);
+        if (parenIdx >= 3 && parenIdx <= maxChars + 4) {
+          const p1 = text.slice(0, parenIdx).trim();
+          const p2 = text.slice(parenIdx).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 優先在冒號、破折號、頓號處斷行
+        const sepIdx = text.search(/[：:—、]/);
+        if (sepIdx >= 3 && sepIdx <= maxChars + 2) {
+          const p1 = text.slice(0, sepIdx + 1).trim();
+          const p2 = text.slice(sepIdx + 1).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 預設在 maxChars 處均勻斷行
+        return [text.slice(0, maxChars), text.slice(maxChars)];
+      }
+
+      if (root.children) {
+        root.children.forEach(c => {
+          if (c.children) {
+            c.children.forEach(collapse);
+          }
+        });
+      }
+
+      function collapse(d) {
+        if (d.children) {
+          d._children = d.children;
+          d._children.forEach(collapse);
+          d.children = null;
+        }
+      }
+
+      function expand(d) {
+        if (d._children) {
+          d.children = d._children;
+          d.children.forEach(expand);
+          d._children = null;
+        }
+      }
+
+      const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
+
+      function getNodeColor(d) {
+        if (d.depth === 0) return "#2563eb";
+        let p = d;
+        while (p.depth > 1) p = p.parent;
+        return colorScale(p.data.name);
+      }
+
+      function update(source) {
+        const nodes = root.descendants();
+        const links = root.links();
+
+        treeLayout(root);
+
+        const node = g.selectAll("g.node")
+          .data(nodes, d => d.id || (d.id = ++i));
+
+        const nodeEnter = node.enter().append("g")
+          .attr("class", "node")
+          .attr("transform", d => `translate(${source.y0},${source.x0})`)
+          .on("click", (event, d) => {
+            if (d.children) {
+              d._children = d.children;
+              d.children = null;
+            } else if (d._children) {
+              d.children = d._children;
+              d._children = null;
+            }
+            update(d);
+          });
+
+        nodeEnter.append("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        const textNode = nodeEnter.append("text")
+          .attr("class", "node-text")
+          .attr("text-anchor", d => (d.children || d._children) ? "end" : "start")
+          .style("fill-opacity", 0);
+
+        textNode.each(function(d) {
+          const el = d3.select(this);
+          const isParent = Boolean(d.children || d._children);
+          const xOffset = isParent ? -14 : 14;
+          const maxChars = isParent ? 13 : 18;
+          const lines = splitNodeText(d.data.name, maxChars);
+
+          if (lines.length === 1) {
+            el.attr("x", xOffset)
+              .attr("dy", "0.32em")
+              .text(lines[0]);
+          } else {
+            el.attr("x", xOffset)
+              .attr("dy", "-0.35em")
+              .text(lines[0]);
+            el.append("tspan")
+              .attr("x", xOffset)
+              .attr("dy", "1.25em")
+              .text(lines[1]);
+          }
+        });
+
+        const nodeUpdate = node.merge(nodeEnter).transition().duration(duration)
+          .attr("transform", d => `translate(${d.y},${d.x})`);
+
+        nodeUpdate.select("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        nodeUpdate.select("text")
+          .style("fill-opacity", 1);
+
+        const nodeExit = node.exit().transition().duration(duration)
+          .attr("transform", d => `translate(${source.y},${source.x})`)
+          .remove();
+
+        nodeExit.select("circle").attr("r", 1e-6);
+        nodeExit.select("text").style("fill-opacity", 1e-6);
+
+        const link = g.selectAll("path.link")
+          .data(links, d => d.target.id);
+
+        const linkEnter = link.enter().insert("path", "g")
+          .attr("class", "link")
+          .attr("d", d => {
+            const o = {x: source.x0, y: source.y0};
+            return diagonal(o, o);
+          });
+
+        link.merge(linkEnter).transition().duration(duration)
+          .attr("d", d => diagonal(d.source, d.target));
+
+        link.exit().transition().duration(duration)
+          .attr("d", d => {
+            const o = {x: source.x, y: source.y};
+            return diagonal(o, o);
+          })
+          .remove();
+
+        nodes.forEach(d => {
+          d.x0 = d.x;
+          d.y0 = d.y;
+        });
+      }
+
+      function diagonal(s, d) {
+        return `M ${s.y} ${s.x}
+                C ${(s.y + d.y) / 2} ${s.x},
+                  ${(s.y + d.y) / 2} ${d.x},
+                  ${d.y} ${d.x}`;
+      }
+
+      function autoFitTree(duration = 450) {
+        const nodes = root.descendants();
+        if (!nodes || nodes.length === 0) return;
+
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        nodes.forEach(d => {
+          const isParent = Boolean(d.children || d._children);
+          const leftBound = d.y - (isParent ? 180 : 20);
+          const rightBound = d.y + (isParent ? 20 : 220);
+          const topBound = d.x - 32;
+          const bottomBound = d.x + 32;
+
+          if (leftBound < minX) minX = leftBound;
+          if (rightBound > maxX) maxX = rightBound;
+          if (topBound < minY) minY = topBound;
+          if (bottomBound > maxY) maxY = bottomBound;
+        });
+
+        const fullWidth = container.clientWidth || 880;
+        const fullHeight = height;
+        const treeW = maxX - minX;
+        const treeH = maxY - minY;
+
+        if (treeW <= 0 || treeH <= 0) return;
+
+        const scale = Math.min(0.92, (fullWidth * 0.90) / treeW, (fullHeight * 0.90) / treeH);
+        const clampedScale = Math.max(scale, 0.42);
+
+        const midTreeX = (minX + maxX) / 2;
+        const midTreeY = (minY + maxY) / 2;
+        const tx = fullWidth / 2 - clampedScale * midTreeX;
+        const ty = fullHeight / 2 - clampedScale * midTreeY;
+
+        if (duration > 0) {
+          svg.transition().duration(duration).call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        } else {
+          svg.call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        }
+      }
+
+      window.expandAll = function() {
+        root.each(expand);
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.collapseAll = function() {
+        if (root.children) {
+          root.children.forEach(collapse);
+        }
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.resetZoom = function() {
+        autoFitTree(450);
+      };
+
+      // 首次繪製節點並自動縮放置中全覽
+      update(root);
+      autoFitTree(0);
+    })();
+  </script>
+
+</body>
+</html>

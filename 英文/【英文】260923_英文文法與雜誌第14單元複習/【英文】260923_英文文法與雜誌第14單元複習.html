@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【英文】260923_英文文法與雜誌第14單元複習</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --border: #e2e8f0;
+      --border-focus: #cbd5e1;
+      --tag-bg: #e0f2fe;
+      --tag-text: #0369a1;
+      --header-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans TC', 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.8;
+      font-size: 16px;
+      padding: 30px 16px 60px;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.06), 0 2px 6px -1px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    header.hero {
+      background: var(--header-gradient);
+      color: #ffffff;
+      padding: 36px 40px 30px;
+      position: relative;
+    }
+    header.hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      color: #f1f5f9;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    header.hero h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.5px;
+    }
+    header.hero .meta {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .content-body {
+      padding: 40px 48px;
+    }
+    @media (max-width: 640px) {
+      .content-body { padding: 24px 20px; }
+      header.hero { padding: 28px 24px 22px; }
+      header.hero h1 { font-size: 1.5rem; }
+    }
+    h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 2.2em;
+      margin-bottom: 0.9em;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h2:first-of-type { margin-top: 0.5em; }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1e3a8a;
+      margin-top: 1.6em;
+      margin-bottom: 0.6em;
+      padding-left: 10px;
+      border-left: 4px solid var(--accent);
+    }
+    p { margin-bottom: 1.1em; }
+    ul, ol { margin-bottom: 1.2em; padding-left: 1.8em; }
+    li { margin-bottom: 0.4em; }
+    .mermaid {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 16px;
+      margin: 1.6em 0;
+      text-align: center;
+      overflow-x: auto;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 1.6em 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    thead th {
+      background: #f1f5f9;
+      color: #1e293b;
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+    tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) { background: #fafafa; }
+    tbody tr:hover { background: #f0f7ff; }
+    tbody tr:last-child td { border-bottom: none; }
+    code {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      background: #f1f5f9;
+      color: #b91c1c;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 1.4em 0;
+      font-size: 0.92em;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; }
+    blockquote {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 14px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 1.4em 0;
+      color: #1e40af;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2.2em 0; }
+    .katex-display {
+      margin: 1.2em 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 6px 0;
+    }
+    .katex { font-size: 1.05em; }
+    
+    /* NotebookLM 原生 D3 互動心智圖樣式 */
+    .mindmap-box {
+      margin: 2em 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .mindmap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .mindmap-title {
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mindmap-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .mm-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: #334155;
+      transition: all 0.2s;
+    }
+    .mm-btn:hover { background: #f1f5f9; }
+    #tree-svg-container {
+      width: 100%;
+      height: 520px;
+      background: #ffffff;
+      cursor: grab;
+    }
+    #tree-svg-container:active { cursor: grabbing; }
+    .node circle {
+      cursor: pointer;
+      stroke-width: 2.5px;
+      transition: all 0.2s;
+    }
+    .node circle:hover { transform: scale(1.25); }
+    .node text {
+      font-size: 13px;
+      font-weight: 500;
+      font-family: inherit;
+      fill: #1e293b;
+      cursor: pointer;
+      paint-order: stroke fill;
+      stroke: #ffffff;
+      stroke-width: 4.5px;
+      stroke-linejoin: round;
+      user-select: none;
+    }
+    .link {
+      fill: none;
+      stroke: #cbd5e1;
+      stroke-width: 1.8px;
+      stroke-opacity: 0.85;
+      transition: stroke-width 0.2s;
+    }
+    .link:hover { stroke: #94a3b8; stroke-width: 2.5px; }
+
+    footer.doc-foot {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      background: #fcfdfe;
+    }
+    .print-btn {
+      position: absolute;
+      top: 36px;
+      right: 40px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .print-btn:hover { background: rgba(255,255,255,0.25); }
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      body {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+      }
+      .container {
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+      }
+      .print-btn, .mindmap-btns {
+        display: none !important;
+      }
+      header.hero {
+        background: var(--header-gradient) !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+        padding: 24px 30px !important;
+        margin-bottom: 20px !important;
+      }
+      header.hero h1 {
+        color: #ffffff !important;
+        font-size: 1.6rem !important;
+      }
+      header.hero .badge {
+        background: rgba(255,255,255,0.2) !important;
+        color: #ffffff !important;
+      }
+      header.hero .meta {
+        color: #cbd5e1 !important;
+      }
+      .content-body {
+        padding: 10px 0 !important;
+      }
+      h1, h2, h3, h4, table, tr, pre, .mermaid, .mindmap-box, blockquote {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      h2, h3 {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <div class="badge">📖 高中課堂互動圖文筆記</div>
+      <button class="print-btn" onclick="window.print()">🖨️ 列印 / 另存 PDF</button>
+      <h1>【英文】260923_英文文法與雜誌第14單元複習</h1>
+      <div class="meta">
+        <span>⏱️ 數位筆記儀表板</span>
+        <span>🏷️ 含可縮放互動心智圖、時間軸與觀念對比</span>
+      </div>
+    </header>
+    <div class="content-body">
+      
+      <div class="mindmap-box">
+        <div class="mindmap-header">
+          <div class="mindmap-title">
+            <span>🧠 本課核心知識脈絡（NotebookLM 原生互動心智圖 • 支援縮放與展開）</span>
+          </div>
+          <div class="mindmap-btns">
+            <button class="mm-btn" onclick="expandAll()">展開全部</button>
+            <button class="mm-btn" onclick="collapseAll()">收合分支</button>
+            <button class="mm-btn" onclick="resetZoom()">重設視角</button>
+          </div>
+        </div>
+        <div id="tree-svg-container"></div>
+      </div>
+        
+      <h2>📖 課堂主題與核心摘要 (Class Overview)</h2>
+<p>本堂課為高中英文綜合複習與實戰課，重點涵蓋基礎文法辨析、高效學習與時間管理英文文章解構、習作考卷錯題檢討，以及外刊雜誌第 14 單元的重點核心單字與句型延伸。課堂中老師特別針對學生易混淆的形容詞用法（如 few/a few、修飾人事物的 -ed/-ing）、連綴動詞後接形容詞或名詞的句型規範、動詞搭配詞（如 enjoy/avoid + V-ing）進行深入拆解。學習目標旨在幫助學生掌握段考與大考常考的文法陷阱、提升文章邏輯填空判斷力，並建立精準的英文解題 SOP。</p>
+<div class="mermaid">
+graph LR
+  Root["英文文法與雜誌 Unit 14 總複習"] --> A["核心文法與句型辨析"]
+  Root --> B["學習技巧與時間管理"]
+  Root --> C["雜誌 Unit 14 核心詞彙"]
+  Root --> D["試題檢討與常考陷阱"]
+
+  A --> A1["數量修飾詞: few (負面) vs. a few"]
+  A --> A2["連綴動詞: + Adj vs. + like + N"]
+  A --> A3["情緒形容詞: -ed (人) vs. -ing (物/事)"]
+  A --> A4["時態與條件句: 現在完成式 / if 條件句"]
+
+  B --> B1["環境與常規: study space / routine"]
+  B --> B2["時限與休息: set time limits / take breaks"]
+
+  C --> C1["社交與新聞詞彙: fake / identity / claim / platform"]
+  C --> C2["描述與判斷詞彙: convincing / alert / instinct"]
+
+  D --> D1["動詞固定搭配: enjoy + V-ing / avoid + V-ing"]
+  D --> D2["近義字辨析: realize vs. reflect"]
+</div>
+<hr />
+<h2>💡 核心知識點與觀念詳解 (Key Concepts)</h2>
+<h3>1. 數量修飾詞與連綴動詞重點解析</h3>
+<ul>
+<li><strong><code>few</code> 與 <code>a few</code> 的語意差異</strong>：</li>
+<li><code>$few$</code>：表示「幾乎沒有」，隱含<strong>負面批判或不好的語意</strong>。<ul>
+<li>課堂例題：<em>I have few friends.</em>（表示我不太擅長與人交際、人際關係不好，帶有負面情感，撰寫文章時切勿濫用）。</li>
+</ul>
+</li>
+<li><code>$a\ few$</code>：表示「有一些」，屬於正面客觀描述。</li>
+<li><strong>連綴動詞 / 感官動詞句型</strong>：</li>
+<li>常用連綴動詞：<code>feel</code>（摸/感覺起來）、<code>look</code>（看起來）、<code>smell</code>（聞起來）、<code>taste</code>（嘗起來）、<code>sound</code>（聽起來）。</li>
+<li><strong>句型一（直接接形容詞）</strong>：\(\text{Subject} + \text{Feel / Look / Sound} + \text{Adj}\)<ul>
+<li>課堂範例：<em>where you feel comfortable</em> / <em>It sounds nice.</em></li>
+</ul>
+</li>
+<li><strong>句型二（接名詞需加 like）</strong>：\(\text{Subject} + \text{Feel / Look / Sound} + \text{like} + \text{N}\)<ul>
+<li>課堂範例：<em>It sounds like a good idea.</em></li>
+</ul>
+</li>
+</ul>
+<h3>2. 情緒形容詞（-ed vs. -ing）與祈使句主詞判斷</h3>
+<ul>
+<li><strong>分詞形容詞主詞歸納</strong>：</li>
+<li>修飾<strong>人</strong>（感到...）：使用 <code>-ed</code> 結尾（如 <em>embarrassed</em>, <em>interested</em>）。</li>
+<li>修飾<strong>物/事情</strong>（令人...）：使用 <code>-ing</code> 結尾（如 <em>embarrassing</em>, <em>interesting</em>）。</li>
+<li><strong>祈使句的隱藏主詞陷阱</strong>：</li>
+<li>祈使句由原形動詞開頭（如 <em>Don't stand up.</em> 或 <em>Stand up.</em>），其省略的隱含主詞為 <strong><code>you</code>（人）</strong>。因此在祈使句情境中選擇修飾人的情緒形容詞時，需搭配 <code>-ed</code> 型態；若主詞為虛主詞 <code>it</code>，則需選 <code>-ing</code>。</li>
+</ul>
+<h3>3. 文章閱讀與邏輯銜接片語</h3>
+<p>課堂針對學習空間與時間管理的閱讀文章，解析了關鍵轉折與介系詞用法：<br />
+- <code>speaking of</code> / <code>when it comes to</code> + \(\text{N / V-ing}\)（一提到...）<br />
+- <code>after all</code>（畢竟）/ <code>of course</code>（當然）<br />
+- <code>at the most</code> + 數字（最多...，例：<em>At the most three students can attend.</em>）<br />
+- <code>follow a schedule</code>（遵守時間表）/ <code>have a routine</code>（養成固定常規）<br />
+- <code>set time limits</code>（設定時間限制，避免單科讀太久）</p>
+<p>【⏱️ 課堂高效學習與時間管理 SOP 流程圖】：</p>
+<div class="mermaid">
+graph TD
+    S1["1. 建立專屬學習空間 (Create a study space)"] --> S2["2. 制定並遵守時間表 (Follow a schedule & routine)"]
+    S2 --> S3["3. 一件一件依序完成任務 (Finish tasks one by one)"]
+    S3 --> S4["4. 為每科設定時間限制 (Set time limits)"]
+    S4 --> S5["5. 適時安排休息並微運動放鬆 (Take breaks & quick exercises)"]
+</div>
+<h3>4. 外刊雜誌第 14 單元核心單字與句型延伸</h3>
+<ul>
+<li><strong><code>term</code> (n.)</strong>：專門術語。常用搭配：<code>explain this term to me</code>（向我解釋這個術語）。</li>
+<li><strong><code>develop</code> (v.)</strong>：發展、培養。常用搭配：<code>develop feelings for someone</code>（對某人產生感情）。</li>
+<li><strong><code>threat</code> (n.)</strong>：威脅。常用搭配：<code>a threat to our health</code>（對我們健康的威脅）。</li>
+<li><strong><code>request</code> (v./n.)</strong>：正式要求（比口語的 <code>ask</code> 更正式）。範例：<em>The man requested a glass of water.</em></li>
+<li><strong><code>private</code> (adj.) / <code>privacy</code> (n.)</strong>：私人的 / 隱私。範例：<em>This message is private and should stay secret.</em></li>
+<li><strong><code>fake</code> (adj.)</strong>：假的、偽造的。課堂舉例：<em>wear a fake beard</em>（戴假鬍子）。</li>
+<li><strong><code>identity</code> (n.) / <code>identify</code> (v.)</strong>：身分 / 指認、識別。常用搭配：<em>identity card (ID card)</em> / <em>identify the robber</em>（到警局指認強盜）。</li>
+<li><strong><code>recently</code> (adv.)</strong>：最近。常用於<strong>現在完成式</strong>（\(\text{have / has} + \text{p.p.}\)）。範例：<em>My uncle recently started a small business.</em></li>
+<li><strong><code>avoid</code> (v.)</strong>：避免。固定後接動名詞：\(\text{avoid} + \text{V-ing}\)。範例：<em>avoid seeing someone</em> / <em>avoid the barking dog</em>。</li>
+<li><strong><code>claim</code> (v.)</strong>：宣稱（在缺乏證據的情況下聲稱）。範例：<em>The stranger claimed to know my brother.</em></li>
+<li><strong><code>convincing</code> (adj.)</strong>：具說服力的。範例：<em>Your words are very convincing.</em></li>
+<li><strong><code>alert</code> (adj.)</strong>：保持警覺。常用搭配：<code>stay alert</code> / <code>be alert</code>。</li>
+<li><strong><code>instinct</code> (n.)</strong>：直覺。常用搭配：<code>trust your instinct</code>（相信你的直覺）。</li>
+</ul>
+<p>【📊 課堂觀念與易混淆對比表】：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">觀念 / 詞彙組合</th>
+<th style="text-align: left;">核心定義與用法差異</th>
+<th style="text-align: left;">課堂經典例題 / 判斷關鍵</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong><code>few</code> vs. <code>a few</code></strong></td>
+<td style="text-align: left;"><code>few</code> 表示幾乎沒有（帶負面情緒）；<code>a few</code> 表示有一些（正面客觀）。</td>
+<td style="text-align: left;"><em>I have few friends.</em>（負面描述，代表交友不順利）。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>look/sound + Adj</code> vs. <code>+ like + N</code></strong></td>
+<td style="text-align: left;">後接形容詞直接加；若後接名詞，前面必須加上介系詞 <code>like</code>。</td>
+<td style="text-align: left;"><em>It sounds nice.</em> (Adj)<br><em>It sounds like a good idea.</em> (N)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>request</code> vs. <code>ask</code></strong></td>
+<td style="text-align: left;"><code>request</code> 為正式書面/公務用語；<code>ask</code> 為日常口語用語。</td>
+<td style="text-align: left;">正式場合或文章題目中優先選 <code>request</code>。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>realize</code> vs. <code>reflect</code></strong></td>
+<td style="text-align: left;"><code>realize</code> 表示意識到、理解到；<code>reflect</code> 表示反映、反省（常接介系詞）。</td>
+<td style="text-align: left;">理解事物的重點或重要性，應選 <code>realize the importance</code>。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>-ed</code> vs. <code>-ing</code> (情緒形容詞)</strong></td>
+<td style="text-align: left;"><code>-ed</code> 修飾「人」的感受；<code>-ing</code> 修飾「事物」給人的感覺。</td>
+<td style="text-align: left;">祈使句預設主詞為 <code>you</code>，故填形容詞時須選 <code>-ed</code>（如 <em>embarrassed</em>）。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>⚠️ 老師強調考點與易錯陷阱 (Exam Focus &amp; Pitfalls)</h2>
+<ol>
+<li><strong><code>enjoy</code> 與 <code>avoid</code> 的後接動詞陷阱（必考星號）</strong>：<br />
+   - 看到 <code>enjoy</code> 或 <code>avoid</code>，後面動詞<strong>只能接 \(\text{V-ing}\)</strong>，切勿誤選不定詞 <code>to V</code>。</li>
+<li><strong>介系詞語意選擇陷阱（<code>with</code> vs. <code>for</code>）</strong>：<br />
+   - 課堂檢討例題：<em>帶者一碗麵進入...</em> 應使用 <strong><code>with a bowl of noodles</code></strong>。若誤選 <code>for</code>，會變成「為了/給一碗麵」，語意不通（牛排或麵條不是人，不會為它服務）。</li>
+<li><strong><code>realize</code> 與 <code>reflect</code> 的語意混淆</strong>：<br />
+   - 段考考題常考「理解到某事的重要性」，答案為 <strong><code>realize</code></strong>。<code>reflect</code> 意為「反省、反射」，通常需要搭配介系詞（如 <code>reflect on</code>），不可混淆。</li>
+<li><strong>情緒形容詞的被動與主體判斷</strong>：<br />
+   - 習作第 11 題：若句子主詞為 <code>it</code>，形容詞請選 <code>embarrassing</code>；若主詞為人或祈使句對象，請選 <code>embarrassed</code>。</li>
+</ol>
+<hr />
+<h2>🔑 記憶口訣與解題技巧 (Mnemonics &amp; Shortcuts)</h2>
+<ul>
+<li><strong>連綴動詞秒殺口訣</strong>：<blockquote>
+<p>「直接形容詞，名詞前加 like。」</p>
+</blockquote>
+</li>
+<li><strong>情緒形容詞人事判斷法</strong>：<blockquote>
+<p>「人受罪選 <code>-ed</code>，物搞事選 <code>-ing</code>；祈使句隱含主詞是 <code>you</code>，秒選 <code>-ed</code>！」</p>
+</blockquote>
+</li>
+<li><strong>動詞搭配 V-ing 記憶包</strong>：<blockquote>
+<p><code>enjoy</code>（享受）、<code>avoid</code>（避免），後接動作一律加 <code>-ing</code>！</p>
+</blockquote>
+</li>
+<li><strong><code>few</code> 的情感色彩判斷</strong>：<blockquote>
+<p>沒有 <code>a</code> 的 <code>few</code>，代表「少到好可憐/真糟糕」（負面意思）。</p>
+</blockquote>
+</li>
+</ul>
+<hr />
+<h2>📝 課後作業與待辦事項 (Homework &amp; Tasks)</h2>
+<ol>
+<li><strong>錯題訂正與登記</strong>：<br />
+   - 本次習作與考卷有錯題者，請將錯題<strong>訂正 3 次</strong>，並找小老師登記成績。</li>
+<li><strong>明日考試預習</strong>：<br />
+   - 明天將進行<strong>雜誌第 11 單元（主題：Animal Behavior 動物行為）</strong>的單字與課卷測驗，請提前複習。</li>
+<li><strong>隨身攜帶必備講義</strong>：<br />
+   - 克漏字講義（第 1、2、3 份）與 All-in-One 練習冊請務必放在書包隨身攜帶，課堂將隨時進行抽查與練習。</li>
+</ol>
+<hr />
+<h2>📚 專有名詞與重要公式/定義 (Glossary &amp; Formulas)</h2>
+<ul>
+<li><strong><code>term</code></strong>: [名詞] 專門術語、詞彙。例：<em>explain this term to me</em>（向我解釋這個術語）。</li>
+<li><strong><code>develop</code></strong>: [動詞] 發展、培養。例：<em>develop feelings for sb</em>（對某人產生感情）。</li>
+<li><strong><code>threat</code></strong>: [名詞] 威脅。例：<em>a threat to our health</em>（對健康的威脅）。</li>
+<li><strong><code>request</code></strong>: [動詞/名詞] 正式要求。例：<em>request a glass of water</em>。</li>
+<li><strong><code>private / privacy</code></strong>: [形容詞/名詞] 私人的 / 隱私。例：<em>private message</em> / <em>respect one's privacy</em>。</li>
+<li><strong><code>fake</code></strong>: [形容詞] 假的、偽造的。例：<em>a fake beard</em>（假鬍子）。</li>
+<li><strong><code>identity / identify</code></strong>: [名詞/動詞] 身分 / 指認、辨識。例：<em>identity card</em> / <em>identify the suspect</em>。</li>
+<li><strong><code>recently</code></strong>: [副詞] 最近（常用於現在完成式 \(\text{have/has} + \text{p.p.}\)）。</li>
+<li><strong><code>avoid</code></strong>: [動詞] 避免（後接 \(\text{V-ing}\)）。例：<em>avoid making mistakes</em>。</li>
+<li><strong><code>claim</code></strong>: [動詞] 宣稱（無確鑿證據下聲稱）。例：<em>claim to know the truth</em>。</li>
+<li><strong><code>platform</code></strong>: [名詞] 平台。例：<em>social media platforms</em>（社群媒體平台）。</li>
+<li><strong><code>convincing</code></strong>: [形容詞] 具說服力的。例：<em>a convincing argument</em>。</li>
+<li><strong><code>alert</code></strong>: [形容詞] 保持警覺的。用法：<em>stay alert</em> / <em>be alert</em>。</li>
+<li><strong><code>instinct</code></strong>: [名詞] 直覺。用法：<em>trust your instinct</em>（相信你的直覺）。</li>
+</ul>
+<hr />
+<h2>🧠 課後自測題 (Quick Review Quiz)</h2>
+<p><strong>第一題（連綴動詞與介系詞）</strong></p>
+<blockquote>
+<p>請判斷以下兩句何者正確，並說明原因：<br />
+(A) <em>The plan sounds a good idea.</em><br />
+(B) <em>The plan sounds like a good idea.</em><br />
+- <strong>解析與答案</strong>：答案為 <strong>(B)</strong>。因為 <code>a good idea</code> 為名詞片語，連綴動詞 <code>sound</code> 後接名詞時，中間必須加上介系詞 <code>like</code>。</p>
+</blockquote>
+<p><strong>第二題（動詞固定搭配與時態）</strong></p>
+<blockquote>
+<p>填空題：<em>My uncle has <strong><em>_</em>_ (recently / recent) started a new business, and he always avoids </strong>____ (to make / making) hasty decisions.</em><br />
+- <strong>解析與答案</strong>：依次填入 <strong><code>recently</code></strong> 與 <strong><code>making</code></strong>。完成式助動詞 <code>has</code> 與動詞 <code>started</code> 中間應修飾副詞 <code>recently</code>；動詞 <code>avoid</code> 後面固定接動名詞 <code>V-ing</code>。</p>
+</blockquote>
+<p><strong>第三題（情緒形容詞與祈使句）</strong></p>
+<blockquote>
+<p>請問在句子 <em>"Don't be ______ (embarrassed / embarrassing) when speaking English in public!"</em> 中，應該填入哪一個字？<br />
+- <strong>解析與答案</strong>：答案為 <strong><code>embarrassed</code></strong>。本句為祈使句，省略的主詞為 <code>you</code>（人），修飾人的感受需使用 <code>-ed</code> 結尾的形容詞。</p>
+</blockquote>
+<hr />
+<p>💡 <strong>課後複習小建議</strong>：建議同學先將雜誌第 14 單元的 12 個核心單字隨堂默寫一遍，並搭配上列的「記憶口訣」對照習作錯題，能大幅提升考前衝刺效率！有任何疑問隨時可以找助教討論喔！</p>
+    </div>
+    <footer class="doc-foot">
+      自動生成於 NotebookLM Study Assistant • 專為高中學生課後複習與考前衝刺打造
+    </footer>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.mermaid) {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'neutral',
+          fontFamily: "'Noto Sans TC', 'Inter', sans-serif",
+          flowchart: { curve: 'basis', htmlLabels: true },
+          securityLevel: 'loose'
+        });
+      }
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+  
+  <script>
+    (function() {
+      const treeData = {"name": "核心文法與句型辨析", "children": [{"name": "數量修飾詞: few (負面) vs. a few"}, {"name": "連綴動詞: + Adj vs. + like + N"}, {"name": "情緒形容詞: -ed (人) vs. -ing (物/事)"}, {"name": "時態與條件句: 現在完成式 / if 條件句"}]};
+      const container = document.getElementById("tree-svg-container");
+      if (!container || !treeData) return;
+
+      const width = container.clientWidth || 880;
+      const height = 520;
+
+      const svg = d3.select("#tree-svg-container")
+        .append("svg")
+        .attr("width", "100%")
+        .attr("height", height)
+        .attr("viewBox", [0, 0, width, height]);
+
+      const g = svg.append("g");
+
+      const zoom = d3.zoom()
+        .scaleExtent([0.25, 2.5])
+        .on("zoom", (e) => g.attr("transform", e.transform));
+
+      svg.call(zoom);
+
+      const root = d3.hierarchy(treeData);
+      root.x0 = height / 2;
+      root.y0 = 0;
+
+      let i = 0;
+      const duration = 380;
+      // [dy, dx]: 垂直節距 58px (確保上下不重疊), 水平層級 320px (確保長文字不穿透父層)
+      const treeLayout = d3.tree().nodeSize([58, 320]);
+
+      function splitNodeText(text, maxChars) {
+        if (!text) return [""];
+        if (text.length <= maxChars) return [text];
+
+        // 優先在括號處斷行，例如：世風日下之自身矛盾對比（擇師教子 vs. 於身恥師）
+        const parenIdx = text.search(/[（(]/);
+        if (parenIdx >= 3 && parenIdx <= maxChars + 4) {
+          const p1 = text.slice(0, parenIdx).trim();
+          const p2 = text.slice(parenIdx).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 優先在冒號、破折號、頓號處斷行
+        const sepIdx = text.search(/[：:—、]/);
+        if (sepIdx >= 3 && sepIdx <= maxChars + 2) {
+          const p1 = text.slice(0, sepIdx + 1).trim();
+          const p2 = text.slice(sepIdx + 1).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 預設在 maxChars 處均勻斷行
+        return [text.slice(0, maxChars), text.slice(maxChars)];
+      }
+
+      if (root.children) {
+        root.children.forEach(c => {
+          if (c.children) {
+            c.children.forEach(collapse);
+          }
+        });
+      }
+
+      function collapse(d) {
+        if (d.children) {
+          d._children = d.children;
+          d._children.forEach(collapse);
+          d.children = null;
+        }
+      }
+
+      function expand(d) {
+        if (d._children) {
+          d.children = d._children;
+          d.children.forEach(expand);
+          d._children = null;
+        }
+      }
+
+      const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
+
+      function getNodeColor(d) {
+        if (d.depth === 0) return "#2563eb";
+        let p = d;
+        while (p.depth > 1) p = p.parent;
+        return colorScale(p.data.name);
+      }
+
+      function update(source) {
+        const nodes = root.descendants();
+        const links = root.links();
+
+        treeLayout(root);
+
+        const node = g.selectAll("g.node")
+          .data(nodes, d => d.id || (d.id = ++i));
+
+        const nodeEnter = node.enter().append("g")
+          .attr("class", "node")
+          .attr("transform", d => `translate(${source.y0},${source.x0})`)
+          .on("click", (event, d) => {
+            if (d.children) {
+              d._children = d.children;
+              d.children = null;
+            } else if (d._children) {
+              d.children = d._children;
+              d._children = null;
+            }
+            update(d);
+          });
+
+        nodeEnter.append("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        const textNode = nodeEnter.append("text")
+          .attr("class", "node-text")
+          .attr("text-anchor", d => (d.children || d._children) ? "end" : "start")
+          .style("fill-opacity", 0);
+
+        textNode.each(function(d) {
+          const el = d3.select(this);
+          const isParent = Boolean(d.children || d._children);
+          const xOffset = isParent ? -14 : 14;
+          const maxChars = isParent ? 13 : 18;
+          const lines = splitNodeText(d.data.name, maxChars);
+
+          if (lines.length === 1) {
+            el.attr("x", xOffset)
+              .attr("dy", "0.32em")
+              .text(lines[0]);
+          } else {
+            el.attr("x", xOffset)
+              .attr("dy", "-0.35em")
+              .text(lines[0]);
+            el.append("tspan")
+              .attr("x", xOffset)
+              .attr("dy", "1.25em")
+              .text(lines[1]);
+          }
+        });
+
+        const nodeUpdate = node.merge(nodeEnter).transition().duration(duration)
+          .attr("transform", d => `translate(${d.y},${d.x})`);
+
+        nodeUpdate.select("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        nodeUpdate.select("text")
+          .style("fill-opacity", 1);
+
+        const nodeExit = node.exit().transition().duration(duration)
+          .attr("transform", d => `translate(${source.y},${source.x})`)
+          .remove();
+
+        nodeExit.select("circle").attr("r", 1e-6);
+        nodeExit.select("text").style("fill-opacity", 1e-6);
+
+        const link = g.selectAll("path.link")
+          .data(links, d => d.target.id);
+
+        const linkEnter = link.enter().insert("path", "g")
+          .attr("class", "link")
+          .attr("d", d => {
+            const o = {x: source.x0, y: source.y0};
+            return diagonal(o, o);
+          });
+
+        link.merge(linkEnter).transition().duration(duration)
+          .attr("d", d => diagonal(d.source, d.target));
+
+        link.exit().transition().duration(duration)
+          .attr("d", d => {
+            const o = {x: source.x, y: source.y};
+            return diagonal(o, o);
+          })
+          .remove();
+
+        nodes.forEach(d => {
+          d.x0 = d.x;
+          d.y0 = d.y;
+        });
+      }
+
+      function diagonal(s, d) {
+        return `M ${s.y} ${s.x}
+                C ${(s.y + d.y) / 2} ${s.x},
+                  ${(s.y + d.y) / 2} ${d.x},
+                  ${d.y} ${d.x}`;
+      }
+
+      function autoFitTree(duration = 450) {
+        const nodes = root.descendants();
+        if (!nodes || nodes.length === 0) return;
+
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        nodes.forEach(d => {
+          const isParent = Boolean(d.children || d._children);
+          const leftBound = d.y - (isParent ? 180 : 20);
+          const rightBound = d.y + (isParent ? 20 : 220);
+          const topBound = d.x - 32;
+          const bottomBound = d.x + 32;
+
+          if (leftBound < minX) minX = leftBound;
+          if (rightBound > maxX) maxX = rightBound;
+          if (topBound < minY) minY = topBound;
+          if (bottomBound > maxY) maxY = bottomBound;
+        });
+
+        const fullWidth = container.clientWidth || 880;
+        const fullHeight = height;
+        const treeW = maxX - minX;
+        const treeH = maxY - minY;
+
+        if (treeW <= 0 || treeH <= 0) return;
+
+        const scale = Math.min(0.92, (fullWidth * 0.90) / treeW, (fullHeight * 0.90) / treeH);
+        const clampedScale = Math.max(scale, 0.42);
+
+        const midTreeX = (minX + maxX) / 2;
+        const midTreeY = (minY + maxY) / 2;
+        const tx = fullWidth / 2 - clampedScale * midTreeX;
+        const ty = fullHeight / 2 - clampedScale * midTreeY;
+
+        if (duration > 0) {
+          svg.transition().duration(duration).call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        } else {
+          svg.call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        }
+      }
+
+      window.expandAll = function() {
+        root.each(expand);
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.collapseAll = function() {
+        if (root.children) {
+          root.children.forEach(collapse);
+        }
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.resetZoom = function() {
+        autoFitTree(450);
+      };
+
+      // 首次繪製節點並自動縮放置中全覽
+      update(root);
+      autoFitTree(0);
+    })();
+  </script>
+
+</body>
+</html>

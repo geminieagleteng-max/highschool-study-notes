@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【英文】260921_現在完成式與手機成癮課文文法精講</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --border: #e2e8f0;
+      --border-focus: #cbd5e1;
+      --tag-bg: #e0f2fe;
+      --tag-text: #0369a1;
+      --header-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans TC', 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.8;
+      font-size: 16px;
+      padding: 30px 16px 60px;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.06), 0 2px 6px -1px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    header.hero {
+      background: var(--header-gradient);
+      color: #ffffff;
+      padding: 36px 40px 30px;
+      position: relative;
+    }
+    header.hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      color: #f1f5f9;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    header.hero h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.5px;
+    }
+    header.hero .meta {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .content-body {
+      padding: 40px 48px;
+    }
+    @media (max-width: 640px) {
+      .content-body { padding: 24px 20px; }
+      header.hero { padding: 28px 24px 22px; }
+      header.hero h1 { font-size: 1.5rem; }
+    }
+    h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 2.2em;
+      margin-bottom: 0.9em;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h2:first-of-type { margin-top: 0.5em; }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1e3a8a;
+      margin-top: 1.6em;
+      margin-bottom: 0.6em;
+      padding-left: 10px;
+      border-left: 4px solid var(--accent);
+    }
+    p { margin-bottom: 1.1em; }
+    ul, ol { margin-bottom: 1.2em; padding-left: 1.8em; }
+    li { margin-bottom: 0.4em; }
+    .mermaid {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 16px;
+      margin: 1.6em 0;
+      text-align: center;
+      overflow-x: auto;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 1.6em 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    thead th {
+      background: #f1f5f9;
+      color: #1e293b;
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+    tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) { background: #fafafa; }
+    tbody tr:hover { background: #f0f7ff; }
+    tbody tr:last-child td { border-bottom: none; }
+    code {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      background: #f1f5f9;
+      color: #b91c1c;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 1.4em 0;
+      font-size: 0.92em;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; }
+    blockquote {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 14px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 1.4em 0;
+      color: #1e40af;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2.2em 0; }
+    .katex-display {
+      margin: 1.2em 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 6px 0;
+    }
+    .katex { font-size: 1.05em; }
+    
+    /* NotebookLM 原生 D3 互動心智圖樣式 */
+    .mindmap-box {
+      margin: 2em 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .mindmap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .mindmap-title {
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mindmap-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .mm-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: #334155;
+      transition: all 0.2s;
+    }
+    .mm-btn:hover { background: #f1f5f9; }
+    #tree-svg-container {
+      width: 100%;
+      height: 520px;
+      background: #ffffff;
+      cursor: grab;
+    }
+    #tree-svg-container:active { cursor: grabbing; }
+    .node circle {
+      cursor: pointer;
+      stroke-width: 2.5px;
+      transition: all 0.2s;
+    }
+    .node circle:hover { transform: scale(1.25); }
+    .node text {
+      font-size: 13px;
+      font-weight: 500;
+      font-family: inherit;
+      fill: #1e293b;
+      cursor: pointer;
+      paint-order: stroke fill;
+      stroke: #ffffff;
+      stroke-width: 4.5px;
+      stroke-linejoin: round;
+      user-select: none;
+    }
+    .link {
+      fill: none;
+      stroke: #cbd5e1;
+      stroke-width: 1.8px;
+      stroke-opacity: 0.85;
+      transition: stroke-width 0.2s;
+    }
+    .link:hover { stroke: #94a3b8; stroke-width: 2.5px; }
+
+    footer.doc-foot {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      background: #fcfdfe;
+    }
+    .print-btn {
+      position: absolute;
+      top: 36px;
+      right: 40px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .print-btn:hover { background: rgba(255,255,255,0.25); }
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      body {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+      }
+      .container {
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+      }
+      .print-btn, .mindmap-btns {
+        display: none !important;
+      }
+      header.hero {
+        background: var(--header-gradient) !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+        padding: 24px 30px !important;
+        margin-bottom: 20px !important;
+      }
+      header.hero h1 {
+        color: #ffffff !important;
+        font-size: 1.6rem !important;
+      }
+      header.hero .badge {
+        background: rgba(255,255,255,0.2) !important;
+        color: #ffffff !important;
+      }
+      header.hero .meta {
+        color: #cbd5e1 !important;
+      }
+      .content-body {
+        padding: 10px 0 !important;
+      }
+      h1, h2, h3, h4, table, tr, pre, .mermaid, .mindmap-box, blockquote {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      h2, h3 {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <div class="badge">📖 高中課堂互動圖文筆記</div>
+      <button class="print-btn" onclick="window.print()">🖨️ 列印 / 另存 PDF</button>
+      <h1>【英文】260921_現在完成式與手機成癮課文文法精講</h1>
+      <div class="meta">
+        <span>⏱️ 數位筆記儀表板</span>
+        <span>🏷️ 含可縮放互動心智圖、時間軸與觀念對比</span>
+      </div>
+    </header>
+    <div class="content-body">
+      
+      <div class="mindmap-box">
+        <div class="mindmap-header">
+          <div class="mindmap-title">
+            <span>🧠 本課核心知識脈絡（NotebookLM 原生互動心智圖 • 支援縮放與展開）</span>
+          </div>
+          <div class="mindmap-btns">
+            <button class="mm-btn" onclick="expandAll()">展開全部</button>
+            <button class="mm-btn" onclick="collapseAll()">收合分支</button>
+            <button class="mm-btn" onclick="resetZoom()">重設視角</button>
+          </div>
+        </div>
+        <div id="tree-svg-container"></div>
+      </div>
+        
+      <h2>📖 課堂主題與核心摘要 (Class Overview)</h2>
+<p>本堂課為高中英文課堂，核心主題圍繞於「現在完成式（Present Perfect Tense）」的文法推導與時態邏輯，並結合「致智慧型手機的一封告白信（手機成癮與人際關係）」課文進行重點文法與例題拆解。老師詳細說明了現在完成式的結構 <code>$S + \text{have/has} + p.p.$</code> 與使用時機，並延伸講解動名詞當主詞、<code>inspire</code>、<code>busy</code>、<code>stop</code>、<code>spend</code> 等高頻考點動詞之搭配用法。課堂中同時進行了隨堂測驗解答對對與錯題檢討，協助學生精準掌握題型陷阱。本課學習目標為靈活運用現在完成式於句型寫作，並能精確判斷介系詞與動詞接續型態。</p>
+<div class="mermaid">
+graph LR
+  Root["高中英文：現在完成式與課文文法"] --> A["文法核心：現在完成式"]
+  Root --> B["課文焦點：手機成癮與人際關係"]
+  Root --> C["重點動詞與句型搭配"]
+  Root --> D["考題檢討與易錯陷阱"]
+
+  A --> A1["結構：have/has + p.p."]
+  A --> A2["時機：發生於過去且持續至現在"]
+  A --> A3["搭配詞：since + 過去時態子句"]
+
+  B --> B1["動名詞當主詞 (Having you around...)"]
+  B --> B2["實用片語 (refresh the screen, turn to...)"]
+
+  C --> C1["be busy + V-ing"]
+  C --> C2["stop + V-ing vs stop + to V"]
+  C --> C3["spend + 時間/金錢 + V-ing / on N"]
+
+  D --> D1["副詞拼寫：truly 去 e"]
+  D --> D2["way to V vs way of N/V-ing"]
+  D --> D3["be likely to + 原形動詞"]
+</div>
+<hr />
+<h2>💡 核心知識點與觀念詳解 (Key Concepts)</h2>
+<h3>一、 現在完成式（Present Perfect Tense）觀念推導與時脈</h3>
+<ol>
+<li>
+<p><strong>結構與公式</strong>：<br />
+   - 肯認句公式：\[ S + \text{have} / \text{has} + p.p. \]<br />
+   - 否定句公式：\[ S + \text{have} / \text{has} + \text{not} + p.p. \]</p>
+</li>
+<li>
+<p><strong>核心時間軸邏輯與物理語意</strong>：<br />
+   - <strong>定義</strong>：當一個動作發生在過去（Happened in the past），但該動作或狀態<strong>一直持續延伸到說話的現在當下</strong>（Continues up to now），必須使用現在完成式。<br />
+   - <strong>課堂經典例題與比喻</strong>：</p>
+<ul>
+<li><strong>老師舉例</strong>：「\(I\ moved\ to\ Taipei\ when\ I\ was\ 40.\)」（40歲搬到台北，這是過去單點動作）；「\(I\ have\ been\ living\ in\ Taipei\ since\ then.\)」（自從40歲搬到台北後，一直住到現在，動作持續至今）。</li>
+<li><strong>課文句型</strong>：「\(Everything\ has\ been\ totally\ different\ since\ you\ came\ into\ my\ life.\)」（自從你進入我的生活，一切都變得不一樣了。從「你來」的過去時間點，狀態持續至今）。</li>
+</ul>
+</li>
+<li>
+<p><strong>時序演變流程圖</strong>：</p>
+</li>
+</ol>
+<div class="mermaid">
+graph TD
+  Start["過去時間點 (Past Moment)<br>例: Move to Taipei / Since you came"] --> Continues["狀態/動作持續延伸 (Continues up to now)"]
+  Continues --> Present["現在說話當下 (Present Moment)<br>例: Still living in Taipei / Writing this letter"]
+</div>
+<hr />
+<h3>二、 動名詞當主詞（V-ing as Subject）之語法規範</h3>
+<ol>
+<li><strong>核心規則</strong>：一般動詞不能直接作為句子的主詞。若要表達「某個動作/事件」作為主詞，必須改為動名詞（\(V\text{-ing}\)）或不定詞（\(to + V\)），且<strong>一律視為單數主詞</strong>，搭配單數動詞。</li>
+<li><strong>課堂經典比喻與例句</strong>：<br />
+   - <strong>老師比喻</strong>：「跳舞很好玩，你不能說 \(Dance\ is\ fun\)，要說 \(Dancing\ is\ fun\)；早起是好事，要說 \(Getting\ up\ early\ is\ good\)。」<br />
+   - <strong>課文精選句</strong>：「\(Having\ you\ around\ breaks\ my\ heart.\)」與「\(Having\ you\ around\ is\ really\ hurting\ my\ relationships.\)」（有你在身邊這件事，傷了我的心/傷害了我的人際關係）。主詞為單一事件「\(Having\ you\ around\)」，故動詞用單數 \(breaks\) 或 \(is\)。</li>
+</ol>
+<hr />
+<h3>三、 重點動詞句型與接續型態（Verb Patterns &amp; Collocations）</h3>
+<ol>
+<li>
+<p><strong><code>inspire</code>（激勵/啟發）平行結構</strong>：<br />
+   - 句型：\[ S + \text{inspire} + O + \text{to } V \]<br />
+   - 課堂考點：\(\text{inspire me } \mathbf{to\ connect} \text{ with others and } \mathbf{to\ communicate} \text{ better}\)（老師強調：對等連接詞 <code>and</code> 後方的 <code>to</code> 可省略或保留，但兩者必須保持動詞型態平行）。</p>
+</li>
+<li>
+<p><strong><code>be busy</code>（忙於做某事）</strong>：<br />
+   - 句型：\[ S + \text{be busy} + V\text{-ing} \]<br />
+   - 課堂例句：\(I\ am\ too\ busy\ paying\ attention\ to\ you.\)（我太忙於把注意力放在你身上）。</p>
+</li>
+<li>
+<p><strong><code>stop</code>（停止）之動作判斷</strong>：<br />
+   - 句型：\[ S + \text{stop} + V\text{-ing} \quad \text{vs} \quad S + \text{stop} + \text{to } V \]<br />
+   - 課堂測驗題：\(stop\ looking\ at\ your\ book\)（停止看書）、\(stop\ talking\)（停止說話），皆指停止正發生的動作。</p>
+</li>
+<li>
+<p><strong><code>spend</code>（花費時間/金錢）</strong>：<br />
+   - 句型：\[ S_{\text{person}} + \text{spend} + \text{time / money} + \left( V\text{-ing} \ \mid \ \text{on } N \right) \]<br />
+   - 課堂範例：\(spend\ less\ time\ interacting\ with\ friends\)（花較少時間與朋友互動）；\(spend\ 500\ dollars\ on\ game\ cards\)（花500元買遊戲卡）。</p>
+</li>
+<li>
+<p><strong><code>way</code>（方法）的接續限制</strong>：<br />
+   - 結構：\(a\ way + \text{to } V\text{ (原形)}\) 或 \(a\ way + \text{of } N / V\text{-ing}\)。<br />
+   - 課堂錯題分析：若後方接名詞 \(addiction\)（成癮），介系詞必須使用 \(of\)（如 \(a\ way\ of\ addiction\)）。</p>
+</li>
+</ol>
+<hr />
+<h3>四、 觀念與易混淆對比表 (Comparison Table)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">觀念 / 文法項目</th>
+<th style="text-align: left;">結構與公式</th>
+<th style="text-align: left;">語意與用法差異</th>
+<th style="text-align: left;">課堂經典例句</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>現在完成式 vs. 簡單過去式</strong></td>
+<td style="text-align: left;">\(S + \text{have/has} + p.p.\) <br> vs. \(S + V_{\text{past}}\)</td>
+<td style="text-align: left;"><strong>完成式</strong>強調「過去動作持續影響至<strong>現在</strong>」；<strong>過去式</strong>僅表示「過去特定時間點的事實，<strong>與現在無關</strong>」。</td>
+<td style="text-align: left;">\(I\ moved\ to\ Taipei\ when\ I\ was\ 40.\) (過去式)<br>\(I\ have\ lived\ here\ since\ then.\) (完成式)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>stop + V-ing</code> vs. <code>stop + to V</code></strong></td>
+<td style="text-align: left;">\(V\text{-ing}\) (動名詞受詞) <br> vs. \(to\ V\) (目的副詞)</td>
+<td style="text-align: left;"><code>stop + V-ing</code> 為「<strong>停止</strong>手邊正在做的事」；<code>stop + to V</code> 為「<strong>停下來去</strong>做另一件事」。</td>
+<td style="text-align: left;">\(stop\ talking\) (閉嘴/別再講話)<br>\(stop\ to\ talk\) (停下腳步開始聊天)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>a way to V</code> vs. <code>a way of N</code></strong></td>
+<td style="text-align: left;">\(to + \text{原形動詞}\) <br> vs. \(of + \text{名詞/動名詞}\)</td>
+<td style="text-align: left;">兩者均表示「…的方法」，但介系詞 \(of\) 後必接名詞或動名詞，\(to\) 後接原形動詞。</td>
+<td style="text-align: left;">\(a\ way\ to\ sleep\)<br>\(a\ way\ of\ sleeping / a\ way\ of\ addiction\)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>spend</code> 花費動詞</strong></td>
+<td style="text-align: left;">主詞限定為「<strong>人</strong>」</td>
+<td style="text-align: left;">主詞必為人，可花費時間或金錢，動詞一律接 \(V\text{-ing}\)，名詞接 \(on\)。</td>
+<td style="text-align: left;">\(I\ spend\ time\ with\ my\ friends.\)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>⚠️ 老師強調考點與易錯陷阱 (Exam Focus &amp; Pitfalls)</h2>
+<ol>
+<li>
+<p><strong><code>since</code> 介系詞/連接詞的時態搭配陷阱（必考星號重點）</strong>：<br />
+   - <strong>常錯陷阱</strong>：學生常把 <code>since</code> 引導的子句錯寫成完成式，或把主句錯寫成簡單現在式。<br />
+   - <strong>正確公式</strong>：<br />
+     \[ \text{主句 (現在完成式 } S + \text{have/has} + p.p.) + \mathbf{since} + \text{子句 (過去式 } S + V_{\text{past}}) \]<br />
+   - <strong>驗證例句</strong>：\(Everything\ \mathbf{has\ been}\ totally\ different\ \mathbf{since}\ you\ \mathbf{came}\ into\ my\ life.\)</p>
+</li>
+<li>
+<p><strong>副詞 <code>truly</code> 拼寫陷阱</strong>：<br />
+   - <strong>常錯陷阱</strong>：形容詞 <code>true</code> 轉副詞時，學生常直覺寫成 <code>truely</code>（多寫了 e）。<br />
+   - <strong>正確觀念</strong>：去 <code>e</code> 再加 <code>ly</code>，正確拼法為 <strong><code>truly</code></strong>（如 \(You\ are\ truly\ nice.\)）。</p>
+</li>
+<li>
+<p><strong><code>be busy</code> 與 <code>be afraid</code> 之形容詞結構</strong>：<br />
+   - <code>busy</code> 為形容詞，前面必須有 B 動詞（如 \(They\ are\ so\ busy\)），後接動詞<strong>必須使用 \(V\text{-ing}\)</strong>（如 \(busy\ paying\ attention\ to\ you\)）。<br />
+   - <code>afraid</code> 亦為形容詞，不可漏掉 B 動詞（要寫 \(I\ am\ afraid\)，不可寫成 \(I\ afraid\)）。</p>
+</li>
+<li>
+<p><strong>"Game over" 正確英文語法</strong>：<br />
+   - 口語常說 "Game over"，但在正式文法測驗中，<code>over</code> 為形容詞，前面必須加上 B 動詞，寫為：\(The\ game\ \mathbf{is}\ over.\) 或 \(It\ \mathbf{is}\ over.\)。</p>
+</li>
+<li>
+<p><strong><code>be likely to</code> 的動詞型態</strong>：<br />
+   - 句型為 \(S + \text{be likely to} + V\text{ (原形)}\)，如 \(Their\ brains\ are\ likely\ to\ get\ worse.\)。</p>
+</li>
+</ol>
+<hr />
+<h2>🔑 記憶口訣與解題技巧 (Mnemonics &amp; Shortcuts)</h2>
+<ol>
+<li>
+<p><strong>副詞 <code>truly</code> 拆解聯想口訣</strong>：<br />
+   - <strong>老師口訣</strong>：「夢想樹（Tree）」——要實現夢想或真理，要把希望卡掛在樹（Tree）上。把樹中間的 <code>e</code> 拿掉變成 <code>True</code>；變副詞時去掉結尾 <code>e</code> 加 <code>ly</code> 就變成 <strong><code>truly</code></strong>！</p>
+</li>
+<li>
+<p><strong><code>spend</code> 動詞破題三步驟 SOP</strong>：<br />
+   - <strong>第一步（檢查主詞）</strong>：確認主詞是否為「<strong>人</strong>」（只有人能同時花錢與時間）。<br />
+   - <strong>第二步（檢查受詞）</strong>：後接「時間」或「金錢」。<br />
+   - <strong>第三步（檢查介系詞/動詞）</strong>：接動作直接選 <strong>\(V\text{-ing}\)</strong>，接物品選 <strong>\(on + N\)</strong>。</p>
+</li>
+<li>
+<p><strong>關鍵字速解判斷法</strong>：<br />
+   - <strong>看到 <code>since</code></strong> ➔ 子句找「過去式動詞（\(V_{\text{past}}\)）」，主句找「現在完成式（\(\text{have/has} + p.p.\)）」。<br />
+   - <strong>看到 <code>busy</code></strong> ➔ 後方空格毫不猶豫直接選 <strong>\(V\text{-ing}\)</strong>。<br />
+   - <strong>看到動名詞（<code>Having / Dancing</code>）置於句首</strong> ➔ 後方主要動詞必選<strong>單數動詞</strong>（\(is / has / V\text{-s}\)）。</p>
+</li>
+</ol>
+<hr />
+<h2>📝 課後作業與待辦事項 (Homework &amp; Tasks)</h2>
+<ul>
+<li><strong>【作業檢查】</strong>：</li>
+<li>第一課習作（形座/習作本）需填寫完成，並統一繳交給英文小老師進行登記。</li>
+<li><strong>【隨堂卷整理】</strong>：</li>
+<li>本日發還並檢討完畢之第二課與第三課雙面隨堂練習卷（單元測驗卷）請妥善收納，課後隨時進行複習抽考。</li>
+<li><strong>【明日小考預告】</strong>：</li>
+<li>明日英文課將進行<strong>雜誌單元小考</strong>，請同學提前預習與複習雜誌 <strong>第 4 至 5 單元</strong>（或第 4 至 6 單元）之重點單字與文章。</li>
+</ul>
+<hr />
+<h2>📚 專有名詞與重要公式/定義 (Glossary &amp; Formulas)</h2>
+<ul>
+<li>
+<p><strong>現在完成式公式 (Present Perfect Tense)</strong>:<br />
+  \[ S + \text{have} / \text{has} + p.p. \]<br />
+  用於表示從過去某一時間點開始發生，並一直持續延伸至說話當下的動作或狀態。</p>
+</li>
+<li>
+<p><strong><code>since</code> 自從句型 (Since Clause Structure)</strong>:<br />
+  \[ S + \text{have/has} + p.p. + \mathbf{since} + S + V_{\text{past}} \]<br />
+  \(since\) 引導過去明確時間點或過去式子句，主句搭配現在完成式。</p>
+</li>
+<li>
+<p><strong>花費動詞句型 (Spend Formula)</strong>:<br />
+  \[ S_{\text{person}} + \text{spend} + \text{time/money} + \left( V\text{-ing} \ \mid \ \text{on } N \right) \]<br />
+  主詞限定為人，表示花費時間或金錢於某事/某物上。</p>
+</li>
+<li>
+<p><strong><code>lay into the night</code> / <code>late into the night</code></strong>: [片語] 熬夜做某事、搞到深夜（例：\(study\ late\ into\ the\ night\)）。</p>
+</li>
+<li><strong><code>refresh the screen</code></strong>: [片語] 重新整理螢幕、刷動畫面。</li>
+<li><strong><code>just in case</code></strong>: [片語] 以防萬一、以備不時之需。</li>
+<li><strong><code>turn to sb. for sth.</code></strong>: [片語] 向某人尋求（協助/資訊）（例：\(turn\ to\ you\ for\ Instagram\ updates\)）。</li>
+<li><strong><code>be disappointed with sb./sth.</code></strong>: [片語] 對某人或某事感到失望。</li>
+<li><strong><code>inspire sb. to V</code></strong>: [句型] 激勵/啟發某人去做某事。</li>
+</ul>
+<hr />
+<h2>🧠 課後自測題 (Quick Review Quiz)</h2>
+<ol>
+<li>
+<p><strong>單選填空題</strong>：<br />
+   \(Everything\ \underline{\quad (1) \quad}\ \text{totally different since you}\ \underline{\quad (2) \quad}\ \text{into my life.}\)<br />
+   (A) was ; come<br />
+   (B) has been ; came<br />
+   (C) is ; have come<br />
+   (D) had been ; came<br />
+   - <strong>答案與解析</strong>：答案為 <strong>(B)</strong>。句中含有 \(since\)（自從），引導過去發生的事件，故 (2) 填過去式 \(came\)；主句表示該事件對現在造成的持續影響，故 (1) 須使用現在完成式 \(has\ been\)。</p>
+</li>
+<li>
+<p><strong>改錯題</strong>：<br />
+   請找出並改正下句中的兩處文法錯誤：<br />
+   「\(Having\ a\ smartphone\ around\ \mathbf{are}\ hurting\ my\ study,\ and\ I\ am\ too\ busy\ \mathbf{to\ play}\ games\ all\ day.\)」<br />
+   - <strong>答案與解析</strong>：</p>
+<ol>
+<li>第一處錯誤：\(Having\ a\ smartphone\ around\) 為<strong>動名詞短語當主詞</strong>，視為單數，應將 \(are\) 改為 <strong>\(is\)</strong>。</li>
+<li>第二處錯誤：\(be\ busy\) 後接動作應使用動名詞，應將 \(to\ play\) 改為 <strong>\(playing\)</strong>。<br />
+ - <strong>正確句子</strong>：\(Having\ a\ smartphone\ around\ \mathbf{is}\ hurting\ my\ study,\ and\ I\ am\ too\ busy\ \mathbf{playing}\ games\ all\ day.\)</li>
+</ol>
+</li>
+<li>
+<p><strong>觀念思考題</strong>：<br />
+   請說明 <code>stop talking</code> 與 <code>stop to talk</code> 在語義上有何本質上的不同？<br />
+   - <strong>答案與解析</strong>：</p>
+<ul>
+<li><code>stop talking</code>：\(talking\) 為 \(stop\) 的動名詞受詞，代表「<strong>停止正在進行的說話動作</strong>」（閉嘴/不要講話）。</li>
+<li><code>stop to talk</code>：\(to\ talk\) 為表目的之不定詞，代表「<strong>停下手中正在做的事，以便開始去說話</strong>」。</li>
+</ul>
+</li>
+</ol>
+    </div>
+    <footer class="doc-foot">
+      自動生成於 NotebookLM Study Assistant • 專為高中學生課後複習與考前衝刺打造
+    </footer>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.mermaid) {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'neutral',
+          fontFamily: "'Noto Sans TC', 'Inter', sans-serif",
+          flowchart: { curve: 'basis', htmlLabels: true },
+          securityLevel: 'loose'
+        });
+      }
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+  
+  <script>
+    (function() {
+      const treeData = {"name": "文法核心：現在完成式", "children": [{"name": "結構：have/has + p.p."}, {"name": "時機：發生於過去且持續至現在"}, {"name": "搭配詞：since + 過去時態子句"}]};
+      const container = document.getElementById("tree-svg-container");
+      if (!container || !treeData) return;
+
+      const width = container.clientWidth || 880;
+      const height = 520;
+
+      const svg = d3.select("#tree-svg-container")
+        .append("svg")
+        .attr("width", "100%")
+        .attr("height", height)
+        .attr("viewBox", [0, 0, width, height]);
+
+      const g = svg.append("g");
+
+      const zoom = d3.zoom()
+        .scaleExtent([0.25, 2.5])
+        .on("zoom", (e) => g.attr("transform", e.transform));
+
+      svg.call(zoom);
+
+      const root = d3.hierarchy(treeData);
+      root.x0 = height / 2;
+      root.y0 = 0;
+
+      let i = 0;
+      const duration = 380;
+      // [dy, dx]: 垂直節距 58px (確保上下不重疊), 水平層級 320px (確保長文字不穿透父層)
+      const treeLayout = d3.tree().nodeSize([58, 320]);
+
+      function splitNodeText(text, maxChars) {
+        if (!text) return [""];
+        if (text.length <= maxChars) return [text];
+
+        // 優先在括號處斷行，例如：世風日下之自身矛盾對比（擇師教子 vs. 於身恥師）
+        const parenIdx = text.search(/[（(]/);
+        if (parenIdx >= 3 && parenIdx <= maxChars + 4) {
+          const p1 = text.slice(0, parenIdx).trim();
+          const p2 = text.slice(parenIdx).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 優先在冒號、破折號、頓號處斷行
+        const sepIdx = text.search(/[：:—、]/);
+        if (sepIdx >= 3 && sepIdx <= maxChars + 2) {
+          const p1 = text.slice(0, sepIdx + 1).trim();
+          const p2 = text.slice(sepIdx + 1).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 預設在 maxChars 處均勻斷行
+        return [text.slice(0, maxChars), text.slice(maxChars)];
+      }
+
+      if (root.children) {
+        root.children.forEach(c => {
+          if (c.children) {
+            c.children.forEach(collapse);
+          }
+        });
+      }
+
+      function collapse(d) {
+        if (d.children) {
+          d._children = d.children;
+          d._children.forEach(collapse);
+          d.children = null;
+        }
+      }
+
+      function expand(d) {
+        if (d._children) {
+          d.children = d._children;
+          d.children.forEach(expand);
+          d._children = null;
+        }
+      }
+
+      const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
+
+      function getNodeColor(d) {
+        if (d.depth === 0) return "#2563eb";
+        let p = d;
+        while (p.depth > 1) p = p.parent;
+        return colorScale(p.data.name);
+      }
+
+      function update(source) {
+        const nodes = root.descendants();
+        const links = root.links();
+
+        treeLayout(root);
+
+        const node = g.selectAll("g.node")
+          .data(nodes, d => d.id || (d.id = ++i));
+
+        const nodeEnter = node.enter().append("g")
+          .attr("class", "node")
+          .attr("transform", d => `translate(${source.y0},${source.x0})`)
+          .on("click", (event, d) => {
+            if (d.children) {
+              d._children = d.children;
+              d.children = null;
+            } else if (d._children) {
+              d.children = d._children;
+              d._children = null;
+            }
+            update(d);
+          });
+
+        nodeEnter.append("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        const textNode = nodeEnter.append("text")
+          .attr("class", "node-text")
+          .attr("text-anchor", d => (d.children || d._children) ? "end" : "start")
+          .style("fill-opacity", 0);
+
+        textNode.each(function(d) {
+          const el = d3.select(this);
+          const isParent = Boolean(d.children || d._children);
+          const xOffset = isParent ? -14 : 14;
+          const maxChars = isParent ? 13 : 18;
+          const lines = splitNodeText(d.data.name, maxChars);
+
+          if (lines.length === 1) {
+            el.attr("x", xOffset)
+              .attr("dy", "0.32em")
+              .text(lines[0]);
+          } else {
+            el.attr("x", xOffset)
+              .attr("dy", "-0.35em")
+              .text(lines[0]);
+            el.append("tspan")
+              .attr("x", xOffset)
+              .attr("dy", "1.25em")
+              .text(lines[1]);
+          }
+        });
+
+        const nodeUpdate = node.merge(nodeEnter).transition().duration(duration)
+          .attr("transform", d => `translate(${d.y},${d.x})`);
+
+        nodeUpdate.select("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        nodeUpdate.select("text")
+          .style("fill-opacity", 1);
+
+        const nodeExit = node.exit().transition().duration(duration)
+          .attr("transform", d => `translate(${source.y},${source.x})`)
+          .remove();
+
+        nodeExit.select("circle").attr("r", 1e-6);
+        nodeExit.select("text").style("fill-opacity", 1e-6);
+
+        const link = g.selectAll("path.link")
+          .data(links, d => d.target.id);
+
+        const linkEnter = link.enter().insert("path", "g")
+          .attr("class", "link")
+          .attr("d", d => {
+            const o = {x: source.x0, y: source.y0};
+            return diagonal(o, o);
+          });
+
+        link.merge(linkEnter).transition().duration(duration)
+          .attr("d", d => diagonal(d.source, d.target));
+
+        link.exit().transition().duration(duration)
+          .attr("d", d => {
+            const o = {x: source.x, y: source.y};
+            return diagonal(o, o);
+          })
+          .remove();
+
+        nodes.forEach(d => {
+          d.x0 = d.x;
+          d.y0 = d.y;
+        });
+      }
+
+      function diagonal(s, d) {
+        return `M ${s.y} ${s.x}
+                C ${(s.y + d.y) / 2} ${s.x},
+                  ${(s.y + d.y) / 2} ${d.x},
+                  ${d.y} ${d.x}`;
+      }
+
+      function autoFitTree(duration = 450) {
+        const nodes = root.descendants();
+        if (!nodes || nodes.length === 0) return;
+
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        nodes.forEach(d => {
+          const isParent = Boolean(d.children || d._children);
+          const leftBound = d.y - (isParent ? 180 : 20);
+          const rightBound = d.y + (isParent ? 20 : 220);
+          const topBound = d.x - 32;
+          const bottomBound = d.x + 32;
+
+          if (leftBound < minX) minX = leftBound;
+          if (rightBound > maxX) maxX = rightBound;
+          if (topBound < minY) minY = topBound;
+          if (bottomBound > maxY) maxY = bottomBound;
+        });
+
+        const fullWidth = container.clientWidth || 880;
+        const fullHeight = height;
+        const treeW = maxX - minX;
+        const treeH = maxY - minY;
+
+        if (treeW <= 0 || treeH <= 0) return;
+
+        const scale = Math.min(0.92, (fullWidth * 0.90) / treeW, (fullHeight * 0.90) / treeH);
+        const clampedScale = Math.max(scale, 0.42);
+
+        const midTreeX = (minX + maxX) / 2;
+        const midTreeY = (minY + maxY) / 2;
+        const tx = fullWidth / 2 - clampedScale * midTreeX;
+        const ty = fullHeight / 2 - clampedScale * midTreeY;
+
+        if (duration > 0) {
+          svg.transition().duration(duration).call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        } else {
+          svg.call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        }
+      }
+
+      window.expandAll = function() {
+        root.each(expand);
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.collapseAll = function() {
+        if (root.children) {
+          root.children.forEach(collapse);
+        }
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.resetZoom = function() {
+        autoFitTree(450);
+      };
+
+      // 首次繪製節點並自動縮放置中全覽
+      update(root);
+      autoFitTree(0);
+    })();
+  </script>
+
+</body>
+</html>

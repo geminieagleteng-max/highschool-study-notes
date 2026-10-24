@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【國文】261021_方苞《左忠毅公軼事》</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --border: #e2e8f0;
+      --border-focus: #cbd5e1;
+      --tag-bg: #e0f2fe;
+      --tag-text: #0369a1;
+      --header-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans TC', 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.8;
+      font-size: 16px;
+      padding: 30px 16px 60px;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.06), 0 2px 6px -1px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    header.hero {
+      background: var(--header-gradient);
+      color: #ffffff;
+      padding: 36px 40px 30px;
+      position: relative;
+    }
+    header.hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      color: #f1f5f9;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    header.hero h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.5px;
+    }
+    header.hero .meta {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .content-body {
+      padding: 40px 48px;
+    }
+    @media (max-width: 640px) {
+      .content-body { padding: 24px 20px; }
+      header.hero { padding: 28px 24px 22px; }
+      header.hero h1 { font-size: 1.5rem; }
+    }
+    h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 2.2em;
+      margin-bottom: 0.9em;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h2:first-of-type { margin-top: 0.5em; }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1e3a8a;
+      margin-top: 1.6em;
+      margin-bottom: 0.6em;
+      padding-left: 10px;
+      border-left: 4px solid var(--accent);
+    }
+    p { margin-bottom: 1.1em; }
+    ul, ol { margin-bottom: 1.2em; padding-left: 1.8em; }
+    li { margin-bottom: 0.4em; }
+    .mermaid {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 16px;
+      margin: 1.6em 0;
+      text-align: center;
+      overflow-x: auto;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 1.6em 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    thead th {
+      background: #f1f5f9;
+      color: #1e293b;
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+    tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) { background: #fafafa; }
+    tbody tr:hover { background: #f0f7ff; }
+    tbody tr:last-child td { border-bottom: none; }
+    code {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      background: #f1f5f9;
+      color: #b91c1c;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 1.4em 0;
+      font-size: 0.92em;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; }
+    blockquote {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 14px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 1.4em 0;
+      color: #1e40af;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2.2em 0; }
+    .katex-display {
+      margin: 1.2em 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 6px 0;
+    }
+    .katex { font-size: 1.05em; }
+    
+    /* NotebookLM 原生 D3 互動心智圖樣式 */
+    .mindmap-box {
+      margin: 2em 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .mindmap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .mindmap-title {
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mindmap-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .mm-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: #334155;
+      transition: all 0.2s;
+    }
+    .mm-btn:hover { background: #f1f5f9; }
+    #tree-svg-container {
+      width: 100%;
+      height: 520px;
+      background: #ffffff;
+      cursor: grab;
+    }
+    #tree-svg-container:active { cursor: grabbing; }
+    .node circle {
+      cursor: pointer;
+      stroke-width: 2.5px;
+      transition: all 0.2s;
+    }
+    .node circle:hover { transform: scale(1.25); }
+    .node text {
+      font-size: 13px;
+      font-weight: 500;
+      font-family: inherit;
+      fill: #1e293b;
+      cursor: pointer;
+      paint-order: stroke fill;
+      stroke: #ffffff;
+      stroke-width: 4.5px;
+      stroke-linejoin: round;
+      user-select: none;
+    }
+    .link {
+      fill: none;
+      stroke: #cbd5e1;
+      stroke-width: 1.8px;
+      stroke-opacity: 0.85;
+      transition: stroke-width 0.2s;
+    }
+    .link:hover { stroke: #94a3b8; stroke-width: 2.5px; }
+
+    footer.doc-foot {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      background: #fcfdfe;
+    }
+    .print-btn {
+      position: absolute;
+      top: 36px;
+      right: 40px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .print-btn:hover { background: rgba(255,255,255,0.25); }
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      body {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+      }
+      .container {
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+      }
+      .print-btn, .mindmap-btns {
+        display: none !important;
+      }
+      header.hero {
+        background: var(--header-gradient) !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+        padding: 24px 30px !important;
+        margin-bottom: 20px !important;
+      }
+      header.hero h1 {
+        color: #ffffff !important;
+        font-size: 1.6rem !important;
+      }
+      header.hero .badge {
+        background: rgba(255,255,255,0.2) !important;
+        color: #ffffff !important;
+      }
+      header.hero .meta {
+        color: #cbd5e1 !important;
+      }
+      .content-body {
+        padding: 10px 0 !important;
+      }
+      h1, h2, h3, h4, table, tr, pre, .mermaid, .mindmap-box, blockquote {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      h2, h3 {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <div class="badge">📖 高中課堂互動圖文筆記</div>
+      <button class="print-btn" onclick="window.print()">🖨️ 列印 / 另存 PDF</button>
+      <h1>【國文】261021_方苞《左忠毅公軼事》</h1>
+      <div class="meta">
+        <span>⏱️ 數位筆記儀表板</span>
+        <span>🏷️ 含可縮放互動心智圖、時間軸與觀念對比</span>
+      </div>
+    </header>
+    <div class="content-body">
+      
+      <div class="mindmap-box">
+        <div class="mindmap-header">
+          <div class="mindmap-title">
+            <span>🧠 本課核心知識脈絡（NotebookLM 原生互動心智圖 • 支援縮放與展開）</span>
+          </div>
+          <div class="mindmap-btns">
+            <button class="mm-btn" onclick="expandAll()">展開全部</button>
+            <button class="mm-btn" onclick="collapseAll()">收合分支</button>
+            <button class="mm-btn" onclick="resetZoom()">重設視角</button>
+          </div>
+        </div>
+        <div id="tree-svg-container"></div>
+      </div>
+        
+      <h2>📖 課堂主題與核心摘要 (Class Overview)</h2>
+<p>本堂課主要研讀桐城派文學家方苞的經典散文名篇《左忠毅公軼事》第二段與第三段前半。課堂核心講述明末左光鬥遭魏忠賢閹黨陷害下獄後，弟子史可法冒死變裝探監的感人經過，以及左光鬥在極刑拷打下依然剛正不阿、嚴詞痛罵史可法以保全國家有用之身的忠義節操。此外，課程亦延伸至左公殉國後，史可法繼承師志奉命守禦鳳陽、廬州，恪盡職守、親自帶兵防範流賊張獻忠的治軍事蹟。</p>
+<div class="mermaid">
+graph LR
+  Root["方苞《左忠毅公軼事》"] --> Section2["第二段：獄中探監與師徒節義"]
+  Root --> Section3["第三段：史可法繼承師志與嚴謹治軍"]
+
+  Section2 --> A1["魏忠賢陷害與嚴密防範"]
+  Section2 --> A2["史可法變裝 Cosplay 探監"]
+  Section2 --> A3["左公殘酷受刑與席地靠牆之姿"]
+  Section2 --> A4["左公怒罵：公忠體國與嚴詞驅趕"]
+  Section2 --> A5["讚語：吾師肺肝皆鐵石所鑄造"]
+
+  Section3 --> B1["奉檄守禦鳳陽廬州防範張獻忠"]
+  Section3 --> B2["治軍嚴謹：數月不就寢、靠士卒打盹"]
+</div>
+<h2>💡 核心知識點與觀念詳解 (Key Concepts)</h2>
+<h3>一、 文章風格與段落結構脈絡</h3>
+<ul>
+<li><strong>桐城派「雅潔」風格</strong>：老師強調方苞文章特色在於「雅潔」，絕不寫無關廢話。第一段交代左光鬥與史可法相識賞識過程後，第二段直接跨越中間多年相處，直奔左公彈劾魏忠賢遭陷害入獄、面臨生死關頭的緊迫情節。</li>
+</ul>
+<h3>二、 史可法變裝探監的波折與冒險流程</h3>
+<ul>
+<li><strong>魏忠賢黨羽嚴密防範（逆閹防伺甚嚴）</strong>：左公被關進東廠監獄，外圍戒備極其森嚴，「雖加僕不得盡」（即使是僕人也無法靠近送餐），使左公與外界消息完全隔絕。</li>
+<li><strong>重金與真情打動獄卒</strong>：史可法聽聞左公遭受殘酷「炮烙之刑」，且將不久於人世（旦夕死、且死），拿出五十金並痛哭哀求獄卒（「五十金涕泣謀於獄卒」）。老師妙喻：實質利益（錢）比情感表現（哭）更能發揮關鍵作用，最終打動獄卒。</li>
+<li><strong>喬裝打扮（變裝 Cosplay）</strong>：因獄卒權力有限且防範嚴密，史可法穿著破爛衣服（長貧）、草鞋（草具）、背著竹框、手拿清除垃圾的鏟子（「手長鏟」，手轉品為動詞「手持」），假裝成清潔打掃人員（「微除不潔者」，微通「偽」）偷偷潛入。</li>
+</ul>
+<h3>三、 左光鬥獄中慘狀與「毅/節操」的三大精神展現</h3>
+<p>老師特別解析左光鬥在獄中雖受盡酷刑，卻透過三個極具張力的細節展現驚人的意志力（「毅」）：<br />
+1. <strong>「席地以牆而坐」</strong>：左公雙腿已被拷打殘廢（「左膝以下筋骨盡脫」），全體遍體鱗傷。一般人在極度劇痛下早已癱軟在地（老師以「體育課跑完 5000 公尺累癱」作比喻），但左公依然堅持靠牆坐著，象徵絕不屈服的剛強骨氣。<br />
+2. <strong>「奮臂以指撥字，目光如炬」</strong>：左公面部遭受慘絕人寰的炮烙燙傷（「面額焦爛不可變」），眼睛已被燙傷無法自行睜開（老師提及曾試將此情節輸入 AI 繪圖，因涉及極度暴力內容遭 AI 系統拒絕生成）。左公必須用盡全身力氣舉起手臂（「奮臂」），用手指將眼眶（字＝眼眶）撐開。縱使肉體毀壞，撐開後的雙眼依然「目光如炬」，展現無比堅定的精神意志。<br />
+3. <strong>「嚴詞痛罵與作投擊勢驅趕」</strong>：見到史可法抱膝痛哭，左公第一反應不是感動軟弱，而是生氣怒罵「庸奴！此何地也，而汝來前！」。左公深知國家大局已爛，自己必死無疑，史可法是繼承其志向、支撐國家的唯一希望。若史可法因探監被抓，國事將無人可救。左公甚至摸地上的刑具假裝要砸他（作投擊勢），硬將史可法逼走。這展現了「公忠體國、大義在前」的極致節操。</p>
+<p>【⏱️ 史可法冒險探監與左公痛罵流程圖】：</p>
+<div class="mermaid">
+graph TD
+  A["獲悉左公慘遭炮烙、生命危在旦夕"] --> B["持五十金並涕泣哀求獄卒協助"]
+  B --> C["變裝 Cosplay：穿破衣草鞋、手持廢棄鏟假裝清潔工"]
+  C --> D["暗中引入獄房：見左公席地靠牆、面額焦爛、膝下骨脫"]
+  D --> E["史可法趨前跪抱左公膝蓋低聲嗚咽（嗚咽避免被發現）"]
+  E --> F["左公聽聲辨人：奮臂用手指撐開眼眶（字）"]
+  F --> G["目光如炬！嚴詞怒罵史可法「輕身而昧大義」"]
+  G --> H["摸地上刑具作投擊勢驅趕，史可法噤不敢發聲，趨步而出"]
+</div>
+<h3>四、 史可法繼承師志與嚴謹治軍</h3>
+<ul>
+<li><strong>「吾師肺肝，皆鐵石所鑄造也」</strong>：史可法事後每每流淚對人提及此事。老師強調，史可法完全理解老師怒罵背後的深情與期許，內心極度悲傷而非單純害怕。</li>
+<li><strong>奉檄守禦與恪盡職守</strong>：左公死後，史可法奉命掌管鳳陽、廬州兩道軍事（「鳳廬道奉檄守禦」），抗擊性情殘暴的流賊張獻忠。</li>
+<li><strong>軍旅治軍防守 SOP</strong>：每逢軍事戒備（「每有景/警」），史可法「數月不就寢」——老師澄清這並非好幾個月完全不睡覺，而是「不上床睡」。史可法讓士卒輪流休息（「將士更休」），自己則坐在營帳外，挑選十名健壯士兵，兩人一組蹲坐（「蹲鋸而背以枕」），自己靠在士兵背上打盹。每過一更（「肉壺一翻」）即輪換一組，隨時準備拔劍迎敵。</li>
+</ul>
+<p>【📊 觀念與易混淆對比表】：<br />
+| 項目/詞語 | 文章課文原意 | 現代常見語義 / 易混淆概念 | 老師特別提醒考點 |<br />
+| :--- | :--- | :--- | :--- |<br />
+| <strong>鐵石心腸</strong> | <strong>正面讚美</strong>：讚美左光鬥意志如鐵石般堅貞剛毅。 | <strong>負面貶義</strong>：形容人冷酷無情、缺乏同理心。 | 屬古今異義詞，考題常設陷阱，須依語境判斷為正面讚美。 |<br />
+| <strong>雖（加僕不得盡）</strong> | <strong>即使</strong>（假設連詞）：即使是僕人都無法靠近。 | 雖然（轉折連詞）。 | 文言文常見考點，「雖」多作「即使」解。 |<br />
+| <strong>且（且死）</strong> | <strong>即將</strong>（副詞）：很快、即將面臨死亡。 | 並且、而且（遞進連詞）。 | 課文極高頻考點，音義同「將」。 |<br />
+| <strong>極（極左公下廠獄）</strong> | <strong>等到</strong>（副詞）：等到左公被關進東廠監獄。 | 極端、非常。 | 文言常見時間副詞。 |<br />
+| <strong>噤若寒蟬 vs 三緘其口</strong> | <strong>噤若寒蟬</strong>：因「害怕/高壓」而不敢說話。 | <strong>三緘其口</strong>：說話謹慎、嘴巴緊閉不發表意見（無害怕意）。 | 兩成語皆指不說話，但「噤若寒蟬」帶有害怕高壓環境的語義。 |<br />
+| <strong>睚眥必報</strong> | 「字」指<strong>眼眶</strong>。睚眥指瞪人一眼的小怨。 | 比喻心胸狹窄，極小的怨恨也一定要報復。 | 老師以「現代飆車族看一眼就打人」為生活比喻。 |</p>
+<h2>⚠️ 老師強調考點與易錯陷阱 (Exam Focus &amp; Pitfalls)</h2>
+<ul>
+<li><strong>【星號必考】詞性轉品與文言字詞</strong>：</li>
+<li><code>手</code>長鏟：名詞轉動詞，意為「手持」鏟子。</li>
+<li><code>親</code>身而<code>昧</code>大義：親（輕視）、昧（昏暗/不明白），由形容詞轉動詞使用。</li>
+<li>逆閹防<code>伺</code>甚嚴：伺（音 sì），暗中偵察、監視。</li>
+<li>俟（音 sì）：等待；嬖（音 bì）：受寵愛的奸臣（指魏忠賢集團）。</li>
+<li><strong>【觀念陷阱】左光鬥怒罵史可法的兩重深刻原因</strong>：</li>
+<li><strong>公（國事大義）</strong>：國事腐敗至極，自己已無能為力，史可法是支撐天下的唯一希望，不可為探監而冒險犧牲。</li>
+<li><strong>私（師生深情）</strong>：極其愛護學生，不忍見愛徒無謂殉難於監獄之中。</li>
+<li><strong>【修辭考點】「鑲嵌」修辭概念</strong>：</li>
+<li>「天下是誰可支柱」之「支柱」為同義詞增字（相字）。老師特別說明學測考題會直接提供定義與範例，學生只需具備良好閱讀理解能力即可，不需死背鑲嵌的四種細部分類（相字、鑲字、配字、分字）。</li>
+</ul>
+<h2>🔑 記憶口訣與解題技巧 (Mnemonics &amp; Shortcuts)</h2>
+<ul>
+<li><strong>「三更半夜」時間推算法</strong>：</li>
+<li>課文提到「肉壺一翻」（一更時間）。老師傳授記憶 SOP：固定記住「三更」為深夜 <strong>23:00 - 01:00</strong>（子時）。</li>
+<li>四更往後推算 2 小時（<strong>01:00 - 03:00</strong>），五更（<strong>03:00 - 05:00</strong>），一更（<strong>19:00 - 21:00</strong>），以此類推，考試遇到更次推算即可秒殺破題。</li>
+<li><strong>學測國文閱讀破題心法</strong>：</li>
+<li>遇到文學理論或文法修辭題，不必慌張死記名詞。仔細閱讀題目給予的定義說明，對照選項中的關鍵動詞與上下文語境，即可準確答題。</li>
+</ul>
+<h2>📝 課後作業與待辦事項 (Homework &amp; Tasks)</h2>
+<ul>
+<li><strong>課堂指派</strong>：無特定書面作業。</li>
+<li><strong>自主預習與複習</strong>：請自主複習《左忠毅公軼事》第二段與第三段課文注釋、重點字詞轉品用法，並預習第三段後半段結尾課文。</li>
+</ul>
+<hr />
+<h2>📚 專有名詞與重要公式/定義 (Glossary &amp; Formulas)</h2>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+<h2>🧠 課後自測題 (Quick Review Quiz)</h2>
+<p><strong>第一題：在《左忠毅公軼事》中，左光鬥見到史可法冒死探監時，非但沒有感動安慰，反而嚴詞怒罵並作投擊勢驅趕。請簡述左公「怒罵」背後包含了哪兩層深意？</strong></p>
+<blockquote>
+<p><strong>解題思維與答案</strong>：<br />
+1. <strong>公（國事大義）</strong>：當時朝政極度腐敗，左公自知必死，而史可法是唯一能繼承其志向、支撐國家大局的人才。若史可法因探監暴露遭害，天下將無人可支撐。<br />
+2. <strong>私（師生深情）</strong>：左公極其愛護學生，不希望史可法為了私情而冒無謂的生命危險。</p>
+</blockquote>
+<p><strong>第二題：文中史可法稱讚「吾師肺肝，皆鐵石所鑄造也」，請說明「鐵石心腸」一詞在本文中的涵義與現代常見語義有何不同？</strong></p>
+<blockquote>
+<p><strong>解題思維與答案</strong>：<br />
+1. <strong>本文涵義</strong>：正面讚美詞，形容左光鬥在面對殘酷酷刑與生死考驗時，意志如鐵石般堅貞不屈、剛正不阿。<br />
+2. <strong>現代語義</strong>：負面貶義詞，形容人態度冷酷無情、缺乏同理心與情感。</p>
+</blockquote>
+<p><strong>第三題：史可法在守禦鳳陽、廬州防範張獻忠時，「每有警，輒數月不就寢」，請問史可法是如何在維持警戒的同時進行休息與指揮的？</strong></p>
+<blockquote>
+<p><strong>解題思維與答案</strong>：<br />
+史可法並非完全不睡，而是「不上床睡覺」。他讓麾下將士輪流休息（將士更休），自己則坐在營帳外，挑選十位健壯士兵，兩人一組蹲坐，自己靠在士兵背上打盹，每過一更（肉壺一翻）即輪換一組，隨時保持高度戒備狀況以快速應變。</p>
+</blockquote>
+<p>💡 需要我將這份筆記製作成考前衝刺的心智圖卡，或是為你整理這篇課文的精選測驗題庫嗎？</p>
+    </div>
+    <footer class="doc-foot">
+      自動生成於 NotebookLM Study Assistant • 專為高中學生課後複習與考前衝刺打造
+    </footer>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.mermaid) {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'neutral',
+          fontFamily: "'Noto Sans TC', 'Inter', sans-serif",
+          flowchart: { curve: 'basis', htmlLabels: true },
+          securityLevel: 'loose'
+        });
+      }
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+  
+  <script>
+    (function() {
+      const treeData = {"name": "第二段：獄中探監與師徒節義", "children": [{"name": "魏忠賢陷害與嚴密防範"}, {"name": "史可法變裝 Cosplay 探監"}, {"name": "左公殘酷受刑與席地靠牆之姿"}, {"name": "左公怒罵：公忠體國與嚴詞驅趕"}, {"name": "讚語：吾師肺肝皆鐵石所鑄造"}]};
+      const container = document.getElementById("tree-svg-container");
+      if (!container || !treeData) return;
+
+      const width = container.clientWidth || 880;
+      const height = 520;
+
+      const svg = d3.select("#tree-svg-container")
+        .append("svg")
+        .attr("width", "100%")
+        .attr("height", height)
+        .attr("viewBox", [0, 0, width, height]);
+
+      const g = svg.append("g");
+
+      const zoom = d3.zoom()
+        .scaleExtent([0.25, 2.5])
+        .on("zoom", (e) => g.attr("transform", e.transform));
+
+      svg.call(zoom);
+
+      const root = d3.hierarchy(treeData);
+      root.x0 = height / 2;
+      root.y0 = 0;
+
+      let i = 0;
+      const duration = 380;
+      // [dy, dx]: 垂直節距 58px (確保上下不重疊), 水平層級 320px (確保長文字不穿透父層)
+      const treeLayout = d3.tree().nodeSize([58, 320]);
+
+      function splitNodeText(text, maxChars) {
+        if (!text) return [""];
+        if (text.length <= maxChars) return [text];
+
+        // 優先在括號處斷行，例如：世風日下之自身矛盾對比（擇師教子 vs. 於身恥師）
+        const parenIdx = text.search(/[（(]/);
+        if (parenIdx >= 3 && parenIdx <= maxChars + 4) {
+          const p1 = text.slice(0, parenIdx).trim();
+          const p2 = text.slice(parenIdx).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 優先在冒號、破折號、頓號處斷行
+        const sepIdx = text.search(/[：:—、]/);
+        if (sepIdx >= 3 && sepIdx <= maxChars + 2) {
+          const p1 = text.slice(0, sepIdx + 1).trim();
+          const p2 = text.slice(sepIdx + 1).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 預設在 maxChars 處均勻斷行
+        return [text.slice(0, maxChars), text.slice(maxChars)];
+      }
+
+      if (root.children) {
+        root.children.forEach(c => {
+          if (c.children) {
+            c.children.forEach(collapse);
+          }
+        });
+      }
+
+      function collapse(d) {
+        if (d.children) {
+          d._children = d.children;
+          d._children.forEach(collapse);
+          d.children = null;
+        }
+      }
+
+      function expand(d) {
+        if (d._children) {
+          d.children = d._children;
+          d.children.forEach(expand);
+          d._children = null;
+        }
+      }
+
+      const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
+
+      function getNodeColor(d) {
+        if (d.depth === 0) return "#2563eb";
+        let p = d;
+        while (p.depth > 1) p = p.parent;
+        return colorScale(p.data.name);
+      }
+
+      function update(source) {
+        const nodes = root.descendants();
+        const links = root.links();
+
+        treeLayout(root);
+
+        const node = g.selectAll("g.node")
+          .data(nodes, d => d.id || (d.id = ++i));
+
+        const nodeEnter = node.enter().append("g")
+          .attr("class", "node")
+          .attr("transform", d => `translate(${source.y0},${source.x0})`)
+          .on("click", (event, d) => {
+            if (d.children) {
+              d._children = d.children;
+              d.children = null;
+            } else if (d._children) {
+              d.children = d._children;
+              d._children = null;
+            }
+            update(d);
+          });
+
+        nodeEnter.append("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        const textNode = nodeEnter.append("text")
+          .attr("class", "node-text")
+          .attr("text-anchor", d => (d.children || d._children) ? "end" : "start")
+          .style("fill-opacity", 0);
+
+        textNode.each(function(d) {
+          const el = d3.select(this);
+          const isParent = Boolean(d.children || d._children);
+          const xOffset = isParent ? -14 : 14;
+          const maxChars = isParent ? 13 : 18;
+          const lines = splitNodeText(d.data.name, maxChars);
+
+          if (lines.length === 1) {
+            el.attr("x", xOffset)
+              .attr("dy", "0.32em")
+              .text(lines[0]);
+          } else {
+            el.attr("x", xOffset)
+              .attr("dy", "-0.35em")
+              .text(lines[0]);
+            el.append("tspan")
+              .attr("x", xOffset)
+              .attr("dy", "1.25em")
+              .text(lines[1]);
+          }
+        });
+
+        const nodeUpdate = node.merge(nodeEnter).transition().duration(duration)
+          .attr("transform", d => `translate(${d.y},${d.x})`);
+
+        nodeUpdate.select("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        nodeUpdate.select("text")
+          .style("fill-opacity", 1);
+
+        const nodeExit = node.exit().transition().duration(duration)
+          .attr("transform", d => `translate(${source.y},${source.x})`)
+          .remove();
+
+        nodeExit.select("circle").attr("r", 1e-6);
+        nodeExit.select("text").style("fill-opacity", 1e-6);
+
+        const link = g.selectAll("path.link")
+          .data(links, d => d.target.id);
+
+        const linkEnter = link.enter().insert("path", "g")
+          .attr("class", "link")
+          .attr("d", d => {
+            const o = {x: source.x0, y: source.y0};
+            return diagonal(o, o);
+          });
+
+        link.merge(linkEnter).transition().duration(duration)
+          .attr("d", d => diagonal(d.source, d.target));
+
+        link.exit().transition().duration(duration)
+          .attr("d", d => {
+            const o = {x: source.x, y: source.y};
+            return diagonal(o, o);
+          })
+          .remove();
+
+        nodes.forEach(d => {
+          d.x0 = d.x;
+          d.y0 = d.y;
+        });
+      }
+
+      function diagonal(s, d) {
+        return `M ${s.y} ${s.x}
+                C ${(s.y + d.y) / 2} ${s.x},
+                  ${(s.y + d.y) / 2} ${d.x},
+                  ${d.y} ${d.x}`;
+      }
+
+      function autoFitTree(duration = 450) {
+        const nodes = root.descendants();
+        if (!nodes || nodes.length === 0) return;
+
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        nodes.forEach(d => {
+          const isParent = Boolean(d.children || d._children);
+          const leftBound = d.y - (isParent ? 180 : 20);
+          const rightBound = d.y + (isParent ? 20 : 220);
+          const topBound = d.x - 32;
+          const bottomBound = d.x + 32;
+
+          if (leftBound < minX) minX = leftBound;
+          if (rightBound > maxX) maxX = rightBound;
+          if (topBound < minY) minY = topBound;
+          if (bottomBound > maxY) maxY = bottomBound;
+        });
+
+        const fullWidth = container.clientWidth || 880;
+        const fullHeight = height;
+        const treeW = maxX - minX;
+        const treeH = maxY - minY;
+
+        if (treeW <= 0 || treeH <= 0) return;
+
+        const scale = Math.min(0.92, (fullWidth * 0.90) / treeW, (fullHeight * 0.90) / treeH);
+        const clampedScale = Math.max(scale, 0.42);
+
+        const midTreeX = (minX + maxX) / 2;
+        const midTreeY = (minY + maxY) / 2;
+        const tx = fullWidth / 2 - clampedScale * midTreeX;
+        const ty = fullHeight / 2 - clampedScale * midTreeY;
+
+        if (duration > 0) {
+          svg.transition().duration(duration).call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        } else {
+          svg.call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        }
+      }
+
+      window.expandAll = function() {
+        root.each(expand);
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.collapseAll = function() {
+        if (root.children) {
+          root.children.forEach(collapse);
+        }
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.resetZoom = function() {
+        autoFitTree(450);
+      };
+
+      // 首次繪製節點並自動縮放置中全覽
+      update(root);
+      autoFitTree(0);
+    })();
+  </script>
+
+</body>
+</html>

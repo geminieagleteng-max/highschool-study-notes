@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【歷史】261020_日治初期抗日事件與殖民統治政策</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --border: #e2e8f0;
+      --border-focus: #cbd5e1;
+      --tag-bg: #e0f2fe;
+      --tag-text: #0369a1;
+      --header-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans TC', 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.8;
+      font-size: 16px;
+      padding: 30px 16px 60px;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.06), 0 2px 6px -1px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    header.hero {
+      background: var(--header-gradient);
+      color: #ffffff;
+      padding: 36px 40px 30px;
+      position: relative;
+    }
+    header.hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      color: #f1f5f9;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    header.hero h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.5px;
+    }
+    header.hero .meta {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .content-body {
+      padding: 40px 48px;
+    }
+    @media (max-width: 640px) {
+      .content-body { padding: 24px 20px; }
+      header.hero { padding: 28px 24px 22px; }
+      header.hero h1 { font-size: 1.5rem; }
+    }
+    h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 2.2em;
+      margin-bottom: 0.9em;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h2:first-of-type { margin-top: 0.5em; }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1e3a8a;
+      margin-top: 1.6em;
+      margin-bottom: 0.6em;
+      padding-left: 10px;
+      border-left: 4px solid var(--accent);
+    }
+    p { margin-bottom: 1.1em; }
+    ul, ol { margin-bottom: 1.2em; padding-left: 1.8em; }
+    li { margin-bottom: 0.4em; }
+    .mermaid {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 16px;
+      margin: 1.6em 0;
+      text-align: center;
+      overflow-x: auto;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 1.6em 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    thead th {
+      background: #f1f5f9;
+      color: #1e293b;
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+    tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) { background: #fafafa; }
+    tbody tr:hover { background: #f0f7ff; }
+    tbody tr:last-child td { border-bottom: none; }
+    code {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      background: #f1f5f9;
+      color: #b91c1c;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 1.4em 0;
+      font-size: 0.92em;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; }
+    blockquote {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 14px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 1.4em 0;
+      color: #1e40af;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2.2em 0; }
+    .katex-display {
+      margin: 1.2em 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 6px 0;
+    }
+    .katex { font-size: 1.05em; }
+    
+    /* NotebookLM 原生 D3 互動心智圖樣式 */
+    .mindmap-box {
+      margin: 2em 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .mindmap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .mindmap-title {
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mindmap-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .mm-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: #334155;
+      transition: all 0.2s;
+    }
+    .mm-btn:hover { background: #f1f5f9; }
+    #tree-svg-container {
+      width: 100%;
+      height: 520px;
+      background: #ffffff;
+      cursor: grab;
+    }
+    #tree-svg-container:active { cursor: grabbing; }
+    .node circle {
+      cursor: pointer;
+      stroke-width: 2.5px;
+      transition: all 0.2s;
+    }
+    .node circle:hover { transform: scale(1.25); }
+    .node text {
+      font-size: 13px;
+      font-weight: 500;
+      font-family: inherit;
+      fill: #1e293b;
+      cursor: pointer;
+      paint-order: stroke fill;
+      stroke: #ffffff;
+      stroke-width: 4.5px;
+      stroke-linejoin: round;
+      user-select: none;
+    }
+    .link {
+      fill: none;
+      stroke: #cbd5e1;
+      stroke-width: 1.8px;
+      stroke-opacity: 0.85;
+      transition: stroke-width 0.2s;
+    }
+    .link:hover { stroke: #94a3b8; stroke-width: 2.5px; }
+
+    footer.doc-foot {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      background: #fcfdfe;
+    }
+    .print-btn {
+      position: absolute;
+      top: 36px;
+      right: 40px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .print-btn:hover { background: rgba(255,255,255,0.25); }
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      body {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+      }
+      .container {
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+      }
+      .print-btn, .mindmap-btns {
+        display: none !important;
+      }
+      header.hero {
+        background: var(--header-gradient) !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+        padding: 24px 30px !important;
+        margin-bottom: 20px !important;
+      }
+      header.hero h1 {
+        color: #ffffff !important;
+        font-size: 1.6rem !important;
+      }
+      header.hero .badge {
+        background: rgba(255,255,255,0.2) !important;
+        color: #ffffff !important;
+      }
+      header.hero .meta {
+        color: #cbd5e1 !important;
+      }
+      .content-body {
+        padding: 10px 0 !important;
+      }
+      h1, h2, h3, h4, table, tr, pre, .mermaid, .mindmap-box, blockquote {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      h2, h3 {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <div class="badge">📖 高中課堂互動圖文筆記</div>
+      <button class="print-btn" onclick="window.print()">🖨️ 列印 / 另存 PDF</button>
+      <h1>【歷史】261020_日治初期抗日事件與殖民統治政策</h1>
+      <div class="meta">
+        <span>⏱️ 數位筆記儀表板</span>
+        <span>🏷️ 含可縮放互動心智圖、時間軸與觀念對比</span>
+      </div>
+    </header>
+    <div class="content-body">
+      
+      <div class="mindmap-box">
+        <div class="mindmap-header">
+          <div class="mindmap-title">
+            <span>🧠 本課核心知識脈絡（NotebookLM 原生互動心智圖 • 支援縮放與展開）</span>
+          </div>
+          <div class="mindmap-btns">
+            <button class="mm-btn" onclick="expandAll()">展開全部</button>
+            <button class="mm-btn" onclick="collapseAll()">收合分支</button>
+            <button class="mm-btn" onclick="resetZoom()">重設視角</button>
+          </div>
+        </div>
+        <div id="tree-svg-container"></div>
+      </div>
+        
+      <h2>📖 課堂主題與核心摘要 (Class Overview)</h2>
+<p>本堂課深入剖析台灣日治時期的武裝抗日運動及其轉型，並詳細梳理日本殖民政府在台的統治政策與法制演化脈絡。課程首先講授「抗日三猛」與漢人最大規模的「噍吧哖事件（西來庵事件）」，說明體制外武裝抗日失敗後，台灣人轉向體制內合法社會抗爭的關鍵歷史轉折。接著重點解析總督府「四權合一」的獨裁體制、治台三階段政策（特殊統治、內地延長主義、皇民化運動）與法制演變（六三法、三一法、法三號），並深度剖析民政長官後藤新平如何運用「生物學原則」與「四大調查」建立全方位的殖民治理網絡。</p>
+<div class="mermaid">
+graph LR
+  Root["日治初期抗日與殖民統治政策"] --> A["武裝抗日與轉型"]
+  Root --> B["總督專制與法制演變"]
+  Root --> C["治台三階段政策"]
+  Root --> D["後藤新平治理與四大調查"]
+
+  A --> A1["抗日三猛（簡大獅、柯鐵虎、林少貓）"]
+  A --> A2["噍吧哖事件/西來庵事件（余清芳，1915）"]
+  A --> A3["轉折：體制外武裝抗日 ➔ 體制內社會政治抗議"]
+
+  B --> B1["總督四權合一（行政、立法、司法、軍事）"]
+  B --> B2["法制演進：六三法 ➔ 三一法 ➔ 法三號"]
+
+  C --> C1["特殊統治時期（非同化 / 無方針 / 武官 / 六三法）"]
+  C --> C2["內地延長主義（同化時期 / 文官 / 三一法，1919-1937）"]
+  C --> C3["皇民化運動（皇民化 / 武官 / 法三號，1937-1945）"]
+
+  D --> D1["生物學原則（比目魚理論、糖與鞭子）"]
+  D --> D2["四大調查（林野、土地、人口、舊慣）與三項舊慣"]
+  D --> D3["控制機制（三段警備制、警察與保甲制度、匪徒刑罰令）"]
+</div>
+<hr />
+<h2>💡 核心知識點與觀念詳解 (Key Concepts)</h2>
+<h3>一、 日治初期武裝抗日運動與歷史轉折</h3>
+<h4>1. 抗日三猛（「貓科動物」口訣）</h4>
+<p>日治初期（1895–1902年間）各地武裝抗日勢力起伏，其中最著名的三位地方領袖被後世稱為「抗日三猛」：<br />
+- <strong>簡大獅（北部／台北）</strong>：活躍於北部山區抗日。<br />
+- <strong>柯鐵虎（中部／雲林）</strong>：以雲林大埔山區為據點，發起抗日行動。<br />
+- <strong>林少貓（南部／屏東、高雄）</strong>：活躍於鳳山、屏東一帶。後經日方懷柔招降，於高雄內門開墾跟田，但日警懷疑其密謀造反，最終遭圍捕槍斃。<br />
+  - <strong>課堂補充故事與現代延伸</strong>：課堂中提及，當年舉報林少貓密謀造反的人姓蘇，後來在現代政壇曾被拿來質疑是否為蘇貞昌祖父，形成藍綠陣營攻防議題（蘇陣營回應為無稽之談）。</p>
+<h4>2. 噍吧哖事件（西來庵事件／余清芳事件，1915年）</h4>
+<ul>
+<li><strong>歷史地位</strong>：台灣漢人<strong>最大規模</strong>且<strong>最後一次</strong>體制外武裝抗日事件。</li>
+<li><strong>發生地點</strong>：台南噍吧哖（今台南玉井），當地為平埔族大武嘠族（大湖龍人）之根據地，余清芳煽動平埔族原住民一同抗日。</li>
+<li><strong>領導人與宗教啟示</strong>：余清芳本為西來庵廟公（廟宇管理者），宣稱夢見「台灣大明神」降臨賜予天命，宣稱加入抗日者未來可享「吃不完的米、用不完的錢、住不完的房子」，並稱神明會顯靈抵禦日軍槍砲。</li>
+<li><strong>事件經過流程圖</strong>：</li>
+</ul>
+<div class="mermaid">
+graph TD
+  A["第 1 階段：伏擊日軍訓練小隊"] -->|成功擊殺十餘名未帶武器之日軍| B["日軍震撼，調派大軍鎮壓"]
+  B --> C["第 2 階段：正面交鋒正規軍"]
+  C -->|台灣大明神未顯靈，火力懸殊| D["抗日軍潰敗，日軍大搜捕"]
+  D -->|逮捕 1413 人，判處 866 人死刑| E["余清芳為保全民眾而出面自首"]
+  E -->|處決余清芳等 95 人| F["國際輿論高度壓力，日方將餘者改判無期徒刑"]
+</div>
+<ul>
+<li><strong>課堂經典細節與照片舉例</strong>：</li>
+<li>日警抓到余清芳後視為特大功勞（攸關升官與加獎），派出所全體員警特別集體合照留念，並將照片洗成明信片發給每位警察，右上角還特別貼上警察個人的大頭照作為證明。</li>
+<li><strong>重大轉折影響</strong>：</li>
+<li>1915 年後，漢人因付出的代價太過慘烈而<strong>不再進行武裝抗日</strong>。</li>
+<li>適逢日本本土進入「大正民主時期」，台灣人的抗爭路線正式由<strong>體制外武裝抗日</strong>轉型為<strong>體制內合法政治社會運動</strong>（上街抗議、請願、文化協會等）。</li>
+</ul>
+<h4>3. 霧社事件（1930年）之性質釐清</h4>
+<ul>
+<li>課堂特別強調：1930 年原住民發起的霧社事件（莫那·魯道），其本質是<strong>爭取山林資源與反抗日警壓迫</strong>，並非基於近代漢人的「民族國家認同」或政治獨立訴求。</li>
+</ul>
+<hr />
+<h3>二、 總督專制權力與法制演變三部曲</h3>
+<p>日本雖於 1895 年已建立《大日本帝國憲法》之君主立憲體制，但並未將憲法保障完全延伸至台灣，而是將台灣視為「殖民地」，賦予台灣總督極大的專制獨裁權力。</p>
+<h4>1. 總督的「四權合一」獨裁權力</h4>
+<p>台灣總督一人獨攬四大權力，權限甚至超越日本天皇在本土的憲政分權：<br />
+1. <strong>行政權</strong>：掌管台灣最高行政事務。<br />
+2. <strong>立法權</strong>：可自行頒布具法律效力的「律令」。<br />
+3. <strong>司法權</strong>：控制裁判與刑罰體系。<br />
+4. <strong>軍事權（統帥權）</strong>：指揮駐台陸海軍。</p>
+<h4>2. 法制演變三部曲（《六三法》➔《三一法》➔《法三號》）</h4>
+<p>隨著治台政策演變，總督的立法權限受到逐步修正與限制：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">法律名稱</th>
+<th style="text-align: left;">頒布年份</th>
+<th style="text-align: left;">適用治台時期</th>
+<th style="text-align: left;">總督立法權限（律令）之變化與核心特徵</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>《六三法》</strong><br>（律令第63號）</td>
+<td style="text-align: left;">1896年</td>
+<td style="text-align: left;">特殊統治時期</td>
+<td style="text-align: left;"><strong>總督享有獨立立法權</strong>：總督得發布具法律效力之律令，並可發布緊急命令（如《匪徒刑罰令》），不受本土法律限制。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>《三一法》</strong><br>（律令第31號）</td>
+<td style="text-align: left;">1906年</td>
+<td style="text-align: left;">內地延長主義過渡期</td>
+<td style="text-align: left;"><strong>律令不得違背日本本土法律</strong>：總督仍可制定律令，但其內容<strong>不得牴觸適用於台灣之日本本土法律與敕令</strong>。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>《法三號》</strong><br>（律令第3號）</td>
+<td style="text-align: left;">1921年</td>
+<td style="text-align: left;">內地延長主義時期</td>
+<td style="text-align: left;"><strong>原則適用日本法律，取消總督獨立立法權</strong>：日本本土法律原則上全盤適用於台灣，總督僅能在特殊需要時發布補充性律令。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>三、 日治時期三大治台政策階段深度對比</h3>
+<p>日治時期五十年（1895–1945）的治理策略可精準劃分為三個階段：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">比較維度</th>
+<th style="text-align: left;">第一階段：特殊統治時期</th>
+<th style="text-align: left;">第二階段：內地延長主義時期</th>
+<th style="text-align: left;">第三階段：皇民化運動時期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>時間範圍</strong></td>
+<td style="text-align: left;">1895 – 1919 年</td>
+<td style="text-align: left;">1919 – 1937 年</td>
+<td style="text-align: left;">1937 – 1945 年</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>關鍵年代速記</strong></td>
+<td style="text-align: left;">領台初 – 19 年</td>
+<td style="text-align: left;">19 年 – 37 年</td>
+<td style="text-align: left;">37 年 – 45 年</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>總督背景派任</strong></td>
+<td style="text-align: left;"><strong>武官總督</strong>（著重武力鎮壓治安）</td>
+<td style="text-align: left;"><strong>文官總督</strong>（著重法治、教育與同化）</td>
+<td style="text-align: left;"><strong>武官總督</strong>（因應二戰爆發全面動員）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>核心統治方針</strong></td>
+<td style="text-align: left;"><strong>非同化主義</strong>（無方針主義）</td>
+<td style="text-align: left;"><strong>同化主義</strong>（一視同仁、內地延長）</td>
+<td style="text-align: left;"><strong>皇民化</strong>（塑造台灣人為忠君皇民）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>背景歷史事件</strong></td>
+<td style="text-align: left;">鎮壓武裝抗日、後藤新平建設</td>
+<td style="text-align: left;">一戰後威爾遜提出「民族自決」</td>
+<td style="text-align: left;">七七事變爆發、中日戰爭與二戰</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>主要適用法律</strong></td>
+<td style="text-align: left;">《六三法》</td>
+<td style="text-align: left;">《三一法》 ➔ 《法三號》</td>
+<td style="text-align: left;">《法三號》</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>台灣人抗爭形式</strong></td>
+<td style="text-align: left;">體制外武裝抗日（噍吧哖事件）</td>
+<td style="text-align: left;">體制內社會運動（議會設置請願等）</td>
+<td style="text-align: left;">配合軍需動員與南進基地化</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>四、 後藤新平的治理哲學與四大調查</h3>
+<p>第四任總督兒玉源太郎與民政長官<strong>後藤新平</strong>搭配期間，確立了日治初期關鍵的治理架構。</p>
+<div class="mermaid">
+graph TD
+  Root["後藤新平治台體系"] --> A["治理理念：生物學原則"]
+  Root --> B["摸底手段：四大調查"]
+  Root --> C["基層控制：警察與保甲"]
+
+  A --> A1["比目魚理論：因地制宜，先穩定治安再談改俗"]
+  A --> A2["糖與鞭子：順從者給利益（糖），反抗者嚴刑鎮壓（鞭子）"]
+
+  B --> B1["自然資源：林野調查、土地調查"]
+  B --> B2["人力與戶政：1905 首測人口調查（每 10 年一次戶口名簿）"]
+  B --> B3["風俗習慣：舊慣調查（總結台灣人三性）"]
+
+  C --> C1["三段警備制（乃木希典創定：軍隊/憲兵/警察）"]
+  C --> C2["警察大人（包辦萬事） + 保甲制度（連坐責任）"]
+  C --> C3["安撫士紳政策：祥老典（請客宴飲）、楊文會（發揚漢文）"]
+</div>
+<h4>1. 生物學原則與比目魚理論</h4>
+<ul>
+<li><strong>生物學原則</strong>：後藤新平本身為醫師出身，主張用生物學眼光看待台灣社會。</li>
+<li><strong>比目魚比喻</strong>：一般魚類的眼睛長在兩側，比目魚的眼睛則長在同一側。若硬要把比目魚的眼睛改到兩側，魚就會死亡。統治台灣亦同，不可硬套日本本土法規，必須尊重台灣既有的風俗習慣與文化（「無方針主義」／先搞定治安，不急於同化）。</li>
+<li><strong>糖與鞭子</strong>：對順從合作者給予經濟利益（糖）；對反抗者則施以嚴刑峻法（鞭子，如頒布《匪徒刑罰令》）。</li>
+</ul>
+<h4>2. 四大調查（精準掌控台灣資源）</h4>
+<p>後藤新平為了向日本本土展現台灣能在 \(15\) 年內實現財政獨立，開展了大規模調查：<br />
+1. <strong>林野調查</strong>：釐清山林資源產權。<br />
+2. <strong>土地調查</strong>：精確丈量土地，建立地籍資料，增加地稅收入。<br />
+3. <strong>人口調查</strong>：1905 年實施首次「國勢調查」，規定每 \(10\) 年調查一次，建立詳細的戶口名簿。<br />
+   - <strong>課堂生活實例</strong>：戶口名簿詳細記錄鴉片吸食、纏足、疫苗接種、原住民身分乃至性病（如梅毒）等紀錄。若向戶政事務所申辦日治戶口名簿（費用約 \(30\) 元），能查出祖先是否為養子、住址歷史圖層等有趣家族細節。<br />
+4. <strong>舊慣調查（台灣人「三大習性／三大陋習」）</strong>：<br />
+   - 後藤新平總結台灣人有三大弱點：<strong>貪錢（貪財）、怕死、愛面子</strong>。<br />
+   - <strong>應對之道</strong>：<br />
+     - 貪錢 ➔ 給予商業好處或特權收買。<br />
+     - 怕死 ➔ 以武力與死刑威脅（刀架脖子）。<br />
+     - 愛面子 ➔ 當眾剝奪尊嚴（如當街打屁股處罰）。<br />
+   - <strong>收買士紳階級手段</strong>：<br />
+     - <strong>祥老典</strong>：召集地方老者與士紳宴飲招待，給予禮遇。<br />
+     - <strong>楊文會</strong>：「楊」即發揚，「文」指漢文文章，透過贊助漢文學術活動安撫傳統知識份子。</p>
+<h4>3. 基層治安控制網絡</h4>
+<ul>
+<li><strong>三段警備制</strong>（第三任總督乃木希典提出）：將台灣分為危險區（軍隊鎮壓）、不穩區（憲兵維安）、安全區（警察治理）。</li>
+<li><strong>警察大人與保甲制度</strong>：</li>
+<li><strong>警察</strong>：權力極大且包辦萬事（衛生、戶政、治安），民間尊稱為「大人」（課本比喻為觀世音菩薩）。</li>
+<li><strong>保甲制度</strong>：源自清代，日方加以嚴密化。以 \(10\) 戶為 \(1\) 假（設甲長），\(10\) 假（即 \(100\) 戶）為 \(1\) 保（設保正），實行<strong>連坐責任制</strong>，一人犯法全保受罰。</li>
+</ul>
+<hr />
+<h2>⚠️ 老師強調考點與易錯陷阱 (Exam Focus &amp; Pitfalls)</h2>
+<h3>必考重點（星號必背）</h3>
+<ol>
+<li><strong>1915 噍吧哖事件的歷史定位（極高頻考點）</strong>：<br />
+   - 務必記住這是<strong>漢人最後一次大規模武裝抗日</strong>。<br />
+   - 之後台灣抗爭路線發生轉變：<strong>體制外武裝抗日 ➔ 體制內合法政治社會運動</strong>。</li>
+<li><strong>法制三部曲演變順序與核心限制</strong>：<br />
+   - 《六三法》（總督獨裁立法） ➔ 《三一法》（不得違背日本法） ➔ 《法三號》（原則適用日本法）。</li>
+<li><strong>治台三階段口訣與年代數字</strong>：<br />
+   - 關鍵年份 \(1919\)（一戰後/內地延長）與 \(1937\)（中日戰爭/皇民化）。<br />
+   - 總督背景轉換：武官 ➔ 文官 ➔ 武官。</li>
+</ol>
+<h3>常見觀念陷阱</h3>
+<ol>
+<li><strong>陷阱：誤以為霧社事件是漢人的民族主義抗日</strong>：<br />
+   - 錯！1930 年霧社事件係原住民（賽德克族）反抗日警勞役壓迫與爭取森林資源，與漢人近代民族國家認同無關。</li>
+<li><strong>陷阱：誤以為「內地延長主義」代表台灣人獲得與日本本土完全平等的權利</strong>：<br />
+   - 錯！內地延長主義本質上是為了防止台灣受「民族自決」影響而獨立所採取的「同化政策」，實質上仍存在嚴重的種族歧視與權力不對等。</li>
+<li><strong>陷阱：混淆三段警備制的區域分工</strong>：<br />
+   - 危險區用<strong>軍隊</strong>；不穩區用<strong>憲兵</strong>；安全區才用<strong>警察</strong>。</li>
+</ol>
+<hr />
+<h2>🔑 記憶口訣與解題技巧 (Mnemonics &amp; Shortcuts)</h2>
+<h3>1. 核心口訣背誦包</h3>
+<ul>
+<li><strong>抗日三猛「貓科動物」口訣</strong>：</li>
+<li><strong>獅・虎・貓</strong>（北：簡大<strong>獅</strong>、中：柯鐵<strong>虎</strong>、南：林少<strong>貓</strong>）。</li>
+<li><strong>治台三階段總整理口訣（課堂神級口訣）</strong>：<blockquote>
+<p><strong>「特殊內地皇民化，1937 到 45；武官文官又武官，63、31、法三號。」</strong></p>
+</blockquote>
+</li>
+<li><strong>第一句（階段與年代）</strong>：特殊統治 ➔ 內地延長（\(1919\)） ➔ 皇民化（\(1937 - 1945\)）。</li>
+<li><strong>第二句（總督與法律）</strong>：武官總督 ➔ 文官總督 ➔ 武官總督；《六三法》 ➔ 《三一法》 ➔ 《法三號》。</li>
+</ul>
+<h3>2. 題目破題關鍵字判斷法</h3>
+<ul>
+<li>看到「<strong>西來庵、廟公、台灣大明神、符籤、台南玉井、最後一次武裝抗日</strong>」 ➔ 秒答：<strong>噍吧哖事件（余清芳）</strong>。</li>
+<li>看到「<strong>生物學原則、比目魚、糖與鞭子、四大調查</strong>」 ➔ 秒答：<strong>後藤新平</strong>。</li>
+<li>看到「<strong>貪錢、怕死、愛面子</strong>」 ➔ 秒答：<strong>舊慣調查（台灣人三大習性）</strong>。</li>
+<li>看到「<strong>十戶一甲、十甲一保、連坐法</strong>」 ➔ 秒答：<strong>保甲制度</strong>。</li>
+</ul>
+<hr />
+<h2>📝 課後作業與待辦事項 (Homework &amp; Tasks)</h2>
+<ul>
+<li><strong>下次小考預告</strong>：老師叮嚀 <strong>11 月將進行單元小考</strong>，請務必熟記本章日治初期法制演變與三階段對比表格。</li>
+<li><strong>課後待辦事項</strong>：無特定書面作業，建議利用本筆記之對比表與口訣進行自我背誦測驗。</li>
+</ul>
+<hr />
+<h2>📚 專有名詞與重要公式/定義 (Glossary &amp; Formulas)</h2>
+<ul>
+<li><strong>抗日三猛</strong>：指日治初期活躍於台灣北、中、南三地的武裝抗日領袖簡大獅、柯鐵虎與林少貓。</li>
+<li><strong>噍吧哖事件（西來庵事件）</strong>：1915 年由余清芳領導，結合宗教迷信與平埔族發起的抗日事件，為漢人規模最大且最後一次武裝抗日。</li>
+<li><strong>六三法（律令第63號）</strong>：1896 年頒布，賦予台灣總督得頒布具法律效力律令之專制大權。</li>
+<li><strong>三一法（律令第31號）</strong>：1906 年頒布，規定總督頒布之律令不得違背適用於台灣之日本本土法律。</li>
+<li><strong>法三號（律令第3號）</strong>：1921 年頒布，規定日本本土法律原則上直接適用於台灣，取消總督之獨立立法權。</li>
+<li><strong>生物學原則（比目魚理論）</strong>：後藤新平提出之治理哲學，主張統治殖民地應順應當地舊慣風俗，不可強行套用日本本土體制。</li>
+<li><strong>四大調查</strong>：日治初期後藤新平推動之林野調查、土地調查、人口調查（1905 首測）與舊慣調查。</li>
+<li><strong>保甲制度</strong>：日治時期基層控制體系，以 \(10\) 戶為 \(1\) 假、\(10\) 假為 \(1\) 保，實行戶戶相連之連坐責任制。</li>
+</ul>
+<hr />
+<h2>🧠 課後自測題 (Quick Review Quiz)</h2>
+<h3>題一：單選思考題</h3>
+<p><strong>題目</strong>：日治時期某位民政長官曾提出：「治理台灣就像對待比目魚，不能用處理一般魚類的角度去改變牠眼睛的位置。」並總結台灣人有「貪錢、怕死、愛面子」三大習性。請問這位民政長官是誰？他所採取的治理原則稱作什麼？<br />
+- <strong>解題思維與答案</strong>：<br />
+  - <strong>答案</strong>：民政長官為<strong>後藤新平</strong>；治理原則稱為<strong>「生物學原則」</strong>（或無方針主義）。<br />
+  - <strong>解析</strong>：後藤新平主張順應台灣既有風俗舊慣（舊慣調查），採用「糖與鞭子」併用的策略進行實質控制與經濟建設。</p>
+<h3>題二：觀念比較題</h3>
+<p><strong>題目</strong>：請簡述《六三法》、《三一法》至《法三號》的演變過程，對「台灣總督立法權限」產生了何種關鍵變化？<br />
+- <strong>解題思維與答案</strong>：<br />
+  - <strong>解析</strong>：<br />
+    1. 《六三法》時代：總督獨攬行政、立法、司法、軍事大權，可獨立頒布具法律效力的律令（獨裁極致）。<br />
+    2. 《三一法》時代：總督律令受限，<strong>不得牴觸</strong>適用於台灣的日本本土法律。<br />
+    3. 《法三號》時代：日本本土法律<strong>原則上全盤適用於台灣</strong>，總督基本上失去獨立立法權，僅具補充解釋權。</p>
+<h3>題三：歷史轉折辨析題</h3>
+<p><strong>題目</strong>：為何歷史學家普遍將 1915 年的「噍吧哖事件」視為台灣日治時期抗日運動的重要分水嶺？<br />
+- <strong>解題思維與答案</strong>：<br />
+  - <strong>解析</strong>：噍吧哖事件係漢人最後一次大規模體制外武裝抗日，慘重傷亡讓台灣人意識到武力無法對抗現代化日軍；加上日本本土進入大正民主時期，此後台灣人的抗爭路線全面轉型為<strong>體制內的合法政治與社會文化運動</strong>。</p>
+<hr />
+<p>💡 <strong>學霸助教複習建議</strong>：本章節的靈魂在於「<strong>治台三階段表格</strong>」與「<strong>法制三部曲演變</strong>」，考題常結合後藤新平的四大調查出題。建議複習時先默寫「<code>特殊內地皇民化，1937到45</code>」口訣，即可輕鬆秒殺大部分歷史選擇題！</p>
+    </div>
+    <footer class="doc-foot">
+      自動生成於 NotebookLM Study Assistant • 專為高中學生課後複習與考前衝刺打造
+    </footer>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.mermaid) {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'neutral',
+          fontFamily: "'Noto Sans TC', 'Inter', sans-serif",
+          flowchart: { curve: 'basis', htmlLabels: true },
+          securityLevel: 'loose'
+        });
+      }
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+  
+  <script>
+    (function() {
+      const treeData = {"name": "臺灣日治時期", "children": [{"name": "早期武裝抗日運動", "children": [{"name": "抗日三猛", "children": [{"name": "簡大獅（北部 / 臺北）"}, {"name": "柯鐵虎（中部 / 雲林）"}, {"name": "林少貓（南部 / 屏東）", "children": [{"name": "於高雄內門遭監視與開墾"}, {"name": "遭指控密謀造反並槍斃"}, {"name": "現代政壇爭議（蘇氏家族背景疑雲）"}]}]}, {"name": "西來庵事件（噍吧哖事件，1915年）", "children": [{"name": "領導人：余清芳", "children": [{"name": "身份：西來庵廟公"}, {"name": "宗教號召（夢見「臺灣大明神」降臨）"}]}, {"name": "地點：噍吧哖（今臺南玉井）", "children": [{"name": "動員平埔族原住民（大武嘠族/大湖龍人）"}]}, {"name": "過程與影響", "children": [{"name": "第一次伏擊：成功擊殺徒手日軍訓練小隊"}, {"name": "第二次伏擊：遭日軍正規軍強烈火力鎮壓"}, {"name": "逮捕 1,413 人；866 人被判處死刑"}, {"name": "余清芳為保全民眾而出面自首"}, {"name": "國際輿論壓力下減刑（95 人遭處決，餘改判無期徒刑）"}, {"name": "日本警察集體合照並製成紀念明信片作為立功憑證"}]}]}, {"name": "抗日路線轉型（1915年後）", "children": [{"name": "漢人大規模武裝抗日因傷亡慘重而告終"}, {"name": "轉型：由體制外武裝抗爭轉為體制內合法政治社會運動"}, {"name": "原住民抗爭特例", "children": [{"name": "例：莫那·魯道（霧社事件，1930年）"}, {"name": "性質：反抗勞役壓迫與爭取山林資源，非民族認同"}]}]}]}, {"name": "殖民統治體制與法制演變", "children": [{"name": "法制基礎：《六三法》", "children": [{"name": "日本本土實施《帝國憲法》，臺灣被視為殖民地"}, {"name": "臺灣總督專制獨裁（集行政、立法、司法、軍事四權於一身）"}, {"name": "擁有頒布律令與緊急命令之特權"}, {"name": "例：頒布《匪徒刑罰令》（總督兒玉源太郎與後藤新平）"}]}, {"name": "治臺政策三階段演變", "children": [{"name": "1. 特殊統治時期（1895–1919年）", "children": [{"name": "政策：「無方針主義」/ 非同化主義"}, {"name": "重點：鎮壓武裝抗日、穩定治安高於文化同化"}, {"name": "總督背景：武官總督"}, {"name": "適用法律：《六三法》（總督得發布具法律效力之律令）"}]}, {"name": "2. 內地延長主義時期（1919–1937年）", "children": [{"name": "背景：一戰後「民族自決」思潮興起"}, {"name": "政策：同化主義 /「一視同仁」"}, {"name": "將日本本土法律、領土與教育延伸至臺灣"}, {"name": "總督背景：文官總督"}, {"name": "適用法律：《三一法》（律令不得牴觸日本本土法律）"}, {"name": "影響：激發臺灣人體制內爭取權益之社會政治運動"}]}, {"name": "3. 皇民化運動時期（1937–1945年）", "children": [{"name": "背景：中日戰爭爆發與二戰"}, {"name": "政策：皇民化（塑造成忠君愛國之日本皇民）"}, {"name": "重點：工業化、軍需動員與南進基地化"}, {"name": "總督背景：重新換回武官總督"}, {"name": "適用法律：《法三號》（原則上全盤適用日本本土法律）"}]}]}]}, {"name": "後藤新平的治理策略", "children": [{"name": "治理哲學", "children": [{"name": "「生物學原則」（比目魚理論：因地制宜，尊重風俗）"}, {"name": "「糖與鞭子」策略（懷柔誘之以利，高壓嚴刑鎮壓）"}, {"name": "目標：實現臺灣在 15 年內財政獨立"}]}, {"name": "四大調查", "children": [{"name": "林野調查（掌握山林資源與產權）"}, {"name": "土地調查（丈量土地建立地籍，增加地稅收入）"}, {"name": "人口調查（1905年首次國勢調查，每10年一次，建立詳細戶口名簿）"}, {"name": "舊慣調查（總結臺灣人三大習性：貪錢、怕死、愛面子）"}]}, {"name": "社會控制機制", "children": [{"name": "三段警備制（乃木希典創立）", "children": [{"name": "危險區：軍隊鎮壓"}, {"name": "不穩區：憲兵維安"}, {"name": "安全區：警察治理"}]}, {"name": "警察與保甲制度", "children": [{"name": "警察權力極大（包辦萬事，俗稱「大人」/ 觀音菩薩）"}, {"name": "保甲制度（沿襲清代並嚴密化，實施連坐責任制）"}, {"name": "嚴格執行地方行政與治安維護"}]}, {"name": "安撫與收買在地士紳", "children": [{"name": "祥老典（設宴招待地方耆老士紳）"}, {"name": "揚文會（資助漢文寫作與傳統詩社活動）"}]}]}]}]};
+      const container = document.getElementById("tree-svg-container");
+      if (!container || !treeData) return;
+
+      const width = container.clientWidth || 880;
+      const height = 520;
+
+      const svg = d3.select("#tree-svg-container")
+        .append("svg")
+        .attr("width", "100%")
+        .attr("height", height)
+        .attr("viewBox", [0, 0, width, height]);
+
+      const g = svg.append("g");
+
+      const zoom = d3.zoom()
+        .scaleExtent([0.25, 2.5])
+        .on("zoom", (e) => g.attr("transform", e.transform));
+
+      svg.call(zoom);
+
+      const root = d3.hierarchy(treeData);
+      root.x0 = height / 2;
+      root.y0 = 0;
+
+      let i = 0;
+      const duration = 380;
+      // [dy, dx]: 垂直節距 58px (確保上下不重疊), 水平層級 320px (確保長文字不穿透父層)
+      const treeLayout = d3.tree().nodeSize([58, 320]);
+
+      function splitNodeText(text, maxChars) {
+        if (!text) return [""];
+        if (text.length <= maxChars) return [text];
+
+        // 優先在括號處斷行，例如：世風日下之自身矛盾對比（擇師教子 vs. 於身恥師）
+        const parenIdx = text.search(/[（(]/);
+        if (parenIdx >= 3 && parenIdx <= maxChars + 4) {
+          const p1 = text.slice(0, parenIdx).trim();
+          const p2 = text.slice(parenIdx).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 優先在冒號、破折號、頓號處斷行
+        const sepIdx = text.search(/[：:—、]/);
+        if (sepIdx >= 3 && sepIdx <= maxChars + 2) {
+          const p1 = text.slice(0, sepIdx + 1).trim();
+          const p2 = text.slice(sepIdx + 1).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 預設在 maxChars 處均勻斷行
+        return [text.slice(0, maxChars), text.slice(maxChars)];
+      }
+
+      if (root.children) {
+        root.children.forEach(c => {
+          if (c.children) {
+            c.children.forEach(collapse);
+          }
+        });
+      }
+
+      function collapse(d) {
+        if (d.children) {
+          d._children = d.children;
+          d._children.forEach(collapse);
+          d.children = null;
+        }
+      }
+
+      function expand(d) {
+        if (d._children) {
+          d.children = d._children;
+          d.children.forEach(expand);
+          d._children = null;
+        }
+      }
+
+      const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
+
+      function getNodeColor(d) {
+        if (d.depth === 0) return "#2563eb";
+        let p = d;
+        while (p.depth > 1) p = p.parent;
+        return colorScale(p.data.name);
+      }
+
+      function update(source) {
+        const nodes = root.descendants();
+        const links = root.links();
+
+        treeLayout(root);
+
+        const node = g.selectAll("g.node")
+          .data(nodes, d => d.id || (d.id = ++i));
+
+        const nodeEnter = node.enter().append("g")
+          .attr("class", "node")
+          .attr("transform", d => `translate(${source.y0},${source.x0})`)
+          .on("click", (event, d) => {
+            if (d.children) {
+              d._children = d.children;
+              d.children = null;
+            } else if (d._children) {
+              d.children = d._children;
+              d._children = null;
+            }
+            update(d);
+          });
+
+        nodeEnter.append("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        const textNode = nodeEnter.append("text")
+          .attr("class", "node-text")
+          .attr("text-anchor", d => (d.children || d._children) ? "end" : "start")
+          .style("fill-opacity", 0);
+
+        textNode.each(function(d) {
+          const el = d3.select(this);
+          const isParent = Boolean(d.children || d._children);
+          const xOffset = isParent ? -14 : 14;
+          const maxChars = isParent ? 13 : 18;
+          const lines = splitNodeText(d.data.name, maxChars);
+
+          if (lines.length === 1) {
+            el.attr("x", xOffset)
+              .attr("dy", "0.32em")
+              .text(lines[0]);
+          } else {
+            el.attr("x", xOffset)
+              .attr("dy", "-0.35em")
+              .text(lines[0]);
+            el.append("tspan")
+              .attr("x", xOffset)
+              .attr("dy", "1.25em")
+              .text(lines[1]);
+          }
+        });
+
+        const nodeUpdate = node.merge(nodeEnter).transition().duration(duration)
+          .attr("transform", d => `translate(${d.y},${d.x})`);
+
+        nodeUpdate.select("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        nodeUpdate.select("text")
+          .style("fill-opacity", 1);
+
+        const nodeExit = node.exit().transition().duration(duration)
+          .attr("transform", d => `translate(${source.y},${source.x})`)
+          .remove();
+
+        nodeExit.select("circle").attr("r", 1e-6);
+        nodeExit.select("text").style("fill-opacity", 1e-6);
+
+        const link = g.selectAll("path.link")
+          .data(links, d => d.target.id);
+
+        const linkEnter = link.enter().insert("path", "g")
+          .attr("class", "link")
+          .attr("d", d => {
+            const o = {x: source.x0, y: source.y0};
+            return diagonal(o, o);
+          });
+
+        link.merge(linkEnter).transition().duration(duration)
+          .attr("d", d => diagonal(d.source, d.target));
+
+        link.exit().transition().duration(duration)
+          .attr("d", d => {
+            const o = {x: source.x, y: source.y};
+            return diagonal(o, o);
+          })
+          .remove();
+
+        nodes.forEach(d => {
+          d.x0 = d.x;
+          d.y0 = d.y;
+        });
+      }
+
+      function diagonal(s, d) {
+        return `M ${s.y} ${s.x}
+                C ${(s.y + d.y) / 2} ${s.x},
+                  ${(s.y + d.y) / 2} ${d.x},
+                  ${d.y} ${d.x}`;
+      }
+
+      function autoFitTree(duration = 450) {
+        const nodes = root.descendants();
+        if (!nodes || nodes.length === 0) return;
+
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        nodes.forEach(d => {
+          const isParent = Boolean(d.children || d._children);
+          const leftBound = d.y - (isParent ? 180 : 20);
+          const rightBound = d.y + (isParent ? 20 : 220);
+          const topBound = d.x - 32;
+          const bottomBound = d.x + 32;
+
+          if (leftBound < minX) minX = leftBound;
+          if (rightBound > maxX) maxX = rightBound;
+          if (topBound < minY) minY = topBound;
+          if (bottomBound > maxY) maxY = bottomBound;
+        });
+
+        const fullWidth = container.clientWidth || 880;
+        const fullHeight = height;
+        const treeW = maxX - minX;
+        const treeH = maxY - minY;
+
+        if (treeW <= 0 || treeH <= 0) return;
+
+        const scale = Math.min(0.92, (fullWidth * 0.90) / treeW, (fullHeight * 0.90) / treeH);
+        const clampedScale = Math.max(scale, 0.42);
+
+        const midTreeX = (minX + maxX) / 2;
+        const midTreeY = (minY + maxY) / 2;
+        const tx = fullWidth / 2 - clampedScale * midTreeX;
+        const ty = fullHeight / 2 - clampedScale * midTreeY;
+
+        if (duration > 0) {
+          svg.transition().duration(duration).call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        } else {
+          svg.call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        }
+      }
+
+      window.expandAll = function() {
+        root.each(expand);
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.collapseAll = function() {
+        if (root.children) {
+          root.children.forEach(collapse);
+        }
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.resetZoom = function() {
+        autoFitTree(450);
+      };
+
+      // 首次繪製節點並自動縮放置中全覽
+      update(root);
+      autoFitTree(0);
+    })();
+  </script>
+
+</body>
+</html>

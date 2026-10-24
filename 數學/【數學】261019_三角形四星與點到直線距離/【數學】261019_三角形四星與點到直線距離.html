@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【數學】261019_三角形四星與點到直線距離</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --border: #e2e8f0;
+      --border-focus: #cbd5e1;
+      --tag-bg: #e0f2fe;
+      --tag-text: #0369a1;
+      --header-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans TC', 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.8;
+      font-size: 16px;
+      padding: 30px 16px 60px;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.06), 0 2px 6px -1px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    header.hero {
+      background: var(--header-gradient);
+      color: #ffffff;
+      padding: 36px 40px 30px;
+      position: relative;
+    }
+    header.hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      color: #f1f5f9;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    header.hero h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.5px;
+    }
+    header.hero .meta {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .content-body {
+      padding: 40px 48px;
+    }
+    @media (max-width: 640px) {
+      .content-body { padding: 24px 20px; }
+      header.hero { padding: 28px 24px 22px; }
+      header.hero h1 { font-size: 1.5rem; }
+    }
+    h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 2.2em;
+      margin-bottom: 0.9em;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h2:first-of-type { margin-top: 0.5em; }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1e3a8a;
+      margin-top: 1.6em;
+      margin-bottom: 0.6em;
+      padding-left: 10px;
+      border-left: 4px solid var(--accent);
+    }
+    p { margin-bottom: 1.1em; }
+    ul, ol { margin-bottom: 1.2em; padding-left: 1.8em; }
+    li { margin-bottom: 0.4em; }
+    .mermaid {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 16px;
+      margin: 1.6em 0;
+      text-align: center;
+      overflow-x: auto;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 1.6em 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    thead th {
+      background: #f1f5f9;
+      color: #1e293b;
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+    tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) { background: #fafafa; }
+    tbody tr:hover { background: #f0f7ff; }
+    tbody tr:last-child td { border-bottom: none; }
+    code {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      background: #f1f5f9;
+      color: #b91c1c;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 1.4em 0;
+      font-size: 0.92em;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; }
+    blockquote {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 14px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 1.4em 0;
+      color: #1e40af;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2.2em 0; }
+    .katex-display {
+      margin: 1.2em 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 6px 0;
+    }
+    .katex { font-size: 1.05em; }
+    
+    /* NotebookLM 原生 D3 互動心智圖樣式 */
+    .mindmap-box {
+      margin: 2em 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .mindmap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .mindmap-title {
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mindmap-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .mm-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: #334155;
+      transition: all 0.2s;
+    }
+    .mm-btn:hover { background: #f1f5f9; }
+    #tree-svg-container {
+      width: 100%;
+      height: 520px;
+      background: #ffffff;
+      cursor: grab;
+    }
+    #tree-svg-container:active { cursor: grabbing; }
+    .node circle {
+      cursor: pointer;
+      stroke-width: 2.5px;
+      transition: all 0.2s;
+    }
+    .node circle:hover { transform: scale(1.25); }
+    .node text {
+      font-size: 13px;
+      font-weight: 500;
+      font-family: inherit;
+      fill: #1e293b;
+      cursor: pointer;
+      paint-order: stroke fill;
+      stroke: #ffffff;
+      stroke-width: 4.5px;
+      stroke-linejoin: round;
+      user-select: none;
+    }
+    .link {
+      fill: none;
+      stroke: #cbd5e1;
+      stroke-width: 1.8px;
+      stroke-opacity: 0.85;
+      transition: stroke-width 0.2s;
+    }
+    .link:hover { stroke: #94a3b8; stroke-width: 2.5px; }
+
+    footer.doc-foot {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      background: #fcfdfe;
+    }
+    .print-btn {
+      position: absolute;
+      top: 36px;
+      right: 40px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .print-btn:hover { background: rgba(255,255,255,0.25); }
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      body {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+      }
+      .container {
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+      }
+      .print-btn, .mindmap-btns {
+        display: none !important;
+      }
+      header.hero {
+        background: var(--header-gradient) !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+        padding: 24px 30px !important;
+        margin-bottom: 20px !important;
+      }
+      header.hero h1 {
+        color: #ffffff !important;
+        font-size: 1.6rem !important;
+      }
+      header.hero .badge {
+        background: rgba(255,255,255,0.2) !important;
+        color: #ffffff !important;
+      }
+      header.hero .meta {
+        color: #cbd5e1 !important;
+      }
+      .content-body {
+        padding: 10px 0 !important;
+      }
+      h1, h2, h3, h4, table, tr, pre, .mermaid, .mindmap-box, blockquote {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      h2, h3 {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <div class="badge">📖 高中課堂互動圖文筆記</div>
+      <button class="print-btn" onclick="window.print()">🖨️ 列印 / 另存 PDF</button>
+      <h1>【數學】261019_三角形四星與點到直線距離</h1>
+      <div class="meta">
+        <span>⏱️ 數位筆記儀表板</span>
+        <span>🏷️ 含可縮放互動心智圖、時間軸與觀念對比</span>
+      </div>
+    </header>
+    <div class="content-body">
+      
+      <div class="mindmap-box">
+        <div class="mindmap-header">
+          <div class="mindmap-title">
+            <span>🧠 本課核心知識脈絡（NotebookLM 原生互動心智圖 • 支援縮放與展開）</span>
+          </div>
+          <div class="mindmap-btns">
+            <button class="mm-btn" onclick="expandAll()">展開全部</button>
+            <button class="mm-btn" onclick="collapseAll()">收合分支</button>
+            <button class="mm-btn" onclick="resetZoom()">重設視角</button>
+          </div>
+        </div>
+        <div id="tree-svg-container"></div>
+      </div>
+        
+      <h2>📖 課堂主題與核心摘要 (Class Overview)</h2>
+<p>本堂課為段考後的新進度銜接課程，核心主題聚焦於高中數學重要單元「三角形的四星（重心、垂心、外心、內心）」與「點到直線距離公式」。課堂首先複習國中幾何基礎，隨後深入講授高中的幾何代數坐標公式與二階段嚴謹證明，特別針對「內心坐標公式」進行完整的代數拆解。此外，課堂延伸探討了平面動點到三頂點距離平方和最小值的「重心極值性質」，並在尾聲傳授「點到直線距離」與「平行線距離」的速解公式、記憶口訣與垂直直線速寫技巧。</p>
+<div class="mermaid">
+graph LR
+  Root["三角形四星與直線距離"] --> A["三角形四星觀念與性質"]
+  Root --> B["極值性質與坐標推導"]
+  Root --> C["點與線的距離公式"]
+
+  A --> A1["重心 G：三中線交點 / 面積六等分 / 坐標平均"]
+  A --> A2["垂心 H：三高交點 / 斜率相乘等於 -1"]
+  A --> A3["外心 O：三中垂線交點 / 外接圓圓心"]
+  A --> A4["內心 I：三角平分線交點 / 內切圓圓心"]
+
+  B --> B1["距離平方和最小值發生於重心 G"]
+  B --> B2["內心坐標公式二階段證明"]
+
+  C --> C1["點到直線距離公式與口訣"]
+  C --> C2["兩平行線距離公式與口訣"]
+  C --> C3["垂直直線速寫法：係數互換、中間變號"]
+</div>
+<hr />
+<h2>💡 核心知識點與觀念詳解 (Key Concepts)</h2>
+<h3>1. 三角形的四星幾何意義與代數性質 (Four Centers of a Triangle)</h3>
+<ul>
+<li><strong>重心 (\(G\), Centroid)</strong>：</li>
+<li><strong>幾何定義</strong>：三角形三條「中線」的交點。</li>
+<li><strong>核心性質</strong>：<ol>
+<li><strong>面積六等分</strong>：三條中線將三角形切割成六個面積相同的小三角形。</li>
+<li><strong>線段比例 \(2 : 1\)</strong>：重心分中線為 \(2 : 1\)（即 \(\overline{AG} : \overline{GD} = 2 : 1\)）。</li>
+<li><strong>坐標公式</strong>：三頂點坐標相加除以 \(3\)，即：<br />
+   \[ G = \frac{A + B + C}{3} = \left( \frac{x_1 + x_2 + x_3}{3}, \frac{y_1 + y_2 + y_3}{3} \right) \]</li>
+</ol>
+</li>
+<li>
+<p><strong>公式推導步驟拆解</strong>：</p>
+<ol>
+<li>設 \(D\) 為 \(\overline{BC}\) 邊之中點，則 \(D = \frac{B + C}{2}\)。</li>
+<li>重心 \(G\) 為 \(\overline{AD}\) 上靠 \(D\) 側比例為 \(2 : 1\) 的內分點。</li>
+<li>套用內分點公式：<br />
+   \[ G = \frac{1 \cdot A + 2 \cdot D}{2 + 1} = \frac{A + 2 \cdot \left(\frac{B + C}{2}\right)}{3} = \frac{A + B + C}{3} \]</li>
+</ol>
+</li>
+<li>
+<p><strong>垂心 (\(H\), Orthocenter)</strong>：</p>
+</li>
+<li><strong>幾何定義</strong>：三角形三條「高（垂直線）」的交點。</li>
+<li>
+<p><strong>解題 SOP</strong>：</p>
+<ol>
+<li>計算對應底邊（如 \(\overline{BC}\)）的斜率 \(m_{BC}\)。</li>
+<li>利用兩垂直線斜率相乘等於 \(-1\)（即 \(m_1 \cdot m_2 = -1\)），算出高的斜率。</li>
+<li>高線必定經過對應「頂點」（如頂點 \(A\)），寫出高線方程式 \(L_1\)。</li>
+<li>同理求出第二條高線方程式 \(L_2\)，解聯立方程得出交點 \(H\)。</li>
+</ol>
+</li>
+<li>
+<p><strong>外心 (\(O\), Circumcenter)</strong>：</p>
+</li>
+<li><strong>幾何定義</strong>：三角形「外接圓」的圓心，亦為三邊「中垂線」的交點。</li>
+<li><strong>核心性質</strong>：外心到三角形三頂點等距離（即 \(\overline{OA} = \overline{OB} = \overline{OC} = R\)）。</li>
+<li>
+<p><strong>與垂心求法之對比</strong>：中垂線亦與底邊垂直（斜率相乘為 \(-1\)），但中垂線經過的是「邊的中點」而非頂點。</p>
+</li>
+<li>
+<p><strong>內心 (\(I\), Incenter)</strong>：</p>
+</li>
+<li><strong>幾何定義</strong>：三角形「內切圓」的圓心，亦為三個內角「角平分線」的交點。</li>
+<li><strong>核心性質</strong>：內心到三角形三邊等距離（距離即為內切圓半徑 \(r\)）。</li>
+<li><strong>內心坐標公式</strong>：<br />
+    \[ I = \frac{aA + bB + cC}{a + b + c} \]<br />
+<em>(其中 \(a, b, c\) 分別為頂點 \(A, B, C\) 對應之對邊長)</em></li>
+</ul>
+<div class="mermaid">
+graph TD
+  Step1["對頂點 A 做角平分線交 BC 於 D 點"] --> Step2["依內角平分線性質：BD : DC = c : b"]
+  Step2 --> Step3["由內分點公式求出 D 點坐標：D = (bB + cC) / (b + c)"]
+  Step3 --> Step4["計算 AD 線段上 AB 與 BD 的真實長度比：(b + c) : a"]
+  Step4 --> Step5["對角平分線 AD 上之內分點 I 套用內分點公式"]
+  Step5 --> End["導出內心坐標公式：I = (aA + bB + cC) / (a + b + c)"]
+</div>
+<hr />
+<h3>2. 重心極值性質：平方和最小值 (Minimizing Sum of Squared Distances)</h3>
+<ul>
+<li><strong>經典觀念題</strong>：設 \(P(x,y)\) 為平面上任意點，求 \(f(P) = \overline{PA}^2 + \overline{PB}^2 + \overline{PC}^2\) 的最小值與此時的 \(P\) 點坐標。</li>
+<li><strong>核心結論</strong>：使距離平方和 \(\overline{PA}^2 + \overline{PB}^2 + \overline{PC}^2\) 取得最小值的點 \(P\)，<strong>必為 \(\triangle ABC\) 的重心 \(G\)</strong>。</li>
+<li><strong>代數配方解釋</strong>：<br />
+  以 \(x\) 軸方向觀察（\(y\) 軸獨立配方同理）：<br />
+  \[ (x - x_A)^2 + (x - x_B)^2 + (x - x_C)^2 = 3x^2 - 2(x_A + x_B + x_C)x + (x_A^2 + x_B^2 + x_C^2) \]<br />
+  提出 \(3\) 並配方：<br />
+  \[ 3 \left( x - \frac{x_A + x_B + x_C}{3} \right)^2 + \text{常數項} \]<br />
+  當 \(x = \frac{x_A + x_B + x_C}{3}\)（即三個 \(x\) 坐標的算術平均數，亦即重心的 \(x\) 坐標）時，式子取得極小值。</li>
+</ul>
+<hr />
+<h3>3. 點到直線距離與平行線距離 (Distance Formulas)</h3>
+<ul>
+<li>
+<p><strong>點到直線距離公式</strong>：<br />
+  給定點 \(A(x_0, y_0)\) 與直線方程式 \(L: ax + by + c = 0\)（<strong>注意：等號右側必須化為 \(0\)</strong>），則點 \(A\) 到直線 \(L\) 的垂直距離 \(d(A, L)\) 為：<br />
+  \[ d(A, L) = \frac{|a x_0 + b y_0 + c|}{\sqrt{a^2 + b^2}} \]</p>
+</li>
+<li>
+<p><strong>兩平行線間距離公式</strong>：<br />
+  給定兩平行直線 \(L_1: ax + by + c_1 = 0\) 與 \(L_2: ax + by + c_2 = 0\)，兩線間的距離 \(d(L_1, L_2)\) 為：<br />
+  \[ d(L_1, L_2) = \frac{|c_1 - c_2|}{\sqrt{a^2 + b^2}} \]</p>
+</li>
+</ul>
+<hr />
+<h3>📊 觀念與四星性質對比表 (Comparison Table of Triangle Centers)</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">星體名稱</th>
+<th style="text-align: left;">英文代號</th>
+<th style="text-align: left;">幾何作圖交點</th>
+<th style="text-align: left;">核心幾何性質</th>
+<th style="text-align: left;">坐標與代數求解特徵</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>重心</strong></td>
+<td style="text-align: left;">\(G\)</td>
+<td style="text-align: left;">三條<strong>中線</strong>交點</td>
+<td style="text-align: left;">1. 面積六等分<br>2. 中線比例 \(AG : GD = 2 : 1\)</td>
+<td style="text-align: left;">\(G = \frac{A + B + C}{3}\)（三點平均）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>垂心</strong></td>
+<td style="text-align: left;">\(H\)</td>
+<td style="text-align: left;">三條<strong>高線</strong>交點</td>
+<td style="text-align: left;">各高線與對應底邊垂直（斜率相乘等於 \(-1\)）</td>
+<td style="text-align: left;">解兩高線聯立（高線必過對應<strong>頂點</strong>）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>外心</strong></td>
+<td style="text-align: left;">\(O\)</td>
+<td style="text-align: left;">三邊<strong>中垂線</strong>交點</td>
+<td style="text-align: left;">到三頂點等距（外接圓圓心，\(\overline{OA}=\overline{OB}=\overline{OC}\)）</td>
+<td style="text-align: left;">解兩中垂線聯立（中垂線必過對應<strong>邊中點</strong>）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>內心</strong></td>
+<td style="text-align: left;">\(I\)</td>
+<td style="text-align: left;">三<strong>角平分線</strong>交點</td>
+<td style="text-align: left;">到三邊等距（內切圓圓心，距離等於內切圓半徑 \(r\)）</td>
+<td style="text-align: left;">\(I = \frac{aA + bB + cC}{a + b + c}\)（邊長加權平均）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>⚠️ 老師強調考點與易錯陷阱 (Exam Focus &amp; Pitfalls)</h2>
+<ul>
+<li><strong>⭐ 星號必考：點到直線距離公式的「右側清零」陷阱</strong></li>
+<li>老師特別叮嚀：在使用點到直線距離公式時，直線方程式<strong>等號右側必須先移項整理成 \(0\)</strong>（即 \(ax + by + c = 0\)）。若漏將常數項移至左側（例如直接將 \(3x + 4y = -4\) 中的數值帶入），分子計算會完全錯誤。</li>
+<li><strong>⭐ 星號必考：求垂心與外心時帶入「點」的差異</strong></li>
+<li><strong>求垂心 \(H\)</strong>：求出高的斜率後，方程式必須<strong>帶入「頂點」</strong>。</li>
+<li><strong>求外心 \(O\)</strong>：求出中垂線斜率後，方程式必須<strong>帶入「邊的中點」</strong>。</li>
+<li><strong>常見速解命題：距離平方和最小值</strong></li>
+<li>段考若遇到求 \(\overline{PA}^2 + \overline{PB}^2 + \overline{PC}^2\) 的最小值與 \(P\) 點坐標，<strong>切勿花時間展開配方</strong>！直接認定 \(P\) 點即為重心 \(G = \frac{A+B+C}{3}\)，帶回原式即可快速求解。</li>
+</ul>
+<hr />
+<h2>🔑 記憶口訣與解題技巧 (Mnemonics &amp; Shortcuts)</h2>
+<ol>
+<li>
+<p><strong>點到直線距離公式口诀</strong>：</p>
+<blockquote>
+<p><strong>「根號係數平方和，分之將點帶入取絕對值！」</strong><br />
+<em>分母：\(\sqrt{a^2 + b^2}\)；分子：\(|a x_0 + b y_0 + c|\)。</em></p>
+</blockquote>
+</li>
+<li>
+<p><strong>平行線距離公式口訣</strong>：</p>
+<blockquote>
+<p><strong>「根號係數平方和，分之長數相減取絕對值！」</strong><br />
+<em>分母：\(\sqrt{a^2 + b^2}\)；分子：\(|c_1 - c_2|\)。</em></p>
+</blockquote>
+</li>
+<li>
+<p><strong>垂直直線速寫法（兩秒設定垂直線）</strong>：<br />
+   * 給定原直線方程式 \(ax + by + c = 0\)，其垂直線方程式可依以下步驟速設：</p>
+<ol>
+<li><strong>「係數互換」</strong>：將 \(x\) 與 \(y\) 的係數數字互換 \(\rightarrow bx, ay\)。</li>
+<li><strong>「中間變號」</strong>：正號變負號，負號變正號 \(\rightarrow bx - ay + k = 0\)。</li>
+<li><strong>「代點求 \(k\)」</strong>：將已知經過點代入求出常數項 \(k\)。</li>
+</ol>
+</li>
+</ol>
+<hr />
+<h2>📝 課後作業與待辦事項 (Homework &amp; Tasks)</h2>
+<ul>
+<li><strong>課堂講義練習</strong>：</li>
+<li>完成講義第 56 頁左側例題與演練。</li>
+<li>完成講義第 57 頁框框一「點到直線距離與平行線距離公式」填空。</li>
+<li><strong>待辦事項</strong>：無特定作業，但下次上課前務必熟背四星定義與距離公式口訣。</li>
+</ul>
+<hr />
+<h2>📚 專有名詞與重要公式/定義 (Glossary &amp; Formulas)</h2>
+<ul>
+<li><strong>重心坐標公式</strong>：<br />
+  \[ G = \frac{A + B + C}{3} = \left( \frac{x_1 + x_2 + x_3}{3}, \frac{y_1 + y_2 + y_3}{3} \right) \]</li>
+<li><strong>內心坐標公式</strong>：<br />
+  \[ I = \frac{aA + bB + cC}{a + b + c} \]<br />
+<em>(其中 \(a, b, c\) 分別為頂點 \(A, B, C\) 之對邊長)</em></li>
+<li><strong>點到直線距離公式 (Point-to-Line Distance)</strong>：<br />
+  \[ d = \frac{|a x_0 + b y_0 + c|}{\sqrt{a^2 + b^2}} \]</li>
+<li><strong>平行線間距離公式 (Distance Between Parallel Lines)</strong>：<br />
+  \[ d = \frac{|c_1 - c_2|}{\sqrt{a^2 + b^2}} \]</li>
+</ul>
+<hr />
+<h2>🧠 課後自測題 (Quick Review Quiz)</h2>
+<p><strong>【第一題：點到直線距離計算】</strong><br />
+求點 \(A(2, 5)\) 到直線 \(L: 3x + 4y + 4 = 0\) 的垂直距離。<br />
+* <strong>解題思維</strong>：<br />
+  1. 確認直線等號右側為 \(0\)（已為標準式）。<br />
+  2. 套用口訣「根號係數平方和分之將點帶入取絕對值」。<br />
+  3. 分母：\(\sqrt{3^2 + 4^2} = 5\)。<br />
+  4. 分子：\(|3(2) + 4(5) + 4| = |6 + 20 + 4| = 30\)。<br />
+  5. 距離 \(d = \frac{30}{5} = 6\)。</p>
+<p><strong>【第二題：重心極值速解應用】</strong><br />
+已知平面上三點 \(A(3, 0), B(2, -1), C(-2, 4)\)，求點 \(P(x, y)\) 使 \(\overline{PA}^2 + \overline{PB}^2 + \overline{PC}^2\) 取得最小值時的 \(P\) 點坐標與該最小值。<br />
+* <strong>解題思維</strong>：<br />
+  1. 利用重心極值性質，\(P\) 點必為 \(\triangle ABC\) 之重心 \(G\)。<br />
+  2. 計算重心 \(G\) 坐標：<br />
+     \[ x = \frac{3 + 2 + (-2)}{3} = 1, \quad y = \frac{0 + (-1) + 4}{3} = 1 \implies P(1, 1) \]<br />
+  3. 計算距離平方和：<br />
+     \[ \overline{PA}^2 = (1-3)^2 + (1-0)^2 = 5 \]<br />
+     \[ \overline{PB}^2 = (1-2)^2 + (1 - (-1))^2 = 5 \]<br />
+     \[ \overline{PC}^2 = (1 - (-2))^2 + (1-4)^2 = 18 \]<br />
+     \[ \text{最小值} = 5 + 5 + 18 = 28 \]</p>
+<p>💡 需要我為你將這份筆記製作成方便隨身複習的單字/公式記憶卡（Flashcards）或是課後測驗題庫嗎？</p>
+    </div>
+    <footer class="doc-foot">
+      自動生成於 NotebookLM Study Assistant • 專為高中學生課後複習與考前衝刺打造
+    </footer>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.mermaid) {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'neutral',
+          fontFamily: "'Noto Sans TC', 'Inter', sans-serif",
+          flowchart: { curve: 'basis', htmlLabels: true },
+          securityLevel: 'loose'
+        });
+      }
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+  
+  <script>
+    (function() {
+      const treeData = {"name": "三角形四星觀念與性質", "children": [{"name": "重心 G：三中線交點 / 面積六等分 / 坐標平均"}, {"name": "垂心 H：三高交點 / 斜率相乘等於 -1"}, {"name": "外心 O：三中垂線交點 / 外接圓圓心"}, {"name": "內心 I：三角平分線交點 / 內切圓圓心"}]};
+      const container = document.getElementById("tree-svg-container");
+      if (!container || !treeData) return;
+
+      const width = container.clientWidth || 880;
+      const height = 520;
+
+      const svg = d3.select("#tree-svg-container")
+        .append("svg")
+        .attr("width", "100%")
+        .attr("height", height)
+        .attr("viewBox", [0, 0, width, height]);
+
+      const g = svg.append("g");
+
+      const zoom = d3.zoom()
+        .scaleExtent([0.25, 2.5])
+        .on("zoom", (e) => g.attr("transform", e.transform));
+
+      svg.call(zoom);
+
+      const root = d3.hierarchy(treeData);
+      root.x0 = height / 2;
+      root.y0 = 0;
+
+      let i = 0;
+      const duration = 380;
+      // [dy, dx]: 垂直節距 58px (確保上下不重疊), 水平層級 320px (確保長文字不穿透父層)
+      const treeLayout = d3.tree().nodeSize([58, 320]);
+
+      function splitNodeText(text, maxChars) {
+        if (!text) return [""];
+        if (text.length <= maxChars) return [text];
+
+        // 優先在括號處斷行，例如：世風日下之自身矛盾對比（擇師教子 vs. 於身恥師）
+        const parenIdx = text.search(/[（(]/);
+        if (parenIdx >= 3 && parenIdx <= maxChars + 4) {
+          const p1 = text.slice(0, parenIdx).trim();
+          const p2 = text.slice(parenIdx).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 優先在冒號、破折號、頓號處斷行
+        const sepIdx = text.search(/[：:—、]/);
+        if (sepIdx >= 3 && sepIdx <= maxChars + 2) {
+          const p1 = text.slice(0, sepIdx + 1).trim();
+          const p2 = text.slice(sepIdx + 1).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 預設在 maxChars 處均勻斷行
+        return [text.slice(0, maxChars), text.slice(maxChars)];
+      }
+
+      if (root.children) {
+        root.children.forEach(c => {
+          if (c.children) {
+            c.children.forEach(collapse);
+          }
+        });
+      }
+
+      function collapse(d) {
+        if (d.children) {
+          d._children = d.children;
+          d._children.forEach(collapse);
+          d.children = null;
+        }
+      }
+
+      function expand(d) {
+        if (d._children) {
+          d.children = d._children;
+          d.children.forEach(expand);
+          d._children = null;
+        }
+      }
+
+      const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
+
+      function getNodeColor(d) {
+        if (d.depth === 0) return "#2563eb";
+        let p = d;
+        while (p.depth > 1) p = p.parent;
+        return colorScale(p.data.name);
+      }
+
+      function update(source) {
+        const nodes = root.descendants();
+        const links = root.links();
+
+        treeLayout(root);
+
+        const node = g.selectAll("g.node")
+          .data(nodes, d => d.id || (d.id = ++i));
+
+        const nodeEnter = node.enter().append("g")
+          .attr("class", "node")
+          .attr("transform", d => `translate(${source.y0},${source.x0})`)
+          .on("click", (event, d) => {
+            if (d.children) {
+              d._children = d.children;
+              d.children = null;
+            } else if (d._children) {
+              d.children = d._children;
+              d._children = null;
+            }
+            update(d);
+          });
+
+        nodeEnter.append("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        const textNode = nodeEnter.append("text")
+          .attr("class", "node-text")
+          .attr("text-anchor", d => (d.children || d._children) ? "end" : "start")
+          .style("fill-opacity", 0);
+
+        textNode.each(function(d) {
+          const el = d3.select(this);
+          const isParent = Boolean(d.children || d._children);
+          const xOffset = isParent ? -14 : 14;
+          const maxChars = isParent ? 13 : 18;
+          const lines = splitNodeText(d.data.name, maxChars);
+
+          if (lines.length === 1) {
+            el.attr("x", xOffset)
+              .attr("dy", "0.32em")
+              .text(lines[0]);
+          } else {
+            el.attr("x", xOffset)
+              .attr("dy", "-0.35em")
+              .text(lines[0]);
+            el.append("tspan")
+              .attr("x", xOffset)
+              .attr("dy", "1.25em")
+              .text(lines[1]);
+          }
+        });
+
+        const nodeUpdate = node.merge(nodeEnter).transition().duration(duration)
+          .attr("transform", d => `translate(${d.y},${d.x})`);
+
+        nodeUpdate.select("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        nodeUpdate.select("text")
+          .style("fill-opacity", 1);
+
+        const nodeExit = node.exit().transition().duration(duration)
+          .attr("transform", d => `translate(${source.y},${source.x})`)
+          .remove();
+
+        nodeExit.select("circle").attr("r", 1e-6);
+        nodeExit.select("text").style("fill-opacity", 1e-6);
+
+        const link = g.selectAll("path.link")
+          .data(links, d => d.target.id);
+
+        const linkEnter = link.enter().insert("path", "g")
+          .attr("class", "link")
+          .attr("d", d => {
+            const o = {x: source.x0, y: source.y0};
+            return diagonal(o, o);
+          });
+
+        link.merge(linkEnter).transition().duration(duration)
+          .attr("d", d => diagonal(d.source, d.target));
+
+        link.exit().transition().duration(duration)
+          .attr("d", d => {
+            const o = {x: source.x, y: source.y};
+            return diagonal(o, o);
+          })
+          .remove();
+
+        nodes.forEach(d => {
+          d.x0 = d.x;
+          d.y0 = d.y;
+        });
+      }
+
+      function diagonal(s, d) {
+        return `M ${s.y} ${s.x}
+                C ${(s.y + d.y) / 2} ${s.x},
+                  ${(s.y + d.y) / 2} ${d.x},
+                  ${d.y} ${d.x}`;
+      }
+
+      function autoFitTree(duration = 450) {
+        const nodes = root.descendants();
+        if (!nodes || nodes.length === 0) return;
+
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        nodes.forEach(d => {
+          const isParent = Boolean(d.children || d._children);
+          const leftBound = d.y - (isParent ? 180 : 20);
+          const rightBound = d.y + (isParent ? 20 : 220);
+          const topBound = d.x - 32;
+          const bottomBound = d.x + 32;
+
+          if (leftBound < minX) minX = leftBound;
+          if (rightBound > maxX) maxX = rightBound;
+          if (topBound < minY) minY = topBound;
+          if (bottomBound > maxY) maxY = bottomBound;
+        });
+
+        const fullWidth = container.clientWidth || 880;
+        const fullHeight = height;
+        const treeW = maxX - minX;
+        const treeH = maxY - minY;
+
+        if (treeW <= 0 || treeH <= 0) return;
+
+        const scale = Math.min(0.92, (fullWidth * 0.90) / treeW, (fullHeight * 0.90) / treeH);
+        const clampedScale = Math.max(scale, 0.42);
+
+        const midTreeX = (minX + maxX) / 2;
+        const midTreeY = (minY + maxY) / 2;
+        const tx = fullWidth / 2 - clampedScale * midTreeX;
+        const ty = fullHeight / 2 - clampedScale * midTreeY;
+
+        if (duration > 0) {
+          svg.transition().duration(duration).call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        } else {
+          svg.call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        }
+      }
+
+      window.expandAll = function() {
+        root.each(expand);
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.collapseAll = function() {
+        if (root.children) {
+          root.children.forEach(collapse);
+        }
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.resetZoom = function() {
+        autoFitTree(450);
+      };
+
+      // 首次繪製節點並自動縮放置中全覽
+      update(root);
+      autoFitTree(0);
+    })();
+  </script>
+
+</body>
+</html>

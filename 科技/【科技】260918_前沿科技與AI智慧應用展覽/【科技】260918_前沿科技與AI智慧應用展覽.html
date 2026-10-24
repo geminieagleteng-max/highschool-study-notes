@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【科技】260918_前沿科技與AI智慧應用展覽</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --border: #e2e8f0;
+      --border-focus: #cbd5e1;
+      --tag-bg: #e0f2fe;
+      --tag-text: #0369a1;
+      --header-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans TC', 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.8;
+      font-size: 16px;
+      padding: 30px 16px 60px;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.06), 0 2px 6px -1px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    header.hero {
+      background: var(--header-gradient);
+      color: #ffffff;
+      padding: 36px 40px 30px;
+      position: relative;
+    }
+    header.hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      color: #f1f5f9;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    header.hero h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.5px;
+    }
+    header.hero .meta {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .content-body {
+      padding: 40px 48px;
+    }
+    @media (max-width: 640px) {
+      .content-body { padding: 24px 20px; }
+      header.hero { padding: 28px 24px 22px; }
+      header.hero h1 { font-size: 1.5rem; }
+    }
+    h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 2.2em;
+      margin-bottom: 0.9em;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h2:first-of-type { margin-top: 0.5em; }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1e3a8a;
+      margin-top: 1.6em;
+      margin-bottom: 0.6em;
+      padding-left: 10px;
+      border-left: 4px solid var(--accent);
+    }
+    p { margin-bottom: 1.1em; }
+    ul, ol { margin-bottom: 1.2em; padding-left: 1.8em; }
+    li { margin-bottom: 0.4em; }
+    .mermaid {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 16px;
+      margin: 1.6em 0;
+      text-align: center;
+      overflow-x: auto;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 1.6em 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    thead th {
+      background: #f1f5f9;
+      color: #1e293b;
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+    tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) { background: #fafafa; }
+    tbody tr:hover { background: #f0f7ff; }
+    tbody tr:last-child td { border-bottom: none; }
+    code {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      background: #f1f5f9;
+      color: #b91c1c;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 1.4em 0;
+      font-size: 0.92em;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; }
+    blockquote {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 14px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 1.4em 0;
+      color: #1e40af;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2.2em 0; }
+    .katex-display {
+      margin: 1.2em 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 6px 0;
+    }
+    .katex { font-size: 1.05em; }
+    
+    /* NotebookLM 原生 D3 互動心智圖樣式 */
+    .mindmap-box {
+      margin: 2em 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .mindmap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .mindmap-title {
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mindmap-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .mm-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: #334155;
+      transition: all 0.2s;
+    }
+    .mm-btn:hover { background: #f1f5f9; }
+    #tree-svg-container {
+      width: 100%;
+      height: 520px;
+      background: #ffffff;
+      cursor: grab;
+    }
+    #tree-svg-container:active { cursor: grabbing; }
+    .node circle {
+      cursor: pointer;
+      stroke-width: 2.5px;
+      transition: all 0.2s;
+    }
+    .node circle:hover { transform: scale(1.25); }
+    .node text {
+      font-size: 13px;
+      font-weight: 500;
+      font-family: inherit;
+      fill: #1e293b;
+      cursor: pointer;
+      paint-order: stroke fill;
+      stroke: #ffffff;
+      stroke-width: 4.5px;
+      stroke-linejoin: round;
+      user-select: none;
+    }
+    .link {
+      fill: none;
+      stroke: #cbd5e1;
+      stroke-width: 1.8px;
+      stroke-opacity: 0.85;
+      transition: stroke-width 0.2s;
+    }
+    .link:hover { stroke: #94a3b8; stroke-width: 2.5px; }
+
+    footer.doc-foot {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      background: #fcfdfe;
+    }
+    .print-btn {
+      position: absolute;
+      top: 36px;
+      right: 40px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .print-btn:hover { background: rgba(255,255,255,0.25); }
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      body {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+      }
+      .container {
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+      }
+      .print-btn, .mindmap-btns {
+        display: none !important;
+      }
+      header.hero {
+        background: var(--header-gradient) !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+        padding: 24px 30px !important;
+        margin-bottom: 20px !important;
+      }
+      header.hero h1 {
+        color: #ffffff !important;
+        font-size: 1.6rem !important;
+      }
+      header.hero .badge {
+        background: rgba(255,255,255,0.2) !important;
+        color: #ffffff !important;
+      }
+      header.hero .meta {
+        color: #cbd5e1 !important;
+      }
+      .content-body {
+        padding: 10px 0 !important;
+      }
+      h1, h2, h3, h4, table, tr, pre, .mermaid, .mindmap-box, blockquote {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      h2, h3 {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <div class="badge">📖 高中課堂互動圖文筆記</div>
+      <button class="print-btn" onclick="window.print()">🖨️ 列印 / 另存 PDF</button>
+      <h1>【科技】260918_前沿科技與AI智慧應用展覽</h1>
+      <div class="meta">
+        <span>⏱️ 數位筆記儀表板</span>
+        <span>🏷️ 含可縮放互動心智圖、時間軸與觀念對比</span>
+      </div>
+    </header>
+    <div class="content-body">
+      
+      <div class="mindmap-box">
+        <div class="mindmap-header">
+          <div class="mindmap-title">
+            <span>🧠 本課核心知識脈絡（NotebookLM 原生互動心智圖 • 支援縮放與展開）</span>
+          </div>
+          <div class="mindmap-btns">
+            <button class="mm-btn" onclick="expandAll()">展開全部</button>
+            <button class="mm-btn" onclick="collapseAll()">收合分支</button>
+            <button class="mm-btn" onclick="resetZoom()">重設視角</button>
+          </div>
+        </div>
+        <div id="tree-svg-container"></div>
+      </div>
+        
+      <h2>📖 課堂主題與核心摘要 (Class Overview)</h2>
+<p>本堂課為前沿科技與 AI 智慧應用展覽之深度導覽筆記，核心內容涵蓋現代資訊科技、生醫工程、航太技術與智慧運動科學之跨領域前沿成果。課程重點剖析包括 <strong>AI 向量生成與 AR 試穿</strong>、<strong>運動數據鷹眼追蹤</strong>、<strong>非接觸式生理量測（智慧魔鏡）</strong>、<strong>柔性雲母耐高溫基板</strong>、<strong>太空衛星與液體火箭推進原理</strong>、<strong>可解釋性 AI（XAI）防偽驗證</strong>，以及<strong>邊緣運算智慧交通控制</strong>。學習目標在於理解前沿技術如何解決傳統產業痛點，並掌握物理、材料、資訊與工程跨領域應用的核心理論與實務運作流程。</p>
+<div class="mermaid">
+graph LR
+  Root["前沿科技與 AI 應用展覽"] --> A["1. 智慧時尚與 AI 生成"]
+  Root --> B["2. 智慧運動與鷹眼系統"]
+  Root --> C["3. 生醫感測與智慧魔鏡"]
+  Root --> D["4. 新型柔性雲母材料"]
+  Root --> E["5. 太空科技與火箭推進"]
+  Root --> F["6. 可解釋性 AI (XAI)"]
+  Root --> G["7. IMU 姿態回饋與邊緣交通"]
+
+  A --> A1["AI 圖稿拆解向量化"]
+  A --> A2["AR 虛擬穿搭體驗"]
+  B --> B1["雷達追蹤與 3D 軌跡重建"]
+  B --> B2["關節追蹤與 ABS 好壞球判讀"]
+  C --> C1["rPPG 微血管動態感測"]
+  C --> C2["心率/血壓/HRV 自律神經評估"]
+  D --> D1["范德華力層狀剝離"]
+  D --> D2["$1200^\circ\\text{C}$ 耐高溫壓電感測"]
+  E --> E1["福衛八號低軌光學遙測"]
+  E --> E2["液體火箭渦輪幫浦與高壓燃燒"]
+  F --> F1["黑盒 AI 破除與熱點定位"]
+  F --> F2["人機協同與腦波整合判讀"]
+  G --> G1["3D IMU 骨盆角度警示"]
+  G --> G2["Edge AI 煞車預估與動態延燈"]
+</div>
+<hr />
+<h2>💡 核心知識點與觀念詳解 (Key Concepts)</h2>
+<h3>1. AI 智慧服裝設計與技術拆解 (AI Fashion Design &amp; AR Try-on)</h3>
+<ul>
+<li><strong>核心觀念與痛點解決</strong>：傳統服裝設計需經歷「手稿草圖 \(\rightarrow\) 初步打樣 \(\rightarrow\) 修改樣衣 \(\rightarrow\) 二次打樣」等繁複工序，耗費巨大的人力與時間成本。</li>
+<li><strong>技術突破</strong>：本系統利用 Generative AI 將概念圖像自動拆解並向量化（Vectorization）生成專業的技術圖稿（Technical Flat Sketches）。設計師可精確調整尺寸與版型，並透過 AR 擴充實境技術進行虛擬試穿（Virtual Try-on），將想法直觀呈現於人體上，大幅降低生產前期的溝通與試錯成本。</li>
+</ul>
+<h3>2. 國家運動數據平台與棒球鷹眼系統 (Baseball Hawk-Eye &amp; Sports Analytics)</h3>
+<ul>
+<li><strong>核心觀念</strong>：整合球場雷達系統與多角度高速攝影機，將球員運動過程轉化為結構化三維數據。</li>
+<li><strong>物理與資訊演算法</strong>：</li>
+<li><strong>軌跡重建</strong>：對投球進壘點、進壘軌跡及擊球初速/飛向進行 3D 空間座標建模。</li>
+<li><strong>關鍵運動參數</strong>：即時量測球速、轉速（Spin Rate）、垂直位移（Vertical Break）與水平位移（Horizontal Break）。</li>
+<li><strong>骨架姿勢追蹤</strong>：追蹤投手與打者的身體關節節點，即時分析揮棒軌跡與投球機制，並支援 ABS（Automatic Ball-Strike System，自動好壞球挑戰系統）。</li>
+</ul>
+<h3>3. 非接觸式智慧魔鏡與 rPPG 生醫感測 (rPPG Smart Mirror)</h3>
+<ul>
+<li><strong>生醫光學原理</strong>：利用 <strong>rPPG (Remote Photoplethysmography，遠距光學體積描記術)</strong> 與 RGB/紅外線攝影鏡頭，捕捉皮下微血管隨心臟搏動產生的微弱顏色變化。</li>
+<li><strong>檢測項目與臨床意義</strong>：可在 50 秒內非接觸式量測心率、呼吸率、血壓與血氧濃度（\(SpO_2\)）。進一步分析心率變異度（HRV，Heart Rate Variability），以評估自律神經交感與副交感神經的平衡狀態（壓力與睡眠品質），並預估心房顫動與心臟衰竭風險（已通過 FDA 認證）。</li>
+</ul>
+<h3>4. 柔性雲母基板元件與壓電感測器 (Flexible Mica Substrate &amp; Piezoelectric Sensors)</h3>
+<ul>
+<li><strong>材料結構與物理特性</strong>：天然雲母晶體內部層與層之間靠微弱的<strong>范德華力（van der Waals force）</strong>結合。透過雙面膠或機械剝離（Exfoliation）可將原本厚度約 \(200\,\mu\text{m}\) 的剛性雲母層層撕離，製成厚度極薄、具備柔軟可彎曲性的陶質薄膜。</li>
+<li><strong>極限耐熱對比</strong>：傳統可彎曲高分子基板（如 PET, PI）耐熱極限僅 \(100^\circ\text{C} \sim 250^\circ\text{C}\)；人工雲母陶瓷基板耐熱高達 \(1200^\circ\text{C}\)，熱傳導與散熱表現優異。</li>
+<li><strong>壓電效應應用實例</strong>：在雲母基板上濺鍍生長氧化鋅（\(\text{ZnO}\)）薄膜。當基板受到彎曲或壓力時，晶體結構產生電極化而輸出壓電訊號。展覽實例將其製成握球感測手套，透過每根手指不同的彎曲角度與壓電訊號變化，精確判讀棒球投手握持直球、指叉球或滑球的姿態是否標準。</li>
+</ul>
+<h3>5. 太空科技：福衛八號與液體火箭推進原理 (Formosat-8 &amp; Liquid Rocket Propulsion)</h3>
+<ul>
+<li><strong>福衛八號光學遙測衛星</strong>：</li>
+<li>部署於低地球軌道（LEO），目標由 6 顆衛星組成星系，將台灣地表重訪週期由 6 天縮短至每天。</li>
+<li>光學超解析度達 \(1\text{ m}\) 等級（地表車輛與建築清晰可辨），常用於颱風土石流、堰塞湖與防災決策。</li>
+<li><strong>熱控系統</strong>：包覆多層鍍金絕熱膜（MLI），對抗軌道環境下 \(-100^\circ\text{C} \sim 70^\circ\text{C}\) 的極端日照溫差；內部配備反應輪與致動器，執行入軌後的消轉（De-tumbling）與姿態控制。</li>
+<li><strong>液體燃料火箭引擎推進原理</strong>：</li>
+<li>推進劑組合：煤油（Kerosene，燃料） + 液態氧（\(\text{LOX}\)，氧化劑）。</li>
+<li><strong>高壓渦輪幫浦 (Turbopump)</strong>：由渦輪機帶動，輸出功率高達 \(650\text{ HP}\)（相當於 5-6 輛家用轎車馬力），將推進劑注入高達 \(70\text{ atm}\)（70 倍標準大氣壓）的高壓燃燒室。</li>
+<li><strong>動量守恆與牛頓第三運動定律</strong>：燃料高溫燃燒後由噴嘴高速噴出，依據動量守恆定律產生龐大的反作用推力：<br />
+    \[F = \dot{m} v_e + (P_e - P_a) A_e\]</li>
+</ul>
+<h3>6. 可解釋性 AI 防偽驗證系統 (Explainable AI - XAI Deepfake Detection)</h3>
+<ul>
+<li><strong>黑盒 AI 之痛點</strong>：傳統 Deepfake 檢測模型僅輸出 binary 分數（如「真」或「假」），缺乏推理過程，導致執法與司法調查無法完全採信。</li>
+<li><strong>XAI 核心機制</strong>：XAI 技術能標記出圖像或影片中具體的人工造假痕跡（合成臉部邊界、光影異常區域），生成視覺化診斷報告。並導入<strong>人機協同（Human-in-the-Loop）</strong>，結合專家腦波（EEG）判讀經驗訓練 AI，大幅提升防詐欺與指證的公信力。</li>
+</ul>
+<h3>7. IMU 骨盆控制回饋與邊緣智慧交通 (IMU Pelvic Control &amp; Edge AI Traffic)</h3>
+<ul>
+<li><strong>IMU 姿態回饋</strong>：將 3D 慣性測量單元（IMU）貼附於骨盆，精確量測前傾/後傾、左右傾斜與旋轉角度。當運動員或復健患者姿勢偏差超過預設門檻（如 \(\pm 10^\circ\)）時即時發出警報修正動作。</li>
+<li><strong>Edge AI 智慧交通</strong>：在路口攝影機端直接執行影像辨識演算法（邊緣運算），降低雲端傳輸延遲。能精確預估黃燈車輛的煞車距離，並在行人穿越路口時即時開關照明與動態延遲燈號。</li>
+</ul>
+<hr />
+<h3>⏱️ 時序流程圖 (Process Workflows)</h3>
+<h4>1. AI 服裝生成與技術拆解生產流程</h4>
+<div class="mermaid">
+graph TD
+  A["概念草圖/AIPrompt 輸入"] --> B["AI 圖像生成初步樣式"]
+  B --> C["AI 向量化拆解 (Vectorization)"]
+  C --> D["產出技術圖稿 (Technical Flat Sketches)"]
+  D --> E["尺寸與細節編修 (尺寸/保暖度/材質)"]
+  E --> F["AR 實境穿搭體驗與驗證"]
+  F --> G["直接對接工廠進入實體製造"]
+</div>
+<h4>2. 液體火箭引擎推進運作流程</h4>
+<div class="mermaid">
+graph TD
+  A["推進劑儲存槽: 煤油 & 液態氧"] --> B["渦輪幫浦 (Turbopump, 650 HP) 高壓加壓"]
+  B --> C["注入燃燒室 (Combustion Chamber, 70 atm)"]
+  C --> D["混合劇烈燃燒產生高溫高壓氣體"]
+  D --> E["收縮-擴張噴嘴 (Nozzle) 高速噴出"]
+  E --> F["產生強大反作用推力 (Newton's 3rd Law)"]
+</div>
+<hr />
+<h3>📊 觀念與易混淆對比表 (Comparison Tables)</h3>
+<h4>表一：傳統服裝設計 vs. AI 向量技術拆解系統</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">對比維度</th>
+<th style="text-align: left;">傳統服裝設計與製造</th>
+<th style="text-align: left;">AI 向量技術拆解系統</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>開發流程</strong></td>
+<td style="text-align: left;">手繪草圖 \(\rightarrow\) 多次實體打樣修改</td>
+<td style="text-align: left;">AI 圖像生成 \(\rightarrow\) 向量技術圖 \(\rightarrow\) AR 試穿</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>打樣成本</strong></td>
+<td style="text-align: left;">需耗費大量布料、人工與時間成本</td>
+<td style="text-align: left;">前期零布料消耗，數位化精準修正</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>溝通模式</strong></td>
+<td style="text-align: left;">憑抽象圖稿與打樣師口頭溝通，易出錯</td>
+<td style="text-align: left;">輸出標準向向量技術稿，精確對接生產端</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>開發週期</strong></td>
+<td style="text-align: left;">數週至數個月</td>
+<td style="text-align: left;">數小時至數天</td>
+</tr>
+</tbody>
+</table>
+<h4>表二：傳統高分子基板 vs. 柔性雲母陶瓷基板</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">特性項目</th>
+<th style="text-align: left;">傳統高分子基板 (PET / PI)</th>
+<th style="text-align: left;">柔性雲母陶瓷基板 (Mica)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>材料屬性</strong></td>
+<td style="text-align: left;">有機高分子聚合物</td>
+<td style="text-align: left;">天然/人工無機陶瓷層狀晶體</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>耐高溫極限</strong></td>
+<td style="text-align: left;">約 \(100^\circ\text{C} \sim 250^\circ\text{C}\)（易熔融變形）</td>
+<td style="text-align: left;">高達 \(1200^\circ\text{C}\)（高熱穩定性）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>機械特性</strong></td>
+<td style="text-align: left;">高可彎曲性</td>
+<td style="text-align: left;">可透過范德華力層狀剝離達柔性彎曲</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>光學與導電製程</strong></td>
+<td style="text-align: left;">製程溫度受限，薄膜品質較差</td>
+<td style="text-align: left;">支援高溫鍍膜（如 \(\text{ITO}\) 導電膜、\(\text{ZnO}\) 壓電膜）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>主要應用</strong></td>
+<td style="text-align: left;">一般可撓式顯示器、軟性電路板</td>
+<td style="text-align: left;">高溫感測器、極限環境元件、運動壓電感測</td>
+</tr>
+</tbody>
+</table>
+<h4>表三：傳統黑盒 AI vs. 可解釋性 AI (XAI) Deepfake 檢測</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">評估維度</th>
+<th style="text-align: left;">傳統黑盒 AI (Black-box AI)</th>
+<th style="text-align: left;">可解釋性 AI (XAI) 防偽系統</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>輸出結果</strong></td>
+<td style="text-align: left;">僅給出判斷信心度（如：偽造機率 95%）</td>
+<td style="text-align: left;">輸出完整診斷報告並視覺化偽造區域</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>信任度與公信力</strong></td>
+<td style="text-align: left;">低，使用者無法得知判斷依據</td>
+<td style="text-align: left;">高，具備可歸因性與司法證據力</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>模型修正</strong></td>
+<td style="text-align: left;">難以定位模型特徵抓取的偏誤</td>
+<td style="text-align: left;">可明確知道模型關注的偽造特徵並優化</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>應用場景</strong></td>
+<td style="text-align: left;">一般娛樂或初步篩選</td>
+<td style="text-align: left;">司法調查局、事實查核中心、金融防詐</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>⚠️ 老師強調考點與易錯陷阱 (Exam Focus &amp; Pitfalls)</h2>
+<ul>
+<li><strong>★ 考點 1（材料物理）</strong>：雲母（Mica）基板能達到「柔性」的關鍵在於其晶體層間為微弱的<strong>范德華力（van der Waals force）</strong>，可透過層狀剝離（Exfoliation）使厚度減至微米級從而具備彎曲度；其最大優勢為耐高溫達 <strong>\(1200^\circ\text{C}\)</strong>，切勿與一般耐溫低於 \(250^\circ\text{C}\) 的高分子塑料（PET/PI）混淆！</li>
+<li><strong>★ 考點 2（航太動力）</strong>：火箭推進的核心原理是<strong>動量守恆</strong>與<strong>牛頓第三運動定律（反作用力）</strong>。火箭在太空中即使沒有空氣也能推進，是因為推力來自於推進劑燃燒後向後高速噴出的氣體品質反作用力，而非「推擠大氣」。</li>
+<li><strong>★ 考點 3（生醫光學）</strong>：rPPG 技術原理是利用攝像頭偵測<strong>皮下微血管</strong>的微弱顏色動態變化，屬於「非接觸式」光學測量，量測時需保持受試者頭部穩定避免運動產生的訊號雜訊。</li>
+<li><strong>陷阱題叮嚀</strong>：</li>
+<li><strong>黑盒 AI 的局限</strong>：模型高準確率不等於具備可信度，黑盒 AI 無法提供判斷依據；XAI 的核心價值在於提供「可歸因之歸因特徵（Attribution Features）」。</li>
+<li><strong>衛星熱控</strong>：福衛八號外表的金黃色薄膜為「多層絕熱膜（MLI）」，其作用是熱絕緣與反射太陽輻射，防止極端溫差（\(-100^\circ\text{C} \sim 70^\circ\text{C}\)）破壞內部電子元件，而非裝飾或太陽能板。</li>
+</ul>
+<hr />
+<h2>🔑 記憶口訣與解題技巧 (Mnemonics &amp; Shortcuts)</h2>
+<h3>前沿科技觀念對比記憶速記表</h3>
+<ul>
+<li><strong>雲母基板</strong>：口訣「<strong>范德華力層層剝，千二高溫陶柔薄</strong>」（范德華力剝離、耐溫 \(1200^\circ\text{C}\)、陶瓷柔性薄膜）。</li>
+<li><strong>火箭推進</strong>：口訣「<strong>內部高壓靠幫浦，燃燒噴氣靠反推</strong>」（\(650\text{ HP}\) 渦輪幫浦、\(70\text{ atm}\) 高壓室、牛頓第三定律）。</li>
+<li><strong>XAI 驗證</strong>：口訣「<strong>拒絕黑盒只給分，熱圖圈錯才真證</strong>」（產出診斷熱圖與特徵說明，拒絕純分數輸出）。</li>
+</ul>
+<hr />
+<h2>📝 課後作業與待辦事項 (Homework &amp; Tasks)</h2>
+<ul>
+<li><strong>課後複習</strong>：重點複習本展覽筆記中「柔性雲母壓電原理」與「液體火箭推進力學」，並熟記物理參數。</li>
+<li><strong>專題思考</strong>：思考可解釋性 AI (XAI) 如何應用於醫療影像診斷或金融信用審查場景。</li>
+<li><strong>無特定作業</strong>：請自主複習展覽展示之各項前沿科技原理與跨領域整合案例。</li>
+</ul>
+<hr />
+<h2>📚 專有名詞與重要公式/定義 (Glossary &amp; Formulas)</h2>
+<ul>
+<li><strong>rPPG (Remote Photoplethysmography，遠距光學體積描記術)</strong>：利用光學鏡頭非接觸式偵測皮膚表面因心臟搏動導致微血管血容積變化的生醫感測技術。</li>
+<li><strong>Vectorization (向量化)</strong>：將點陣圖或生成式圖像轉化為具備數學點線面的向幾何圖形，便於服裝版型編輯與 CAD 系統對接。</li>
+<li><strong>van der Waals force (范德華力)</strong>：分子或層狀晶體間的作用力，強度遠弱於共價鍵與離子鍵，為雲母可層狀剝離之物理基礎。</li>
+<li><strong>HRV (Heart Rate Variability，心率變異度)</strong>：連續心跳間期微小時間變化的波動程度，用以評估自律神經系統（交感與副交感神經）的活性與壓力指數。</li>
+<li><strong>MLI (Multi-Layer Insulation，多層絕熱膜)</strong>：由多層高反射性金屬化薄膜組成的太空熱控材料，用以防止輻射傳熱。</li>
+<li><strong>Turbopump (渦輪幫浦)</strong>：由高壓氣體帶動渦輪，進而驅動幫浦將大量推進劑加壓注入火箭燃燒室的高功率機械裝置。</li>
+<li><strong>牛頓第三運動定律（火箭推力基本公式）</strong>：<br />
+  \[F = \dot{m} v_e + (P_e - P_a) A_e\]<br />
+  其中 \(\dot{m}\) 為推進劑質量噴射率，\(v_e\) 為噴氣相對於噴嘴的出口速度，\(P_e\) 與 \(P_a\) 分別為出口氣壓與環境氣壓。</li>
+<li><strong>壓電效應公式（Piezoelectric Effect）</strong>：<br />
+  \[D = d \cdot \sigma + \varepsilon^T \cdot E\]<br />
+  其中 \(D\) 為電位移，\(\sigma\) 為施加之機械應力，\(d\) 為壓電常數。</li>
+</ul>
+<hr />
+<h2>🧠 課後自測題 (Quick Review Quiz)</h2>
+<p><strong>Q1：傳統高分子軟性基板（如 PET/PI）在應用於極端環境感測器時遇到了什麼瓶頸？雲母（Mica）基板是如何突破此限制的？</strong></p>
+<blockquote>
+<p><strong>簡答思維</strong>：傳統高分子基板耐熱溫度低（約 \(100^\circ\text{C} \sim 250^\circ\text{C}\)），高溫下易融化變形。雲母基板為陶瓷層狀結構，透過范德華力剝離成薄膜後具備柔軟度，且耐熱溫度高達 \(1200^\circ\text{C}\)，能於高溫環境下長成 ITO 導電膜或 ZnO 壓電薄膜進行精準感測。</p>
+</blockquote>
+<p><strong>Q2：可解釋性 AI（XAI）防偽系統與傳統 AI Deepfake 檢測工具的主要差異為何？為什麼這對司法調查或事實查核至關重要？</strong></p>
+<blockquote>
+<p><strong>簡答思維</strong>：傳統黑盒 AI 僅輸出「真/假」概率分數，無法提供推論依據；XAI 系統能自動標記造假區域（如假臉縫合痕跡、邊界異常），並生成診斷報告。在司法與新聞查核中，必須有明確且具備歸因性的證據鏈，XAI 提供的透明化歸因報告才能作為可信的採證依據。</p>
+</blockquote>
+<p><strong>Q3：福衛八號衛星在太空低地球軌道運行時，為什麼需要包覆金黃色多層絕熱膜（MLI）？其主要熱控機制為何？</strong></p>
+<blockquote>
+<p><strong>簡答思維</strong>：軌道環境無空氣對流且日照與陰影區溫差極大（\(-100^\circ\text{C} \sim 70^\circ\text{C}\)）。多層絕熱膜（MLI）透過高反射薄膜阻止熱輻射穿透，達成熱絕緣並反射太陽光，確保衛星內部精密光學儀器與電子元件維持在安全的運作溫度範圍內。</p>
+</blockquote>
+    </div>
+    <footer class="doc-foot">
+      自動生成於 NotebookLM Study Assistant • 專為高中學生課後複習與考前衝刺打造
+    </footer>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.mermaid) {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'neutral',
+          fontFamily: "'Noto Sans TC', 'Inter', sans-serif",
+          flowchart: { curve: 'basis', htmlLabels: true },
+          securityLevel: 'loose'
+        });
+      }
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+  
+  <script>
+    (function() {
+      const treeData = {"name": "1. 智慧時尚與 AI 生成", "children": [{"name": "AI 圖稿拆解向量化"}, {"name": "AR 虛擬穿搭體驗"}]};
+      const container = document.getElementById("tree-svg-container");
+      if (!container || !treeData) return;
+
+      const width = container.clientWidth || 880;
+      const height = 520;
+
+      const svg = d3.select("#tree-svg-container")
+        .append("svg")
+        .attr("width", "100%")
+        .attr("height", height)
+        .attr("viewBox", [0, 0, width, height]);
+
+      const g = svg.append("g");
+
+      const zoom = d3.zoom()
+        .scaleExtent([0.25, 2.5])
+        .on("zoom", (e) => g.attr("transform", e.transform));
+
+      svg.call(zoom);
+
+      const root = d3.hierarchy(treeData);
+      root.x0 = height / 2;
+      root.y0 = 0;
+
+      let i = 0;
+      const duration = 380;
+      // [dy, dx]: 垂直節距 58px (確保上下不重疊), 水平層級 320px (確保長文字不穿透父層)
+      const treeLayout = d3.tree().nodeSize([58, 320]);
+
+      function splitNodeText(text, maxChars) {
+        if (!text) return [""];
+        if (text.length <= maxChars) return [text];
+
+        // 優先在括號處斷行，例如：世風日下之自身矛盾對比（擇師教子 vs. 於身恥師）
+        const parenIdx = text.search(/[（(]/);
+        if (parenIdx >= 3 && parenIdx <= maxChars + 4) {
+          const p1 = text.slice(0, parenIdx).trim();
+          const p2 = text.slice(parenIdx).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 優先在冒號、破折號、頓號處斷行
+        const sepIdx = text.search(/[：:—、]/);
+        if (sepIdx >= 3 && sepIdx <= maxChars + 2) {
+          const p1 = text.slice(0, sepIdx + 1).trim();
+          const p2 = text.slice(sepIdx + 1).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 預設在 maxChars 處均勻斷行
+        return [text.slice(0, maxChars), text.slice(maxChars)];
+      }
+
+      if (root.children) {
+        root.children.forEach(c => {
+          if (c.children) {
+            c.children.forEach(collapse);
+          }
+        });
+      }
+
+      function collapse(d) {
+        if (d.children) {
+          d._children = d.children;
+          d._children.forEach(collapse);
+          d.children = null;
+        }
+      }
+
+      function expand(d) {
+        if (d._children) {
+          d.children = d._children;
+          d.children.forEach(expand);
+          d._children = null;
+        }
+      }
+
+      const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
+
+      function getNodeColor(d) {
+        if (d.depth === 0) return "#2563eb";
+        let p = d;
+        while (p.depth > 1) p = p.parent;
+        return colorScale(p.data.name);
+      }
+
+      function update(source) {
+        const nodes = root.descendants();
+        const links = root.links();
+
+        treeLayout(root);
+
+        const node = g.selectAll("g.node")
+          .data(nodes, d => d.id || (d.id = ++i));
+
+        const nodeEnter = node.enter().append("g")
+          .attr("class", "node")
+          .attr("transform", d => `translate(${source.y0},${source.x0})`)
+          .on("click", (event, d) => {
+            if (d.children) {
+              d._children = d.children;
+              d.children = null;
+            } else if (d._children) {
+              d.children = d._children;
+              d._children = null;
+            }
+            update(d);
+          });
+
+        nodeEnter.append("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        const textNode = nodeEnter.append("text")
+          .attr("class", "node-text")
+          .attr("text-anchor", d => (d.children || d._children) ? "end" : "start")
+          .style("fill-opacity", 0);
+
+        textNode.each(function(d) {
+          const el = d3.select(this);
+          const isParent = Boolean(d.children || d._children);
+          const xOffset = isParent ? -14 : 14;
+          const maxChars = isParent ? 13 : 18;
+          const lines = splitNodeText(d.data.name, maxChars);
+
+          if (lines.length === 1) {
+            el.attr("x", xOffset)
+              .attr("dy", "0.32em")
+              .text(lines[0]);
+          } else {
+            el.attr("x", xOffset)
+              .attr("dy", "-0.35em")
+              .text(lines[0]);
+            el.append("tspan")
+              .attr("x", xOffset)
+              .attr("dy", "1.25em")
+              .text(lines[1]);
+          }
+        });
+
+        const nodeUpdate = node.merge(nodeEnter).transition().duration(duration)
+          .attr("transform", d => `translate(${d.y},${d.x})`);
+
+        nodeUpdate.select("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        nodeUpdate.select("text")
+          .style("fill-opacity", 1);
+
+        const nodeExit = node.exit().transition().duration(duration)
+          .attr("transform", d => `translate(${source.y},${source.x})`)
+          .remove();
+
+        nodeExit.select("circle").attr("r", 1e-6);
+        nodeExit.select("text").style("fill-opacity", 1e-6);
+
+        const link = g.selectAll("path.link")
+          .data(links, d => d.target.id);
+
+        const linkEnter = link.enter().insert("path", "g")
+          .attr("class", "link")
+          .attr("d", d => {
+            const o = {x: source.x0, y: source.y0};
+            return diagonal(o, o);
+          });
+
+        link.merge(linkEnter).transition().duration(duration)
+          .attr("d", d => diagonal(d.source, d.target));
+
+        link.exit().transition().duration(duration)
+          .attr("d", d => {
+            const o = {x: source.x, y: source.y};
+            return diagonal(o, o);
+          })
+          .remove();
+
+        nodes.forEach(d => {
+          d.x0 = d.x;
+          d.y0 = d.y;
+        });
+      }
+
+      function diagonal(s, d) {
+        return `M ${s.y} ${s.x}
+                C ${(s.y + d.y) / 2} ${s.x},
+                  ${(s.y + d.y) / 2} ${d.x},
+                  ${d.y} ${d.x}`;
+      }
+
+      function autoFitTree(duration = 450) {
+        const nodes = root.descendants();
+        if (!nodes || nodes.length === 0) return;
+
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        nodes.forEach(d => {
+          const isParent = Boolean(d.children || d._children);
+          const leftBound = d.y - (isParent ? 180 : 20);
+          const rightBound = d.y + (isParent ? 20 : 220);
+          const topBound = d.x - 32;
+          const bottomBound = d.x + 32;
+
+          if (leftBound < minX) minX = leftBound;
+          if (rightBound > maxX) maxX = rightBound;
+          if (topBound < minY) minY = topBound;
+          if (bottomBound > maxY) maxY = bottomBound;
+        });
+
+        const fullWidth = container.clientWidth || 880;
+        const fullHeight = height;
+        const treeW = maxX - minX;
+        const treeH = maxY - minY;
+
+        if (treeW <= 0 || treeH <= 0) return;
+
+        const scale = Math.min(0.92, (fullWidth * 0.90) / treeW, (fullHeight * 0.90) / treeH);
+        const clampedScale = Math.max(scale, 0.42);
+
+        const midTreeX = (minX + maxX) / 2;
+        const midTreeY = (minY + maxY) / 2;
+        const tx = fullWidth / 2 - clampedScale * midTreeX;
+        const ty = fullHeight / 2 - clampedScale * midTreeY;
+
+        if (duration > 0) {
+          svg.transition().duration(duration).call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        } else {
+          svg.call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        }
+      }
+
+      window.expandAll = function() {
+        root.each(expand);
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.collapseAll = function() {
+        if (root.children) {
+          root.children.forEach(collapse);
+        }
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.resetZoom = function() {
+        autoFitTree(450);
+      };
+
+      // 首次繪製節點並自動縮放置中全覽
+      update(root);
+      autoFitTree(0);
+    })();
+  </script>
+
+</body>
+</html>

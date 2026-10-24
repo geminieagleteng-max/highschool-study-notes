@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【英文】260909_動物睡眠習性與句型解析</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --border: #e2e8f0;
+      --border-focus: #cbd5e1;
+      --tag-bg: #e0f2fe;
+      --tag-text: #0369a1;
+      --header-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans TC', 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.8;
+      font-size: 16px;
+      padding: 30px 16px 60px;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.06), 0 2px 6px -1px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    header.hero {
+      background: var(--header-gradient);
+      color: #ffffff;
+      padding: 36px 40px 30px;
+      position: relative;
+    }
+    header.hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      color: #f1f5f9;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    header.hero h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.5px;
+    }
+    header.hero .meta {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .content-body {
+      padding: 40px 48px;
+    }
+    @media (max-width: 640px) {
+      .content-body { padding: 24px 20px; }
+      header.hero { padding: 28px 24px 22px; }
+      header.hero h1 { font-size: 1.5rem; }
+    }
+    h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 2.2em;
+      margin-bottom: 0.9em;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h2:first-of-type { margin-top: 0.5em; }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1e3a8a;
+      margin-top: 1.6em;
+      margin-bottom: 0.6em;
+      padding-left: 10px;
+      border-left: 4px solid var(--accent);
+    }
+    p { margin-bottom: 1.1em; }
+    ul, ol { margin-bottom: 1.2em; padding-left: 1.8em; }
+    li { margin-bottom: 0.4em; }
+    .mermaid {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 16px;
+      margin: 1.6em 0;
+      text-align: center;
+      overflow-x: auto;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 1.6em 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    thead th {
+      background: #f1f5f9;
+      color: #1e293b;
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+    tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) { background: #fafafa; }
+    tbody tr:hover { background: #f0f7ff; }
+    tbody tr:last-child td { border-bottom: none; }
+    code {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      background: #f1f5f9;
+      color: #b91c1c;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 1.4em 0;
+      font-size: 0.92em;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; }
+    blockquote {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 14px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 1.4em 0;
+      color: #1e40af;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2.2em 0; }
+    .katex-display {
+      margin: 1.2em 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 6px 0;
+    }
+    .katex { font-size: 1.05em; }
+    
+    /* NotebookLM 原生 D3 互動心智圖樣式 */
+    .mindmap-box {
+      margin: 2em 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .mindmap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .mindmap-title {
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mindmap-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .mm-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: #334155;
+      transition: all 0.2s;
+    }
+    .mm-btn:hover { background: #f1f5f9; }
+    #tree-svg-container {
+      width: 100%;
+      height: 520px;
+      background: #ffffff;
+      cursor: grab;
+    }
+    #tree-svg-container:active { cursor: grabbing; }
+    .node circle {
+      cursor: pointer;
+      stroke-width: 2.5px;
+      transition: all 0.2s;
+    }
+    .node circle:hover { transform: scale(1.25); }
+    .node text {
+      font-size: 13px;
+      font-weight: 500;
+      font-family: inherit;
+      fill: #1e293b;
+      cursor: pointer;
+      paint-order: stroke fill;
+      stroke: #ffffff;
+      stroke-width: 4.5px;
+      stroke-linejoin: round;
+      user-select: none;
+    }
+    .link {
+      fill: none;
+      stroke: #cbd5e1;
+      stroke-width: 1.8px;
+      stroke-opacity: 0.85;
+      transition: stroke-width 0.2s;
+    }
+    .link:hover { stroke: #94a3b8; stroke-width: 2.5px; }
+
+    footer.doc-foot {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      background: #fcfdfe;
+    }
+    .print-btn {
+      position: absolute;
+      top: 36px;
+      right: 40px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .print-btn:hover { background: rgba(255,255,255,0.25); }
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      body {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+      }
+      .container {
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+      }
+      .print-btn, .mindmap-btns {
+        display: none !important;
+      }
+      header.hero {
+        background: var(--header-gradient) !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+        padding: 24px 30px !important;
+        margin-bottom: 20px !important;
+      }
+      header.hero h1 {
+        color: #ffffff !important;
+        font-size: 1.6rem !important;
+      }
+      header.hero .badge {
+        background: rgba(255,255,255,0.2) !important;
+        color: #ffffff !important;
+      }
+      header.hero .meta {
+        color: #cbd5e1 !important;
+      }
+      .content-body {
+        padding: 10px 0 !important;
+      }
+      h1, h2, h3, h4, table, tr, pre, .mermaid, .mindmap-box, blockquote {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      h2, h3 {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <div class="badge">📖 高中課堂互動圖文筆記</div>
+      <button class="print-btn" onclick="window.print()">🖨️ 列印 / 另存 PDF</button>
+      <h1>【英文】260909_動物睡眠習性與句型解析</h1>
+      <div class="meta">
+        <span>⏱️ 數位筆記儀表板</span>
+        <span>🏷️ 含可縮放互動心智圖、時間軸與觀念對比</span>
+      </div>
+    </header>
+    <div class="content-body">
+      
+      <div class="mindmap-box">
+        <div class="mindmap-header">
+          <div class="mindmap-title">
+            <span>🧠 本課核心知識脈絡（NotebookLM 原生互動心智圖 • 支援縮放與展開）</span>
+          </div>
+          <div class="mindmap-btns">
+            <button class="mm-btn" onclick="expandAll()">展開全部</button>
+            <button class="mm-btn" onclick="collapseAll()">收合分支</button>
+            <button class="mm-btn" onclick="resetZoom()">重設視角</button>
+          </div>
+        </div>
+        <div id="tree-svg-container"></div>
+      </div>
+        
+      <h2>📖 課堂主題與核心摘要 (Class Overview)</h2>
+<p>本堂英文課主要講解自然界動物的特殊睡眠習性（以長頸鹿與海獺為主）及相關課文高頻句型與文法。課堂由熊的冬眠與金魚閉眼睡覺引出主題，深入分析長頸鹿因掠食者威脅而極短的睡眠時間與頭靠臀部的姿勢，以及海獺仰漂水面、手拉手避免漂走等生存策略。核心學習目標在於掌握高中文法重點，包括雙逗點插入句的主謂一致判斷、動詞 <code>lay</code> 的用法與三態變化、比較級修飾副詞（<code>much</code>）及 <code>avoid + V-ing</code> 等常考句型。</p>
+<div class="mermaid">
+graph LR
+  Root["動物睡眠習性與英文句型"] --> A["主題一：長頸鹿的睡眠策略"]
+  Root --> B["主題二：海獺的睡姿與生存機制"]
+  Root --> C["重點文法與高頻句型"]
+
+  A --> A1["睡眠時間：平均一天約 30 分鐘 (on average)"]
+  A --> A2["特殊姿勢：捲曲長頸、頭靠臀部 (curls neck, lays head on hip)"]
+  A --> A3["生存考量：防範掠食者 (predators)，起立速度太慢"]
+
+  B --> B1["睡姿：仰漂於水面 (float on back)"]
+  B --> B2["社交行為：睡覺時手拉手、爪子互扣 (lock paws, hold hands)"]
+  B --> B3["目的：避免被水流漂走 (avoid floating away)"]
+
+  C --> C1["句型與轉折：in fact, however, it is reported that..."]
+  C --> C2["文法陷阱：雙逗點夾心句、lay vs. lie、much + 比較級"]
+  C --> C3["介系詞與接續：unlike, avoid + V-ing"]
+</div>
+<hr />
+<h2>💡 核心知識點與觀念詳解 (Key Concepts)</h2>
+<h3>1. 長頸鹿（Giraffes）的睡眠習性與句型解析</h3>
+<ul>
+<li><strong>睡眠時間與數據補充</strong>：<br />
+  長頸鹿的睡眠時間極短，平均一天僅約 30 分鐘（<code>sleep only 30 minutes a day on average</code>）。課堂上老師特別強調 <code>on average</code>（平均而言）與 <code>in fact</code> / <code>as a matter of fact</code>（事實上）的語境運用——前句提及「睡得很少」，後句透過 <code>in fact</code> 引出具體事實與客觀數據進行補充說明。</li>
+<li><strong>特殊睡姿（Sleeping Position）</strong>：<br />
+  長頸鹿睡覺時會彎曲牠長長的脖子，將頭靠在臀部上（<code>curls its long neck and lays head on hip</code>）。</li>
+<li><strong>動詞細節</strong>：此處的 <code>lay</code> 為「放置（put）」之意，第三人稱單數現在式為 <code>lays</code>，過去式為 <code>laid</code>。</li>
+<li><strong>生存考量與掠食者威脅</strong>：<br />
+  由於周遭經常有掠食者（<code>predators</code>，如獅子、豹）環伺，長頸鹿若從趴著且頭靠臀部的姿勢站立起來（<code>stand up from this position</code>）動作過慢，極易遭攻擊，因此牠們絕不會長時間深睡（<code>never sleep for too long</code>）。</li>
+</ul>
+<h3>2. 海獺（Sea Otters）的可愛睡姿與防護機制</h3>
+<ul>
+<li><strong>仰漂水面與安全選擇</strong>：<br />
+  海獺雖然可以在陸地上休息，但在水中安全得多（<code>much safer in the water</code>）。牠們睡覺時會背部朝下、仰臥飄浮於水面上（<code>float on their backs</code>）。</li>
+<li><strong>手拉手與爪子相扣（Hold hands / Lock paws）</strong>：<br />
+  群聚的海獺在睡覺時會彼此緊緊抓牢、將小爪子鎖在一起（<code>lock their little paws together and hold on to each other</code>）。</li>
+<li><strong>目的與動詞用法</strong>：<br />
+  海獺握手的主要目的是為了「避免漂走」（<code>to avoid floating away</code>）。老師特別叮嚀：動詞 <code>avoid</code> 後面一定要接動名詞 <code>$V\text{-ing}$</code>！</li>
+</ul>
+<h3>3. 課堂實例與生動比喻</h3>
+<ul>
+<li><strong>開頭引言範例</strong>：課堂開頭提到熊會冬眠（<code>Bears hibernate</code>）、金魚睡覺時不閉眼（<code>Goldfish sleep without closing their eyes</code>），用以引導學生思考其他動物多樣化的睡眠方式。</li>
+<li><strong>生活動作比喻</strong>：老師以「在講桌上擺書」（<code>I lay some books on the podium</code>）來比喻長頸鹿將頭「放置（<code>lay</code>）」在臀部上的動作，幫助同學直觀區分 <code>lay</code> 的動詞含義。</li>
+</ul>
+<h3>⏱️ 長頸鹿與海獺生存睡姿步驟流程圖</h3>
+<div class="mermaid">
+graph TD
+    subgraph 長頸鹿睡眠防禦機制
+        A1[蜷曲長頸、頭靠臀部趴睡] --> A2[周圍有掠食者 Predators 周旋]
+        A2 --> A3[此姿態站立 Stand up 速度過慢]
+        A3 --> A4[演化為每天平均僅小睡約 30 分鐘]
+    end
+
+    subgraph 海獺水上防漂機制
+        B1[群聚海獺仰臥飄浮於水面 Float on back] --> B2[睡覺時將爪子扣緊 Lock paws / Hold hands]
+        B2 --> B3[彼此相連形成水上防護鎖]
+        B3 --> B4[成功避免因水流漂走 Avoid floating away]
+    end
+</div>
+<h3>📊 觀念與易混淆對比表</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">比較項目</th>
+<th style="text-align: left;">核心觀念 / 片語</th>
+<th style="text-align: left;">語法結構與用法說明</th>
+<th style="text-align: left;">課堂例題 / 實例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>動詞放置與躺臥</strong></td>
+<td style="text-align: left;"><code>lay</code> vs. <code>lie</code></td>
+<td style="text-align: left;"><code>lay</code>（放置/擺）：現在式 <code>lay</code>, 過去式 <code>laid</code>（及物動詞，後需接受詞）<br><code>lie</code>（躺/臥）：現在式 <code>lie</code>, 過去式 <code>lay</code>（不及物動詞）</td>
+<td style="text-align: left;">長頸鹿將頭靠在臀部：<code>lays head on hip</code><br>老師桌上擺書：<code>I lay books on the podium</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>介系詞「不像/不同」</strong></td>
+<td style="text-align: left;"><code>unlike</code> vs. <code>different from</code></td>
+<td style="text-align: left;"><code>unlike + N</code>：介系詞，置於句首表示「不像……」<br><code>different from + N</code>：形容詞片語，用於連繫動詞後</td>
+<td style="text-align: left;"><code>Unlike most mammals...</code><br><code>= Different from those mammals...</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>轉折與補充說明</strong></td>
+<td style="text-align: left;"><code>in fact</code> vs. <code>however</code></td>
+<td style="text-align: left;"><code>in fact</code> / <code>as a matter of fact</code>：事實上（補充說明前句細節）<br><code>however</code>：然而（語意強烈對比轉折）</td>
+<td style="text-align: left;">前句講睡得少，後句用 <code>In fact</code> 引出僅 30 分鐘<br>長頸鹿想休息，<code>However</code> 有掠食者在旁</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>比較級修飾</strong></td>
+<td style="text-align: left;"><code>much + 比較級</code></td>
+<td style="text-align: left;">比較級形容詞前可用 <code>much</code>, <code>a lot</code>, <code>far</code>, <code>a little</code> 修飾；<strong>嚴禁使用 <code>very</code></strong></td>
+<td style="text-align: left;">海獺在水中安全得多：<code>much safer in the water</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>⚠️ 老師強調考點與易錯陷阱 (Exam Focus &amp; Pitfalls)</h2>
+<ul>
+<li><strong>【必考雙逗點夾心句（Appositive / Parenthetical Clause）】</strong>：<br />
+  老師強烈強調大考極愛出雙逗點分割句。例如：<br />
+<code>Groups of sea otters, [one of the world's most cute animals], have the cutest sleeping position.</code><br />
+<em>陷阱</em>：學生常看到第一個逗點後的單數名詞或關代，就誤以為動詞要用單數 <code>has</code>；事實上主詞是第二個逗點前的 <code>Groups</code>（複數），主要動詞必須搭配 <code>have</code>！</li>
+<li><strong>【<code>lay</code> 的動詞型態與時態判斷】</strong>：<br />
+<code>lay</code> 當作「放置」時，原形動詞為 <code>lay</code>（現在式單數加 <code>-s</code> 變成 <code>lays</code>），過去式為 <code>laid</code>。切勿與「躺」的現在式 <code>lie</code>（過去式為 <code>lay</code>）搞混。</li>
+<li><strong>【<code>avoid</code> 後接 \(V\text{-ing}\)】</strong>：<br />
+<code>avoid</code> 屬後接動名詞的高頻動詞（如 <code>to avoid floating away</code>）。考試若寫成 <code>to avoid to float away</code> 為常見嚴重錯誤。</li>
+<li><strong>【修飾比較級的副詞】</strong>：<br />
+<code>safer</code> 為比較級，前面只能用 <code>much</code>, <code>a lot</code>, <code>far</code>, <code>even</code> 修飾，寫成 <code>very safer</code> 是經典文法陷阱。</li>
+</ul>
+<hr />
+<h2>🔑 記憶口訣與解題技巧 (Mnemonics &amp; Shortcuts)</h2>
+<ul>
+<li><strong>【長句破解三步驟 SOP】</strong>：<br />
+  1. <strong>找雙逗點</strong>：看到句子出現 <code>, ...... ,</code>，先拿鉛筆畫括號括起來不看。<br />
+  2. <strong>定位主詞</strong>：劃記第一個逗點前面的名詞（Subject）。<br />
+  3. <strong>抓主要動詞</strong>：直接跳到第二個逗點後面找主要動詞（Verb），確保主謂單複數一致。</li>
+<li><strong>【<code>lay</code> 與 <code>lie</code> 記憶口訣】</strong>：<br />
+  「擺放放頭用 <code>lay</code>（等於 <code>put</code>），過去變成 <code>laid</code>；自己躺下用 <code>lie</code>，過去變成 <code>lay</code>。」</li>
+<li><strong>【比較級修飾速記】</strong>：<br />
+  「<code>very</code> 只能修原級，<code>much</code> / <code>a lot</code> 專修比較級！」</li>
+</ul>
+<hr />
+<h2>📝 課後作業與待辦事項 (Homework &amp; Tasks)</h2>
+<ul>
+<li><strong>課後複習</strong>：回家務必研讀並複習「粉紅女孩」講義相關單元內容。</li>
+<li><strong>下次小考</strong>：明天的英文小考範圍調整為<strong>第四、五、六單元</strong>（包含單字與課文重點觀念），請各位同學做好預習與準備。</li>
+</ul>
+<hr />
+<h2>📚 專有名詞與重要公式/定義 (Glossary &amp; Formulas)</h2>
+<ul>
+<li><strong>Mammal</strong>: 哺乳類動物（名詞）。</li>
+<li><strong>Predator</strong>: 掠食者、食肉動物（名詞）。</li>
+<li><strong>On average</strong>: 平均而言（片語），例：<code>sleep 30 minutes a day on average</code>。</li>
+<li><strong>In fact / As a matter of fact</strong>: 事實上、實際上（轉折片語），用於強化或精確補充說明前文資訊。</li>
+<li><strong>It is reported that...</strong>: 據報導指出……（引述客觀資訊之句型）。</li>
+<li><strong>Unlike / Different from</strong>: 不像…… / 與……不同（介系詞片語）。</li>
+<li><strong>Avoid + \(V\text{-ing}\)</strong>: 避免做某事。例：\(\text{avoid} + \text{floating away}\)。</li>
+<li><strong>\(Much / A\ lot + \text{Comparative}\)</strong>: 修飾比較級（如：\(much + \text{safer}\)），表示程度遠勝於前者。</li>
+</ul>
+<hr />
+<h2>🧠 課後自測題 (Quick Review Quiz)</h2>
+<ol>
+<li>
+<p><strong>[文法結構題]</strong> 請問在句子 "Sea otters, one of the most famous marine mammals, ______ (have/has) a unique sleeping position." 中，正確的動詞填空為何？原因為何？<br />
+   * <strong>簡答與解題思維</strong>：答案為 <code>have</code>。運用雙逗點夾心句 SOP，將 <code>, one of the most famous marine mammals,</code> 括起來忽略，主要主詞為複數名詞 <code>Sea otters</code>，故動詞需選用複數型態 <code>have</code>。</p>
+</li>
+<li>
+<p><strong>[動詞用法題]</strong> 海獺睡覺時會緊扣爪子以防漂走，請將括號內的動詞改為正確型態：<br />
+   "To avoid ______ (float) away, sea otters lock their paws together."<br />
+   * <strong>簡答與解題思維</strong>：答案為 <code>floating</code>。因為動詞 <code>avoid</code> 後方接續動作時，規定必須使用動名詞格式（\(\text{avoid} + V\text{-ing}\)）。</p>
+</li>
+<li>
+<p><strong>[句型翻譯與片語題]</strong> 「據報導指出，長頸鹿平均一天只睡 30 分鐘。」請用課堂所學片語補全句子：<br />
+   "<strong><em>_</em>_ </strong><strong><em>_ </em></strong><strong><em> that giraffes sleep only 30 minutes a day </em></strong><strong><em> </em></strong>___."<br />
+   * <strong>簡答與解題思維</strong>：答案分別填入 <code>It is reported</code> 與 <code>on average</code>。完整句子為 "It is reported that giraffes sleep only 30 minutes a day on average."。</p>
+</li>
+</ol>
+<hr />
+<p>💡 這份筆記已完整歸納課堂的核心觀念、文法陷阱與考試重點！需要我為你生成這堂課的單字卡或隨堂測驗練習嗎？</p>
+    </div>
+    <footer class="doc-foot">
+      自動生成於 NotebookLM Study Assistant • 專為高中學生課後複習與考前衝刺打造
+    </footer>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.mermaid) {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'neutral',
+          fontFamily: "'Noto Sans TC', 'Inter', sans-serif",
+          flowchart: { curve: 'basis', htmlLabels: true },
+          securityLevel: 'loose'
+        });
+      }
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+  
+  <script>
+    (function() {
+      const treeData = {"name": "動物睡眠習性", "children": [{"name": "長頸鹿", "children": [{"name": "睡眠時間", "children": [{"name": "睡眠時間極短"}, {"name": "平均一天僅約 30 分鐘"}]}, {"name": "睡姿與姿勢", "children": [{"name": "捲曲長脖子"}, {"name": "頭靠在臀部"}, {"name": "趴伏於地面"}]}, {"name": "生存策略與禦敵", "children": [{"name": "周遭有掠食者威脅"}, {"name": "起立動作較慢"}, {"name": "絕不深睡過久"}]}]}, {"name": "海獺", "children": [{"name": "特殊睡姿", "children": [{"name": "仰漂於水面"}, {"name": "睡覺時手拉手"}, {"name": "極具特色的可愛睡姿"}]}, {"name": "安全防護機制", "children": [{"name": "在水中比陸地上安全"}, {"name": "避免被水流漂走"}, {"name": "小爪子緊緊相扣"}, {"name": "彼此緊緊抓牢"}]}]}, {"name": "其他動物範例", "children": [{"name": "熊類", "children": [{"name": "冬眠行為"}]}, {"name": "金魚", "children": [{"name": "睡覺時不閉眼"}]}]}]};
+      const container = document.getElementById("tree-svg-container");
+      if (!container || !treeData) return;
+
+      const width = container.clientWidth || 880;
+      const height = 520;
+
+      const svg = d3.select("#tree-svg-container")
+        .append("svg")
+        .attr("width", "100%")
+        .attr("height", height)
+        .attr("viewBox", [0, 0, width, height]);
+
+      const g = svg.append("g");
+
+      const zoom = d3.zoom()
+        .scaleExtent([0.25, 2.5])
+        .on("zoom", (e) => g.attr("transform", e.transform));
+
+      svg.call(zoom);
+
+      const root = d3.hierarchy(treeData);
+      root.x0 = height / 2;
+      root.y0 = 0;
+
+      let i = 0;
+      const duration = 380;
+      // [dy, dx]: 垂直節距 58px (確保上下不重疊), 水平層級 320px (確保長文字不穿透父層)
+      const treeLayout = d3.tree().nodeSize([58, 320]);
+
+      function splitNodeText(text, maxChars) {
+        if (!text) return [""];
+        if (text.length <= maxChars) return [text];
+
+        // 優先在括號處斷行，例如：世風日下之自身矛盾對比（擇師教子 vs. 於身恥師）
+        const parenIdx = text.search(/[（(]/);
+        if (parenIdx >= 3 && parenIdx <= maxChars + 4) {
+          const p1 = text.slice(0, parenIdx).trim();
+          const p2 = text.slice(parenIdx).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 優先在冒號、破折號、頓號處斷行
+        const sepIdx = text.search(/[：:—、]/);
+        if (sepIdx >= 3 && sepIdx <= maxChars + 2) {
+          const p1 = text.slice(0, sepIdx + 1).trim();
+          const p2 = text.slice(sepIdx + 1).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 預設在 maxChars 處均勻斷行
+        return [text.slice(0, maxChars), text.slice(maxChars)];
+      }
+
+      if (root.children) {
+        root.children.forEach(c => {
+          if (c.children) {
+            c.children.forEach(collapse);
+          }
+        });
+      }
+
+      function collapse(d) {
+        if (d.children) {
+          d._children = d.children;
+          d._children.forEach(collapse);
+          d.children = null;
+        }
+      }
+
+      function expand(d) {
+        if (d._children) {
+          d.children = d._children;
+          d.children.forEach(expand);
+          d._children = null;
+        }
+      }
+
+      const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
+
+      function getNodeColor(d) {
+        if (d.depth === 0) return "#2563eb";
+        let p = d;
+        while (p.depth > 1) p = p.parent;
+        return colorScale(p.data.name);
+      }
+
+      function update(source) {
+        const nodes = root.descendants();
+        const links = root.links();
+
+        treeLayout(root);
+
+        const node = g.selectAll("g.node")
+          .data(nodes, d => d.id || (d.id = ++i));
+
+        const nodeEnter = node.enter().append("g")
+          .attr("class", "node")
+          .attr("transform", d => `translate(${source.y0},${source.x0})`)
+          .on("click", (event, d) => {
+            if (d.children) {
+              d._children = d.children;
+              d.children = null;
+            } else if (d._children) {
+              d.children = d._children;
+              d._children = null;
+            }
+            update(d);
+          });
+
+        nodeEnter.append("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        const textNode = nodeEnter.append("text")
+          .attr("class", "node-text")
+          .attr("text-anchor", d => (d.children || d._children) ? "end" : "start")
+          .style("fill-opacity", 0);
+
+        textNode.each(function(d) {
+          const el = d3.select(this);
+          const isParent = Boolean(d.children || d._children);
+          const xOffset = isParent ? -14 : 14;
+          const maxChars = isParent ? 13 : 18;
+          const lines = splitNodeText(d.data.name, maxChars);
+
+          if (lines.length === 1) {
+            el.attr("x", xOffset)
+              .attr("dy", "0.32em")
+              .text(lines[0]);
+          } else {
+            el.attr("x", xOffset)
+              .attr("dy", "-0.35em")
+              .text(lines[0]);
+            el.append("tspan")
+              .attr("x", xOffset)
+              .attr("dy", "1.25em")
+              .text(lines[1]);
+          }
+        });
+
+        const nodeUpdate = node.merge(nodeEnter).transition().duration(duration)
+          .attr("transform", d => `translate(${d.y},${d.x})`);
+
+        nodeUpdate.select("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        nodeUpdate.select("text")
+          .style("fill-opacity", 1);
+
+        const nodeExit = node.exit().transition().duration(duration)
+          .attr("transform", d => `translate(${source.y},${source.x})`)
+          .remove();
+
+        nodeExit.select("circle").attr("r", 1e-6);
+        nodeExit.select("text").style("fill-opacity", 1e-6);
+
+        const link = g.selectAll("path.link")
+          .data(links, d => d.target.id);
+
+        const linkEnter = link.enter().insert("path", "g")
+          .attr("class", "link")
+          .attr("d", d => {
+            const o = {x: source.x0, y: source.y0};
+            return diagonal(o, o);
+          });
+
+        link.merge(linkEnter).transition().duration(duration)
+          .attr("d", d => diagonal(d.source, d.target));
+
+        link.exit().transition().duration(duration)
+          .attr("d", d => {
+            const o = {x: source.x, y: source.y};
+            return diagonal(o, o);
+          })
+          .remove();
+
+        nodes.forEach(d => {
+          d.x0 = d.x;
+          d.y0 = d.y;
+        });
+      }
+
+      function diagonal(s, d) {
+        return `M ${s.y} ${s.x}
+                C ${(s.y + d.y) / 2} ${s.x},
+                  ${(s.y + d.y) / 2} ${d.x},
+                  ${d.y} ${d.x}`;
+      }
+
+      function autoFitTree(duration = 450) {
+        const nodes = root.descendants();
+        if (!nodes || nodes.length === 0) return;
+
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        nodes.forEach(d => {
+          const isParent = Boolean(d.children || d._children);
+          const leftBound = d.y - (isParent ? 180 : 20);
+          const rightBound = d.y + (isParent ? 20 : 220);
+          const topBound = d.x - 32;
+          const bottomBound = d.x + 32;
+
+          if (leftBound < minX) minX = leftBound;
+          if (rightBound > maxX) maxX = rightBound;
+          if (topBound < minY) minY = topBound;
+          if (bottomBound > maxY) maxY = bottomBound;
+        });
+
+        const fullWidth = container.clientWidth || 880;
+        const fullHeight = height;
+        const treeW = maxX - minX;
+        const treeH = maxY - minY;
+
+        if (treeW <= 0 || treeH <= 0) return;
+
+        const scale = Math.min(0.92, (fullWidth * 0.90) / treeW, (fullHeight * 0.90) / treeH);
+        const clampedScale = Math.max(scale, 0.42);
+
+        const midTreeX = (minX + maxX) / 2;
+        const midTreeY = (minY + maxY) / 2;
+        const tx = fullWidth / 2 - clampedScale * midTreeX;
+        const ty = fullHeight / 2 - clampedScale * midTreeY;
+
+        if (duration > 0) {
+          svg.transition().duration(duration).call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        } else {
+          svg.call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        }
+      }
+
+      window.expandAll = function() {
+        root.each(expand);
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.collapseAll = function() {
+        if (root.children) {
+          root.children.forEach(collapse);
+        }
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.resetZoom = function() {
+        autoFitTree(450);
+      };
+
+      // 首次繪製節點並自動縮放置中全覽
+      update(root);
+      autoFitTree(0);
+    })();
+  </script>
+
+</body>
+</html>

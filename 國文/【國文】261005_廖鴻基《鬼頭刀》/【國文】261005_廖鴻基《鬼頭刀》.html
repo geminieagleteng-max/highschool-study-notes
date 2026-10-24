@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【國文】261005_廖鴻基《鬼頭刀》</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --border: #e2e8f0;
+      --border-focus: #cbd5e1;
+      --tag-bg: #e0f2fe;
+      --tag-text: #0369a1;
+      --header-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans TC', 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.8;
+      font-size: 16px;
+      padding: 30px 16px 60px;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.06), 0 2px 6px -1px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    header.hero {
+      background: var(--header-gradient);
+      color: #ffffff;
+      padding: 36px 40px 30px;
+      position: relative;
+    }
+    header.hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      color: #f1f5f9;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    header.hero h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.5px;
+    }
+    header.hero .meta {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .content-body {
+      padding: 40px 48px;
+    }
+    @media (max-width: 640px) {
+      .content-body { padding: 24px 20px; }
+      header.hero { padding: 28px 24px 22px; }
+      header.hero h1 { font-size: 1.5rem; }
+    }
+    h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 2.2em;
+      margin-bottom: 0.9em;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h2:first-of-type { margin-top: 0.5em; }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1e3a8a;
+      margin-top: 1.6em;
+      margin-bottom: 0.6em;
+      padding-left: 10px;
+      border-left: 4px solid var(--accent);
+    }
+    p { margin-bottom: 1.1em; }
+    ul, ol { margin-bottom: 1.2em; padding-left: 1.8em; }
+    li { margin-bottom: 0.4em; }
+    .mermaid {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 16px;
+      margin: 1.6em 0;
+      text-align: center;
+      overflow-x: auto;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 1.6em 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    thead th {
+      background: #f1f5f9;
+      color: #1e293b;
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+    tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) { background: #fafafa; }
+    tbody tr:hover { background: #f0f7ff; }
+    tbody tr:last-child td { border-bottom: none; }
+    code {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      background: #f1f5f9;
+      color: #b91c1c;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 1.4em 0;
+      font-size: 0.92em;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; }
+    blockquote {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 14px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 1.4em 0;
+      color: #1e40af;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2.2em 0; }
+    .katex-display {
+      margin: 1.2em 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 6px 0;
+    }
+    .katex { font-size: 1.05em; }
+    
+    /* NotebookLM 原生 D3 互動心智圖樣式 */
+    .mindmap-box {
+      margin: 2em 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .mindmap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .mindmap-title {
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mindmap-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .mm-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: #334155;
+      transition: all 0.2s;
+    }
+    .mm-btn:hover { background: #f1f5f9; }
+    #tree-svg-container {
+      width: 100%;
+      height: 520px;
+      background: #ffffff;
+      cursor: grab;
+    }
+    #tree-svg-container:active { cursor: grabbing; }
+    .node circle {
+      cursor: pointer;
+      stroke-width: 2.5px;
+      transition: all 0.2s;
+    }
+    .node circle:hover { transform: scale(1.25); }
+    .node text {
+      font-size: 13px;
+      font-weight: 500;
+      font-family: inherit;
+      fill: #1e293b;
+      cursor: pointer;
+      paint-order: stroke fill;
+      stroke: #ffffff;
+      stroke-width: 4.5px;
+      stroke-linejoin: round;
+      user-select: none;
+    }
+    .link {
+      fill: none;
+      stroke: #cbd5e1;
+      stroke-width: 1.8px;
+      stroke-opacity: 0.85;
+      transition: stroke-width 0.2s;
+    }
+    .link:hover { stroke: #94a3b8; stroke-width: 2.5px; }
+
+    footer.doc-foot {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      background: #fcfdfe;
+    }
+    .print-btn {
+      position: absolute;
+      top: 36px;
+      right: 40px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .print-btn:hover { background: rgba(255,255,255,0.25); }
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      body {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+      }
+      .container {
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+      }
+      .print-btn, .mindmap-btns {
+        display: none !important;
+      }
+      header.hero {
+        background: var(--header-gradient) !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+        padding: 24px 30px !important;
+        margin-bottom: 20px !important;
+      }
+      header.hero h1 {
+        color: #ffffff !important;
+        font-size: 1.6rem !important;
+      }
+      header.hero .badge {
+        background: rgba(255,255,255,0.2) !important;
+        color: #ffffff !important;
+      }
+      header.hero .meta {
+        color: #cbd5e1 !important;
+      }
+      .content-body {
+        padding: 10px 0 !important;
+      }
+      h1, h2, h3, h4, table, tr, pre, .mermaid, .mindmap-box, blockquote {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      h2, h3 {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <div class="badge">📖 高中課堂互動圖文筆記</div>
+      <button class="print-btn" onclick="window.print()">🖨️ 列印 / 另存 PDF</button>
+      <h1>【國文】261005_廖鴻基《鬼頭刀》</h1>
+      <div class="meta">
+        <span>⏱️ 數位筆記儀表板</span>
+        <span>🏷️ 含可縮放互動心智圖、時間軸與觀念對比</span>
+      </div>
+    </header>
+    <div class="content-body">
+      
+      <div class="mindmap-box">
+        <div class="mindmap-header">
+          <div class="mindmap-title">
+            <span>🧠 本課核心知識脈絡（NotebookLM 原生互動心智圖 • 支援縮放與展開）</span>
+          </div>
+          <div class="mindmap-btns">
+            <button class="mm-btn" onclick="expandAll()">展開全部</button>
+            <button class="mm-btn" onclick="collapseAll()">收合分支</button>
+            <button class="mm-btn" onclick="resetZoom()">重設視角</button>
+          </div>
+        </div>
+        <div id="tree-svg-container"></div>
+      </div>
+        
+      <h2>📖 課堂主題與核心摘要 (Class Overview)</h2>
+<p>本堂課主要針對台灣海洋文學名篇——廖鴻基《鬼頭刀》進行課文第 2 至 12 段的深度賞析與結構解構。課堂重點探討海豚與鬼頭刀在捕食方式、性格特質及與人互動上的顯著對比，並細緻分析作者首次與鬼頭刀交鋒時的動態場面描寫、夢境中的意識轉換手法，以及魚鉤象徵「倒懸問號」背後深刻的人海博弈哲理。學習目標在於掌握文章中的修辭技巧（如轉化中的形象化）、文意理解關鍵，以及學會分辨文學情感投射與生物學真實的差異。</p>
+<div class="mermaid">
+graph LR
+  Root["廖鴻基《鬼頭刀》課文賞析"] --> A["海洋生物性格對比"]
+  Root --> B["首戰交鋒與夢境描寫"]
+  Root --> C["哲理象徵與雙魚情深"]
+
+  A --> A1["海豚 vs 鬼頭刀對比表"]
+  A --> A2["生命價值 vs 市場價值"]
+
+  B --> B1["80磅粗線與『時空凍結』(形象化)"]
+  B --> B2["夢境中的意識轉換 (人魚交替)"]
+
+  C --> C1["倒懸問號與 0 到 ∞ 的人海博弈"]
+  C --> C2["浪漫愛情投射 vs 生物繁衍本能"]
+</div>
+<hr />
+<h2>💡 核心知識點與觀念詳解 (Key Concepts)</h2>
+<h3>1. 海洋生物的對比：海豚與鬼頭刀之性格與生存智慧</h3>
+<p>課文第 2、3 段運用了靈活的對比手法，將海豚與鬼頭刀兩種不懼怕人類的海洋生物進行多維度剖析：</p>
+<ul>
+<li><strong>捕食對象與方式</strong>：<ul>
+<li><strong>海豚</strong>：主食為鰹魚。採取「分頭追趕、團隊圍捕」的方式，並將獵物分享給老弱同伴享用。作者藉此對比人類，強調海豚捕食僅為生存所需，而人類過度捕撈則常出自私慾與貪婪。</li>
+<li><strong>鬼頭刀</strong>：主食為飛魚。採取單打獨鬥的高速追趕，精準算準飛魚落水的瞬間張大嘴巴吞食。</li>
+</ul>
+</li>
+<li><strong>與人類互動的態度</strong>：<ul>
+<li><strong>海豚</strong>：親人、溫尋玩皮，但絕非盲目親近，而是隨時「保持警覺」，呈現「若即若離」的相處型態。</li>
+<li><strong>鬼頭刀</strong>：神出鬼沒、極具自信且充滿桀驁不 rootCmd 的驕傲，完全不害怕人類，甚至直視人類眼睛而不迴避。</li>
+</ul>
+</li>
+</ul>
+<h4>📊 海豚與鬼頭刀觀念對比表</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">對比維度</th>
+<th style="text-align: left;">海豚 (Dolphin)</th>
+<th style="text-align: left;">鬼頭刀 (Dorado / Dolphinfish)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>主要食物</strong></td>
+<td style="text-align: left;">鰹魚</td>
+<td style="text-align: left;">飛魚</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>捕食特色</strong></td>
+<td style="text-align: left;">團隊圍捕、分頭追趕、分享老弱（生態平衡與利他）</td>
+<td style="text-align: left;">單獨高速追擊、精準計算飛魚落水瞬間（狂野與果斷）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>接觸人類方式</strong></td>
+<td style="text-align: left;">溫尋玩皮、親人，但<strong>保持警覺</strong>（若即若離）</td>
+<td style="text-align: left;">神出鬼沒、極具自信、不慌不忙、直視不迴避</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>象徵意涵</strong></td>
+<td style="text-align: left;">智慧與和諧的海洋靈魂</td>
+<td style="text-align: left;">華麗外表、傲骨與強烈個體生命的展現</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>2. 鬼頭刀的生命價值與市場價值之省思</h3>
+<p>課文第 4 段探討了鬼頭刀的價值轉化：<br />
+*   <strong>市價（經濟價值）</strong>：在魚市場中，鬼頭刀被視為價格低廉的常見魚類。<br />
+*   <strong>生命價值（作者視角）</strong>：鬼頭刀真正的價值在於其活生生的「生命力」。包含其炫目華麗的外表（花彩、鮮黃、青色、發亮藍色的鮮豔色彩）與不屈不饒的桀驁自信。一旦被捕殺送往市場，失去生命的鬼頭刀便失去了那份奪目的華麗與傲骨，僅剩冰冷的魚肉價值。</p>
+<hr />
+<h3>3. 第一次交鋒與修辭亮點（形象化轉化）</h3>
+<p>課文第 5 段為文章的第一個高潮，描寫作者首次與鬼頭刀搏鬥：<br />
+*   <strong>場景營造</strong>：作者以日落、暴風雨前夕與夜幕降臨等自然景象，營造出緊張休閒且具壓迫感的對決氣氛。<br />
+*   <strong>經典細節</strong>：<br />
+    *   <strong>\(80\) 磅粗線拉直</strong>：象徵鬼頭刀巨大的拉力與狂暴的生命力量。<br />
+    *   <strong>眼神對視</strong>：鬼頭刀上鉤時依然充滿巨傲與自信，如眼神直視人間。<br />
+    *   <strong>「時空似乎凍結住了」</strong>：表達作者面對強勁對手時措手不及、震懾震撼的心理狀態。<br />
+*   <strong>修辭拆解（形象化）</strong>：「時空」屬於抽象概念，無法實際被「凍結」；將抽象的時間與空間比擬為可被凍結的具體物質，屬於轉化修辭中的<strong>形象化</strong>。<br />
+*   <strong>交鋒結果</strong>：鬼頭刀輕易扯斷魚線逃脫，展現其難以被征服的狂野。</p>
+<h4>⏱️ 搏鬥場面與思考演變流程圖</h4>
+<div class="mermaid">
+graph TD
+  Start["場面鋪陳：日落與暴風雨前夕營造緊張氛圍"] --> Step1["大魚咬鉤：80磅粗拉線瞬間拉直（展現極致爆發力）"]
+  Step1 --> Step2["傲視對視：鬼頭刀展現桀驁自信與尊嚴"]
+  Step2 --> Step3["作者震撼：『時空似乎凍結』（修辭：轉化之形象化）"]
+  Step3 --> Step4["首戰結果：魚線輕易被扯斷，鬼頭刀成功逃脫"]
+  Step4 --> Step5["夢境縈繞：激昂鬥志導致夢境意識流轉換（人魚角色替換）"]
+  Step5 --> Step6["沉靜等待：魚鉤如『倒懸問號』，探索答案從 0 至 ∞ 的人海博弈"]
+</div>
+<hr />
+<h3>4. 夢境描寫與意識流手法（虛實相生）</h3>
+<p>課文第 6 段描寫作者因未捕獲鬼頭刀而內心不甘，產生強烈的鬥志，進而在夢境中與鬼頭刀纏繞：<br />
+*   <strong>意識轉換（切分分析）</strong>：<br />
+    1.  <code>我常常幻覺進入鬼頭刀，他的眼、他的心</code> \(\to\) <strong>主體為作者</strong>（夢見鬼頭刀）。<br />
+    2.  <code>我終日沉浸悠游在藍色冰涼的海洋中……看到船底部的黑色陰影</code> \(\to\) <strong>主體轉換為鬼頭刀</strong>（以魚的視角看世界與船隻）。<br />
+    3.  <code>我靜靜的等待等待……那隻跟在船後游動的鮮美目標</code> \(\to\) <strong>主體切回作者</strong>（等待魚隻出現）。<br />
+*   <strong>寫作手法分析</strong>：這種看似雜亂、時空錯置的寫法，實為作者刻意<strong>模仿夢境的無邏輯與混亂性</strong>，透過虛構夢境呈現深層潛意識中強烈的執念與搏鬥渴望。</p>
+<hr />
+<h3>5. 倒懸的問號與海洋人生的哲學思考</h3>
+<p>課文第 7 段景象轉為遠山、浮雲、飛鳥與波濤，轉入漫長而沉悶的等待：<br />
+*   <strong>「倒懸的問號」</strong>：作者將下沉至海中的魚鉤比喻為一個個倒懸在海中的問號。<br />
+*   <strong>「答案從 \(0\) 到 \(\infty\)（無窮），甚至無法收回」</strong>：<br />
+    *   <strong>漁夫的現實風險</strong>：出海捕魚充滿未知，可能血本無歸（答案為 \(0\)），也可能大豐收（答案為 \(\infty\)），甚至連人帶船面臨危險（無法收回）。<br />
+    *   <strong>深層哲理</strong>：象徵人與自然/生物之間永恆的生存競爭與鬥智鬥勇，展現生命際遇的不確定性。</p>
+<hr />
+<h3>6. 雙魚情深：文學情感投射 vs. 生物學真實</h3>
+<p>課文第 8 至 12 段描寫作者再次遇到鬼頭刀，且為公母成雙出現：<br />
+*   <strong>正面描寫</strong>：詳細刻畫公魚與母魚在外觀與體型上的差異。<br />
+*   <strong>初出海的經驗經驗</strong>：經驗豐富的老漁夫（如海湧伯）皆知鬼頭刀常成雙成對出現；作者對雙魚出現感到驚奇，反映出其當時初次出海、經驗尚淺的背景。<br />
+*   <strong>文學浪漫投射</strong>：作者將母魚受傷、公魚隨侍不離的景象，擬人化為「悲傷、願分擔痛苦」的浪漫愛情故事。<br />
+*   <strong>生物學真實</strong>：魚類學家指出，公魚緊跟母魚不願離去，本質上是為了保護配偶以<strong>維持種群個體的繁衍能力</strong>，屬於生物演化上的本能行為。</p>
+<hr />
+<h2>⚠️ 老師強調考點與易錯陷阱 (Exam Focus &amp; Pitfalls)</h2>
+<ol>
+<li><strong>【混合題得分關鍵】海豚性格的完整描述</strong>：<ul>
+<li><strong>易錯陷阱</strong>：回答海豚與人類接觸的特點時，若僅寫「溫尋玩皮」或「親人」，只能拿到一半分數。</li>
+<li><strong>滿分公式</strong>：必須同時寫出兩個面向——既「<strong>溫尋玩皮、親人</strong>」，又「<strong>保持警覺、若即若離</strong>」。</li>
+</ul>
+</li>
+<li><strong>【修辭辨析】轉化中的形象化</strong>：<ul>
+<li>考題常考「時空似乎凍結住了」的修辭法。請準確指出這是<strong>轉化修辭</strong>中的<strong>形象化</strong>（將抽象的時間空間具體形象化）。</li>
+</ul>
+</li>
+<li><strong>【文意理解】夢境段落的寫作意圖</strong>：<ul>
+<li>段落中「人魚視角交替轉換」並非文筆雜亂，而是作者<strong>模仿夢境的錯亂與無邏輯性</strong>，用以表現潛意識中極度的執著與鬥志。</li>
+</ul>
+</li>
+<li><strong>【象徵寓意】倒懸問號與 \(0\) 至 \(\infty\) 的含義</strong>：<ul>
+<li>須能指認「魚鉤」被比喻為「倒懸的問號」，而 \(0\) 到 \(\infty\) 象徵「漁夫出海博弈的高風險與極大不確定性」。</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2>🔑 記憶口訣與解題技巧 (Mnemonics &amp; Shortcuts)</h2>
+<ul>
+<li><strong>海豚 vs 鬼頭刀對比記憶口訣</strong>：<ul>
+<li><code>豚群捕、鰹為食、親人警覺若即離</code></li>
+<li><code>刀單獵、飛為食、傲骨自信不避人</code></li>
+</ul>
+</li>
+<li><strong>閱讀理解破題 SOP</strong>：<ol>
+<li>看到「情感描寫（如：分擔痛苦、浪漫愛情）」 \(\to\) 判定為：<strong>作者主觀的情感投射與擬人化</strong>。</li>
+<li>看到「繁衍、隨侍不離」 \(\to\) 判定為：<strong>生物學客觀的種群延續本能</strong>。</li>
+<li>看到「抽象轉具體（如：凍結時空、倒懸問號）」 \(\to\) 優先判斷為：<strong>轉化（形象化）或譬喻手法</strong>。</li>
+</ol>
+</li>
+</ul>
+<hr />
+<h2>📝 課後作業與待辦事項 (Homework &amp; Tasks)</h2>
+<ul>
+<li>[ ] <strong>明日待辦</strong>：完成並繳交《鬼頭刀》學習單（老師明日講完將直接抽收並進行加分結算）。</li>
+<li>[ ] <strong>週三待辦</strong>：<ul>
+<li>課堂進行第 18 課考卷測驗（擇題考試）。</li>
+<li>收繳第 3 課與第 8 課的「雲和隨本 / 習作本」。</li>
+</ul>
+</li>
+<li>[ ] <strong>下週一待辦</strong>：準備段考單字與課文總複習測驗。</li>
+</ul>
+<hr />
+<h2>📚 專有名詞與重要公式/定義 (Glossary &amp; Formulas)</h2>
+<ul>
+<li><strong>形象化（轉化修辭）</strong>：將抽象的概念、情感或時空，以具體可感的事物、狀態進行描繪。例：<code>$ \text{時空凍結} $</code>。</li>
+<li><strong>擬人化 / 情感投射</strong>：將人的情感（如浪漫愛情、悲傷）投注於非人類的生物（如鬼頭刀）身上。</li>
+<li><strong>倒懸的問號</strong>：課文中對釣鉤的象徵性譬喻，代表對未知的探索與風險。</li>
+<li><strong>數學與哲學數值區間</strong>：<br />
+    \[ \text{釣魚結果/人生際遇} \in [0, \infty) \]<br />
+    表示從毫無所得（\(0\)）到無限可能（\(\infty\)）的極端變數。</li>
+</ul>
+<hr />
+<h2>🧠 課後自測題 (Quick Review Quiz)</h2>
+<p><strong>第一題【觀念理解】</strong><br />
+作者在課文中提到鬼頭刀在魚市場中的價格非常便宜，但他卻認為鬼頭刀極具價值。請問作者所認為的「價值」具體指什麼？</p>
+<blockquote>
+<p><strong>解題思維/參考答案</strong>：作者認為鬼頭刀真正的價值在於活生生的「生命力」。包含其耀眼華麗的花彩外貌，以及面對強敵時不慌不忙、直視不迴避的強烈自信與傲骨。這份價值在魚被捕殺送往市場後便隨之消失。</p>
+</blockquote>
+<p><strong>第二題【修辭與文意】</strong><br />
+課文中將海中的魚鉤比喻為「倒懸的問號」，並提到其答案是「從 \(0\) 到 \(\infty\)」。請說明這段話所蘊含的深層海洋哲理。</p>
+<blockquote>
+<p><strong>解題思維/參考答案</strong>：象徵漁夫出海捕魚充滿風險與未知數，可能血本無歸（\(0\)），也可能大豐收（\(\infty\)），甚至面臨無法收回的危險。同時也象徵人與海洋生物之間永恆的生存博弈與對決。</p>
+</blockquote>
+<p><strong>第三題【細節對比】</strong><br />
+請說明生物學家與作者（文學視角）對於「公鬼頭刀緊跟受傷母鬼頭刀不肯離去」的解釋有何不同？</p>
+<blockquote>
+<p><strong>解題思維/參考答案</strong>：<br />
+1. 文學視角（作者）：將其擬人化為深情且浪漫的愛情投射，認為公魚願意分擔母魚的痛苦與悲傷。<br />
+2. 生物學視角：公魚緊跟母魚是為了保護配偶，以維持種群繼續繁衍後代的生物本能。</p>
+</blockquote>
+    </div>
+    <footer class="doc-foot">
+      自動生成於 NotebookLM Study Assistant • 專為高中學生課後複習與考前衝刺打造
+    </footer>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.mermaid) {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'neutral',
+          fontFamily: "'Noto Sans TC', 'Inter', sans-serif",
+          flowchart: { curve: 'basis', htmlLabels: true },
+          securityLevel: 'loose'
+        });
+      }
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+  
+  <script>
+    (function() {
+      const treeData = {"name": "廖鴻基《鬼頭刀》課文賞析", "children": [{"name": "首戰交鋒與夢境描寫", "children": [{"name": "80磅粗線與『時空凍結』(形象化)"}, {"name": "夢境中的意識轉換 (人魚交替)"}]}, {"name": "哲理象徵與雙魚情深", "children": [{"name": "倒懸問號與 0 到 ∞ 的人海博弈"}, {"name": "浪漫愛情投射 vs 生物繁衍本能"}]}]};
+      const container = document.getElementById("tree-svg-container");
+      if (!container || !treeData) return;
+
+      const width = container.clientWidth || 880;
+      const height = 520;
+
+      const svg = d3.select("#tree-svg-container")
+        .append("svg")
+        .attr("width", "100%")
+        .attr("height", height)
+        .attr("viewBox", [0, 0, width, height]);
+
+      const g = svg.append("g");
+
+      const zoom = d3.zoom()
+        .scaleExtent([0.25, 2.5])
+        .on("zoom", (e) => g.attr("transform", e.transform));
+
+      svg.call(zoom);
+
+      const root = d3.hierarchy(treeData);
+      root.x0 = height / 2;
+      root.y0 = 0;
+
+      let i = 0;
+      const duration = 380;
+      // [dy, dx]: 垂直節距 58px (確保上下不重疊), 水平層級 320px (確保長文字不穿透父層)
+      const treeLayout = d3.tree().nodeSize([58, 320]);
+
+      function splitNodeText(text, maxChars) {
+        if (!text) return [""];
+        if (text.length <= maxChars) return [text];
+
+        // 優先在括號處斷行，例如：世風日下之自身矛盾對比（擇師教子 vs. 於身恥師）
+        const parenIdx = text.search(/[（(]/);
+        if (parenIdx >= 3 && parenIdx <= maxChars + 4) {
+          const p1 = text.slice(0, parenIdx).trim();
+          const p2 = text.slice(parenIdx).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 優先在冒號、破折號、頓號處斷行
+        const sepIdx = text.search(/[：:—、]/);
+        if (sepIdx >= 3 && sepIdx <= maxChars + 2) {
+          const p1 = text.slice(0, sepIdx + 1).trim();
+          const p2 = text.slice(sepIdx + 1).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 預設在 maxChars 處均勻斷行
+        return [text.slice(0, maxChars), text.slice(maxChars)];
+      }
+
+      if (root.children) {
+        root.children.forEach(c => {
+          if (c.children) {
+            c.children.forEach(collapse);
+          }
+        });
+      }
+
+      function collapse(d) {
+        if (d.children) {
+          d._children = d.children;
+          d._children.forEach(collapse);
+          d.children = null;
+        }
+      }
+
+      function expand(d) {
+        if (d._children) {
+          d.children = d._children;
+          d.children.forEach(expand);
+          d._children = null;
+        }
+      }
+
+      const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
+
+      function getNodeColor(d) {
+        if (d.depth === 0) return "#2563eb";
+        let p = d;
+        while (p.depth > 1) p = p.parent;
+        return colorScale(p.data.name);
+      }
+
+      function update(source) {
+        const nodes = root.descendants();
+        const links = root.links();
+
+        treeLayout(root);
+
+        const node = g.selectAll("g.node")
+          .data(nodes, d => d.id || (d.id = ++i));
+
+        const nodeEnter = node.enter().append("g")
+          .attr("class", "node")
+          .attr("transform", d => `translate(${source.y0},${source.x0})`)
+          .on("click", (event, d) => {
+            if (d.children) {
+              d._children = d.children;
+              d.children = null;
+            } else if (d._children) {
+              d.children = d._children;
+              d._children = null;
+            }
+            update(d);
+          });
+
+        nodeEnter.append("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        const textNode = nodeEnter.append("text")
+          .attr("class", "node-text")
+          .attr("text-anchor", d => (d.children || d._children) ? "end" : "start")
+          .style("fill-opacity", 0);
+
+        textNode.each(function(d) {
+          const el = d3.select(this);
+          const isParent = Boolean(d.children || d._children);
+          const xOffset = isParent ? -14 : 14;
+          const maxChars = isParent ? 13 : 18;
+          const lines = splitNodeText(d.data.name, maxChars);
+
+          if (lines.length === 1) {
+            el.attr("x", xOffset)
+              .attr("dy", "0.32em")
+              .text(lines[0]);
+          } else {
+            el.attr("x", xOffset)
+              .attr("dy", "-0.35em")
+              .text(lines[0]);
+            el.append("tspan")
+              .attr("x", xOffset)
+              .attr("dy", "1.25em")
+              .text(lines[1]);
+          }
+        });
+
+        const nodeUpdate = node.merge(nodeEnter).transition().duration(duration)
+          .attr("transform", d => `translate(${d.y},${d.x})`);
+
+        nodeUpdate.select("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        nodeUpdate.select("text")
+          .style("fill-opacity", 1);
+
+        const nodeExit = node.exit().transition().duration(duration)
+          .attr("transform", d => `translate(${source.y},${source.x})`)
+          .remove();
+
+        nodeExit.select("circle").attr("r", 1e-6);
+        nodeExit.select("text").style("fill-opacity", 1e-6);
+
+        const link = g.selectAll("path.link")
+          .data(links, d => d.target.id);
+
+        const linkEnter = link.enter().insert("path", "g")
+          .attr("class", "link")
+          .attr("d", d => {
+            const o = {x: source.x0, y: source.y0};
+            return diagonal(o, o);
+          });
+
+        link.merge(linkEnter).transition().duration(duration)
+          .attr("d", d => diagonal(d.source, d.target));
+
+        link.exit().transition().duration(duration)
+          .attr("d", d => {
+            const o = {x: source.x, y: source.y};
+            return diagonal(o, o);
+          })
+          .remove();
+
+        nodes.forEach(d => {
+          d.x0 = d.x;
+          d.y0 = d.y;
+        });
+      }
+
+      function diagonal(s, d) {
+        return `M ${s.y} ${s.x}
+                C ${(s.y + d.y) / 2} ${s.x},
+                  ${(s.y + d.y) / 2} ${d.x},
+                  ${d.y} ${d.x}`;
+      }
+
+      function autoFitTree(duration = 450) {
+        const nodes = root.descendants();
+        if (!nodes || nodes.length === 0) return;
+
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        nodes.forEach(d => {
+          const isParent = Boolean(d.children || d._children);
+          const leftBound = d.y - (isParent ? 180 : 20);
+          const rightBound = d.y + (isParent ? 20 : 220);
+          const topBound = d.x - 32;
+          const bottomBound = d.x + 32;
+
+          if (leftBound < minX) minX = leftBound;
+          if (rightBound > maxX) maxX = rightBound;
+          if (topBound < minY) minY = topBound;
+          if (bottomBound > maxY) maxY = bottomBound;
+        });
+
+        const fullWidth = container.clientWidth || 880;
+        const fullHeight = height;
+        const treeW = maxX - minX;
+        const treeH = maxY - minY;
+
+        if (treeW <= 0 || treeH <= 0) return;
+
+        const scale = Math.min(0.92, (fullWidth * 0.90) / treeW, (fullHeight * 0.90) / treeH);
+        const clampedScale = Math.max(scale, 0.42);
+
+        const midTreeX = (minX + maxX) / 2;
+        const midTreeY = (minY + maxY) / 2;
+        const tx = fullWidth / 2 - clampedScale * midTreeX;
+        const ty = fullHeight / 2 - clampedScale * midTreeY;
+
+        if (duration > 0) {
+          svg.transition().duration(duration).call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        } else {
+          svg.call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        }
+      }
+
+      window.expandAll = function() {
+        root.each(expand);
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.collapseAll = function() {
+        if (root.children) {
+          root.children.forEach(collapse);
+        }
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.resetZoom = function() {
+        autoFitTree(450);
+      };
+
+      // 首次繪製節點並自動縮放置中全覽
+      update(root);
+      autoFitTree(0);
+    })();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【國文】260909_韓愈《師說》</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --border: #e2e8f0;
+      --border-focus: #cbd5e1;
+      --tag-bg: #e0f2fe;
+      --tag-text: #0369a1;
+      --header-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans TC', 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.8;
+      font-size: 16px;
+      padding: 30px 16px 60px;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.06), 0 2px 6px -1px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    header.hero {
+      background: var(--header-gradient);
+      color: #ffffff;
+      padding: 36px 40px 30px;
+      position: relative;
+    }
+    header.hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      color: #f1f5f9;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    header.hero h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.5px;
+    }
+    header.hero .meta {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .content-body {
+      padding: 40px 48px;
+    }
+    @media (max-width: 640px) {
+      .content-body { padding: 24px 20px; }
+      header.hero { padding: 28px 24px 22px; }
+      header.hero h1 { font-size: 1.5rem; }
+    }
+    h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 2.2em;
+      margin-bottom: 0.9em;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h2:first-of-type { margin-top: 0.5em; }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1e3a8a;
+      margin-top: 1.6em;
+      margin-bottom: 0.6em;
+      padding-left: 10px;
+      border-left: 4px solid var(--accent);
+    }
+    p { margin-bottom: 1.1em; }
+    ul, ol { margin-bottom: 1.2em; padding-left: 1.8em; }
+    li { margin-bottom: 0.4em; }
+    .mermaid {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 16px;
+      margin: 1.6em 0;
+      text-align: center;
+      overflow-x: auto;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 1.6em 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    thead th {
+      background: #f1f5f9;
+      color: #1e293b;
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+    tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) { background: #fafafa; }
+    tbody tr:hover { background: #f0f7ff; }
+    tbody tr:last-child td { border-bottom: none; }
+    code {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      background: #f1f5f9;
+      color: #b91c1c;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 1.4em 0;
+      font-size: 0.92em;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; }
+    blockquote {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 14px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 1.4em 0;
+      color: #1e40af;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2.2em 0; }
+    .katex-display {
+      margin: 1.2em 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 6px 0;
+    }
+    .katex { font-size: 1.05em; }
+    
+    /* NotebookLM 原生 D3 互動心智圖樣式 */
+    .mindmap-box {
+      margin: 2em 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .mindmap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .mindmap-title {
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mindmap-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .mm-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: #334155;
+      transition: all 0.2s;
+    }
+    .mm-btn:hover { background: #f1f5f9; }
+    #tree-svg-container {
+      width: 100%;
+      height: 520px;
+      background: #ffffff;
+      cursor: grab;
+    }
+    #tree-svg-container:active { cursor: grabbing; }
+    .node circle {
+      cursor: pointer;
+      stroke-width: 2.5px;
+      transition: all 0.2s;
+    }
+    .node circle:hover { transform: scale(1.25); }
+    .node text {
+      font-size: 13px;
+      font-weight: 500;
+      font-family: inherit;
+      fill: #1e293b;
+      cursor: pointer;
+      paint-order: stroke fill;
+      stroke: #ffffff;
+      stroke-width: 4.5px;
+      stroke-linejoin: round;
+      user-select: none;
+    }
+    .link {
+      fill: none;
+      stroke: #cbd5e1;
+      stroke-width: 1.8px;
+      stroke-opacity: 0.85;
+      transition: stroke-width 0.2s;
+    }
+    .link:hover { stroke: #94a3b8; stroke-width: 2.5px; }
+
+    footer.doc-foot {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      background: #fcfdfe;
+    }
+    .print-btn {
+      position: absolute;
+      top: 36px;
+      right: 40px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .print-btn:hover { background: rgba(255,255,255,0.25); }
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      body {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+      }
+      .container {
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+      }
+      .print-btn, .mindmap-btns {
+        display: none !important;
+      }
+      header.hero {
+        background: var(--header-gradient) !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+        padding: 24px 30px !important;
+        margin-bottom: 20px !important;
+      }
+      header.hero h1 {
+        color: #ffffff !important;
+        font-size: 1.6rem !important;
+      }
+      header.hero .badge {
+        background: rgba(255,255,255,0.2) !important;
+        color: #ffffff !important;
+      }
+      header.hero .meta {
+        color: #cbd5e1 !important;
+      }
+      .content-body {
+        padding: 10px 0 !important;
+      }
+      h1, h2, h3, h4, table, tr, pre, .mermaid, .mindmap-box, blockquote {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      h2, h3 {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <div class="badge">📖 高中課堂互動圖文筆記</div>
+      <button class="print-btn" onclick="window.print()">🖨️ 列印 / 另存 PDF</button>
+      <h1>【國文】260909_韓愈《師說》</h1>
+      <div class="meta">
+        <span>⏱️ 數位筆記儀表板</span>
+        <span>🏷️ 含可縮放互動心智圖、時間軸與觀念對比</span>
+      </div>
+    </header>
+    <div class="content-body">
+      
+      <div class="mindmap-box">
+        <div class="mindmap-header">
+          <div class="mindmap-title">
+            <span>🧠 本課核心知識脈絡（NotebookLM 原生互動心智圖 • 支援縮放與展開）</span>
+          </div>
+          <div class="mindmap-btns">
+            <button class="mm-btn" onclick="expandAll()">展開全部</button>
+            <button class="mm-btn" onclick="collapseAll()">收合分支</button>
+            <button class="mm-btn" onclick="resetZoom()">重設視角</button>
+          </div>
+        </div>
+        <div id="tree-svg-container"></div>
+      </div>
+        
+      <h2>📖 課堂主題與核心摘要 (Class Overview)</h2>
+<p>本堂課深入解析唐代韓愈《師說》第 3 至第 7 段之核心論述結構與課文細節。老師重點剖析了韓愈如何運用「三大對比（古今對比、自身對比、階級對比）」進行嚴密的反面諷刺，並結合「聖人無常師」的正面舉例（以孔子為榜樣），帶出「聞道有先後，術業有專攻」的核心理念。課堂最後總結韓愈寫作《師說》表面為贈予 17 歲青年李盤，實則旨在「抗顏為師、昌明師道」，打破唐代士大夫恥於從師的歪風。</p>
+<div class="mermaid">
+graph LR
+  Root["韓愈《師說》段落精講"] --> A["反面論證：三大對比"]
+  Root --> B["正面立論：聖人無常師"]
+  Root --> C["寫作動機：李盤與倡導師道"]
+  A --> A1["古今對比：聖人 vs 眾人"]
+  A --> A2["自身對比：愛子擇師 vs 自身恥師"]
+  A --> A3["階級對比：巫醫樂師百工 vs 士大夫"]
+  B --> B1["孔子師事：郯子/長弘/師襄/老聃"]
+  B --> B2["核心觀念：聞道有先後，術業有專攻"]
+  C --> C1["表面理由：贈李盤（17歲好古文）"]
+  C --> C2["真實本旨：抗顏為師、整頓士風"]
+</div>
+<hr />
+<h2>💡 核心知識點與觀念詳解 (Key Concepts)</h2>
+<h3>一、 反面論證：批判唐代士大夫不從師歪風（三大對比）</h3>
+<p>韓愈在第 3 至第 5 段連續使用三組對比，強烈諷刺當時社會「恥於從師」的病態現象：</p>
+<ol>
+<li>
+<p><strong>古今對比（第 3 段）</strong>：<br />
+   - <strong>古之聖人</strong>：才智遠超出常人，仍願意「從師而問」。<br />
+   - <strong>今之眾人</strong>：才智遠不及聖人，卻「恥學於師」。<br />
+   - <strong>語氣與邏輯</strong>：採<strong>推測語氣</strong>（聖人之所以為聖，眾人之所以為愚，皆源於此）。</p>
+</li>
+<li>
+<p><strong>自身對比（第 4 段）</strong>：<br />
+   - <strong>對待子女</strong>：愛護兒子，特別挑選老師教他句讀（擇師而教之）。<br />
+   - <strong>對待自己</strong>：對於自身需要解惑的大道理，卻感到拜師是羞恥的（於其身也則恥師焉）。<br />
+   - <strong>結果分析</strong>：小惑大遺（小問題求教，大疑惑反而遺棄），韓愈評為「未見其明也」。<br />
+   - <strong>修辭考點</strong>：使用<strong>錯綜</strong>修辭（句式對稱錯置與交錯描寫）。</p>
+</li>
+<li>
+<p><strong>階級/身份對比（第 5 段）</strong>：<br />
+   - <strong>巫醫樂師百工之人</strong>：古代地位低下的平民雜藝從業人員，彼此間「不恥相師」（不以互相學習為恥）。<br />
+   - <strong>士大夫之族</strong>：地位高尚的貴族階級，只要有人聲稱做老師或學生，「則群聚而笑之」。<br />
+   - <strong>語氣與感嘆</strong>：採<strong>感嘆語氣</strong>（「嗚呼！師道之不復可知矣」）。<br />
+   - <strong>士大夫不拜師的三大心理顧慮</strong>：</p>
+<ul>
+<li>「年相若，道相似」：年紀差不多，認為學問也一樣，何必互相學習？（老師以同窗教打遊戲比喻唐人眼中的荒謬感）。</li>
+<li>「位卑則足羞」：找地位低下的人學習，覺得非常羞恥。</li>
+<li>「官盛則近諛」：向官位高的人請教，深怕被旁人議論是在拍馬屁、阿諛奉承（老師特別舉現代職場「官大學問大」與拍馬屁文化作比喻）。</li>
+<li><strong>智慧高下反轉</strong>：士大夫自許聰明，智慧反而比不上百工之人。韓愈批判的標準在於「<strong>懂不懂得從師問學</strong>」。</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h3>二、 正面立論：聖人無常師與專業分工（第 6 段）</h3>
+<p>反面駁斥完畢後，韓愈舉出儒家最高權威作為正面榜樣：</p>
+<ol>
+<li>
+<p><strong>孔子無常師（無固定老師）</strong>：<br />
+   - 孔子謙虛好學，曾向多人請教不同領域的專業：</p>
+<ul>
+<li><strong>郯子</strong>：請教上古「鳥官」官名。</li>
+<li><strong>長弘</strong>：請教古樂。</li>
+<li><strong>師襄</strong>：請教琴藝音樂（「師」為職業樂師，「襄」為名）。</li>
+<li><strong>老聃（老子）</strong>：請教周禮與道家哲理（姓李名耳字聃）。</li>
+<li><strong>結論句</strong>：「郯子之徒，其賢不及孔子。」連才德不如孔子的人，孔子都能虛心求教。</li>
+</ul>
+</li>
+<li>
+<p><strong>核心觀念與名句解析</strong>：<br />
+   - 引用《論語》：「<strong>三人行，則必有我師焉</strong>」（擇其善者而從之，其不善者而改之）。<br />
+   - <strong>弟子不必不如師，師不必賢於弟子</strong>：打破傳統師生尊卑的固化階級觀念。<br />
+   - <strong>聞道有先後，術業有專攻</strong>：</p>
+<ul>
+<li>「聞道有先後」：理解道理有早有晚。</li>
+<li>「術業有專攻」：技術與學問各有專門研究。老師以「國文老師雖然教國文，但數學與理化必須向高中學生請教」為生活實例說明專業分工。</li>
+<li><strong>前後呼應</strong>：此兩句深刻呼應第 2 段「<strong>道之所存，師之所存</strong>」的核心精神。</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h3>三、 寫作動機與結語：李盤其人與昌明師道（第 7 段）</h3>
+<ol>
+<li><strong>寫作對象</strong>：李氏子盤（李盤，17 歲青年，好古文，六藝經傳皆通習之）。</li>
+<li><strong>不拘於時</strong>：不被當時社會「不拜師」的歪風所拘束（「於」表被動）。</li>
+<li><strong>寫作動機解密</strong>：<br />
+   - <strong>表面理由</strong>：嘉許李盤能實踐「從師問學」的古道，故寫作《師說》贈送給他。<br />
+   - <strong>真實本旨</strong>：藉題發揮！全文前六段均未提及李盤，實為韓愈藉此文章發表宣言，批判社會歪風，力抗世俗眼光（抗顏為師），倡導尊師重道的傳統。</li>
+</ol>
+<hr />
+<h3>⏱️ 課文論證結構流程圖</h3>
+<div class="mermaid">
+graph TD
+    Start["破題立論：古之學者必有師"] --> Step1["反面剖析：唐代士大夫不從師之病態心理"]
+    Step1 --> Contrast1["第一重對比：古之聖人（虛心請教） vs 今之眾人（恥學於師）"]
+    Step1 --> Contrast2["第二重對比：為子擇師（句讀之師） vs 自身恥師（惑不焉解）"]
+    Step1 --> Contrast3["第三重對比：巫醫樂師百工（不恥相師） vs 士大夫（群聚而笑）"]
+    Step1 --> Cause["士大夫心理障礙：年相若、位卑則足羞、官盛則近諛"]
+    Cause --> Step2["正面舉例：聖人無常師（以孔子師事郯子/長弘/師襄/老聃為例）"]
+    Step2 --> Principle["歸納核心觀念：聞道有先後，術業有專攻"]
+    Principle --> Step3["結語點題：李盤請學，作《師說》以贈之"]
+    Step3 --> Conclusion["真實目的：藉題發揮、抗顏為師、昌明古道"]
+</div>
+<hr />
+<h3>📊 觀念與易混淆對比表</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">對比組別</th>
+<th style="text-align: left;">對比對象 A (正面/肯定)</th>
+<th style="text-align: left;">對比對象 B (反面/批判)</th>
+<th style="text-align: left;">韓愈之評語/語氣</th>
+<th style="text-align: left;">核心問題與偏見</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>古今對比</strong> (第 3 段)</td>
+<td style="text-align: left;"><strong>古之聖人</strong> (才智過人)</td>
+<td style="text-align: left;"><strong>今之眾人</strong> (才智平庸)</td>
+<td style="text-align: left;">推測語氣 (聖益聖，愚益愚)</td>
+<td style="text-align: left;">眾人遠不及聖人，卻恥於拜師</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>自身對比</strong> (第 4 段)</td>
+<td style="text-align: left;"><strong>愛其子</strong> (擇師教句讀)</td>
+<td style="text-align: left;"><strong>於其身</strong> (恥於拜師解惑)</td>
+<td style="text-align: left;">否定語氣 (小惑大遺，未見其明)</td>
+<td style="text-align: left;">輕重倒置，關注小問題而遺漏大疑惑</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>階級對比</strong> (第 5 段)</td>
+<td style="text-align: left;"><strong>巫醫樂師百工</strong> (平民)</td>
+<td style="text-align: left;"><strong>士大夫之族</strong> (貴族階級)</td>
+<td style="text-align: left;">感嘆語氣 (聖人今是反不能及)</td>
+<td style="text-align: left;">顧忌階級位卑、官高阿諛與年紀相近</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>師生觀念對比</strong></td>
+<td style="text-align: left;"><strong>孔子與古道觀念</strong></td>
+<td style="text-align: left;"><strong>唐代士大夫偏見</strong></td>
+<td style="text-align: left;">正向讚揚 / 呼應「道之所存」</td>
+<td style="text-align: left;">士大夫認為「年相若，道相似」，拒絶互學習</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>⚠️ 老師強調考點與易錯陷阱 (Exam Focus &amp; Pitfalls)</h2>
+<ol>
+<li>
+<p><strong>【星號必考錯別字】「不齒」的字形與字義</strong>：<br />
+   - 課文「君子不齒」的「<strong>齒</strong>」，務必寫為<strong>牙齒之「齒」</strong>，切勿寫成「恥」或手部的「尺」。<br />
+   - <strong>字源與引申</strong>：甲骨文「齒」象嘴巴牙齒排列形狀。牙齒一顆顆排列站好，故引申為「<strong>並列</strong>」；「不齒」意為「連站在一起都不願意」，引申為「<strong>不屑</strong>」。</p>
+</li>
+<li>
+<p><strong>【必考文法陷阱】被動句判斷</strong>：<br />
+   - 「不拘於時」中的「<strong>於</strong>」字譯為「<strong>被</strong>」，屬於標準被動句（被世俗風氣所拘束）。老師提醒學學測曾出過此文法題型，解題關鍵在於翻譯中是否包含「被」字。</p>
+</li>
+<li>
+<p><strong>【考點字義整理】「族」字的多重替換</strong>：<br />
+   - 「士大夫之族」的「<strong>族</strong>」解釋為「<strong>類</strong>」（同類的人）。<br />
+   - 可替換詞彙：<strong>輪、徒、輩</strong>（如：士大夫這輪人、這徒人、這輩人）。</p>
+</li>
+<li>
+<p><strong>【詞性活用考點】意動用法</strong>：<br />
+   - 「不恥相師」與「恥學於師」：其中的「<strong>恥</strong>」皆為<strong>意動用法</strong>，解釋為「以……為恥」。</p>
+</li>
+<li>
+<p><strong>【句型判斷】比較句</strong>：<br />
+   - 「弟子不必不如師，師不必賢於弟子」：句中含有「不如」、「賢於（比……賢能）」等比較含義，於考題中屬於<strong>比較句型</strong>。</p>
+</li>
+<li>
+<p><strong>【成語語意程度分辨】</strong>：<br />
+   - 隨波逐流、鼓泥揚波、<strong>嫣然事於世成</strong>。老師特別強調「嫣然事於世成」含有諂媚討好的極端態度，是四個相關成語中<strong>最糟糕</strong>的形容。</p>
+</li>
+</ol>
+<hr />
+<h2>🔑 記憶口訣與解題技巧 (Mnemonics &amp; Shortcuts)</h2>
+<ol>
+<li>
+<p><strong>三大對比與語氣速記口訣</strong>：<br />
+   - <strong>一古今（推測）</strong>：聖人問、眾人恥，聖益聖來愚益愚。<br />
+   - <strong>二自身（否定）</strong>：教兒子、忘了自己，小惑大遺未見明。<br />
+   - <strong>三階級（感嘆）</strong>：百工學、士大夫笑，位卑官盛都是套。</p>
+</li>
+<li>
+<p><strong>句型與字義破題 SOP</strong>：<br />
+   - <strong>看到「於」字查被動</strong>：如「不拘於時」，若能譯為「被……」即為被動句。<br />
+   - <strong>看到「賢於/不如」判比較</strong>：句中帶有高下比較意味，直接歸類為比較句。<br />
+   - <strong>字形「齒」字想排列</strong>：只要題目出現「不屑/不願並列」，一律選擇「牙齒的齒」。</p>
+</li>
+</ol>
+<hr />
+<h2>📝 課後作業與待辦事項 (Homework &amp; Tasks)</h2>
+<ul>
+<li>🚨 <strong>下次小考預告</strong>：<strong>下週三（三）</strong> 將進行國文課堂測驗，考試範圍包含《師說》全文，重點為三大對比、文意理解與重要字詞釋義。</li>
+<li>📖 <strong>預習與複習建議</strong>：</li>
+<li>請熟讀第 3 至第 7 段譯文，並能精確口譯「聞道有先後，術業有專攻」、「不拘於時」等名句。</li>
+<li>務必掌握「齒」字的文字學演變與正確寫法。</li>
+</ul>
+<hr />
+<h2>📚 專有名詞與重要公式/定義 (Glossary &amp; Formulas)</h2>
+<ul>
+<li><strong>不齒</strong>: [動詞] 齒有並列之意。不齒指不屑與之並列，形容極度輕視。</li>
+<li><strong>聞道有先後，術業有專攻</strong>: [核心定義] 理解道理有早有晚，技術與學問各有專門研究。強調人人皆有其專業，應虛心求教。</li>
+<li><strong>聖人無常師</strong>: [定理/觀念] 聖人沒有固定的老師，廣泛向各有專長的人請教。</li>
+<li><strong>意動用法</strong>: [文法術語] 文言文動詞活用現象，表示主觀上認為或看待某事物。如「恥學於師」（以向老師學習為恥）。</li>
+<li><strong>六藝經傳</strong>: [專有名詞] 六藝指《詩》、《書》、《禮》、《樂》、《易》、《春秋》六經；「經」為聖人所著原典，「傳」為後賢解釋經文的著作。</li>
+<li><strong>錯綜</strong>: [修辭術語] 故意將形式齊整的文句，改變為參差不齊、交錯對應的修辭手法。</li>
+</ul>
+<hr />
+<h2>🧠 課後自測題 (Quick Review Quiz)</h2>
+<p><strong>第一題：觀念理解題</strong></p>
+<blockquote>
+<p>韓愈在《師說》中指出，巫醫樂師百工之人的智慧「今其智乃反不能及（士大夫反不如百工）」，請問韓愈評判「智慧高下」的核心標準是什麼？<br />
+* <strong>簡答思維</strong>：韓愈評判智慧高下的標準在於<strong>「懂不懂得從師問學」</strong>。百工之人不恥相師，能持續學習；士大夫階級卻因門第、官位與年紀等顧慮而恥於求教，導致學問停滯。</p>
+</blockquote>
+<hr />
+<p><strong>第二題：字形與字義辨析題</strong></p>
+<blockquote>
+<p>請說明「君子不齒」中「齒」字的本義、引申義，並解釋為什麼不能寫成「不恥」？<br />
+* <strong>簡答思維</strong>：<br />
+  1. 「齒」本義為牙齒，古字象牙齒排列之形，故引申有「並列」之意。<br />
+  2. 「不齒」表示「不屑與之並列/站在一起」。<br />
+  3. 若寫成「不恥」則為「不以為恥」，與上下文表達士大夫「輕視、不屑百工」的文意完全相反。</p>
+</blockquote>
+<hr />
+<p><strong>第三題：句型與文法分析題</strong></p>
+<blockquote>
+<p>請分析「不拘於時，學於餘」這句話中兩個「於」字的文法功能與字義有何不同？<br />
+* <strong>簡答思維</strong>：<br />
+  1. 第一個「於」（不拘於時）：表<strong>被動</strong>，解釋為「被」（不被世俗風氣所拘束）。<br />
+  2. 第二個「於」（學於餘）：表<strong>對象</strong>，解釋為「向」（向我請教學習）。</p>
+</blockquote>
+<hr />
+<p>💡 這份整理涵蓋了今天課堂的所有精華重點與考點！下週三小考試卷會重點出三大對比與字詞語意，需要為你出幾道模擬試題來練習考前衝刺嗎？</p>
+    </div>
+    <footer class="doc-foot">
+      自動生成於 NotebookLM Study Assistant • 專為高中學生課後複習與考前衝刺打造
+    </footer>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.mermaid) {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'neutral',
+          fontFamily: "'Noto Sans TC', 'Inter', sans-serif",
+          flowchart: { curve: 'basis', htmlLabels: true },
+          securityLevel: 'loose'
+        });
+      }
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+  
+  <script>
+    (function() {
+      const treeData = {"name": "韓愈《師說》", "children": [{"name": "核心理念", "children": [{"name": "傳道"}, {"name": "授業"}, {"name": "解惑"}, {"name": "道之所存，師之所存（道先於年）"}]}, {"name": "批判當世恥於從師歪風", "children": [{"name": "三大反面對比", "children": [{"name": "古之聖人 vs. 今之眾人"}, {"name": "愛子擇師 vs. 自身恥師"}, {"name": "巫醫樂師百工 vs. 士大夫之族"}]}, {"name": "士大夫之偏見心理", "children": [{"name": "年相若，道相似（以年紀相近為藉口）"}, {"name": "位卑則足羞（向地位低者請教為恥）"}, {"name": "官盛則近諛（向官高者請教恐近阿諛）"}]}]}, {"name": "正面立論：以孔子為例", "children": [{"name": "聖人無常師（無固定老師）"}, {"name": "師事郯子、長弘、師襄、老聃"}, {"name": "「三人行，則必有我師」原則"}, {"name": "聞道有先後，術業有專攻"}]}, {"name": "寫作緣起與動機", "children": [{"name": "贈送對象：李氏子盤（17歲）"}, {"name": "緣起：李盤好古文、通習六藝經傳"}, {"name": "目的：嘉其能行古道、抗顏倡明師道"}, {"name": "讚許「不拘於時」（不隨波逐流）"}]}, {"name": "文章結構與論證章法", "children": [{"name": "開頭：點出從師重要性與擇師標準"}, {"name": "正文：反面諷刺批判與正面聖人舉例"}, {"name": "結尾：交代贈文緣由與點明題旨"}]}]};
+      const container = document.getElementById("tree-svg-container");
+      if (!container || !treeData) return;
+
+      const width = container.clientWidth || 880;
+      const height = 520;
+
+      const svg = d3.select("#tree-svg-container")
+        .append("svg")
+        .attr("width", "100%")
+        .attr("height", height)
+        .attr("viewBox", [0, 0, width, height]);
+
+      const g = svg.append("g");
+
+      const zoom = d3.zoom()
+        .scaleExtent([0.25, 2.5])
+        .on("zoom", (e) => g.attr("transform", e.transform));
+
+      svg.call(zoom);
+
+      const root = d3.hierarchy(treeData);
+      root.x0 = height / 2;
+      root.y0 = 0;
+
+      let i = 0;
+      const duration = 380;
+      // [dy, dx]: 垂直節距 58px (確保上下不重疊), 水平層級 320px (確保長文字不穿透父層)
+      const treeLayout = d3.tree().nodeSize([58, 320]);
+
+      function splitNodeText(text, maxChars) {
+        if (!text) return [""];
+        if (text.length <= maxChars) return [text];
+
+        // 優先在括號處斷行，例如：世風日下之自身矛盾對比（擇師教子 vs. 於身恥師）
+        const parenIdx = text.search(/[（(]/);
+        if (parenIdx >= 3 && parenIdx <= maxChars + 4) {
+          const p1 = text.slice(0, parenIdx).trim();
+          const p2 = text.slice(parenIdx).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 優先在冒號、破折號、頓號處斷行
+        const sepIdx = text.search(/[：:—、]/);
+        if (sepIdx >= 3 && sepIdx <= maxChars + 2) {
+          const p1 = text.slice(0, sepIdx + 1).trim();
+          const p2 = text.slice(sepIdx + 1).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 預設在 maxChars 處均勻斷行
+        return [text.slice(0, maxChars), text.slice(maxChars)];
+      }
+
+      if (root.children) {
+        root.children.forEach(c => {
+          if (c.children) {
+            c.children.forEach(collapse);
+          }
+        });
+      }
+
+      function collapse(d) {
+        if (d.children) {
+          d._children = d.children;
+          d._children.forEach(collapse);
+          d.children = null;
+        }
+      }
+
+      function expand(d) {
+        if (d._children) {
+          d.children = d._children;
+          d.children.forEach(expand);
+          d._children = null;
+        }
+      }
+
+      const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
+
+      function getNodeColor(d) {
+        if (d.depth === 0) return "#2563eb";
+        let p = d;
+        while (p.depth > 1) p = p.parent;
+        return colorScale(p.data.name);
+      }
+
+      function update(source) {
+        const nodes = root.descendants();
+        const links = root.links();
+
+        treeLayout(root);
+
+        const node = g.selectAll("g.node")
+          .data(nodes, d => d.id || (d.id = ++i));
+
+        const nodeEnter = node.enter().append("g")
+          .attr("class", "node")
+          .attr("transform", d => `translate(${source.y0},${source.x0})`)
+          .on("click", (event, d) => {
+            if (d.children) {
+              d._children = d.children;
+              d.children = null;
+            } else if (d._children) {
+              d.children = d._children;
+              d._children = null;
+            }
+            update(d);
+          });
+
+        nodeEnter.append("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        const textNode = nodeEnter.append("text")
+          .attr("class", "node-text")
+          .attr("text-anchor", d => (d.children || d._children) ? "end" : "start")
+          .style("fill-opacity", 0);
+
+        textNode.each(function(d) {
+          const el = d3.select(this);
+          const isParent = Boolean(d.children || d._children);
+          const xOffset = isParent ? -14 : 14;
+          const maxChars = isParent ? 13 : 18;
+          const lines = splitNodeText(d.data.name, maxChars);
+
+          if (lines.length === 1) {
+            el.attr("x", xOffset)
+              .attr("dy", "0.32em")
+              .text(lines[0]);
+          } else {
+            el.attr("x", xOffset)
+              .attr("dy", "-0.35em")
+              .text(lines[0]);
+            el.append("tspan")
+              .attr("x", xOffset)
+              .attr("dy", "1.25em")
+              .text(lines[1]);
+          }
+        });
+
+        const nodeUpdate = node.merge(nodeEnter).transition().duration(duration)
+          .attr("transform", d => `translate(${d.y},${d.x})`);
+
+        nodeUpdate.select("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        nodeUpdate.select("text")
+          .style("fill-opacity", 1);
+
+        const nodeExit = node.exit().transition().duration(duration)
+          .attr("transform", d => `translate(${source.y},${source.x})`)
+          .remove();
+
+        nodeExit.select("circle").attr("r", 1e-6);
+        nodeExit.select("text").style("fill-opacity", 1e-6);
+
+        const link = g.selectAll("path.link")
+          .data(links, d => d.target.id);
+
+        const linkEnter = link.enter().insert("path", "g")
+          .attr("class", "link")
+          .attr("d", d => {
+            const o = {x: source.x0, y: source.y0};
+            return diagonal(o, o);
+          });
+
+        link.merge(linkEnter).transition().duration(duration)
+          .attr("d", d => diagonal(d.source, d.target));
+
+        link.exit().transition().duration(duration)
+          .attr("d", d => {
+            const o = {x: source.x, y: source.y};
+            return diagonal(o, o);
+          })
+          .remove();
+
+        nodes.forEach(d => {
+          d.x0 = d.x;
+          d.y0 = d.y;
+        });
+      }
+
+      function diagonal(s, d) {
+        return `M ${s.y} ${s.x}
+                C ${(s.y + d.y) / 2} ${s.x},
+                  ${(s.y + d.y) / 2} ${d.x},
+                  ${d.y} ${d.x}`;
+      }
+
+      function autoFitTree(duration = 450) {
+        const nodes = root.descendants();
+        if (!nodes || nodes.length === 0) return;
+
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        nodes.forEach(d => {
+          const isParent = Boolean(d.children || d._children);
+          const leftBound = d.y - (isParent ? 180 : 20);
+          const rightBound = d.y + (isParent ? 20 : 220);
+          const topBound = d.x - 32;
+          const bottomBound = d.x + 32;
+
+          if (leftBound < minX) minX = leftBound;
+          if (rightBound > maxX) maxX = rightBound;
+          if (topBound < minY) minY = topBound;
+          if (bottomBound > maxY) maxY = bottomBound;
+        });
+
+        const fullWidth = container.clientWidth || 880;
+        const fullHeight = height;
+        const treeW = maxX - minX;
+        const treeH = maxY - minY;
+
+        if (treeW <= 0 || treeH <= 0) return;
+
+        const scale = Math.min(0.92, (fullWidth * 0.90) / treeW, (fullHeight * 0.90) / treeH);
+        const clampedScale = Math.max(scale, 0.42);
+
+        const midTreeX = (minX + maxX) / 2;
+        const midTreeY = (minY + maxY) / 2;
+        const tx = fullWidth / 2 - clampedScale * midTreeX;
+        const ty = fullHeight / 2 - clampedScale * midTreeY;
+
+        if (duration > 0) {
+          svg.transition().duration(duration).call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        } else {
+          svg.call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        }
+      }
+
+      window.expandAll = function() {
+        root.each(expand);
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.collapseAll = function() {
+        if (root.children) {
+          root.children.forEach(collapse);
+        }
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.resetZoom = function() {
+        autoFitTree(450);
+      };
+
+      // 首次繪製節點並自動縮放置中全覽
+      update(root);
+      autoFitTree(0);
+    })();
+  </script>
+
+</body>
+</html>

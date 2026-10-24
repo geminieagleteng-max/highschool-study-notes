@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【物理】260916_原子結構與萬有引力</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --border: #e2e8f0;
+      --border-focus: #cbd5e1;
+      --tag-bg: #e0f2fe;
+      --tag-text: #0369a1;
+      --header-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans TC', 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.8;
+      font-size: 16px;
+      padding: 30px 16px 60px;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.06), 0 2px 6px -1px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    header.hero {
+      background: var(--header-gradient);
+      color: #ffffff;
+      padding: 36px 40px 30px;
+      position: relative;
+    }
+    header.hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      color: #f1f5f9;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    header.hero h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.5px;
+    }
+    header.hero .meta {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .content-body {
+      padding: 40px 48px;
+    }
+    @media (max-width: 640px) {
+      .content-body { padding: 24px 20px; }
+      header.hero { padding: 28px 24px 22px; }
+      header.hero h1 { font-size: 1.5rem; }
+    }
+    h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 2.2em;
+      margin-bottom: 0.9em;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h2:first-of-type { margin-top: 0.5em; }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1e3a8a;
+      margin-top: 1.6em;
+      margin-bottom: 0.6em;
+      padding-left: 10px;
+      border-left: 4px solid var(--accent);
+    }
+    p { margin-bottom: 1.1em; }
+    ul, ol { margin-bottom: 1.2em; padding-left: 1.8em; }
+    li { margin-bottom: 0.4em; }
+    .mermaid {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 16px;
+      margin: 1.6em 0;
+      text-align: center;
+      overflow-x: auto;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 1.6em 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    thead th {
+      background: #f1f5f9;
+      color: #1e293b;
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+    tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) { background: #fafafa; }
+    tbody tr:hover { background: #f0f7ff; }
+    tbody tr:last-child td { border-bottom: none; }
+    code {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      background: #f1f5f9;
+      color: #b91c1c;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 1.4em 0;
+      font-size: 0.92em;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; }
+    blockquote {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 14px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 1.4em 0;
+      color: #1e40af;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2.2em 0; }
+    .katex-display {
+      margin: 1.2em 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 6px 0;
+    }
+    .katex { font-size: 1.05em; }
+    
+    /* NotebookLM 原生 D3 互動心智圖樣式 */
+    .mindmap-box {
+      margin: 2em 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .mindmap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .mindmap-title {
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mindmap-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .mm-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: #334155;
+      transition: all 0.2s;
+    }
+    .mm-btn:hover { background: #f1f5f9; }
+    #tree-svg-container {
+      width: 100%;
+      height: 520px;
+      background: #ffffff;
+      cursor: grab;
+    }
+    #tree-svg-container:active { cursor: grabbing; }
+    .node circle {
+      cursor: pointer;
+      stroke-width: 2.5px;
+      transition: all 0.2s;
+    }
+    .node circle:hover { transform: scale(1.25); }
+    .node text {
+      font-size: 13px;
+      font-weight: 500;
+      font-family: inherit;
+      fill: #1e293b;
+      cursor: pointer;
+      paint-order: stroke fill;
+      stroke: #ffffff;
+      stroke-width: 4.5px;
+      stroke-linejoin: round;
+      user-select: none;
+    }
+    .link {
+      fill: none;
+      stroke: #cbd5e1;
+      stroke-width: 1.8px;
+      stroke-opacity: 0.85;
+      transition: stroke-width 0.2s;
+    }
+    .link:hover { stroke: #94a3b8; stroke-width: 2.5px; }
+
+    footer.doc-foot {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      background: #fcfdfe;
+    }
+    .print-btn {
+      position: absolute;
+      top: 36px;
+      right: 40px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .print-btn:hover { background: rgba(255,255,255,0.25); }
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      body {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+      }
+      .container {
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+      }
+      .print-btn, .mindmap-btns {
+        display: none !important;
+      }
+      header.hero {
+        background: var(--header-gradient) !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+        padding: 24px 30px !important;
+        margin-bottom: 20px !important;
+      }
+      header.hero h1 {
+        color: #ffffff !important;
+        font-size: 1.6rem !important;
+      }
+      header.hero .badge {
+        background: rgba(255,255,255,0.2) !important;
+        color: #ffffff !important;
+      }
+      header.hero .meta {
+        color: #cbd5e1 !important;
+      }
+      .content-body {
+        padding: 10px 0 !important;
+      }
+      h1, h2, h3, h4, table, tr, pre, .mermaid, .mindmap-box, blockquote {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      h2, h3 {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <div class="badge">📖 高中課堂互動圖文筆記</div>
+      <button class="print-btn" onclick="window.print()">🖨️ 列印 / 另存 PDF</button>
+      <h1>【物理】260916_原子結構與萬有引力</h1>
+      <div class="meta">
+        <span>⏱️ 數位筆記儀表板</span>
+        <span>🏷️ 含可縮放互動心智圖、時間軸與觀念對比</span>
+      </div>
+    </header>
+    <div class="content-body">
+      
+      <div class="mindmap-box">
+        <div class="mindmap-header">
+          <div class="mindmap-title">
+            <span>🧠 本課核心知識脈絡（NotebookLM 原生互動心智圖 • 支援縮放與展開）</span>
+          </div>
+          <div class="mindmap-btns">
+            <button class="mm-btn" onclick="expandAll()">展開全部</button>
+            <button class="mm-btn" onclick="collapseAll()">收合分支</button>
+            <button class="mm-btn" onclick="resetZoom()">重設視角</button>
+          </div>
+        </div>
+        <div id="tree-svg-container"></div>
+      </div>
+        
+      <h2>📖 課堂主題與核心摘要 (Class Overview)</h2>
+<p>本堂課為高一物理關鍵單元，核心圍繞於<strong>「原子核的表示方式與微觀結構」</strong>以及<strong>「物質間的基本交互作用力——萬有引力」</strong>兩大主軸。課堂首先建立原子序、質量數、同位素與夸克（上/下夸克）的微觀組成遞階，並透過墾丁白沙原子數估算、拉塞福 \(\alpha\) 粒子散射實驗與原子結構圖判讀等三道經典學測範例進行實戰拆解；後半段則引入自然界四大基本交互作用力，重點導出牛頓萬有引力定律，說明均勻球體質點化假設、牛頓高山拋體與人造衛星軌道原理。學習目標在於掌握微觀粒子電量與質量計算、熟悉學測常考觀念題型，以及靈活運用萬有引力距離平方反比公式進行比例推理。</p>
+<div class="mermaid">
+graph LR
+  Root["高一物理：原子結構與萬有引力"] --> A["一、原子核表示法與微觀粒子"]
+  Root --> B["二、經典例題實戰拆解"]
+  Root --> C["三、四大基本力與萬有引力"]
+
+  A --> A1["原子核符號 $X_Z^A$ 與同位素"]
+  A --> A2["基本粒子：電子、質子、中子"]
+  A --> A3["微觀夸克模型：$u$ 夸克與 $d$ 夸克"]
+
+  B --> B1["沙粒原子數估算（體積比與科學記號）"]
+  B --> B2["拉塞福 $\alpha$ 粒子散射實驗題型"]
+  B --> B3["原子結構圖判讀（碳-14 例題）"]
+
+  C --> C1["四大交互作用力：重力、電磁力、強核力、弱核力"]
+  C --> C2["牛頓高山拋體思考實驗與衛星原理"]
+  C --> C3["萬有引力定律 $F = G \\frac{m_1 m_2}{r^2}$ 及比例計算"]
+</div>
+<hr />
+<h2>💡 核心知識點與觀念詳解 (Key Concepts)</h2>
+<h3>1. 原子核的表示方式與內部結構</h3>
+<p>在化學與物理學中，原子核的結構通常以標記符號 \(X_Z^A\) 或 \(_Z^A X\) 表示：<br />
+- <strong>元素符號（\(X\)）</strong>：代表該元素的化學符號（如 \(\text{H}, \text{Li}, \text{C}, \text{Al}\)）。<br />
+- <strong>原子序（\(Z\)，Atomic Number）</strong>：位於左下角。<br />
+  - <strong>核心定義</strong>：\(Z\) <strong>永遠等於質子數</strong>（\(\text{Proton number}\)）。<br />
+  - 當原子處於<strong>中性狀態</strong>時，質子數等於核外電子數（\(\text{Electron number}\)）。若形成離子（得失電子），則電子數改變，但 \(Z\) 仍保持不变。<br />
+- <strong>質量數（\(A\)，Mass Number）</strong>：位於左上角。<br />
+  - <strong>核心觀念</strong>：質量數是一個<strong>個數（代數點數）</strong>，代表核內「質子數 + 中子數」的總合，<strong>並不等於原子的實際總質量（Total Mass）</strong>。<br />
+  - 計算公式：<br />
+    \[ A = Z + N \implies N = A - Z \]<br />
+    （其中 \(N\) 為中子數 \(\text{Neutron number}\)）。</p>
+<blockquote>
+<p><strong>【經典課堂例題】鋰原子 \(_3^7\text{Li}\) 的結構拆解</strong>：<br />
+- 原子序 \(Z = 3 \implies\) 含有 \(3\) 個質子；在中性狀態下含有 \(3\) 個電子。<br />
+- 質量數 \(A = 7 \implies\) 中子數 \(N = A - Z = 7 - 3 = 4\) 個中子。</p>
+</blockquote>
+<h3>2. 同位素（Isotopes）與微觀夸克結構</h3>
+<ul>
+<li><strong>同位素定義</strong>：具有<strong>相同的質子數（\(Z\) 相同）</strong>，但<strong>中子數不同（\(A\) 不同）</strong>的同元素原子。</li>
+<li>
+<p><strong>生活與課堂實例（氫的同位素）</strong>：</p>
+<ol>
+<li><strong>氕（\(\text{H}\)）</strong>：\(_1^1\text{H}\)，含有 \(1\) 個質子、\(0\) 個中子、\(1\) 個電子。</li>
+<li><strong>氘（\(\text{D}\)）</strong>：\(_1^2\text{H}\)，含有 \(1\) 個質子、\(1\) 個中子、\(1\) 個電子。</li>
+<li><strong>氚（\(\text{T}\)）</strong>：\(_1^3\text{H}\)，含有 \(1\) 個質子、\(2\) 個中子、\(1\) 個電子。</li>
+</ol>
+</li>
+<li>
+<p><strong>夸克模型（Quark Model）</strong>：</p>
+</li>
+<li>質子與中子並非不可再分的最基本粒子。1960 年代科學家利用強子對撞機（如瑞法邊境的歐洲核子研究組織 LHC，利用帶電粒子進行高速環繞碰撞）發現了夸克。</li>
+<li>高中物理聚焦於兩種最常見的夸克：<ol>
+<li><strong>上夸克（Up quark, \(u\)）</strong>：帶電量能量值為 \(+\frac{2}{3}e\)。</li>
+<li><strong>下夸克（Down quark, \(d\)）</strong>：帶電量能量值為 \(-\frac{1}{3}e\)。</li>
+</ol>
+</li>
+<li><strong>質子與中子的夸克組成推導</strong>：<ul>
+<li><strong>質子（Proton, \(p\)）</strong>：由 \(2\) 個上夸克與 \(1\) 個下夸克組成（\(uud\)）。<br />
+  \[\text{總電量} = \left(+\frac{2}{3}e\right) + \left(+\frac{2}{3}e\right) + \left(-\frac{1}{3}e\right) = +1e\]</li>
+<li><strong>中子（Neutron, \(n\)）</strong>：由 \(1\) 個上夸克與 \(2\) 個下夸克組成（\(udd\)）。<br />
+  \[\text{總電量} = \left(+\frac{2}{3}e\right) + \left(-\frac{1}{3}e\right) + \left(-\frac{1}{3}e\right) = 0\]</li>
+</ul>
+</li>
+</ul>
+<p>【⏱️ 物質結構階層拆解流程圖】：</p>
+<div class="mermaid">
+graph TD
+    Sub1["1. 宏觀物質 / 沙粒 (約 $10^{-3} \\text{ m}$門檻)"] --> Sub2["2. 原子 (Atom, 直徑約 $10^{-10} \\text{ m} = 1 \\text{ \\AA}$門檻)"]
+    Sub2 --> Sub3["3. 原子核 (Nucleus, 集中絕大部分質量) 與 核外電子 (Electron, $e^-$)"]
+    Sub3 --> Sub4["4. 核子：質子 (Proton, $p$) 與 中子 (Neutron, $n$)"]
+    Sub4 --> Sub5["5. 基本粒子：夸克 (Quarks)<br/>質子 $p = uud$ | 中子 $n = udd$"]
+</div>
+<hr />
+<h3>3. 課堂經典例題步驟拆解</h3>
+<h4>【例題一：墾丁白沙的原子數量級估算（講義第 30 頁）】</h4>
+<ul>
+<li><strong>題目情境</strong>：沙粒直徑約 \(d_{\text{沙}} = 0.5\text{ mm}\)，若原子可視為球體堆疊組成沙粒，且原子直徑約為 \(d_{\text{原子}} = 1\text{ \AA} = 10^{-10}\text{ m}\)，求一粒沙包含多少個原子？</li>
+<li><strong>物理概念拆解</strong>：</li>
+<li>球體體積公式為 \(V = \frac{4}{3}\pi r^3\)。體積與邊長（或直徑）的三次方成正比：\(V \propto d^3\)。</li>
+<li>沙粒中的原子數 \(N = \frac{V_{\text{沙}}}{V_{\text{原子}}} = \frac{\frac{4}{3}\pi (r_{\text{沙}})^3}{\frac{4}{3}\pi (r_{\text{原子}})^3} = \left(\frac{d_{\text{沙}}}{d_{\text{原子}}}\right)^3\)。</li>
+<li><strong>單位換算與計算過程</strong>：<br />
+  1. 沙粒直徑 \(d_{\text{沙}} = 0.5\text{ mm} = 0.5 \times 10^{-3}\text{ m} = 5 \times 10^{-4}\text{ m}\)。<br />
+  2. 原子直徑 \(d_{\text{原子}} = 1\text{ \AA} = 10^{-10}\text{ m}\)。<br />
+  3. 直徑比例：<br />
+     \[\frac{d_{\text{沙}}}{d_{\text{原子}}} = \frac{0.5 \times 10^{-3}}{10^{-10}} = 0.5 \times 10^7 = 5 \times 10^6\]<br />
+  4. 體積比（原子個數）：<br />
+     \[N = \left(0.5 \times 10^7\right)^3 = (0.5)^3 \times \left(10^7\right)^3 = 0.125 \times 10^{21} = 1.25 \times 10^{20} \text{ 個}\]</li>
+<li><strong>結論</strong>：一粒沙子大約含有 \(10^{20}\) 個原子。</li>
+</ul>
+<hr />
+<h4>【例題二：拉塞福 \(\alpha\) 粒子散射實驗判讀（講義第 31 頁）】</h4>
+<ul>
+<li><strong>觀念解析</strong>：</li>
+<li>拉塞福以帶 \(2\) 個正電的 \(\alpha\) 粒子（氦核 \(_2^4\text{He}^{2+}\)）轟擊金箔。</li>
+<li><strong>實驗結果</strong>：絕大多數 \(\alpha\) 粒子直線穿過或僅發生微小偏轉，但極少數發生<strong>大角度散射</strong>（甚至近 \(180^\circ\) 反彈）。</li>
+<li><strong>核心原因</strong>：原子內部大部分為真空，質量與正電荷集中於極小的「原子核」。當帶正電的 \(\alpha\) 粒子極度靠近帶正電的原子核時，強烈的<strong>靜電排斥力</strong>導致大角度偏折。</li>
+<li><strong>選項澄清</strong>：\(\alpha\) 粒子與電子間雖有靜電引力，但因電子質量極小，無法使動量極大的 \(\alpha\) 粒子產生大角度偏折。</li>
+</ul>
+<hr />
+<h4>【例題三：原子結構示意圖判讀（講義第 32 頁）】</h4>
+<ul>
+<li><strong>題目解析</strong>：某元素 \(X\) 的圖示中包含橘色電子 \(6\) 個、綠色質子 \(6\) 個、粉紅色中子 \(8\) 個。</li>
+<li><strong>計算推理</strong>：</li>
+<li>原子序 \(Z = \text{質子數} = 6\)。</li>
+<li>質量數 \(A = \text{質子數} + \text{中子數} = 6 + 8 = 14\)。</li>
+<li>該原子表示為 \(_6^{14}X\)（碳-14），對應選項 (B)。</li>
+</ul>
+<hr />
+<h3>4. 自然界四大基本交互作用力與萬有引力</h3>
+<p>自然界所有的作用力皆可歸納為以下四種基本交互作用：</p>
+<p>【📊 自然界四大基本交互作用力對比表】：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">交互作用力種類</th>
+<th style="text-align: left;">主要作用對象與功能</th>
+<th style="text-align: left;">相對強度</th>
+<th style="text-align: left;">作用距離範圍</th>
+<th style="text-align: left;">課堂直觀比喻與說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>強核力（強合力）</strong></td>
+<td style="text-align: left;">作用於夸克/核子之間；<strong>強固原子核</strong></td>
+<td style="text-align: left;">最強 (\(1\))</td>
+<td style="text-align: left;">短程（約 \(10^{-15}\text{ m}\)，原子核尺度）</td>
+<td style="text-align: left;">將帶同性正電的質子強行緊束於核內</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>電磁力</strong></td>
+<td style="text-align: left;">作用於帶電粒子之間；包含靜電力與磁力</td>
+<td style="text-align: left;">次強 (\(10^{-2}\))</td>
+<td style="text-align: left;">長程（無限遠，隨距離平方成反比）</td>
+<td style="text-align: left;">原子核吸引核外電子、分子間作用力</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>弱核力（弱合力）</strong></td>
+<td style="text-align: left;">作用於基本粒子；<strong>弱化原子核</strong>，引發衰變</td>
+<td style="text-align: left;">較弱 (\(10^{-13}\))</td>
+<td style="text-align: left;">極短程（約 \(10^{-18}\text{ m}\)）</td>
+<td style="text-align: left;">與核衰變（如 \(\beta\) 衰變）及太陽核融合相關</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>萬有引力（重力）</strong></td>
+<td style="text-align: left;">作用於所有具質量的物體之間</td>
+<td style="text-align: left;">最弱 (\(10^{-38}\))</td>
+<td style="text-align: left;">長程（無限遠，隨距離平方成反比）</td>
+<td style="text-align: left;">主導天體運行、天體間吸引力</td>
+</tr>
+</tbody>
+</table>
+<h4>牛頓萬有引力定律（Law of Universal Gravitation）</h4>
+<p>1667 年牛頓提出萬有引力定律。<br />
+- <strong>均勻球體質點化假設</strong>：高一物理討論理想均勻球體時，可將整顆球體的質量簡化集中於<strong>球心</strong>（質點）。<br />
+- <strong>數學公式</strong>：<br />
+  \[ F = G \frac{m_1 m_2}{r^2} \]<br />
+  - \(F\)：兩物體間的萬有引力（互為作用力與反作用力，大小相等、方向相反）。<br />
+  - \(m_1, m_2\)：兩物體的質量。<br />
+  - \(r\)：兩球體的<strong>球心距離</strong>（非表面距離）。<br />
+  - \(G\)：萬有引力常數（由卡文迪許 Cavendish 透過扭秤實驗測得，\(G \approx 6.67 \times 10^{-11} \text{ N}\cdot\text{m}^2/\text{kg}^2\)）。</p>
+<ul>
+<li><strong>生活實例與思考實驗</strong>：<br />
+  1. <strong>牛頓高山拋體思考實驗（人造衛星原理）</strong>：在山頂向水平方向拋出物體，速度越快，落地點越遠；當拋射速度達到臨界值時，物體下落的曲率剛好等於地表的彎曲率，物體便不再落回地面，而繞著地球做圓周運動（成為人造衛星）。現代長程飛彈、洲際導彈與人造衛星均源於此物理脈絡。<br />
+  2. <strong>兩人間的萬有引力為何感知不到？</strong>：因 \(G\) 值極小（\(10^{-11}\) 數量級），兩名普通成年人（如 \(60\text{ kg}\) 與 \(50\text{ kg}\)，相距 \(1\text{ m}\)）之間的萬有引力僅約 \(2 \times 10^{-7}\text{ N}\)，遠小於鞋底與地面的靜摩擦力，因此萬有引力只有在<strong>天體或巨大星球之間</strong>才有顯著物理效應。</li>
+</ul>
+<hr />
+<h4>【例題四：萬有引力比例變化計算（講義第 38 頁）】</h4>
+<ul>
+<li><strong>題目情境</strong>：兩質量皆為 \(m\) 的球體，球心相距 \(1\text{ m}\) 時，引力為 \(F\)。若改為質量 \(4m\) 與 \(2m\)、球心相距 \(2\text{ m}\) 時，引力變為多少？</li>
+<li><strong>計算推導</strong>：</li>
+<li>原始狀態：<br />
+    \[ F = G \frac{m \cdot m}{1^2} = G m^2 \]</li>
+<li>改變後狀態：<br />
+    \[ F' = G \frac{(4m)(2m)}{2^2} = G \frac{8 m^2}{4} = 2 \cdot \left(G m^2\right) = 2F \]</li>
+<li><strong>結論</strong>：新的萬有引力為 \(2F\)。</li>
+</ul>
+<hr />
+<h2>⚠️ 老師強調考點與易錯陷阱 (Exam Focus &amp; Pitfalls)</h2>
+<ol>
+<li>
+<p><strong>質量數（\(A\)）與總質量的概念混淆</strong>：<br />
+   - ⚠️ <strong>易錯點</strong>：學生常誤以為「質量數 \(A\) 就是原子的總質量」。<br />
+   - 必考修正：質量數 \(A\) 僅是「質子數 + 中子數」的<strong>總個數（整數）</strong>，並非質量的物理量度（\(\text{Total Mass}\)）。</p>
+</li>
+<li>
+<p><strong>原子序（\(Z\)）與電子數的適用條件</strong>：<br />
+   - ⚠️ <strong>易錯點</strong>：看到原子序就直接代入等於電子數。<br />
+   - 必考修正：\(Z = \text{質子數}\) 是<strong>永遠成立</strong>的；只有在<strong>中性原子</strong>時 \(Z\) 才等於電子數。若題幹出現離子（如 \(\text{Na}^+\) 或 \(\text{Cl}^-\)），電子數必須加減電荷量。</p>
+</li>
+<li>
+<p><strong>拉塞福散射實驗的大角度偏折主因</strong>：<br />
+   - ⚠️ <strong>易錯點</strong>：誤以為大角度散射是因為與核外電子碰撞。<br />
+   - 必考修正：電子質量極小，無法擋住高能量的 \(\alpha\) 粒子；大角度反彈 \(180^\circ\) 的主因是<strong>帶正電的 \(\alpha\) 粒子與帶正電且質量集中的原子核產生靜電排斥力</strong>。</p>
+</li>
+<li>
+<p><strong>萬有引力公式中距離 \(r\) 的定義</strong>：<br />
+   - ⚠️ <strong>易錯點</strong>：計算時誤用「地表距離」或「球體表面間距」。<br />
+   - 必考修正：均勻球體的萬有引力公式中，\(r\) 必須是<strong>兩球心的距離</strong>。</p>
+</li>
+</ol>
+<hr />
+<h2>🔑 記憶口訣與解題技巧 (Mnemonics &amp; Shortcuts)</h2>
+<h3>1. 核心觀念記憶口訣</h3>
+<ul>
+<li><strong>四大基本力理解口訣</strong>：<blockquote>
+<p><strong>「強核力強固原子核，弱核力弱化引衰變；電磁力同性相斥異性吸，萬有引力天體運轉最微弱。」</strong></p>
+</blockquote>
+</li>
+</ul>
+<h3>2. 破題 key 關鍵與解題 SOP</h3>
+<ul>
+<li>
+<p><strong>原子核符號拆解 SOP</strong>：<br />
+  1. 看<strong>左下角 \(Z\)</strong> \(\to\) 直接確定<strong>質子數</strong>。<br />
+  2. 看<strong>左上角 \(A\)</strong> \(\to\) 計算中子數 \(N = A - Z\)。<br />
+  3. 檢查<strong>電中性/離子態</strong> \(\to\) 計算電子數（中性則等於 \(Z\)；帶 \(+k\) 電荷則電子數為 \(Z - k\)）。</p>
+</li>
+<li>
+<p><strong>萬有引力比例題型速解 SOP</strong>：<br />
+  1. 先寫出標準公式形式 \(F = G \frac{m_1 m_2}{r^2}\)。<br />
+  2. 將質量變化的倍數乘在分子，距離變化的倍數乘在分母並<strong>平方</strong>。<br />
+  3. 提取整體係數倍率：<br />
+     \[\text{新引力倍率} = \frac{\text{質量倍數}_1 \times \text{質量倍數}_2}{(\text{距離倍數})^2}\]<br />
+<em>例題驗證</em>：\(\frac{4 \times 2}{2^2} = \frac{8}{4} = 2 \implies 2F\)。</p>
+</li>
+</ul>
+<hr />
+<h2>📝 課後作業與待辦事項 (Homework &amp; Tasks)</h2>
+<ul>
+<li><strong>物理課業交代</strong>：</li>
+<li>本堂無額外紙筆作業（無特定物理作業）。</li>
+<li>
+<p>請預習講義第 38 頁「重力場與重力加速度」及「電磁力與庫侖定律」。</p>
+</li>
+<li>
+<p><strong>課堂行政待辦事項（老師強調）</strong>：</p>
+</li>
+<li>🔔 <strong>國文作業繳交</strong>：請同學將「國文作業」（<strong>兩本皆要繳交</strong>）拿出來，由各排最後一位同學負責收齊上繳檢查。</li>
+</ul>
+<hr />
+<h2>📚 專有名詞與重要公式/定義 (Glossary &amp; Formulas)</h2>
+<ul>
+<li><strong>原子序（\(Z\)，Atomic Number）</strong>：原子核內的質子總數，決定元素的化學性質。</li>
+<li><strong>質量數（\(A\)，Mass Number）</strong>：原子核內質子數與中子數的總和，即 \(A = Z + N\)。</li>
+<li><strong>同位素（Isotope）</strong>：質子數相同（同元素）但中子數不同之核種，如氕（\(_1^1\text{H}\)）、氘（\(_1^2\text{H}\)）、氚（\(_1^3\text{H}\)）。</li>
+<li><strong>夸克（Quark）</strong>：構成強子（質子與中子）的基本粒子。上夸克 \(u\) 帶電 \(+\frac{2}{3}e\)，下夸克 \(d\) 帶電 \(-\frac{1}{3}e\)。</li>
+<li><strong>質子夸克組成公式</strong>：<br />
+  \[ p = uud \implies \text{電量 } Q = \left(+\frac{2}{3}e\right) + \left(+\frac{2}{3}e\right) + \left(-\frac{1}{3}e\right) = +1e \]</li>
+<li><strong>中子夸克組成公式</strong>：<br />
+  \[ n = udd \implies \text{電量 } Q = \left(+\frac{2}{3}e\right) + \left(-\frac{1}{3}e\right) + \left(-\frac{1}{3}e\right) = 0 \]</li>
+<li><strong>球體體積公式</strong>：<br />
+  \[ V = \frac{4}{3}\pi r^3 \]</li>
+<li><strong>牛頓萬有引力定律</strong>：<br />
+  \[ F = G \frac{m_1 m_2}{r^2} \]<br />
+  其中 \(G \approx 6.67 \times 10^{-11} \text{ N}\cdot\text{m}^2/\text{kg}^2\) 為萬有引力常數。</li>
+</ul>
+<hr />
+<h2>🧠 課後自測題 (Quick Review Quiz)</h2>
+<h3>題一：夸克電量與核子結構</h3>
+<p><strong>題目</strong>：若某未知微觀粒子由 \(1\) 個上夸克 \(u\) 與 \(2\) 個下夸克 \(d\) 組成，請計算其總電量，並說明該粒子為何種核子？</p>
+<blockquote>
+<p><strong>簡要解題思維與解答</strong>：<br />
+- 上夸克電量為 \(+\frac{2}{3}e\)，下夸克電量為 \(-\frac{1}{3}e\)。<br />
+- 總電量計算：<br />
+  \[Q = \left(+\frac{2}{3}e\right) + 2 \times \left(-\frac{1}{3}e\right) = 0\]<br />
+- 電量為 \(0\)，故該粒子為<strong>中子（Neutron）</strong>。</p>
+</blockquote>
+<hr />
+<h3>題二：萬有引力距離與質量比例推理</h3>
+<p><strong>題目</strong>：兩均勻球體原本相距 \(R\)，彼此間的萬有引力為 \(F\)。若將兩球體的質量皆變為原本的 \(3\) 倍，且球心距離拉長為原本的 \(3\) 倍，則兩球體間的新萬有引力變為多少？</p>
+<blockquote>
+<p><strong>簡要解題思維與解答</strong>：<br />
+- 利用萬有引力公式 \(F = G \frac{m_1 m_2}{r^2}\)。<br />
+- 質量倍數：\(m_1' = 3m_1\)，\(m_2' = 3m_2\)。<br />
+- 距離倍數：\(r' = 3r\)。<br />
+- 代入新公式：<br />
+  \[F' = G \frac{(3m_1)(3m_2)}{(3r)^2} = G \frac{9 m_1 m_2}{9 r^2} = 1 \cdot F = F\]<br />
+- 答：萬有引力維持不變（<strong>仍為 \(F\)</strong>）。</p>
+</blockquote>
+<hr />
+<p>🎯 <strong>下一步建議</strong>：這份筆記已完整歸納課堂的核心觀念、公式推導與例題。您可以隨時複習重點表格與易錯陷阱，若需要進一步針對萬有引力進行更多歷屆考題練習或製作單詞卡，隨時告訴我！</p>
+    </div>
+    <footer class="doc-foot">
+      自動生成於 NotebookLM Study Assistant • 專為高中學生課後複習與考前衝刺打造
+    </footer>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.mermaid) {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'neutral',
+          fontFamily: "'Noto Sans TC', 'Inter', sans-serif",
+          flowchart: { curve: 'basis', htmlLabels: true },
+          securityLevel: 'loose'
+        });
+      }
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+  
+  <script>
+    (function() {
+      const treeData = {"name": "高一物理：原子結構與萬有引力", "children": [{"name": "二、經典例題實戰拆解", "children": [{"name": "沙粒原子數估算（體積比與科學記號）"}, {"name": "拉塞福 \\(\\alpha\\) 粒子散射實驗題型"}, {"name": "原子結構圖判讀（碳-14 例題）"}]}, {"name": "三、四大基本力與萬有引力", "children": [{"name": "四大交互作用力：重力、電磁力、強核力、弱核力"}, {"name": "牛頓高山拋體思考實驗與衛星原理"}, {"name": "萬有引力定律 \\(F = G \\frac{m_1 m_2}{r^2}\\) 及比例計算"}]}]};
+      const container = document.getElementById("tree-svg-container");
+      if (!container || !treeData) return;
+
+      const width = container.clientWidth || 880;
+      const height = 520;
+
+      const svg = d3.select("#tree-svg-container")
+        .append("svg")
+        .attr("width", "100%")
+        .attr("height", height)
+        .attr("viewBox", [0, 0, width, height]);
+
+      const g = svg.append("g");
+
+      const zoom = d3.zoom()
+        .scaleExtent([0.25, 2.5])
+        .on("zoom", (e) => g.attr("transform", e.transform));
+
+      svg.call(zoom);
+
+      const root = d3.hierarchy(treeData);
+      root.x0 = height / 2;
+      root.y0 = 0;
+
+      let i = 0;
+      const duration = 380;
+      // [dy, dx]: 垂直節距 58px (確保上下不重疊), 水平層級 320px (確保長文字不穿透父層)
+      const treeLayout = d3.tree().nodeSize([58, 320]);
+
+      function splitNodeText(text, maxChars) {
+        if (!text) return [""];
+        if (text.length <= maxChars) return [text];
+
+        // 優先在括號處斷行，例如：世風日下之自身矛盾對比（擇師教子 vs. 於身恥師）
+        const parenIdx = text.search(/[（(]/);
+        if (parenIdx >= 3 && parenIdx <= maxChars + 4) {
+          const p1 = text.slice(0, parenIdx).trim();
+          const p2 = text.slice(parenIdx).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 優先在冒號、破折號、頓號處斷行
+        const sepIdx = text.search(/[：:—、]/);
+        if (sepIdx >= 3 && sepIdx <= maxChars + 2) {
+          const p1 = text.slice(0, sepIdx + 1).trim();
+          const p2 = text.slice(sepIdx + 1).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 預設在 maxChars 處均勻斷行
+        return [text.slice(0, maxChars), text.slice(maxChars)];
+      }
+
+      if (root.children) {
+        root.children.forEach(c => {
+          if (c.children) {
+            c.children.forEach(collapse);
+          }
+        });
+      }
+
+      function collapse(d) {
+        if (d.children) {
+          d._children = d.children;
+          d._children.forEach(collapse);
+          d.children = null;
+        }
+      }
+
+      function expand(d) {
+        if (d._children) {
+          d.children = d._children;
+          d.children.forEach(expand);
+          d._children = null;
+        }
+      }
+
+      const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
+
+      function getNodeColor(d) {
+        if (d.depth === 0) return "#2563eb";
+        let p = d;
+        while (p.depth > 1) p = p.parent;
+        return colorScale(p.data.name);
+      }
+
+      function update(source) {
+        const nodes = root.descendants();
+        const links = root.links();
+
+        treeLayout(root);
+
+        const node = g.selectAll("g.node")
+          .data(nodes, d => d.id || (d.id = ++i));
+
+        const nodeEnter = node.enter().append("g")
+          .attr("class", "node")
+          .attr("transform", d => `translate(${source.y0},${source.x0})`)
+          .on("click", (event, d) => {
+            if (d.children) {
+              d._children = d.children;
+              d.children = null;
+            } else if (d._children) {
+              d.children = d._children;
+              d._children = null;
+            }
+            update(d);
+          });
+
+        nodeEnter.append("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        const textNode = nodeEnter.append("text")
+          .attr("class", "node-text")
+          .attr("text-anchor", d => (d.children || d._children) ? "end" : "start")
+          .style("fill-opacity", 0);
+
+        textNode.each(function(d) {
+          const el = d3.select(this);
+          const isParent = Boolean(d.children || d._children);
+          const xOffset = isParent ? -14 : 14;
+          const maxChars = isParent ? 13 : 18;
+          const lines = splitNodeText(d.data.name, maxChars);
+
+          if (lines.length === 1) {
+            el.attr("x", xOffset)
+              .attr("dy", "0.32em")
+              .text(lines[0]);
+          } else {
+            el.attr("x", xOffset)
+              .attr("dy", "-0.35em")
+              .text(lines[0]);
+            el.append("tspan")
+              .attr("x", xOffset)
+              .attr("dy", "1.25em")
+              .text(lines[1]);
+          }
+        });
+
+        const nodeUpdate = node.merge(nodeEnter).transition().duration(duration)
+          .attr("transform", d => `translate(${d.y},${d.x})`);
+
+        nodeUpdate.select("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        nodeUpdate.select("text")
+          .style("fill-opacity", 1);
+
+        const nodeExit = node.exit().transition().duration(duration)
+          .attr("transform", d => `translate(${source.y},${source.x})`)
+          .remove();
+
+        nodeExit.select("circle").attr("r", 1e-6);
+        nodeExit.select("text").style("fill-opacity", 1e-6);
+
+        const link = g.selectAll("path.link")
+          .data(links, d => d.target.id);
+
+        const linkEnter = link.enter().insert("path", "g")
+          .attr("class", "link")
+          .attr("d", d => {
+            const o = {x: source.x0, y: source.y0};
+            return diagonal(o, o);
+          });
+
+        link.merge(linkEnter).transition().duration(duration)
+          .attr("d", d => diagonal(d.source, d.target));
+
+        link.exit().transition().duration(duration)
+          .attr("d", d => {
+            const o = {x: source.x, y: source.y};
+            return diagonal(o, o);
+          })
+          .remove();
+
+        nodes.forEach(d => {
+          d.x0 = d.x;
+          d.y0 = d.y;
+        });
+      }
+
+      function diagonal(s, d) {
+        return `M ${s.y} ${s.x}
+                C ${(s.y + d.y) / 2} ${s.x},
+                  ${(s.y + d.y) / 2} ${d.x},
+                  ${d.y} ${d.x}`;
+      }
+
+      function autoFitTree(duration = 450) {
+        const nodes = root.descendants();
+        if (!nodes || nodes.length === 0) return;
+
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        nodes.forEach(d => {
+          const isParent = Boolean(d.children || d._children);
+          const leftBound = d.y - (isParent ? 180 : 20);
+          const rightBound = d.y + (isParent ? 20 : 220);
+          const topBound = d.x - 32;
+          const bottomBound = d.x + 32;
+
+          if (leftBound < minX) minX = leftBound;
+          if (rightBound > maxX) maxX = rightBound;
+          if (topBound < minY) minY = topBound;
+          if (bottomBound > maxY) maxY = bottomBound;
+        });
+
+        const fullWidth = container.clientWidth || 880;
+        const fullHeight = height;
+        const treeW = maxX - minX;
+        const treeH = maxY - minY;
+
+        if (treeW <= 0 || treeH <= 0) return;
+
+        const scale = Math.min(0.92, (fullWidth * 0.90) / treeW, (fullHeight * 0.90) / treeH);
+        const clampedScale = Math.max(scale, 0.42);
+
+        const midTreeX = (minX + maxX) / 2;
+        const midTreeY = (minY + maxY) / 2;
+        const tx = fullWidth / 2 - clampedScale * midTreeX;
+        const ty = fullHeight / 2 - clampedScale * midTreeY;
+
+        if (duration > 0) {
+          svg.transition().duration(duration).call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        } else {
+          svg.call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        }
+      }
+
+      window.expandAll = function() {
+        root.each(expand);
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.collapseAll = function() {
+        if (root.children) {
+          root.children.forEach(collapse);
+        }
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.resetZoom = function() {
+        autoFitTree(450);
+      };
+
+      // 首次繪製節點並自動縮放置中全覽
+      update(root);
+      autoFitTree(0);
+    })();
+  </script>
+
+</body>
+</html>

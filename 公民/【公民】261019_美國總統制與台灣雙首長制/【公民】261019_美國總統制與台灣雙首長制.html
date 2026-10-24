@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【公民】261019_美國總統制與台灣雙首長制</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --border: #e2e8f0;
+      --border-focus: #cbd5e1;
+      --tag-bg: #e0f2fe;
+      --tag-text: #0369a1;
+      --header-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans TC', 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.8;
+      font-size: 16px;
+      padding: 30px 16px 60px;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.06), 0 2px 6px -1px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    header.hero {
+      background: var(--header-gradient);
+      color: #ffffff;
+      padding: 36px 40px 30px;
+      position: relative;
+    }
+    header.hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      color: #f1f5f9;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    header.hero h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.5px;
+    }
+    header.hero .meta {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .content-body {
+      padding: 40px 48px;
+    }
+    @media (max-width: 640px) {
+      .content-body { padding: 24px 20px; }
+      header.hero { padding: 28px 24px 22px; }
+      header.hero h1 { font-size: 1.5rem; }
+    }
+    h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 2.2em;
+      margin-bottom: 0.9em;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h2:first-of-type { margin-top: 0.5em; }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1e3a8a;
+      margin-top: 1.6em;
+      margin-bottom: 0.6em;
+      padding-left: 10px;
+      border-left: 4px solid var(--accent);
+    }
+    p { margin-bottom: 1.1em; }
+    ul, ol { margin-bottom: 1.2em; padding-left: 1.8em; }
+    li { margin-bottom: 0.4em; }
+    .mermaid {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 16px;
+      margin: 1.6em 0;
+      text-align: center;
+      overflow-x: auto;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 1.6em 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    thead th {
+      background: #f1f5f9;
+      color: #1e293b;
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+    tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) { background: #fafafa; }
+    tbody tr:hover { background: #f0f7ff; }
+    tbody tr:last-child td { border-bottom: none; }
+    code {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      background: #f1f5f9;
+      color: #b91c1c;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 1.4em 0;
+      font-size: 0.92em;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; }
+    blockquote {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 14px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 1.4em 0;
+      color: #1e40af;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2.2em 0; }
+    .katex-display {
+      margin: 1.2em 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 6px 0;
+    }
+    .katex { font-size: 1.05em; }
+    
+    /* NotebookLM 原生 D3 互動心智圖樣式 */
+    .mindmap-box {
+      margin: 2em 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .mindmap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .mindmap-title {
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mindmap-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .mm-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: #334155;
+      transition: all 0.2s;
+    }
+    .mm-btn:hover { background: #f1f5f9; }
+    #tree-svg-container {
+      width: 100%;
+      height: 520px;
+      background: #ffffff;
+      cursor: grab;
+    }
+    #tree-svg-container:active { cursor: grabbing; }
+    .node circle {
+      cursor: pointer;
+      stroke-width: 2.5px;
+      transition: all 0.2s;
+    }
+    .node circle:hover { transform: scale(1.25); }
+    .node text {
+      font-size: 13px;
+      font-weight: 500;
+      font-family: inherit;
+      fill: #1e293b;
+      cursor: pointer;
+      paint-order: stroke fill;
+      stroke: #ffffff;
+      stroke-width: 4.5px;
+      stroke-linejoin: round;
+      user-select: none;
+    }
+    .link {
+      fill: none;
+      stroke: #cbd5e1;
+      stroke-width: 1.8px;
+      stroke-opacity: 0.85;
+      transition: stroke-width 0.2s;
+    }
+    .link:hover { stroke: #94a3b8; stroke-width: 2.5px; }
+
+    footer.doc-foot {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      background: #fcfdfe;
+    }
+    .print-btn {
+      position: absolute;
+      top: 36px;
+      right: 40px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .print-btn:hover { background: rgba(255,255,255,0.25); }
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      body {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+      }
+      .container {
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+      }
+      .print-btn, .mindmap-btns {
+        display: none !important;
+      }
+      header.hero {
+        background: var(--header-gradient) !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+        padding: 24px 30px !important;
+        margin-bottom: 20px !important;
+      }
+      header.hero h1 {
+        color: #ffffff !important;
+        font-size: 1.6rem !important;
+      }
+      header.hero .badge {
+        background: rgba(255,255,255,0.2) !important;
+        color: #ffffff !important;
+      }
+      header.hero .meta {
+        color: #cbd5e1 !important;
+      }
+      .content-body {
+        padding: 10px 0 !important;
+      }
+      h1, h2, h3, h4, table, tr, pre, .mermaid, .mindmap-box, blockquote {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      h2, h3 {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <div class="badge">📖 高中課堂互動圖文筆記</div>
+      <button class="print-btn" onclick="window.print()">🖨️ 列印 / 另存 PDF</button>
+      <h1>【公民】261019_美國總統制與台灣雙首長制</h1>
+      <div class="meta">
+        <span>⏱️ 數位筆記儀表板</span>
+        <span>🏷️ 含可縮放互動心智圖、時間軸與觀念對比</span>
+      </div>
+    </header>
+    <div class="content-body">
+      
+      <div class="mindmap-box">
+        <div class="mindmap-header">
+          <div class="mindmap-title">
+            <span>🧠 本課核心知識脈絡（NotebookLM 原生互動心智圖 • 支援縮放與展開）</span>
+          </div>
+          <div class="mindmap-btns">
+            <button class="mm-btn" onclick="expandAll()">展開全部</button>
+            <button class="mm-btn" onclick="collapseAll()">收合分支</button>
+            <button class="mm-btn" onclick="resetZoom()">重設視角</button>
+          </div>
+        </div>
+        <div id="tree-svg-container"></div>
+      </div>
+        
+      <h2>📖 課堂主題與核心摘要 (Class Overview)</h2>
+<p>本堂課主要探討民主國家憲政體制中的「美國總統制」與「台灣雙首長制（混合制）」。課堂深入剖析了美國三權分立與嚴格制衡機制（如總統否決權之高門檻、終身職大法官之違憲審查）、兩院制國會（參議院與眾議院）的歷史妥協起源、期中選舉及總統大選之選舉人團制度。同時，老師對比了我國仿效法國雙首長制的實務運作，特別點出立法院不信任案與解散國會機制在現實中的制度困境。學習目標在於融會貫通不同體制之設計初衷、運作優缺點，並掌握考題中常見的易錯陷阱與核心概念。</p>
+<div class="mermaid">
+graph LR
+  Root["本課核心：美台憲政體制比較"] --> A["美國總統制 (總統權力與分立)"]
+  Root --> B["美國國會與選舉制度"]
+  Root --> C["台灣雙首長制 (混合制)"]
+
+  A --> A1["三權分立與嚴格制衡 (兩人三角)"]
+  A --> A2["總統否決權 ($2/3$ 超高門檻)"]
+  A --> A3["大法官終身職與違憲審查"]
+
+  B --> B1["兩院制妥協 (參議院-州 / 眾議院-人口)"]
+  B --> B2["期中選舉 (2年改選機制)"]
+  B --> B3["總統大選 (勝者全拿 / $270$ 票過半)"]
+
+  C --> C1["仿效法國第五共和 (雙重民意)"]
+  C --> C2["倒閣與解散國會之實務困境"]
+</div>
+<h2>💡 核心知識點與觀念詳解 (Key Concepts)</h2>
+<h3>1. 美國總統制：嚴格分權與「兩人三角」制衡機制</h3>
+<ul>
+<li><strong>核心觀念與推導</strong>：<br />
+  美國憲法採用「嚴格分權」（Separation of Powers）原則，行政、立法、司法三權各自獨立運作且互相牽制。</li>
+<li><strong>行政與立法之牽制</strong>：<ul>
+<li><strong>總統否決權 (Veto Power)</strong>：若國會通過之法案總統不同意，可退回國會。老師特別強調：課本常誤用台灣法律用語「覆議」，美制英文原文實為「否決權」。</li>
+<li><strong>重新表決門檻</strong>：國會一般法案通過之基本門檻為過半數（即 \(&gt; \frac{1}{2}\)）；但當總統行使否決權後，國會若要推翻總統否決，必須經<strong>參議院</strong>與<strong>眾議院</strong>兩院各自達到高門檻的三分之二（即 \(&gt; \frac{2}{3}\)）同意。這項雙重三分之二門檻使得美國總統的否決權極具實質威脅力。</li>
+<li><strong>權力對等分割</strong>：總統擁有「人事提名權」與「預算提出權」；國會則擁有「人事同意權」與「預算審查權」，兩者互相卡關與對應。</li>
+</ul>
+</li>
+<li>
+<p><strong>司法權之獨立與違憲審查</strong>：</p>
+<ul>
+<li>聯邦最高法院（大法官）掌握「違憲審查權」（Judicial Review），既可宣告總統行政命令違憲，亦可宣告國會法律違憲。</li>
+<li>大法官採<strong>終身職</strong>（Life Tenure），僅在死亡或主動辭職時出缺。因此並非每任總統或每屆國會皆有機會提名同意大法官，這保障了司法權高度獨立於政黨輪替與政治壓力之外。</li>
+</ul>
+</li>
+<li>
+<p><strong>課堂經典比喻與生活實例</strong>：</p>
+</li>
+<li><strong>「兩人三角」比喻</strong>：老師將行政權與立法權比喻為「兩人三角」遊戲。若兩者政黨相同、目標一致，運作起來會非常迅速有效率；但若兩者目標相左，就會頻繁陷入「政治僵局」（Political Gridlock）。</li>
+<li><strong>川普的現實案例</strong>：老師以川普施政為例，指出即使總統發言再強勢，其政策與行政命令若遭最高法院宣告違憲或遭國會卡關，也無法隨心所欲，顯現美制制衡機制的強韌性。</li>
+</ul>
+<hr />
+<h3>2. 美國兩院制國會與歷史妥協</h3>
+<ul>
+<li><strong>國會結構對比</strong>：</li>
+<li><strong>參議院 (Senate)</strong>：代表「州」（State representation），無論州人口大小，每州均固定分配 \(2\) 席，展現各州平等地位。</li>
+<li><strong>眾議院 (House of Representatives)</strong>：代表「人口」（Population representation），依各州人口比例分配席次，展現民主民意基礎。</li>
+<li>
+<p><strong>歷史起源（建國先賢的妥協）</strong>：<br />
+  美國建國初期由 13 個殖民地聯合組成。建國先賢（Founding Fathers，老師特別提醒華盛頓僅為建國先賢之一，非唯一國父）在制定憲法時，大州主張依人口分配國會席次，小州擔心利益遭大州霸凌而堅持每州同等代表。雙方僵持不下幾乎導致建國失敗，最終妥協出「兩院地位平等、法案皆需兩院同時通過」的雙軌制。</p>
+</li>
+<li>
+<p><strong>【⏱️ 美國國會改選與期中選舉流程圖】</strong>：</p>
+</li>
+</ul>
+<div class="mermaid">
+graph TD
+  A["美國公職任期設計"] --> B["總統：任期 4 年"]
+  A --> C["眾議院：任期 2 年 (每 2 年全數改選)"]
+  A --> D["參議院：任期 6 年 (每 2 年改選 $1/3$)"]
+
+  B --> E["總統任期中間第 2 年"]
+  C --> E
+  D --> E
+
+  E --> F["進行『期中選舉』(Midterm Elections)"]
+  F --> G{"國會多數黨是否改變？"}
+  G -- 同政黨掌權 --> H["行政與立法順暢運作"]
+  G -- 反對黨贏得國會 --> I["形成『分立政府』與政治僵局"]
+</div>
+<hr />
+<h3>3. 美國總統大選與選舉人團制度</h3>
+<ul>
+<li><strong>參選資格限制</strong>：<br />
+  1. 必須為原生美國公民（Born citizen，非歸化/非移民）。<br />
+  2. 年滿 \(35\) 歲。<br />
+  3. 連續居住於美國本土 \(14\) 年以上。</li>
+<li><strong>選舉人團制度（Electoral College）運作</strong>：</li>
+<li>各州依據人口與國會席次分配一定數量的「選舉人票」（例如加州有 \(54\) 票）。</li>
+<li><strong>勝者全拿原則（Winner-Takes-All）</strong>：公民進行普選投票後，在該州獲得相對多數票的候選人，即可拿走該州「全部」的選舉人票。</li>
+<li><strong>過半當選門檻</strong>：全美總選舉人票共有 \(538\) 票，候選人須取得過半數的 \(270\) 票（即 \(&gt; 270\)）方能順利當選總統。</li>
+</ul>
+<hr />
+<h3>4. 台灣（我國）雙首長制（混合制）與實務困境</h3>
+<ul>
+<li><strong>制度淵源</strong>：<br />
+  我國修憲主要借鏡法國第五共和之「混合制」（Hybrid / Semi-Presidential System），結合內閣制與總統制運作。</li>
+<li><strong>雙重民意與雙首長</strong>：</li>
+<li>人民分別投票選出「總統」（國家元首）與「立法委員」（立法權），具備雙重民意基礎。</li>
+<li>
+<p>行政權由總統與行政院長共同構成（雙首長）。</p>
+</li>
+<li>
+<p><strong>【📊 觀念與易混淆體制對比表】</strong>：</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">比較維度</th>
+<th style="text-align: left;">美國總統制</th>
+<th style="text-align: left;">台灣雙首長制（混合制）</th>
+<th style="text-align: left;">典型內閣制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>行政首長</strong></td>
+<td style="text-align: left;">總統（單一首長）</td>
+<td style="text-align: left;">總統 + 行政院長（雙首長）</td>
+<td style="text-align: left;">內閣總理 / 首相</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>民意基礎</strong></td>
+<td style="text-align: left;">雙重民意（總統與國會各自直選）</td>
+<td style="text-align: left;">雙重民意（總統與立法院各自直選）</td>
+<td style="text-align: left;">單一民意（僅直選國會，總理由國會產生）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>國會解散權</strong></td>
+<td style="text-align: left;">無（國會任期固定，不可解散）</td>
+<td style="text-align: left;">有條件解散（立法院通過不信任案後，行政院長得呈請總統解散）</td>
+<td style="text-align: left;">有（總理得呈請元首解散國會重選）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>倒閣不信任案</strong></td>
+<td style="text-align: left;">無（國會無法發動倒閣）</td>
+<td style="text-align: left;">有（立法院得對行政院長提出不信任案）</td>
+<td style="text-align: left;">有（國會得對內閣提出不信任案）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>司法權特徵</strong></td>
+<td style="text-align: left;">大法官終身職，獨立行使違憲審查</td>
+<td style="text-align: left;">大法官有任期限制，行使憲法法庭審查</td>
+<td style="text-align: left;">多設有憲法法院或最高法院獨立行使</td>
+</tr>
+</tbody>
+</table>
+<h2>⚠️ 老師強調考點與易錯陷阱 (Exam Focus &amp; Pitfalls)</h2>
+<ul>
+<li><strong>必考點 1：美國總統「否決權」門檻計算與名詞正名</strong></li>
+<li><strong>陷阱</strong>：課本若寫「覆議」是誤用台灣法律詞彙，美制英文原文為「否決權」（Veto）。</li>
+<li><strong>考點</strong>：一般法案通過門檻為 \(&gt; \frac{1}{2}\)；但總統否決後，國會重新表決須<strong>參眾兩院各自達到 \(\frac{2}{3}\) 以上</strong>高門檻才能推翻總統否決。</li>
+<li><strong>必考點 2：華盛頓不是唯一國父</strong></li>
+<li><strong>陷阱</strong>：題目若敘述「華盛頓是美國唯一的國父」為錯誤選項。美制建國先賢為複數（Founding Fathers），華盛頓僅為其中一位，因擔任第一任總統而最知名。</li>
+<li><strong>必考點 3：美國大法官「終身職」之政治影響</strong></li>
+<li><strong>考點</strong>：大法官為終身職（死亡或自願辭職才出缺），因此總統<strong>無法保證</strong>任期內一定有機會提名大法官，這造就了美國司法權獨立於行政與立法之外的特性。</li>
+<li><strong>必考點 4：台灣「不信任案與解散國會」的現實「打假球」現象</strong></li>
+<li><strong>陷阱</strong>：課本寫台灣有不信任案與倒閣機制，但實務上立委發動不信任案的機率極低。</li>
+<li><strong>原因</strong>：若立法院通過對行政院長的不信任案，行政院長可呈請總統解散立法院。立委發動倒閣會導致自己面臨「國會解散重選」（需負擔龐大選舉成本且不保證連任），因此立委絕不敢輕易發動，喊出倒閣往往只是政治口號或「打假球」。</li>
+</ul>
+<h2>🔑 記憶口訣與解題技巧 (Mnemonics &amp; Shortcuts)</h2>
+<ul>
+<li><strong>解題速記 SOP 1：美國國會兩院性質劃分</strong></li>
+<li>「<strong>參</strong>政以<strong>州</strong>為單位，<strong>眾</strong>人以<strong>口</strong>為依歸」<ul>
+<li>參議院 = 州代表（每州固定 \(2\) 席，共 \(100\) 席）</li>
+<li>眾議院 = 人口代表（按人口比例分配席次）</li>
+</ul>
+</li>
+<li><strong>解題速記 SOP 2：美台憲政機制對比破題關鍵字</strong></li>
+<li>見到「<strong>過半數 (\(\frac{1}{2}\)) 通過、退回需兩院三分之二 (\(\frac{2}{3}\)) 同意</strong>」\(\rightarrow\) 判斷為<strong>美國總統否決權</strong>。</li>
+<li>見到「<strong>終身職、出缺才提名</strong>」\(\rightarrow\) 判斷為<strong>美國聯邦最高法院大法官</strong>。</li>
+<li>見到「<strong>提不信任案 \(\rightarrow\) 導致自己被解散</strong>」\(\rightarrow\) 判斷為<strong>台灣雙首長制之立委實務困境</strong>。</li>
+</ul>
+<h2>📝 課後作業與待辦事項 (Homework &amp; Tasks)</h2>
+<ul>
+<li><strong>課堂交代作業</strong>：無特定書面作業。</li>
+<li><strong>建議複習待辦</strong>：請務必熟記美國總統制與台灣雙首長制的比較表格，並掌握美制「否決權」門檻與「期中選舉」之影響。</li>
+</ul>
+<hr />
+<h2>📚 專有名詞與重要公式/定義 (Glossary &amp; Formulas)</h2>
+<ul>
+<li>[否決權 (Veto Power)]: 美國總統退回國會法案之權力。若國會欲推翻否決，需參眾兩院各自達到 \(\frac{2}{3}\) 以上同意票，算式表達為：<br />
+  \[ \text{推翻否決門檻} = \text{參議院} \ge \frac{2}{3} \quad \text{且} \quad \text{眾議院} \ge \frac{2}{3} \]</li>
+<li></li>
+<li>[期中選舉 (Midterm Elections)]: 美國總統 4 年任期中間（第 2 年）進行的國會全面/部分改選，眾議院改選 \(100\%\)，參議院改選 \(\frac{1}{3}\)。</li>
+<li>[選舉人團制度 (Electoral College)]: 美國總統大選採行的間接選舉制度，多數州採「勝者全拿」原則，全美總票數為 \(538\) 票，當選門檻算式為：<br />
+  \[ \text{當選門檻} \ge 270 \text{ 票} \quad \left( \text{即 } &gt; \frac{538}{2} \right) \]</li>
+<li></li>
+<li></li>
+</ul>
+<h2>🧠 課後自測題 (Quick Review Quiz)</h2>
+<ol>
+<li>
+<p><strong>問：若美國總統對國會通過的某項法案行使「否決權」，國會若要強制使該法案生效，需要滿足何種表決門檻？</strong><br />
+   - <strong>答</strong>：國會不能僅憑一般過半數（\(&gt; \frac{1}{2}\)）重新通過，必須經過參議院與眾議院兩院各自進行重新表決，且兩院皆須達到高門檻的三分之二（\(&gt; \frac{2}{3}\)）同意，才能推翻總統的否決。</p>
+</li>
+<li>
+<p><strong>問：為什麼美國聯邦最高法院的大法官能夠高度獨立於行政與立法權之外？其任期制度有何特殊之處？</strong><br />
+   - <strong>答</strong>：因為美國大法官採「終身職」（Life Tenure）保障，除非死亡或主動辭職否則不會出缺。這使得大法官一旦任命後便無須討好總統或國會，亦不受政黨輪替影響，能專心行使違憲審查權。</p>
+</li>
+<li>
+<p><strong>問：在我國（台灣）雙首長制下，為何立法院鮮少對行政院長提出「不信任案（倒閣）」？</strong><br />
+   - <strong>答</strong>：因為憲法規定若立法院通過對行政院長的不信任案，行政院長得呈請總統「解散立法院」。這意味著發動倒閣的立法委員將被迫面臨國會重選，需負擔龐大選舉成本且不保證連任，因此立委多半不願冒此風險，不信任案在實務上常成為政治口號。</p>
+</li>
+</ol>
+<p>💡 這份筆記已依據課堂錄音整理完畢！如果需要針對特定主題（如選舉人團票數計算或台灣歷次修憲細節）進行延伸討論，或是想試做更多情境題目，随时都可以告诉我！</p>
+    </div>
+    <footer class="doc-foot">
+      自動生成於 NotebookLM Study Assistant • 專為高中學生課後複習與考前衝刺打造
+    </footer>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.mermaid) {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'neutral',
+          fontFamily: "'Noto Sans TC', 'Inter', sans-serif",
+          flowchart: { curve: 'basis', htmlLabels: true },
+          securityLevel: 'loose'
+        });
+      }
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+  
+  <script>
+    (function() {
+      const treeData = {"name": "美國總統制 (總統權力與分立)", "children": [{"name": "三權分立與嚴格制衡 (兩人三角)"}, {"name": "總統否決權 ($2/3$ 超高門檻)"}, {"name": "大法官終身職與違憲審查"}]};
+      const container = document.getElementById("tree-svg-container");
+      if (!container || !treeData) return;
+
+      const width = container.clientWidth || 880;
+      const height = 520;
+
+      const svg = d3.select("#tree-svg-container")
+        .append("svg")
+        .attr("width", "100%")
+        .attr("height", height)
+        .attr("viewBox", [0, 0, width, height]);
+
+      const g = svg.append("g");
+
+      const zoom = d3.zoom()
+        .scaleExtent([0.25, 2.5])
+        .on("zoom", (e) => g.attr("transform", e.transform));
+
+      svg.call(zoom);
+
+      const root = d3.hierarchy(treeData);
+      root.x0 = height / 2;
+      root.y0 = 0;
+
+      let i = 0;
+      const duration = 380;
+      // [dy, dx]: 垂直節距 58px (確保上下不重疊), 水平層級 320px (確保長文字不穿透父層)
+      const treeLayout = d3.tree().nodeSize([58, 320]);
+
+      function splitNodeText(text, maxChars) {
+        if (!text) return [""];
+        if (text.length <= maxChars) return [text];
+
+        // 優先在括號處斷行，例如：世風日下之自身矛盾對比（擇師教子 vs. 於身恥師）
+        const parenIdx = text.search(/[（(]/);
+        if (parenIdx >= 3 && parenIdx <= maxChars + 4) {
+          const p1 = text.slice(0, parenIdx).trim();
+          const p2 = text.slice(parenIdx).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 優先在冒號、破折號、頓號處斷行
+        const sepIdx = text.search(/[：:—、]/);
+        if (sepIdx >= 3 && sepIdx <= maxChars + 2) {
+          const p1 = text.slice(0, sepIdx + 1).trim();
+          const p2 = text.slice(sepIdx + 1).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 預設在 maxChars 處均勻斷行
+        return [text.slice(0, maxChars), text.slice(maxChars)];
+      }
+
+      if (root.children) {
+        root.children.forEach(c => {
+          if (c.children) {
+            c.children.forEach(collapse);
+          }
+        });
+      }
+
+      function collapse(d) {
+        if (d.children) {
+          d._children = d.children;
+          d._children.forEach(collapse);
+          d.children = null;
+        }
+      }
+
+      function expand(d) {
+        if (d._children) {
+          d.children = d._children;
+          d.children.forEach(expand);
+          d._children = null;
+        }
+      }
+
+      const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
+
+      function getNodeColor(d) {
+        if (d.depth === 0) return "#2563eb";
+        let p = d;
+        while (p.depth > 1) p = p.parent;
+        return colorScale(p.data.name);
+      }
+
+      function update(source) {
+        const nodes = root.descendants();
+        const links = root.links();
+
+        treeLayout(root);
+
+        const node = g.selectAll("g.node")
+          .data(nodes, d => d.id || (d.id = ++i));
+
+        const nodeEnter = node.enter().append("g")
+          .attr("class", "node")
+          .attr("transform", d => `translate(${source.y0},${source.x0})`)
+          .on("click", (event, d) => {
+            if (d.children) {
+              d._children = d.children;
+              d.children = null;
+            } else if (d._children) {
+              d.children = d._children;
+              d._children = null;
+            }
+            update(d);
+          });
+
+        nodeEnter.append("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        const textNode = nodeEnter.append("text")
+          .attr("class", "node-text")
+          .attr("text-anchor", d => (d.children || d._children) ? "end" : "start")
+          .style("fill-opacity", 0);
+
+        textNode.each(function(d) {
+          const el = d3.select(this);
+          const isParent = Boolean(d.children || d._children);
+          const xOffset = isParent ? -14 : 14;
+          const maxChars = isParent ? 13 : 18;
+          const lines = splitNodeText(d.data.name, maxChars);
+
+          if (lines.length === 1) {
+            el.attr("x", xOffset)
+              .attr("dy", "0.32em")
+              .text(lines[0]);
+          } else {
+            el.attr("x", xOffset)
+              .attr("dy", "-0.35em")
+              .text(lines[0]);
+            el.append("tspan")
+              .attr("x", xOffset)
+              .attr("dy", "1.25em")
+              .text(lines[1]);
+          }
+        });
+
+        const nodeUpdate = node.merge(nodeEnter).transition().duration(duration)
+          .attr("transform", d => `translate(${d.y},${d.x})`);
+
+        nodeUpdate.select("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        nodeUpdate.select("text")
+          .style("fill-opacity", 1);
+
+        const nodeExit = node.exit().transition().duration(duration)
+          .attr("transform", d => `translate(${source.y},${source.x})`)
+          .remove();
+
+        nodeExit.select("circle").attr("r", 1e-6);
+        nodeExit.select("text").style("fill-opacity", 1e-6);
+
+        const link = g.selectAll("path.link")
+          .data(links, d => d.target.id);
+
+        const linkEnter = link.enter().insert("path", "g")
+          .attr("class", "link")
+          .attr("d", d => {
+            const o = {x: source.x0, y: source.y0};
+            return diagonal(o, o);
+          });
+
+        link.merge(linkEnter).transition().duration(duration)
+          .attr("d", d => diagonal(d.source, d.target));
+
+        link.exit().transition().duration(duration)
+          .attr("d", d => {
+            const o = {x: source.x, y: source.y};
+            return diagonal(o, o);
+          })
+          .remove();
+
+        nodes.forEach(d => {
+          d.x0 = d.x;
+          d.y0 = d.y;
+        });
+      }
+
+      function diagonal(s, d) {
+        return `M ${s.y} ${s.x}
+                C ${(s.y + d.y) / 2} ${s.x},
+                  ${(s.y + d.y) / 2} ${d.x},
+                  ${d.y} ${d.x}`;
+      }
+
+      function autoFitTree(duration = 450) {
+        const nodes = root.descendants();
+        if (!nodes || nodes.length === 0) return;
+
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        nodes.forEach(d => {
+          const isParent = Boolean(d.children || d._children);
+          const leftBound = d.y - (isParent ? 180 : 20);
+          const rightBound = d.y + (isParent ? 20 : 220);
+          const topBound = d.x - 32;
+          const bottomBound = d.x + 32;
+
+          if (leftBound < minX) minX = leftBound;
+          if (rightBound > maxX) maxX = rightBound;
+          if (topBound < minY) minY = topBound;
+          if (bottomBound > maxY) maxY = bottomBound;
+        });
+
+        const fullWidth = container.clientWidth || 880;
+        const fullHeight = height;
+        const treeW = maxX - minX;
+        const treeH = maxY - minY;
+
+        if (treeW <= 0 || treeH <= 0) return;
+
+        const scale = Math.min(0.92, (fullWidth * 0.90) / treeW, (fullHeight * 0.90) / treeH);
+        const clampedScale = Math.max(scale, 0.42);
+
+        const midTreeX = (minX + maxX) / 2;
+        const midTreeY = (minY + maxY) / 2;
+        const tx = fullWidth / 2 - clampedScale * midTreeX;
+        const ty = fullHeight / 2 - clampedScale * midTreeY;
+
+        if (duration > 0) {
+          svg.transition().duration(duration).call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        } else {
+          svg.call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        }
+      }
+
+      window.expandAll = function() {
+        root.each(expand);
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.collapseAll = function() {
+        if (root.children) {
+          root.children.forEach(collapse);
+        }
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.resetZoom = function() {
+        autoFitTree(450);
+      };
+
+      // 首次繪製節點並自動縮放置中全覽
+      update(root);
+      autoFitTree(0);
+    })();
+  </script>
+
+</body>
+</html>

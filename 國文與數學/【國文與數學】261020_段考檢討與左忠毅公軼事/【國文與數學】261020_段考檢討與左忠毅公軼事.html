@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【國文與數學】261020_段考檢討與左忠毅公軼事</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --border: #e2e8f0;
+      --border-focus: #cbd5e1;
+      --tag-bg: #e0f2fe;
+      --tag-text: #0369a1;
+      --header-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans TC', 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.8;
+      font-size: 16px;
+      padding: 30px 16px 60px;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.06), 0 2px 6px -1px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    header.hero {
+      background: var(--header-gradient);
+      color: #ffffff;
+      padding: 36px 40px 30px;
+      position: relative;
+    }
+    header.hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      color: #f1f5f9;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    header.hero h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.5px;
+    }
+    header.hero .meta {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .content-body {
+      padding: 40px 48px;
+    }
+    @media (max-width: 640px) {
+      .content-body { padding: 24px 20px; }
+      header.hero { padding: 28px 24px 22px; }
+      header.hero h1 { font-size: 1.5rem; }
+    }
+    h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 2.2em;
+      margin-bottom: 0.9em;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h2:first-of-type { margin-top: 0.5em; }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1e3a8a;
+      margin-top: 1.6em;
+      margin-bottom: 0.6em;
+      padding-left: 10px;
+      border-left: 4px solid var(--accent);
+    }
+    p { margin-bottom: 1.1em; }
+    ul, ol { margin-bottom: 1.2em; padding-left: 1.8em; }
+    li { margin-bottom: 0.4em; }
+    .mermaid {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 16px;
+      margin: 1.6em 0;
+      text-align: center;
+      overflow-x: auto;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 1.6em 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    thead th {
+      background: #f1f5f9;
+      color: #1e293b;
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+    tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) { background: #fafafa; }
+    tbody tr:hover { background: #f0f7ff; }
+    tbody tr:last-child td { border-bottom: none; }
+    code {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      background: #f1f5f9;
+      color: #b91c1c;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 1.4em 0;
+      font-size: 0.92em;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; }
+    blockquote {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 14px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 1.4em 0;
+      color: #1e40af;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2.2em 0; }
+    .katex-display {
+      margin: 1.2em 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 6px 0;
+    }
+    .katex { font-size: 1.05em; }
+    
+    /* NotebookLM 原生 D3 互動心智圖樣式 */
+    .mindmap-box {
+      margin: 2em 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .mindmap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .mindmap-title {
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mindmap-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .mm-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: #334155;
+      transition: all 0.2s;
+    }
+    .mm-btn:hover { background: #f1f5f9; }
+    #tree-svg-container {
+      width: 100%;
+      height: 520px;
+      background: #ffffff;
+      cursor: grab;
+    }
+    #tree-svg-container:active { cursor: grabbing; }
+    .node circle {
+      cursor: pointer;
+      stroke-width: 2.5px;
+      transition: all 0.2s;
+    }
+    .node circle:hover { transform: scale(1.25); }
+    .node text {
+      font-size: 13px;
+      font-weight: 500;
+      font-family: inherit;
+      fill: #1e293b;
+      cursor: pointer;
+      paint-order: stroke fill;
+      stroke: #ffffff;
+      stroke-width: 4.5px;
+      stroke-linejoin: round;
+      user-select: none;
+    }
+    .link {
+      fill: none;
+      stroke: #cbd5e1;
+      stroke-width: 1.8px;
+      stroke-opacity: 0.85;
+      transition: stroke-width 0.2s;
+    }
+    .link:hover { stroke: #94a3b8; stroke-width: 2.5px; }
+
+    footer.doc-foot {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      background: #fcfdfe;
+    }
+    .print-btn {
+      position: absolute;
+      top: 36px;
+      right: 40px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .print-btn:hover { background: rgba(255,255,255,0.25); }
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      body {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+      }
+      .container {
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+      }
+      .print-btn, .mindmap-btns {
+        display: none !important;
+      }
+      header.hero {
+        background: var(--header-gradient) !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+        padding: 24px 30px !important;
+        margin-bottom: 20px !important;
+      }
+      header.hero h1 {
+        color: #ffffff !important;
+        font-size: 1.6rem !important;
+      }
+      header.hero .badge {
+        background: rgba(255,255,255,0.2) !important;
+        color: #ffffff !important;
+      }
+      header.hero .meta {
+        color: #cbd5e1 !important;
+      }
+      .content-body {
+        padding: 10px 0 !important;
+      }
+      h1, h2, h3, h4, table, tr, pre, .mermaid, .mindmap-box, blockquote {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      h2, h3 {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <div class="badge">📖 高中課堂互動圖文筆記</div>
+      <button class="print-btn" onclick="window.print()">🖨️ 列印 / 另存 PDF</button>
+      <h1>【國文與數學】261020_段考檢討與左忠毅公軼事</h1>
+      <div class="meta">
+        <span>⏱️ 數位筆記儀表板</span>
+        <span>🏷️ 含可縮放互動心智圖、時間軸與觀念對比</span>
+      </div>
+    </header>
+    <div class="content-body">
+      
+      <div class="mindmap-box">
+        <div class="mindmap-header">
+          <div class="mindmap-title">
+            <span>🧠 本課核心知識脈絡（NotebookLM 原生互動心智圖 • 支援縮放與展開）</span>
+          </div>
+          <div class="mindmap-btns">
+            <button class="mm-btn" onclick="expandAll()">展開全部</button>
+            <button class="mm-btn" onclick="collapseAll()">收合分支</button>
+            <button class="mm-btn" onclick="resetZoom()">重設視角</button>
+          </div>
+        </div>
+        <div id="tree-svg-container"></div>
+      </div>
+        
+      <h2>📖 課堂主題與核心摘要 (Class Overview)</h2>
+<p>本堂課前半段進行國文段考考卷檢討，重點涵蓋成語典故、現代詩歌與古典詩詞的修辭語境、韓愈《師說》考點陷阱、古文尊師重道精神及杜甫《月夜》的雙向思念手法。後半段則推進至古典散文方苞《左忠毅公軼事》第一段，深度分析左光斗「愛才即忠國」的核心精神與桐城派「雅潔」的主詞判讀。最後幾分鐘轉入數學單元，解說直線方程式「截距式」的幾何定義與速解轉換 SOP。本課核心學習目標在於掌握高頻考點細節、提升古文主詞判讀能力，並熟練直線截距式的幾何意涵與快速解題技巧。</p>
+<p>【🌳 本課大綱樹狀心智導圖 (Mindmap)】：</p>
+<div class="mermaid">
+graph LR
+  Root["261020 課堂綜合學習筆記"] --> A["國文：段考題精析與觀念澄清"]
+  Root --> B["國文：方苞《左忠毅公軼事》第一段"]
+  Root --> C["數學：直線方程式之截距式"]
+
+  A --> A1["成語與選詞：相濡以沫、捋虎鬚、寂寞柳條"]
+  A --> A2["詩詞修辭與主旨：靜表動、愛情詩句對比、杜甫《月夜》"]
+  A --> A3["古文觀念澄清：《師說》陷阱、嚴師為難、君不臣臣者二"]
+
+  B --> B1["文體與背景：軼事定義、先君子嘗言、桐城派雅潔風格"]
+  B --> B2["愛才三事（忠）：解貂覆生、面數第一、引見夫人許以繼志"]
+  B --> B3["語法解析：古文主詞省略與人物對照判讀"]
+
+  C --> C1["幾何定義：x 截距 a (a,0) 與 y 截距 b (0,b)"]
+  C --> C2["公式與計算：標準截距式 x/a + y/b = 1"]
+  C --> C3["速算技巧：一般式帶零法 (x=0, y=0) 秒殺截距"]
+</div>
+<h2>💡 核心知識點與觀念詳解 (Key Concepts)</h2>
+<h3>1. 國文段考錯題精析與古典詩文修辭</h3>
+<ul>
+<li><strong>成語典故與字音字形</strong>：</li>
+<li><strong>相濡以沫</strong>：原指泉水乾涸，魚兒互相吐唾沫濕潤對方以求生存；比喻在困境中同心協力、互相救助。老師特別補充：老子與莊子思想中，等到社會崩壞才來強調互助，不如「相忘於江湖」。</li>
+<li><strong>捋虎鬚</strong>：注意破音字「捋」（讀音為 <code>$lu\bar{o}$</code> 或 <code>$l\ddot{u}$</code>），意為用手指順著摸，此處指摸老虎鬍鬚，比喻冒險做極度危險的事（不可與「撫」字混淆）。</li>
+<li><strong>詩詞語境與視覺修辭</strong>：</li>
+<li><strong>以靜態畫面表現動態感</strong>：例句如「波光裡的艷影，在我的心頭蕩漾」。河畔柳樹倒影本身屬於靜態景物，但透過水面波光閃爍與晃動，賦予其動態的躍動感，屬於視覺聯想經典修辭。</li>
+<li><strong>徐志摩《再別康橋》語境選詞</strong>：春天初生之柳條應選「寂寞」，因為初春柳芽剛萌發、淋漓稀疏，枝葉尚未繁茂，呈現清寂感；不可選「婆娑」（適用於夏秋枝葉繁茂隨風搖曳）或「鬱鬱」（草木茂盛濃密）。</li>
+<li><strong>韓愈《師說》考題高頻陷阱解構</strong>：</li>
+<li><strong>陷阱一（無恥 vs 不從事問學）</strong>：韓愈在文中並非全盤批判士大夫「無恥」，而是批判士大夫階層「恥學於師」、「不從事問學」。</li>
+<li><strong>陷阱二（愚人對象）</strong>：文中「愚人」是指「今之眾人」（一般大眾/群大夫），而非士大夫之子。</li>
+<li><strong>陷阱三（孔子與郯子）</strong>：文中「孔子師郯子、貺子、師襄、老聃」，韓愈並非用孔子來批判或貶低郯子，而是說明「聖人無常師」，強調凡有一技之長者皆可為師。</li>
+<li><strong>古文尊師重道與君臣禮儀（《禮記·學記》/《韓非子》）</strong>：</li>
+<li><strong>嚴師為難</strong>：「嚴」字作「尊嚴、尊敬」解。尊崇老師最為困難，尊師後其傳授之「道」方能受尊崇。</li>
+<li><strong>君之不臣臣者二</strong>：國君不以對待普通臣子方式對待下屬的情況有二：<ol>
+<li>大臣「為尸」時：祭祀中代表神明接受祭拜，此時身份等同神明。</li>
+<li>大臣「為師」時：作為皇帝或國君的老師，國君因尊師重道而不以君臣之禮約束。</li>
+</ol>
+</li>
+<li><strong>雖召於天子，無北面</strong>：雖受天子召見，亦不需行面向北方的君臣跪拜禮，展現尊師重道超越一般階級尊卑。</li>
+<li><strong>杜甫《月夜》：雙向思念的藝術手法</strong>：</li>
+<li>杜甫身在長安（或被俘），思念遠在鄜州的妻子，但他不直接寫自己的孤單，而是透過想像「妻子獨自賞月思念長安的自己」，並寫出「香霧雲鬟濕，清輝玉臂寒」的情景，展現極致深沉的雙向思念。</li>
+</ul>
+<p>【📊 觀念與易混淆對比表】：愛情與情感詩句主旨對比<br />
+| 經典詩句 | 出處 / 作者 | 核心主旨與語境解析 |<br />
+| :--- | :--- | :--- |<br />
+| <strong>問世間情為何物，直教生死相許</strong> | 元好問《摸魚兒》 | 強調愛情的至高境界，能夠超越生死、為對方<strong>同生共死</strong>。 |<br />
+| <strong>衣帶漸寬終不悔，為伊消得人憔悴</strong> | 柳永《鳳棲梧》 | 描寫因思念而消瘦憔悴，但依然<strong>無怨無悔</strong>的執著專一。 |<br />
+| <strong>曾經滄海難為水，除卻巫山不是雲</strong> | 元稹《離思》 | 表示見識過極致的深愛後，對其他人再無動心可能，極言<strong>深情專一</strong>。 |<br />
+| <strong>兩情若是久長時，又豈在朝朝暮暮</strong> | 秦觀《鵲橋仙》 | 強調愛的真諦在於靈魂契合，不拘泥於天天陪伴，超越<strong>時空相守</strong>。 |</p>
+<hr />
+<h3>2. 方苞《左忠毅公軼事》第一段文本深度解析</h3>
+<ul>
+<li><strong>篇名與寫作背景</strong>：</li>
+<li><strong>「軼事」定義</strong>：未記載於正史的散逸事蹟。開頭寫「先君子嘗言」（先父曾經說過），表明取材有所本，非憑空捏造。</li>
+<li><strong>核心主題（以「忠」為本）</strong>：左光斗（左公）在風雪嚴寒中堅持出巡視學，展現勤政盡責；而在寺廟中遇見史可法，傾心提拔人才，其本質是為了「強固國家大事」，故「愛才」即為「忠」的具體展現。</li>
+<li><strong>左公愛才惜才的三大具體行動</strong>：<br />
+  1. <strong>解貂覆生、為署戶</strong>：於寺廟見史可法伏案書寫累倒，解下身上貂皮大衣為其覆蓋，並親自為其關閉門窗防寒。<br />
+  2. <strong>面數第一</strong>：鄉試閱卷時，當場將史可法列為第一名（「數」字轉品為副詞，意為當面簽名）。<br />
+  3. <strong>引見夫人、許以繼志</strong>：將史可法帶回府中介紹給妻子，並親口定調：「他日繼吾志事者，唯此生耳！」</li>
+</ul>
+<p>【⏱️ 時序時間軸 / 步驟流程圖】：左忠毅公愛才惜才情節脈絡</p>
+<div class="mermaid">
+graph TD
+  A["風雪嚴寒，左公率數騎出巡視學"] --> B["於寺廟偶遇史可法伏案書寫"]
+  B --> C["【行動一】解貂覆生、親自為署戶"]
+  C --> D["鄉試閱卷時發現史可法考卷"]
+  D --> E["【行動二】當場『面數第一』給予首獎"]
+  E --> F["帶史可法入府引見妻子"]
+  F --> G["【行動三】許下『他日繼吾志事者唯此生』之極高評價"]
+</div>
+<ul>
+<li><strong>桐城派「雅潔」風格與古文主詞判讀</strong>：<br />
+  方苞文章文字精煉，常省略主詞。課堂重點練習主詞還原：</li>
+<li>「風雪嚴寒，從數騎出」\(\rightarrow\) 主詞：<strong>左公</strong></li>
+<li>「文章方成草」\(\rightarrow\) 主詞：<strong>史可法</strong></li>
+<li>「解貂覆生，為署戶」\(\rightarrow\) 主詞：<strong>左公</strong></li>
+<li>「叩之寺僧」\(\rightarrow\) 主詞：<strong>左公</strong></li>
+<li>「面數第一」\(\rightarrow\) 主詞：<strong>左公</strong></li>
+<li>「召入，使拜夫人」\(\rightarrow\) 主詞：<strong>左公</strong>（召史可法入內）</li>
+</ul>
+<hr />
+<h3>3. 數學直線方程式：截距式與幾何意義</h3>
+<ul>
+<li><strong>截距的幾何定義</strong>：</li>
+<li><strong>\(x\) 截距（\(x\)-intercept）</strong>：直線與 \(x\) 軸相交之交點的 \(x\) 座標，假設為 \(a\)，則交點座標為 \((a, 0)\)。</li>
+<li><strong>\(y\) 截距（\(y\)-intercept）</strong>：直線與 \(y\) 軸相交之交點的 \(y\) 座標，假設為 \(b\)，則交點座標為 \((0, b)\)。</li>
+<li>⚠️ <strong>觀念澄清</strong>：截距是「座標數值」，可以為正數、負數或零，<strong>絕非長度或距離</strong>！</li>
+<li>
+<p><strong>標準截距式公式</strong>：<br />
+  若直線 \(L\) 的 \(x\) 截距為 \(a\)（\(a \neq 0\)）、\(y\) 截距為 \(b\)（\(b \neq 0\)），則直線方程式可寫為：<br />
+  \[ \frac{x}{a} + \frac{y}{b} = 1 \]</p>
+</li>
+<li>
+<p><strong>經典例題步驟拆解（一般式轉截距式）</strong>：<br />
+  【題目】：已知直線方程式為 \(2x + 3y = 6\)，求其 \(x\) 截距與 \(y\) 截距，並將其化為標準截距式。</p>
+</li>
+<li>
+<p><strong>解法一：同除常數項法（傳統推導）</strong>：</p>
+<ol>
+<li>觀察等號右側常數項為 \(6\)，將全式同除以 \(6\)，使等號右側變為 \(1\)：<br />
+   \[ \frac{2x}{6} + \frac{3y}{6} = \frac{6}{6} \]</li>
+<li>約分整理：<br />
+   \[ \frac{x}{3} + \frac{y}{2} = 1 \]</li>
+<li>對照標準式 \(\frac{x}{a} + \frac{y}{b} = 1\)，可得 \(x\) 截距 \(a = 3\)，\(y\) 截距 \(b = 2\)。</li>
+</ol>
+</li>
+</ul>
+<p>【⏱️ 步驟流程圖】：解法二：帶零法速算 SOP（老師大力推薦）</p>
+<div class="mermaid">
+graph TD
+  Step1["步驟 1：求 x 截距"] --> Step1_1["令 y = 0 帶入方程式 2x + 3(0) = 6"]
+  Step1_1 --> Step1_2["算出 x = 3，即 x 截距 a = 3，交點 (3,0)"]
+
+  Step2["步驟 2：求 y 截距"] --> Step2_1["令 x = 0 帶入方程式 2(0) + 3y = 6"]
+  Step2_1 --> Step2_2["算出 y = 2，即 y 截距 b = 2，交點 (0,2)"]
+
+  Step3["步驟 3：秒殺填入截距式"] --> Step3_1["直接將 a, b 填入分母：x/3 + y/2 = 1"]
+</div>
+<hr />
+<h2>⚠️ 老師強調考點與易錯陷阱 (Exam Focus &amp; Pitfalls)</h2>
+<ol>
+<li><strong>國文考題陷阱：選項微小錯誤魔鬼細節</strong>：<br />
+   * 高中選擇題常在長句末端或某個字眼設計陷阱。例如：《師說》考題中，選項若寫「孔子以郯子為師以凸顯郯子之不肖」，此即為典型錯一個詞的陷阱（韓愈並無貶低郯子）。</li>
+<li><strong>古文主詞迷思</strong>：<br />
+   * 《左忠毅公軼事》文中有多處「動詞」省略主詞，段考極易出「下列選項何者主詞與其他三者不同」的題型，務必依上下文語境推敲是左公還是史可法。</li>
+<li><strong>數學截距陷阱：截距不等於距離</strong>：<br />
+   * 學生最常誤以為「截距是正的」。若直線通過 \((-3, 0)\)，則其 \(x\) 截距為 \(-3\)，而非 \(+3\)；若題目問「截距相等」，需特別注意是否有包含 \(a = b\) 或截距均為 \(0\)（通過原點）的特殊狀況。</li>
+</ol>
+<hr />
+<h2>🔑 記憶口訣與解題技巧 (Mnemonics &amp; Shortcuts)</h2>
+<ul>
+<li>
+<p><strong>數學截距式速算「帶零法」 SOP</strong>：</p>
+<blockquote>
+<p><strong>求 \(x\) 截距令 \(y = 0\)，求 \(y\) 截距令 \(x = 0\)；求出數值填分母，右邊維持等於 \(1\)！</strong><br />
+  不用每次都費時解聯立或同除化簡，帶零法可在 3 秒內秒殺求出兩軸交點與截距式。</p>
+</blockquote>
+</li>
+<li>
+<p><strong>古文愛情詩解題關鍵字</strong>：</p>
+</li>
+<li>看到「同生共死 / 犧牲」 \(\rightarrow\) 關鍵字【生死相許】</li>
+<li>看到「憔悴 / 變瘦 / 無悔」 \(\rightarrow\) 關鍵字【衣帶漸寬終不悔】</li>
+<li>看到「非他不可 / 專一」 \(\rightarrow\) 關鍵字【曾經滄海難為水】</li>
+<li>看到「超越時間 / 靈魂契合」 \(\rightarrow\) 關鍵字【豈在朝朝暮暮】</li>
+</ul>
+<hr />
+<h2>📝 課後作業與待辦事項 (Homework &amp; Tasks)</h2>
+<ul>
+<li><strong>課堂交代事項</strong>：</li>
+<li>段考成績核對：電腦畫卡刷卡成績若與自算有出入，請找老師確認（原則上以電腦讀卡數據為準）。</li>
+<li>課業進度：預習《左忠毅公軼事》第二段內容。</li>
+<li>作業項目：無特定指定作業，請儘速完成段考錯題訂正。</li>
+</ul>
+<hr />
+<h2>📚 專有名詞與重要公式/定義 (Glossary &amp; Formulas)</h2>
+<ul>
+<li><strong>\(x\) 截距 (\(x\)-intercept)</strong>：直線與 \(x\) 軸交點之 \(x\) 座標值，記為 \(a\)，交點為 \((a, 0)\)。</li>
+<li><strong>\(y\) 截距 (\(y\)-intercept)</strong>：直線與 \(y\) 軸交點之 \(y\) 座標值，记為 \(b\)，交點為 \((0, b)\)。</li>
+<li><strong>直線截距式公式</strong>：<br />
+  \[ \frac{x}{a} + \frac{y}{b} = 1 \quad (a \neq 0, b \neq 0) \]</li>
+<li><strong>軼事</strong>：史冊無記載，散落在民間或口耳相傳的人物事蹟。</li>
+<li><strong>桐城派「雅潔」</strong>：清代散文流派方苞所倡導，文章強調語言典雅、結構簡潔，常靈活省略主詞與冗餘文字。</li>
+<li><strong>「興」修辭法</strong>：古典詩歌聯想手法，「先言他物以引起所詠之詞」，如由「翩翩堂前燕」聯想到漂泊客子的鄉愁。</li>
+</ul>
+<hr />
+<h2>🧠 課後自測題 (Quick Review Quiz)</h2>
+<p><strong>第一題（國文：古文主詞與意涵判讀）</strong></p>
+<blockquote>
+<p>方苞《左忠毅公軼事》中「他日繼吾志事者，唯此生耳！」一句，說話者與「此生」分別指何人？此句在文章主題上體現了何種精神？<br />
+* <strong>【解題思維與答案】</strong>：<br />
+  說話者為<strong>左光斗（左公）</strong>，「此生」指<strong>史可法</strong>。這句話展現左公慧眼識英雄、傾心提拔後進；文章將左公「愛才惜才」的舉動視為強國育才之本，深刻扣合主題中的「<strong>忠</strong>」（忠於國家大事）。</p>
+</blockquote>
+<p><strong>第二題（數學：截距式與截距計算）</strong></p>
+<blockquote>
+<p>若一條直線方程式為 \(4x - 3y = 12\)，請利用「帶零法」求出其 \(x\) 截距與 \(y\) 截距，並將其寫成標準截距式。<br />
+* <strong>【解題思維與答案】</strong>：<br />
+  1. 求 \(x\) 截距：令 \(y = 0\)，帶入得 \(4x - 3(0) = 12 \Rightarrow 4x = 12 \Rightarrow x = 3\)。故 \(x\) 截距 \(a = 3\)。<br />
+  2. 求 \(y\) 截距：令 \(x = 0\)，帶入得 \(4(0) - 3y = 12 \Rightarrow -3y = 12 \Rightarrow y = -4\)。故 \(y\) 截距 \(b = -4\)。<br />
+  3. 寫成標準截距式：<br />
+     \[ \frac{x}{3} + \frac{y}{-4} = 1 \quad \text{或} \quad \frac{x}{3} - \frac{y}{4} = 1 \]</p>
+</blockquote>
+<p><strong>第三題（國文：詩詞主旨判讀）</strong></p>
+<blockquote>
+<p>杜甫《月夜》中「香霧雲鬟濕，清輝玉臂寒」兩句，表面上描寫妻子的容貌與情態，實則運用了何種特殊的抒情手法？<br />
+* <strong>【解題思維與答案】</strong>：<br />
+  運用了「<strong>雙向思念</strong>（透過想像對方思念自己）」的襯托手法。杜甫不直接寫自己在長安對妻子的思念，而是想像妻子獨自於鄜州賞月，因長久站立思念自己而導致霧氣濕透雲鬟、月光照冷玉臂，從而更深層地烘托出雙方深摯綿長的互相思念。</p>
+</blockquote>
+<hr />
+<p>💡 <strong>溫馨提醒</strong>：如果需要針對《左忠毅公軼事》第二段內容製作更詳細的課前預習卡，或想進一步挑戰更多直線截距式的幾何應用題（例如截距三角形面積計算），隨時告訴我！</p>
+    </div>
+    <footer class="doc-foot">
+      自動生成於 NotebookLM Study Assistant • 專為高中學生課後複習與考前衝刺打造
+    </footer>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.mermaid) {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'neutral',
+          fontFamily: "'Noto Sans TC', 'Inter', sans-serif",
+          flowchart: { curve: 'basis', htmlLabels: true },
+          securityLevel: 'loose'
+        });
+      }
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+  
+  <script>
+    (function() {
+      const treeData = {"name": "國文：段考題精析與觀念澄清", "children": [{"name": "成語與選詞：相濡以沫、捋虎鬚、寂寞柳條"}, {"name": "詩詞修辭與主旨：靜表動、愛情詩句對比、杜甫《月夜》"}, {"name": "古文觀念澄清：《師說》陷阱、嚴師為難、君不臣臣者二"}]};
+      const container = document.getElementById("tree-svg-container");
+      if (!container || !treeData) return;
+
+      const width = container.clientWidth || 880;
+      const height = 520;
+
+      const svg = d3.select("#tree-svg-container")
+        .append("svg")
+        .attr("width", "100%")
+        .attr("height", height)
+        .attr("viewBox", [0, 0, width, height]);
+
+      const g = svg.append("g");
+
+      const zoom = d3.zoom()
+        .scaleExtent([0.25, 2.5])
+        .on("zoom", (e) => g.attr("transform", e.transform));
+
+      svg.call(zoom);
+
+      const root = d3.hierarchy(treeData);
+      root.x0 = height / 2;
+      root.y0 = 0;
+
+      let i = 0;
+      const duration = 380;
+      // [dy, dx]: 垂直節距 58px (確保上下不重疊), 水平層級 320px (確保長文字不穿透父層)
+      const treeLayout = d3.tree().nodeSize([58, 320]);
+
+      function splitNodeText(text, maxChars) {
+        if (!text) return [""];
+        if (text.length <= maxChars) return [text];
+
+        // 優先在括號處斷行，例如：世風日下之自身矛盾對比（擇師教子 vs. 於身恥師）
+        const parenIdx = text.search(/[（(]/);
+        if (parenIdx >= 3 && parenIdx <= maxChars + 4) {
+          const p1 = text.slice(0, parenIdx).trim();
+          const p2 = text.slice(parenIdx).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 優先在冒號、破折號、頓號處斷行
+        const sepIdx = text.search(/[：:—、]/);
+        if (sepIdx >= 3 && sepIdx <= maxChars + 2) {
+          const p1 = text.slice(0, sepIdx + 1).trim();
+          const p2 = text.slice(sepIdx + 1).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 預設在 maxChars 處均勻斷行
+        return [text.slice(0, maxChars), text.slice(maxChars)];
+      }
+
+      if (root.children) {
+        root.children.forEach(c => {
+          if (c.children) {
+            c.children.forEach(collapse);
+          }
+        });
+      }
+
+      function collapse(d) {
+        if (d.children) {
+          d._children = d.children;
+          d._children.forEach(collapse);
+          d.children = null;
+        }
+      }
+
+      function expand(d) {
+        if (d._children) {
+          d.children = d._children;
+          d.children.forEach(expand);
+          d._children = null;
+        }
+      }
+
+      const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
+
+      function getNodeColor(d) {
+        if (d.depth === 0) return "#2563eb";
+        let p = d;
+        while (p.depth > 1) p = p.parent;
+        return colorScale(p.data.name);
+      }
+
+      function update(source) {
+        const nodes = root.descendants();
+        const links = root.links();
+
+        treeLayout(root);
+
+        const node = g.selectAll("g.node")
+          .data(nodes, d => d.id || (d.id = ++i));
+
+        const nodeEnter = node.enter().append("g")
+          .attr("class", "node")
+          .attr("transform", d => `translate(${source.y0},${source.x0})`)
+          .on("click", (event, d) => {
+            if (d.children) {
+              d._children = d.children;
+              d.children = null;
+            } else if (d._children) {
+              d.children = d._children;
+              d._children = null;
+            }
+            update(d);
+          });
+
+        nodeEnter.append("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        const textNode = nodeEnter.append("text")
+          .attr("class", "node-text")
+          .attr("text-anchor", d => (d.children || d._children) ? "end" : "start")
+          .style("fill-opacity", 0);
+
+        textNode.each(function(d) {
+          const el = d3.select(this);
+          const isParent = Boolean(d.children || d._children);
+          const xOffset = isParent ? -14 : 14;
+          const maxChars = isParent ? 13 : 18;
+          const lines = splitNodeText(d.data.name, maxChars);
+
+          if (lines.length === 1) {
+            el.attr("x", xOffset)
+              .attr("dy", "0.32em")
+              .text(lines[0]);
+          } else {
+            el.attr("x", xOffset)
+              .attr("dy", "-0.35em")
+              .text(lines[0]);
+            el.append("tspan")
+              .attr("x", xOffset)
+              .attr("dy", "1.25em")
+              .text(lines[1]);
+          }
+        });
+
+        const nodeUpdate = node.merge(nodeEnter).transition().duration(duration)
+          .attr("transform", d => `translate(${d.y},${d.x})`);
+
+        nodeUpdate.select("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        nodeUpdate.select("text")
+          .style("fill-opacity", 1);
+
+        const nodeExit = node.exit().transition().duration(duration)
+          .attr("transform", d => `translate(${source.y},${source.x})`)
+          .remove();
+
+        nodeExit.select("circle").attr("r", 1e-6);
+        nodeExit.select("text").style("fill-opacity", 1e-6);
+
+        const link = g.selectAll("path.link")
+          .data(links, d => d.target.id);
+
+        const linkEnter = link.enter().insert("path", "g")
+          .attr("class", "link")
+          .attr("d", d => {
+            const o = {x: source.x0, y: source.y0};
+            return diagonal(o, o);
+          });
+
+        link.merge(linkEnter).transition().duration(duration)
+          .attr("d", d => diagonal(d.source, d.target));
+
+        link.exit().transition().duration(duration)
+          .attr("d", d => {
+            const o = {x: source.x, y: source.y};
+            return diagonal(o, o);
+          })
+          .remove();
+
+        nodes.forEach(d => {
+          d.x0 = d.x;
+          d.y0 = d.y;
+        });
+      }
+
+      function diagonal(s, d) {
+        return `M ${s.y} ${s.x}
+                C ${(s.y + d.y) / 2} ${s.x},
+                  ${(s.y + d.y) / 2} ${d.x},
+                  ${d.y} ${d.x}`;
+      }
+
+      function autoFitTree(duration = 450) {
+        const nodes = root.descendants();
+        if (!nodes || nodes.length === 0) return;
+
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        nodes.forEach(d => {
+          const isParent = Boolean(d.children || d._children);
+          const leftBound = d.y - (isParent ? 180 : 20);
+          const rightBound = d.y + (isParent ? 20 : 220);
+          const topBound = d.x - 32;
+          const bottomBound = d.x + 32;
+
+          if (leftBound < minX) minX = leftBound;
+          if (rightBound > maxX) maxX = rightBound;
+          if (topBound < minY) minY = topBound;
+          if (bottomBound > maxY) maxY = bottomBound;
+        });
+
+        const fullWidth = container.clientWidth || 880;
+        const fullHeight = height;
+        const treeW = maxX - minX;
+        const treeH = maxY - minY;
+
+        if (treeW <= 0 || treeH <= 0) return;
+
+        const scale = Math.min(0.92, (fullWidth * 0.90) / treeW, (fullHeight * 0.90) / treeH);
+        const clampedScale = Math.max(scale, 0.42);
+
+        const midTreeX = (minX + maxX) / 2;
+        const midTreeY = (minY + maxY) / 2;
+        const tx = fullWidth / 2 - clampedScale * midTreeX;
+        const ty = fullHeight / 2 - clampedScale * midTreeY;
+
+        if (duration > 0) {
+          svg.transition().duration(duration).call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        } else {
+          svg.call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        }
+      }
+
+      window.expandAll = function() {
+        root.each(expand);
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.collapseAll = function() {
+        if (root.children) {
+          root.children.forEach(collapse);
+        }
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.resetZoom = function() {
+        autoFitTree(450);
+      };
+
+      // 首次繪製節點並自動縮放置中全覽
+      update(root);
+      autoFitTree(0);
+    })();
+  </script>
+
+</body>
+</html>

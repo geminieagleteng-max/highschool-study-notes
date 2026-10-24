@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【公民】261001_公平正義與羅爾斯正義論</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --border: #e2e8f0;
+      --border-focus: #cbd5e1;
+      --tag-bg: #e0f2fe;
+      --tag-text: #0369a1;
+      --header-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans TC', 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.8;
+      font-size: 16px;
+      padding: 30px 16px 60px;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.06), 0 2px 6px -1px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    header.hero {
+      background: var(--header-gradient);
+      color: #ffffff;
+      padding: 36px 40px 30px;
+      position: relative;
+    }
+    header.hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      color: #f1f5f9;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    header.hero h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.5px;
+    }
+    header.hero .meta {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .content-body {
+      padding: 40px 48px;
+    }
+    @media (max-width: 640px) {
+      .content-body { padding: 24px 20px; }
+      header.hero { padding: 28px 24px 22px; }
+      header.hero h1 { font-size: 1.5rem; }
+    }
+    h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 2.2em;
+      margin-bottom: 0.9em;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h2:first-of-type { margin-top: 0.5em; }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1e3a8a;
+      margin-top: 1.6em;
+      margin-bottom: 0.6em;
+      padding-left: 10px;
+      border-left: 4px solid var(--accent);
+    }
+    p { margin-bottom: 1.1em; }
+    ul, ol { margin-bottom: 1.2em; padding-left: 1.8em; }
+    li { margin-bottom: 0.4em; }
+    .mermaid {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 16px;
+      margin: 1.6em 0;
+      text-align: center;
+      overflow-x: auto;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 1.6em 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    thead th {
+      background: #f1f5f9;
+      color: #1e293b;
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+    tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) { background: #fafafa; }
+    tbody tr:hover { background: #f0f7ff; }
+    tbody tr:last-child td { border-bottom: none; }
+    code {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      background: #f1f5f9;
+      color: #b91c1c;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 1.4em 0;
+      font-size: 0.92em;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; }
+    blockquote {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 14px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 1.4em 0;
+      color: #1e40af;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2.2em 0; }
+    .katex-display {
+      margin: 1.2em 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 6px 0;
+    }
+    .katex { font-size: 1.05em; }
+    
+    /* NotebookLM 原生 D3 互動心智圖樣式 */
+    .mindmap-box {
+      margin: 2em 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .mindmap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .mindmap-title {
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mindmap-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .mm-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: #334155;
+      transition: all 0.2s;
+    }
+    .mm-btn:hover { background: #f1f5f9; }
+    #tree-svg-container {
+      width: 100%;
+      height: 520px;
+      background: #ffffff;
+      cursor: grab;
+    }
+    #tree-svg-container:active { cursor: grabbing; }
+    .node circle {
+      cursor: pointer;
+      stroke-width: 2.5px;
+      transition: all 0.2s;
+    }
+    .node circle:hover { transform: scale(1.25); }
+    .node text {
+      font-size: 13px;
+      font-weight: 500;
+      font-family: inherit;
+      fill: #1e293b;
+      cursor: pointer;
+      paint-order: stroke fill;
+      stroke: #ffffff;
+      stroke-width: 4.5px;
+      stroke-linejoin: round;
+      user-select: none;
+    }
+    .link {
+      fill: none;
+      stroke: #cbd5e1;
+      stroke-width: 1.8px;
+      stroke-opacity: 0.85;
+      transition: stroke-width 0.2s;
+    }
+    .link:hover { stroke: #94a3b8; stroke-width: 2.5px; }
+
+    footer.doc-foot {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      background: #fcfdfe;
+    }
+    .print-btn {
+      position: absolute;
+      top: 36px;
+      right: 40px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .print-btn:hover { background: rgba(255,255,255,0.25); }
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      body {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+      }
+      .container {
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+      }
+      .print-btn, .mindmap-btns {
+        display: none !important;
+      }
+      header.hero {
+        background: var(--header-gradient) !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+        padding: 24px 30px !important;
+        margin-bottom: 20px !important;
+      }
+      header.hero h1 {
+        color: #ffffff !important;
+        font-size: 1.6rem !important;
+      }
+      header.hero .badge {
+        background: rgba(255,255,255,0.2) !important;
+        color: #ffffff !important;
+      }
+      header.hero .meta {
+        color: #cbd5e1 !important;
+      }
+      .content-body {
+        padding: 10px 0 !important;
+      }
+      h1, h2, h3, h4, table, tr, pre, .mermaid, .mindmap-box, blockquote {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      h2, h3 {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <div class="badge">📖 高中課堂互動圖文筆記</div>
+      <button class="print-btn" onclick="window.print()">🖨️ 列印 / 另存 PDF</button>
+      <h1>【公民】261001_公平正義與羅爾斯正義論</h1>
+      <div class="meta">
+        <span>⏱️ 數位筆記儀表板</span>
+        <span>🏷️ 含可縮放互動心智圖、時間軸與觀念對比</span>
+      </div>
+    </header>
+    <div class="content-body">
+      
+      <div class="mindmap-box">
+        <div class="mindmap-header">
+          <div class="mindmap-title">
+            <span>🧠 本課核心知識脈絡（NotebookLM 原生互動心智圖 • 支援縮放與展開）</span>
+          </div>
+          <div class="mindmap-btns">
+            <button class="mm-btn" onclick="expandAll()">展開全部</button>
+            <button class="mm-btn" onclick="collapseAll()">收合分支</button>
+            <button class="mm-btn" onclick="resetZoom()">重設視角</button>
+          </div>
+        </div>
+        <div id="tree-svg-container"></div>
+      </div>
+        
+      <h2>📖 課堂主題與核心摘要 (Class Overview)</h2>
+<p>本堂課為高中公民「公平正義與人權保障」單元，重點探討「正義即公平」的核心學術定義、人性尊嚴與人權的深層關聯，以及社會從「形式平等」走向「實質平等」的演進脈絡。老師詳細檢視了歷史上法律對女性的不合理規定，並深入剖析羅爾斯（John Rawls）《正義論》中的兩大原則（包含三個條件順序）：平等自由原則、機會均等原則與差異原則。學習目標在於掌握如何透過「積極性差別待遇」（積極平權措施）保障處境不利成員，落實社會的實質正義。</p>
+<div class="mermaid">
+graph LR
+  Root["公平正義與人權保障"] --> A["正義與人權起源"]
+  Root --> B["平等的演進與反思"]
+  Root --> C["羅爾斯《正義論》"]
+
+  A --> A1["正義即公平 (Justice as Fairness)"]
+  A --> A2["人性尊嚴與自我實現"]
+
+  B --> B1["形式平等：相同者相同對待"]
+  B --> B2["實質平等：不同者不同對待"]
+  B --> B3["性別平權與歷史不平等修訂"]
+
+  C --> C1["第一原則：平等自由原則"]
+  C --> C2["第二原則(1)：機會均等原則"]
+  C --> C3["第二原則(2)：差異原則"]
+</div>
+<h2>💡 核心知識點與觀念詳解 (Key Concepts)</h2>
+<h3>1. 正義（Justice）的學術定義：正義即公平</h3>
+<ul>
+<li><strong>語境觀念修正</strong>：大眾文化或影視作品（如超級英雄打擊壞人）常將正義解讀為「賞善罰惡」，但公民學與學術上講述的 <strong>Justice</strong>，背後核心含義純粹為<strong>「公平」（Fairness）</strong>。</li>
+<li><strong>人權的開端</strong>：人權之所以產生，與公平息息相關。若不認識並承認個體之間的「差異」，就無法真正做到公平。</li>
+<li><strong>經典生活比喻與反思</strong>：</li>
+<li>大多數超級英雄（如超人拯救女友、蜘蛛人關心私事、復仇者聯盟進行復仇）本質上並非學術意義上的「公平」。</li>
+<li>動漫《我的英雄學院》中歐爾麥特「一人為我，我為人人」的概念，反而較接近公民學講述的社會公平。</li>
+</ul>
+<h3>2. 人性尊嚴（Human Dignity）與人權起源</h3>
+<ul>
+<li><strong>專有名詞定義</strong>：人性尊嚴是指<strong>「人可以決定自己的生活方式與人生方向，並得以自我實現」</strong>。這是人權概念出現的最根本核心。</li>
+<li><strong>歷史對比說明</strong>：早年人類缺乏人性尊嚴保障時，常被當作奴隸或寵物飼養（如無尊嚴地被以 500 元任意買賣、被強迫角鬥）。正因為人類內心萌生「不願被如此對待」的感受，才開啟了爭取人權與保障尊嚴的歷史演進。</li>
+</ul>
+<h3>3. 形式平等 vs. 實質平等</h3>
+<ul>
+<li><strong>形式平等（無差別對待）</strong>：「相同的給予相同對待」。例如：普通選舉原則（一人一票、票票等值）。</li>
+<li><em>邏輯盲點</em>：若僅強調相同對待，當遇到腳受傷的同學時，若堅持「大家都是人，一律只能走樓梯不能搭電梯」，反而會造成實質上的極度不公。因此「相同的給予相同對待」的反面邏輯必須是「不同的必須給予不同對待」。</li>
+<li><strong>實質平等（合理之差別對待）</strong>：「不同的給予不同對待」。例如：女性生理假、原住民保障名額等。</li>
+<li><em>歷史檢視（法律中舊有的性別不平等）</em>：過去法律常直接納入男尊女卑觀念（如父權優先原則、妻隨夫居、冠夫姓、離婚後孩子親權強制歸夫、婦女離婚後三個月內禁止再婚等）。現代法律已全面修訂，朝向實質平權邁進。</li>
+</ul>
+<h3>4. 羅爾斯（John Rawls）《正義論》與積極性差別待遇</h3>
+<p>羅爾斯的《正義論》（A Theory of Justice）是本章節最核心的考點。他提出了落實積極性差別待遇的<strong>「兩大原則、三個條件順序」</strong>：</p>
+<p>【⏱️ 羅爾斯正義原則之操作順序流程圖】：</p>
+<div class="mermaid">
+graph TD
+  Start["評估社會政策與資源分配"] --> Step1{"是否保障所有人的基本自由權利？<br>(第一原則：平等自由原則)"}
+  Step1 -- 否 --> Fail1["不符合正義（侵害基本人權）"]
+  Step1 -- 是 --> Step2{"權利是否能實質行使且管道開放？<br>(第二原則之1：機會均等原則)"}
+  Step2 -- 否 --> Fail2["不符合正義（看得到吃不到）"]
+  Step2 -- 是 --> Step3{"是否讓處境最不利的成員獲得最大利益？<br>(第二原則之2：差異原則)"}
+  Step3 -- 是 --> Pass["落實積極性差別待遇與實質正義"]
+  Step3 -- 否 --> Fail3["需調整資源分配機制"]
+</div>
+<ul>
+<li><strong>第一順序｜平等自由原則（Equality of Liberty Principle）</strong>：每個人都擁有平等的基本自由與人權（類似形式平等、人皆有權）。</li>
+<li><strong>第二順序(1)｜機會均等原則（Equal Opportunity Principle）</strong>：確保每個人的權利能真正實行與被保障，避免「看得到吃不到」。</li>
+<li><strong>第二順序(2)｜差異原則（Difference Principle）</strong>：允許社會存在不平等，但資源分配必須使<strong>「處境最不利的成員獲得最大的利益」</strong>。</li>
+</ul>
+<p>【經典生活例題與比喻拆解】：<br />
+- <strong>「搶貓罐頭」比喻</strong>：<br />
+  1. <em>平等自由原則</em>：擺一個罐頭在地上，每隻貓都可以來吃（人皆有權）。<br />
+  2. <em>機會均等原則</em>：若大貓試圖咬死或排擠小貓獨佔食物，必須給予安全保障與機制，確保每隻貓都有實質吃到食物的權利（防止權利無法行使）。<br />
+  3. <em>差異原則</em>：場上有一隻特別瘦弱殘疾的小貓，即使分到一樣多的食物依然孱弱。因此必須給予特別補充與照顧，讓處境最不利者得到最大利益。<br />
+- <strong>「大學入學與社會政策」實例</strong>：<br />
+  * 清華大學「旭日組」招生管道：專門招收經濟或環境處境不利的學生，即為「差異原則」的具體實踐。<br />
+  * 原住民文化保障：反思傳統假期皆以漢人文化為主，若要落實積極平權，應思考給予原住民歲時祭儀（如豐年祭、莫那魯道紀念日）等特別假期的必要性。</p>
+<p>【📊 觀念與易混淆對比表】：<br />
+| 對比維度 | 形式平等 (Formal Equality) | 實質平等 (Substantive Equality) / 積極性差別待遇 |<br />
+| :--- | :--- | :--- |<br />
+| <strong>核心概念</strong> | 相同的給予相同對待（無差別對待） | 不同的給予不同對待（合理之差別對待） |<br />
+| <strong>出發點</strong> | 忽視個體背景與條件差異 | 承認個體處境、歷史與環境之不平等 |<br />
+| <strong>代表原則</strong> | 一人一票、基本自由權利保障 | 差異原則、機會均等原則 |<br />
+| <strong>典型例證</strong> | 一般高中生的基本報考資格 | 清大旭日組、原住民保障名額、女性生理假 |<br />
+| <strong>潛在盲點</strong> | 易造成強者恆強，弱者「看得到吃不到」 | 須妥善劃定界線，避免引發反向歧視疑慮 |</p>
+<h2>⚠️️ 老師強調考點與易錯陷阱 (Exam Focus &amp; Pitfalls)</h2>
+<ul>
+<li><strong>考點 1：正義的學術定義</strong>：選擇題看到「正義」，切勿選「賞善罰惡」或「打擊壞人」，請務必直接替換為<strong>「公平」</strong>。</li>
+<li><strong>考點 2：羅爾斯兩原則的三條件順序（星號必考）</strong>：</li>
+<li>順序絕不可顛倒：<strong>平等自由原則 ➔ 機會均等原則 ➔ 差異原則</strong>。</li>
+<li>考試常在「機會均等」與「差異原則」的順序上出誘導選項。</li>
+<li><strong>常見易錯陷阱</strong>：</li>
+<li>誤以為「實質平等」就是無條件給予優待。事實上必須先滿足平等自由與機會均等後，才能進入「差異原則」（針對處境最不利者進行極大化補充）。</li>
+<li>誤以為「相同的給予相同對待」就是完美的平等，忽視了「不同的給予不同對待」的反面邏輯思考。</li>
+</ul>
+<h2>🔑 記憶口訣與解題技巧 (Mnemonics &amp; Shortcuts)</h2>
+<ul>
+<li><strong>羅爾斯正義三階破題 SOP</strong>：<br />
+  1. <strong>一查自由</strong>：是否人人具備基本權利？（平等自由原則）<br />
+  2. <strong>二查管道</strong>：權利是否被強者壟斷或無法行使？（機會均等原則）<br />
+  3. <strong>三查弱勢</strong>：是否對最不利的成員給予最大利益？（差異原則）</li>
+<li><strong>速記口訣</strong>：「<strong>等 ➔ 機 ➔ 差</strong>」（平等自由 ➔ 機會均等 ➔ 差異原則）。</li>
+<li><strong>觀念小結</strong>：學習公民概念需具備「反向思考」能力（如課堂冷笑話暗示的逆向邏輯），看到法律條文時要主動思考其反面情況與適用邊界。</li>
+</ul>
+<h2>📝 課後作業與待辦事項 (Homework &amp; Tasks)</h2>
+<ul>
+<li><strong>課堂交代</strong>：無特定作業（請學生課後務必複習課本第 51-52 頁羅爾斯理論與圖表，並預習後續社會安全制度章節）。</li>
+</ul>
+<hr />
+<h2>📚 專有名詞與重要公式/定義 (Glossary &amp; Formulas)</h2>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+<h2>🧠 課後自測題 (Quick Review Quiz)</h2>
+<p><strong>第一題</strong>：某大學針對偏遠地區及經濟弱勢學生設立「特殊選才專案」保障名額，請問這符合羅爾斯正義論中的哪一原則？</p>
+<blockquote>
+<p><strong>解題思維與答案</strong>：符合「差異原則」。因為該政策針對社會中「處境最不利的成員」（經濟或環境弱勢學生），透過給予特別入學管道與名額，使其獲得相對有利的升學機會。</p>
+</blockquote>
+<p><strong>第二題</strong>：若某政府規定「所有人不分男女身體狀況，皆必須強制服兵役兩年」，這屬於「形式平等」還是「實質平等」？會有何盲點？</p>
+<blockquote>
+<p><strong>解題思維與答案</strong>：屬於「形式平等」（相同的給予相同對待）。盲點在於忽視了個體生理條件差異與特殊處境，強求絕對一致的對待方式，反而可能導致實質上的不公正。</p>
+</blockquote>
+<hr />
+<p>💡 筆記整理完畢！是否需要為你製作這份課堂筆記的測驗題庫、閃卡，或是針對「羅爾斯正義論」進行更深入的考題解析？</p>
+    </div>
+    <footer class="doc-foot">
+      自動生成於 NotebookLM Study Assistant • 專為高中學生課後複習與考前衝刺打造
+    </footer>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.mermaid) {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'neutral',
+          fontFamily: "'Noto Sans TC', 'Inter', sans-serif",
+          flowchart: { curve: 'basis', htmlLabels: true },
+          securityLevel: 'loose'
+        });
+      }
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+  
+  <script>
+    (function() {
+      const treeData = {"name": "公平正義與人權保障", "children": [{"name": "平等的演進與反思", "children": [{"name": "形式平等：相同者相同對待"}, {"name": "實質平等：不同者不同對待"}, {"name": "性別平權與歷史不平等修訂"}]}, {"name": "羅爾斯《正義論》", "children": [{"name": "第一原則：平等自由原則"}, {"name": "第二原則(1)：機會均等原則"}, {"name": "第二原則(2)：差異原則"}]}]};
+      const container = document.getElementById("tree-svg-container");
+      if (!container || !treeData) return;
+
+      const width = container.clientWidth || 880;
+      const height = 520;
+
+      const svg = d3.select("#tree-svg-container")
+        .append("svg")
+        .attr("width", "100%")
+        .attr("height", height)
+        .attr("viewBox", [0, 0, width, height]);
+
+      const g = svg.append("g");
+
+      const zoom = d3.zoom()
+        .scaleExtent([0.25, 2.5])
+        .on("zoom", (e) => g.attr("transform", e.transform));
+
+      svg.call(zoom);
+
+      const root = d3.hierarchy(treeData);
+      root.x0 = height / 2;
+      root.y0 = 0;
+
+      let i = 0;
+      const duration = 380;
+      // [dy, dx]: 垂直節距 58px (確保上下不重疊), 水平層級 320px (確保長文字不穿透父層)
+      const treeLayout = d3.tree().nodeSize([58, 320]);
+
+      function splitNodeText(text, maxChars) {
+        if (!text) return [""];
+        if (text.length <= maxChars) return [text];
+
+        // 優先在括號處斷行，例如：世風日下之自身矛盾對比（擇師教子 vs. 於身恥師）
+        const parenIdx = text.search(/[（(]/);
+        if (parenIdx >= 3 && parenIdx <= maxChars + 4) {
+          const p1 = text.slice(0, parenIdx).trim();
+          const p2 = text.slice(parenIdx).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 優先在冒號、破折號、頓號處斷行
+        const sepIdx = text.search(/[：:—、]/);
+        if (sepIdx >= 3 && sepIdx <= maxChars + 2) {
+          const p1 = text.slice(0, sepIdx + 1).trim();
+          const p2 = text.slice(sepIdx + 1).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 預設在 maxChars 處均勻斷行
+        return [text.slice(0, maxChars), text.slice(maxChars)];
+      }
+
+      if (root.children) {
+        root.children.forEach(c => {
+          if (c.children) {
+            c.children.forEach(collapse);
+          }
+        });
+      }
+
+      function collapse(d) {
+        if (d.children) {
+          d._children = d.children;
+          d._children.forEach(collapse);
+          d.children = null;
+        }
+      }
+
+      function expand(d) {
+        if (d._children) {
+          d.children = d._children;
+          d.children.forEach(expand);
+          d._children = null;
+        }
+      }
+
+      const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
+
+      function getNodeColor(d) {
+        if (d.depth === 0) return "#2563eb";
+        let p = d;
+        while (p.depth > 1) p = p.parent;
+        return colorScale(p.data.name);
+      }
+
+      function update(source) {
+        const nodes = root.descendants();
+        const links = root.links();
+
+        treeLayout(root);
+
+        const node = g.selectAll("g.node")
+          .data(nodes, d => d.id || (d.id = ++i));
+
+        const nodeEnter = node.enter().append("g")
+          .attr("class", "node")
+          .attr("transform", d => `translate(${source.y0},${source.x0})`)
+          .on("click", (event, d) => {
+            if (d.children) {
+              d._children = d.children;
+              d.children = null;
+            } else if (d._children) {
+              d.children = d._children;
+              d._children = null;
+            }
+            update(d);
+          });
+
+        nodeEnter.append("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        const textNode = nodeEnter.append("text")
+          .attr("class", "node-text")
+          .attr("text-anchor", d => (d.children || d._children) ? "end" : "start")
+          .style("fill-opacity", 0);
+
+        textNode.each(function(d) {
+          const el = d3.select(this);
+          const isParent = Boolean(d.children || d._children);
+          const xOffset = isParent ? -14 : 14;
+          const maxChars = isParent ? 13 : 18;
+          const lines = splitNodeText(d.data.name, maxChars);
+
+          if (lines.length === 1) {
+            el.attr("x", xOffset)
+              .attr("dy", "0.32em")
+              .text(lines[0]);
+          } else {
+            el.attr("x", xOffset)
+              .attr("dy", "-0.35em")
+              .text(lines[0]);
+            el.append("tspan")
+              .attr("x", xOffset)
+              .attr("dy", "1.25em")
+              .text(lines[1]);
+          }
+        });
+
+        const nodeUpdate = node.merge(nodeEnter).transition().duration(duration)
+          .attr("transform", d => `translate(${d.y},${d.x})`);
+
+        nodeUpdate.select("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        nodeUpdate.select("text")
+          .style("fill-opacity", 1);
+
+        const nodeExit = node.exit().transition().duration(duration)
+          .attr("transform", d => `translate(${source.y},${source.x})`)
+          .remove();
+
+        nodeExit.select("circle").attr("r", 1e-6);
+        nodeExit.select("text").style("fill-opacity", 1e-6);
+
+        const link = g.selectAll("path.link")
+          .data(links, d => d.target.id);
+
+        const linkEnter = link.enter().insert("path", "g")
+          .attr("class", "link")
+          .attr("d", d => {
+            const o = {x: source.x0, y: source.y0};
+            return diagonal(o, o);
+          });
+
+        link.merge(linkEnter).transition().duration(duration)
+          .attr("d", d => diagonal(d.source, d.target));
+
+        link.exit().transition().duration(duration)
+          .attr("d", d => {
+            const o = {x: source.x, y: source.y};
+            return diagonal(o, o);
+          })
+          .remove();
+
+        nodes.forEach(d => {
+          d.x0 = d.x;
+          d.y0 = d.y;
+        });
+      }
+
+      function diagonal(s, d) {
+        return `M ${s.y} ${s.x}
+                C ${(s.y + d.y) / 2} ${s.x},
+                  ${(s.y + d.y) / 2} ${d.x},
+                  ${d.y} ${d.x}`;
+      }
+
+      function autoFitTree(duration = 450) {
+        const nodes = root.descendants();
+        if (!nodes || nodes.length === 0) return;
+
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        nodes.forEach(d => {
+          const isParent = Boolean(d.children || d._children);
+          const leftBound = d.y - (isParent ? 180 : 20);
+          const rightBound = d.y + (isParent ? 20 : 220);
+          const topBound = d.x - 32;
+          const bottomBound = d.x + 32;
+
+          if (leftBound < minX) minX = leftBound;
+          if (rightBound > maxX) maxX = rightBound;
+          if (topBound < minY) minY = topBound;
+          if (bottomBound > maxY) maxY = bottomBound;
+        });
+
+        const fullWidth = container.clientWidth || 880;
+        const fullHeight = height;
+        const treeW = maxX - minX;
+        const treeH = maxY - minY;
+
+        if (treeW <= 0 || treeH <= 0) return;
+
+        const scale = Math.min(0.92, (fullWidth * 0.90) / treeW, (fullHeight * 0.90) / treeH);
+        const clampedScale = Math.max(scale, 0.42);
+
+        const midTreeX = (minX + maxX) / 2;
+        const midTreeY = (minY + maxY) / 2;
+        const tx = fullWidth / 2 - clampedScale * midTreeX;
+        const ty = fullHeight / 2 - clampedScale * midTreeY;
+
+        if (duration > 0) {
+          svg.transition().duration(duration).call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        } else {
+          svg.call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        }
+      }
+
+      window.expandAll = function() {
+        root.each(expand);
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.collapseAll = function() {
+        if (root.children) {
+          root.children.forEach(collapse);
+        }
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.resetZoom = function() {
+        autoFitTree(450);
+      };
+
+      // 首次繪製節點並自動縮放置中全覽
+      update(root);
+      autoFitTree(0);
+    })();
+  </script>
+
+</body>
+</html>

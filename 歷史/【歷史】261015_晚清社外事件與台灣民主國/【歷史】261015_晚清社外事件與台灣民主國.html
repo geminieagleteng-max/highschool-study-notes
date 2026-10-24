@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【歷史】261015_晚清社外事件與台灣民主國</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --border: #e2e8f0;
+      --border-focus: #cbd5e1;
+      --tag-bg: #e0f2fe;
+      --tag-text: #0369a1;
+      --header-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans TC', 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.8;
+      font-size: 16px;
+      padding: 30px 16px 60px;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.06), 0 2px 6px -1px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    header.hero {
+      background: var(--header-gradient);
+      color: #ffffff;
+      padding: 36px 40px 30px;
+      position: relative;
+    }
+    header.hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      color: #f1f5f9;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    header.hero h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.5px;
+    }
+    header.hero .meta {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .content-body {
+      padding: 40px 48px;
+    }
+    @media (max-width: 640px) {
+      .content-body { padding: 24px 20px; }
+      header.hero { padding: 28px 24px 22px; }
+      header.hero h1 { font-size: 1.5rem; }
+    }
+    h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 2.2em;
+      margin-bottom: 0.9em;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h2:first-of-type { margin-top: 0.5em; }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1e3a8a;
+      margin-top: 1.6em;
+      margin-bottom: 0.6em;
+      padding-left: 10px;
+      border-left: 4px solid var(--accent);
+    }
+    p { margin-bottom: 1.1em; }
+    ul, ol { margin-bottom: 1.2em; padding-left: 1.8em; }
+    li { margin-bottom: 0.4em; }
+    .mermaid {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 16px;
+      margin: 1.6em 0;
+      text-align: center;
+      overflow-x: auto;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 1.6em 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    thead th {
+      background: #f1f5f9;
+      color: #1e293b;
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+    tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) { background: #fafafa; }
+    tbody tr:hover { background: #f0f7ff; }
+    tbody tr:last-child td { border-bottom: none; }
+    code {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      background: #f1f5f9;
+      color: #b91c1c;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 1.4em 0;
+      font-size: 0.92em;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; }
+    blockquote {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 14px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 1.4em 0;
+      color: #1e40af;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2.2em 0; }
+    .katex-display {
+      margin: 1.2em 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 6px 0;
+    }
+    .katex { font-size: 1.05em; }
+    
+    /* NotebookLM 原生 D3 互動心智圖樣式 */
+    .mindmap-box {
+      margin: 2em 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .mindmap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .mindmap-title {
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mindmap-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .mm-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: #334155;
+      transition: all 0.2s;
+    }
+    .mm-btn:hover { background: #f1f5f9; }
+    #tree-svg-container {
+      width: 100%;
+      height: 520px;
+      background: #ffffff;
+      cursor: grab;
+    }
+    #tree-svg-container:active { cursor: grabbing; }
+    .node circle {
+      cursor: pointer;
+      stroke-width: 2.5px;
+      transition: all 0.2s;
+    }
+    .node circle:hover { transform: scale(1.25); }
+    .node text {
+      font-size: 13px;
+      font-weight: 500;
+      font-family: inherit;
+      fill: #1e293b;
+      cursor: pointer;
+      paint-order: stroke fill;
+      stroke: #ffffff;
+      stroke-width: 4.5px;
+      stroke-linejoin: round;
+      user-select: none;
+    }
+    .link {
+      fill: none;
+      stroke: #cbd5e1;
+      stroke-width: 1.8px;
+      stroke-opacity: 0.85;
+      transition: stroke-width 0.2s;
+    }
+    .link:hover { stroke: #94a3b8; stroke-width: 2.5px; }
+
+    footer.doc-foot {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      background: #fcfdfe;
+    }
+    .print-btn {
+      position: absolute;
+      top: 36px;
+      right: 40px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .print-btn:hover { background: rgba(255,255,255,0.25); }
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      body {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+      }
+      .container {
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+      }
+      .print-btn, .mindmap-btns {
+        display: none !important;
+      }
+      header.hero {
+        background: var(--header-gradient) !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+        padding: 24px 30px !important;
+        margin-bottom: 20px !important;
+      }
+      header.hero h1 {
+        color: #ffffff !important;
+        font-size: 1.6rem !important;
+      }
+      header.hero .badge {
+        background: rgba(255,255,255,0.2) !important;
+        color: #ffffff !important;
+      }
+      header.hero .meta {
+        color: #cbd5e1 !important;
+      }
+      .content-body {
+        padding: 10px 0 !important;
+      }
+      h1, h2, h3, h4, table, tr, pre, .mermaid, .mindmap-box, blockquote {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      h2, h3 {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <div class="badge">📖 高中課堂互動圖文筆記</div>
+      <button class="print-btn" onclick="window.print()">🖨️ 列印 / 另存 PDF</button>
+      <h1>【歷史】261015_晚清社外事件與台灣民主國</h1>
+      <div class="meta">
+        <span>⏱️ 數位筆記儀表板</span>
+        <span>🏷️ 含可縮放互動心智圖、時間軸與觀念對比</span>
+      </div>
+    </header>
+    <div class="content-body">
+      
+      <div class="mindmap-box">
+        <div class="mindmap-header">
+          <div class="mindmap-title">
+            <span>🧠 本課核心知識脈絡（NotebookLM 原生互動心智圖 • 支援縮放與展開）</span>
+          </div>
+          <div class="mindmap-btns">
+            <button class="mm-btn" onclick="expandAll()">展開全部</button>
+            <button class="mm-btn" onclick="collapseAll()">收合分支</button>
+            <button class="mm-btn" onclick="resetZoom()">重設視角</button>
+          </div>
+        </div>
+        <div id="tree-svg-container"></div>
+      </div>
+        
+      <h2>📖 課堂主題與核心摘要 (Class Overview)</h2>
+<p>本堂課為高中台灣史重點複習，核心圍繞於 <strong>19世紀中後期晚清台灣的「涉外事件」</strong>、<strong>「行政區劃演變脈絡」</strong> 以及 <strong>「甲午戰爭與台灣民主國的興亡」</strong>。課程詳細剖析了自1860年開港通商後，台灣如何從早期的「因民變而調整行政區」轉變為「因涉外事件而積極治台並改劃政區」；同時深入解構清法戰爭中的「西仔反」、甲午海戰內幕、馬關條約乙未割台，以及台灣民主國領導層的抗日與離台過程。本課關鍵目標在於建立「歷史事件—政區變革—官員治台」的一對一連結，並掌握乙未抗日爆發的國際政治背景與歷史細節。</p>
+<div class="mermaid">
+graph LR
+  Root["晚清台灣涉外事件與政區演變"] --> A["1. 晚清主要涉外事件"]
+  Root --> B["2. 清領行政區劃演變"]
+  Root --> C["3. 甲午戰爭與台灣民主國"]
+
+  A --> A1["羅妹號事件 (1867 / 美國 / 番地主權)"]
+  A --> A2["樟腦事件 (1868 / 英國 / 貿易紛爭)"]
+  A --> A3["牡丹社事件 (1871-1874 / 日本 / 沈葆楨治台)"]
+  A --> A4["清法戰爭/西仔反 (1884-1885 / 法國 / 劉銘傳建省)"]
+
+  B --> B1["演變規律：早期因民變，後期因涉外"]
+  B --> B2["一府三縣 ➔ 四縣二廳 ➔ 四縣三廳"]
+  B --> B3["二府八縣四廳 ➔ 三府十一縣一直隸州"]
+
+  C --> C1["甲午戰爭 (1894) 與黃海海戰內幕"]
+  C --> C2["馬關條約 (1895) 與乙未割台"]
+  C --> C3["台灣民主國 (唐景崧、丘逢甲、劉永福)"]
+  C --> C4["避免屠城之關鍵人物 (辜顯榮、巴克禮)"]
+</div>
+<hr />
+<h2>💡 核心知識點與觀念詳解 (Key Concepts)</h2>
+<h3>1. 晚清主要涉外事件及其歷史影響</h3>
+<p>自 \(1860\) 年英法聯軍簽訂《天津條約》開港通商（開放雞籠、淡水、安平、打狗四港，口訣：「極大安打」）後，台灣正式納入國際資本主義市場，隨之引發一系列重大涉外衝突：</p>
+<ul>
+<li><strong>羅妹號事件 (\(1867\) 年)</strong>：美國商船羅妹號於恆春半島船難，船員登陸後遭原住民（排灣族）擊殺。美方派兵懲戒並與清廷交涉，清廷以「番地原住民非服化之民」推卸責任。美領事李仙得（Charles Le Gendre）隨後直接與琅𪹆十八社總頭目卓杞篤締結《南岬之盟》。此事件凸顯了清廷對台灣東部與原住民領域的管轄漏洞。</li>
+<li><strong>樟腦事件 (\(1868\) 年)</strong>：英國商人在安平因樟腦專賣權與官府發生衝突，加上公文傳遞時間差引發軍事對抗，最終清廷被迫廢除樟腦專賣制度，允許外商自由採購。</li>
+<li><strong>牡丹社事件 (\(1871-1874\) 年)</strong>：琉球漁民漂流至八瑤灣遭原住民殺害，日本藉口保護「日本藩屬琉球國民」於 \(1874\) 年出兵攻打牡丹社。事後清廷賠款，且在公文文書中承認日軍行為係「保民義舉」，間接導致琉球被日本吞併。此事件重創清廷，促使清政府轉為<strong>積極治台</strong>，派欽差大臣<strong>沈葆楨</strong>來台辦理海防。</li>
+<li><strong>清法戰爭／西仔反 (\(1884-1885\) 年)</strong>：</li>
+<li><strong>起因</strong>：因越南宗主權問題，清朝與法國爆發戰爭。法軍在陸戰難以擊敗清軍，遂轉向中國沿海及台灣實施海上封鎖與進攻。</li>
+<li><strong>台灣戰況</strong>：清廷派<strong>劉銘傳</strong>來台督戰。劉銘傳運用自強運動經費建構防線。法軍假借「基隆採煤礦」為由發動進攻，劉銘傳於基隆<strong>獅球嶺</strong>設防守備。法軍隨後轉攻淡水，但因淡水港口與沼澤地形限制，法軍無法深入內陸。台灣民間稱法軍為「西仔」，故此役在台灣歷史上稱為<strong>「西仔反」</strong>。</li>
+<li><strong>澎湖轉折與孤拔將軍之死</strong>：法軍久攻淡水不下，轉而佔領澎湖。劉銘傳派兵追擊，法軍突宣告停戰議和。主因為法軍統帥<strong>孤拔將軍（Admiral Courbet）</strong> 感染台灣當地嚴重流行病（瘧疾/登革熱等高燒病毒），發病三日即告陣亡，法軍戰意全失。</li>
+<li><strong>結果</strong>：\(1885\) 年簽約後，越南成為法國殖民地；清廷深刻體認台灣海防重要性，於 \(1885\) 年正式宣布<strong>台灣建省</strong>，由劉銘傳擔任首任巡撫。</li>
+</ul>
+<hr />
+<h3>2. 清領時期台灣行政區劃演變脈絡</h3>
+<p>台灣行政區劃的調整存在非常明確的歷史規律：<strong>「早期因應內部民變而增設，後期因應外部涉外事件而調整」</strong>。</p>
+<div class="mermaid">
+graph TD
+  M1["1684 康熙：一府三縣<br/>(臺灣府、諸羅、臺灣、鳳山)"] -->|朱一貴事件 (1721)| M2["1723 雍正：四縣二廳<br/>(+彰化縣、淡水廳；+澎湖廳)"]
+  M2 -->|吳沙開墾+蔡牽事件| M3["1812 嘉慶：四縣三廳<br/>(+噶瑪蘭廳；林爽文事件後諸羅改嘉義)"]
+  M3 -->|牡丹社事件 (沈葆楨)| M4["1875 光緒：二府八縣四廳<br/>(+臺北府、恆春縣；廢番界設卑南廳)"]
+  M4 -->|清法戰爭 (劉銘傳建省)| M5["1885 光緒：三府十一縣一直隸州四廳<br/>(+臺南府；+臺東直隸州)"]
+</div>
+<h4>各階段詳細說明與歷史背景：</h4>
+<ol>
+<li><strong>一府三縣 (\(1684\) 年，康熙)</strong>：施琅攻台後設立。<br />
+   * <strong>一府</strong>：臺灣府（位於今臺南）。<br />
+   * <strong>三縣</strong>：諸羅縣、臺灣縣、鳳山縣（口訣：「朱台鳳」）。其中「諸羅」意指承天府以北「諸多羅列」之意。</li>
+<li><strong>四縣二廳 (\(1723\) 年，雍正)</strong>：<br />
+   * <strong>背景</strong>：\(1721\) 年爆發<strong>朱一貴事件</strong>。<br />
+   * <strong>變革</strong>：將廣大的諸羅縣拆分，增設<strong>彰化縣</strong>與<strong>淡水廳</strong>（口訣：「彰淡」）。<br />
+   * <strong>特別考點</strong>：增設<strong>澎湖廳</strong>。原因在於朱一貴事件爆發時，多數清廷官員不戰而逃，直接跑回澎湖準備搭船逃回中國。雍正皇帝大怒，為防止官員日後逃亡並加強海防，正式設澎湖廳。</li>
+<li><strong>四縣三廳 (\(1812\) 年，嘉慶)</strong>：<br />
+   * <strong>背景</strong>：吳沙越界開發宜蘭，加上海盜<strong>蔡牽</strong>騷擾沿海，地方士紳請願就地合法與設官治理。<br />
+   * <strong>變革</strong>：增設<strong>噶瑪蘭廳</strong>（今宜蘭）。<br />
+   * <strong>地名變更</strong>：此前因 \(1786\) 年發生<strong>林爽文事件</strong>，諸羅地方居民協助朝廷平亂，清廷為褒揚「嘉許義民」，將<strong>諸羅縣改名為嘉義縣</strong>。</li>
+<li><strong>二府八縣四廳 (\(1875\) 年，光緒)</strong>：<br />
+   * <strong>背景</strong>：<strong>牡丹社事件</strong>後，<strong>沈葆楨</strong>來台辦理海防並廢除「南路/北路番界」。<br />
+   * <strong>變革</strong>：北台灣經濟崛起，增設<strong>臺北府</strong>；南部增設<strong>恆春縣</strong>；東部開山撫番，增設<strong>卑南廳</strong>。</li>
+<li><strong>三府十一縣一直隸州四廳 (\(1885-1887\) 年，光緒)</strong>：<br />
+   * <strong>背景</strong>：<strong>清法戰爭</strong>後，<strong>劉銘傳</strong>推動台灣建省。<br />
+   * <strong>變革</strong>：重劃行政區為三府（臺北府、臺灣府改為中部、增設<strong>臺南府</strong>）。<br />
+   * <strong>特別考點</strong>：將原卑南廳升格改設為<strong>臺東直隸州</strong>。</li>
+</ol>
+<hr />
+<h3>3. 甲午戰爭與台灣民主國的興亡 (\(1894-1895\) 年)</h3>
+<h4>(1) 甲午戰爭與黃海海戰內幕 (\(1894\) 年)</h4>
+<ul>
+<li><strong>導火線</strong>：朝鮮半島爆發「東學黨之亂」，朝鮮內部兩派（親中派與親日開化黨/閔妃）分別向清朝與日本求援。中日雙方平定東學黨後，清軍按約撤兵，日軍卻持續增兵。</li>
+<li><strong>宣戰關鍵</strong>：日軍開砲擊沉清朝談判運兵船，擊斃清廷談判大使。在國際外交慣例中，<strong>直接殺害對方談判使節即等同於宣戰</strong>。</li>
+<li><strong>黃海海戰慘敗原因</strong>：</li>
+<li>清朝花費 \(3000\) 萬兩白銀打造的「北洋艦隊」（德製、五艘大艦、世界排名第三、配備近 \(800\) 門大砲）。</li>
+<li>日本海軍僅有 \(40\) 艘小型砲艇（世界排名第二十一）。</li>
+<li>海戰爆發時，北洋艦隊開砲後砲彈竟無法炸沉日艦。事後發現，因<strong>慈禧太后過 \(60\) 歲大壽</strong>，將購置彈藥的軍費「借用/挪用」去修築頤和園花園，導致北洋艦隊砲彈內部被填充大量<strong>泥沙</strong>。最終日本憑藉靈活戰術與實彈，將北洋艦隊全數擊沉。</li>
+</ul>
+<h4>(2) 馬關條約與乙未割台 (\(1895\) 年)</h4>
+<ul>
+<li>\(1895\) 年（農曆乙未年），李鴻章與伊藤博文簽訂《馬關條約》，清廷割讓台灣、澎湖與遼東半島給日本。</li>
+<li><strong>三國干涉還遼與台灣的聯想</strong>：俄、德、法三國因自身利益出面干涉，清廷最終以 \(3000\) 萬兩白銀贖回遼東半島。台灣士紳見狀，認為若尋求西方列強介入，亦有機會保留台灣。台灣士紳甚至提出願以「三萬擔樟腦」作為交換誘因要求英法干預，但遭列強拒絕。</li>
+</ul>
+<h4>(3) 台灣民主國的成立與潰敗</h4>
+<p>為抵抗日本接收，台灣士紳援引國際法宣告獨立，於 \(1895\) 年 \(5\) 月成立<strong>「台灣民主國」</strong>：<br />
+* <strong>國號與立場</strong>：年號「永清」，宣告「恭奉正朔」，名義上獨立，實質上仍奉清朝為宗主國。<br />
+* <strong>核心領導人物與結果</strong>：<br />
+  1. <strong>唐景崧（總統）</strong>：原台灣巡撫。日軍自宜蘭<strong>澳底</strong>登陸後，台灣武裝（大刀、鐮刀、竹竿）不敵日軍大砲機關槍。唐景崧僅抵抗 <strong>\(10\) 天</strong> 即化裝逃回中國，被戲稱為「十日總統」。<br />
+  2. <strong>丘逢甲（副總統/國防部長）</strong>：台中士紳（今逢甲大學、逢甲夜市即紀念此人）。戰局不利後亦迅速離台。<br />
+  3. <strong>劉永福（大將軍）</strong>：駐守台南。北軍潰敗後，劉永福宣稱絕不撤退，但日軍攻破台南城門後，劉永福與僕人分別<strong>扮成「老太太與小孫子」</strong>，於安平港搭乘德國商船逃往廈門（官方稱此逃亡行為為「內部內渡」）。</p>
+<h4>(4) 避免台北與台南屠城之關鍵人物</h4>
+<ul>
+<li><strong>台北開城</strong>：台北城潰兵騷擾百姓，富商<strong>辜顯榮</strong>（今中信集團辜家祖先）主動開啟台北城門引日軍入城維持秩序，避免了血洗台北。</li>
+<li><strong>台南和平入城</strong>：長老教會傳教士<strong>巴克禮（Thomas Barclay）</strong> 受台南紳商所託，親自出城與日軍交涉談判，引日軍和平入城，成功保全台南市民性命。</li>
+</ul>
+<hr />
+<h3>📊 觀念與易混淆對比表</h3>
+<h4>【對比表一】：清領時期行政區劃關鍵指標與人物對照</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">行政區劃階段</th>
+<th style="text-align: left;">歷史觸發事件</th>
+<th style="text-align: left;">核心新增行政區</th>
+<th style="text-align: left;">關鍵代表人物 / 辨識考點</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>一府三縣</strong> (\(1684\))</td>
+<td style="text-align: left;">施琅攻台，納入版圖</td>
+<td style="text-align: left;">臺灣府、諸羅縣、臺灣縣、鳳山縣</td>
+<td style="text-align: left;">康熙皇帝；「諸羅」意為諸多羅列</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>四縣二廳</strong> (\(1723\))</td>
+<td style="text-align: left;">朱一貴事件 (\(1721\))</td>
+<td style="text-align: left;">增設<strong>彰化縣</strong>、<strong>淡水廳</strong>、<strong>澎湖廳</strong></td>
+<td style="text-align: left;">雍正皇帝；設澎湖廳係防官員逃跑</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>四縣三廳</strong> (\(1812\))</td>
+<td style="text-align: left;">吳沙開墾、蔡牽事件、林爽文事件</td>
+<td style="text-align: left;">增設<strong>噶瑪蘭廳</strong>；諸羅改名<strong>嘉義縣</strong></td>
+<td style="text-align: left;">嘉義改名意為「嘉許義民」</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>二府八縣四廳</strong> (\(1875\))</td>
+<td style="text-align: left;">牡丹社事件 (\(1874\))</td>
+<td style="text-align: left;">增設<strong>臺北府</strong>、恆春縣、<strong>卑南廳</strong></td>
+<td style="text-align: left;"><strong>沈葆楨</strong>（廢除番界、積極治台）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>三府十一縣一直隸州</strong> (\(1885\))</td>
+<td style="text-align: left;">清法戰爭 (\(1884\))</td>
+<td style="text-align: left;">增設臺南府、<strong>臺東直隸州</strong></td>
+<td style="text-align: left;"><strong>劉銘傳</strong>（台灣建省、自強運動）</td>
+</tr>
+</tbody>
+</table>
+<h4>【對比表二】：晚清涉外事件與台灣民主國人物對照</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">事件 / 人物</th>
+<th style="text-align: left;">主要涉案國家 / 身份</th>
+<th style="text-align: left;">歷史核心影響與典故</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>羅妹號事件</strong></td>
+<td style="text-align: left;">美國</td>
+<td style="text-align: left;">引起番地主權爭議；李仙得與卓杞篤簽訂《南岬之盟》</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>清法戰爭 (西仔反)</strong></td>
+<td style="text-align: left;">法國</td>
+<td style="text-align: left;">獅球嶺與淡水之役；孤拔將軍病逝；直接促成台灣建省 (\(1885\))</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>唐景崧</strong></td>
+<td style="text-align: left;">台灣民主國總統</td>
+<td style="text-align: left;">原台灣巡撫；僅抵抗 \(10\) 天即離台，俗稱「十日總統」</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>劉永福</strong></td>
+<td style="text-align: left;">台灣民主國大將軍</td>
+<td style="text-align: left;">駐守台南；敗退時扮成「老太太」搭乘德國商船離台</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>辜顯榮</strong></td>
+<td style="text-align: left;">台北富商</td>
+<td style="text-align: left;">開台北城門迎日軍入城維安（今中信辜家祖先）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>巴克禮</strong></td>
+<td style="text-align: left;">長老教會傳教士</td>
+<td style="text-align: left;">代表台南紳商與日軍談判，促成台南和平入城</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>⚠️ 老師強調考點與易錯陷阱 (Exam Focus &amp; Pitfalls)</h2>
+<ol>
+<li>
+<p><strong>歷史地圖題型的關鍵速記指標（極高頻考點）</strong>：<br />
+   * 題目地圖中若出現 <strong>「卑南廳」</strong> \(\rightarrow\) 必為<strong>沈葆楨</strong>治台時期（二府八縣四廳）。<br />
+   * 題目地圖中若出現 <strong>「臺東直隸州」</strong> \(\rightarrow\) 必為<strong>劉銘傳</strong>建省時期（三府十一縣一直隸州）。<br />
+   * 題目地圖中若出現 <strong>「噶瑪蘭廳」</strong> \(\rightarrow\) 必為<strong>蔡牽事件/吳沙開墾</strong>之後（四縣三廳）。<br />
+   * 題目地圖中若出現 <strong>「澎湖廳」</strong> \(\rightarrow\) 必為<strong>朱一貴事件</strong>之後（四縣二廳）。</p>
+</li>
+<li>
+<p><strong>台灣民主國的性質陷阱（觀念易錯點）</strong>：<br />
+   * <strong>錯概念</strong>：台灣民主國是現代意義追求徹底台獨的政權。<br />
+   * <strong>正解</strong>：台灣民主國年號「永清」，誓詞強調「恭奉正朔」，其獨立只是為了爭取國際列強干預的戰術手段，本質上仍以清朝為宗主國。</p>
+</li>
+<li>
+<p><strong>行政區劃改劃的根本邏輯</strong>：<br />
+   * <strong>開港通商前（\(1860\) 前）</strong>：改劃主要因為<strong>「民變」</strong>（朱一貴事件、林爽文事件）。<br />
+   * <strong>開港通商後（\(1860\) 後）</strong>：改劃主要因為<strong>「涉外事件」</strong>（牡丹社事件、清法戰爭）。</p>
+</li>
+</ol>
+<hr />
+<h2>🔑 記憶口訣與解題技巧 (Mnemonics &amp; Shortcuts)</h2>
+<ul>
+<li><strong>開港四港口口訣</strong>：<br />
+  \[\text{極大安打} \implies \text{雞籠、淡水、安平、打狗}\]</li>
+<li><strong>清初一府三縣口訣</strong>：<br />
+  \[\text{朱台鳳} \implies \text{諸羅縣、臺灣縣、鳳山縣}\]</li>
+<li><strong>朱一貴事件後增設口訣</strong>：<br />
+  \[\text{四縣二廳張彈} \implies \text{彰化縣、淡水廳（加澎湖廳）}\]</li>
+<li><strong>一對一解題關鍵字連連看</strong>：</li>
+<li>「西仔反」 \(\rightarrow\) 法國（清法戰爭）</li>
+<li>「十日總統」 \(\rightarrow\) 唐景崧</li>
+<li>「老太太搭德商船」 \(\rightarrow\) 劉永福離台</li>
+<li>「嘉義縣由來」 \(\rightarrow\) 林爽文事件（嘉許義民）</li>
+<li>「開台北城門」 \(\rightarrow\) 辜顯榮</li>
+</ul>
+<hr />
+<h2>📝 課後作業與待辦事項 (Homework &amp; Tasks)</h2>
+<ul>
+<li><strong>課後作業</strong>：無特定作業，請仔細複習歷史課本第 \(59\) 至 \(61\) 頁。</li>
+<li><strong>待辦事項</strong>：第二次段考即將到了，請務必熟記本篇筆記中的「行政區劃演變時間軸」與「地圖指標關鍵字」，進行考前衝刺。</li>
+</ul>
+<hr />
+<h2>📚 專有名詞與重要公式/定義 (Glossary &amp; Formulas)</h2>
+<ul>
+<li><strong>極大安打</strong>：\(1860\) 年英法聯軍後《天津條約》開港通商之台灣四大港口：雞籠、淡水、安平、打狗。</li>
+<li><strong>西仔反</strong>：台灣民間對 \(1884-1885\) 年清法戰爭台灣戰場的俗稱（閩南語稱法國人為「西仔」）。</li>
+<li><strong>恭奉正朔</strong>：\(1895\) 年台灣民主國成立時宣告的立場，表明雖然名義獨立抗日，但仍奉清朝皇帝與年號為正統宗主。</li>
+<li><strong>內部內渡</strong>：晚清官員（如唐景崧、劉永福）在抗日失敗離台逃往中國時，官方文書中使用的美化修辭，宣稱為接獲朝廷公文召回而返航。</li>
+<li><strong>三國干涉還遼</strong>：\(1895\) 年《馬關條約》簽訂後，俄國、德國、法國因自身地緣利益，強迫日本歸還遼東半島給清朝，清廷付出了 \(3000\) 萬兩白銀贖回。</li>
+</ul>
+<hr />
+<h2>🧠 課後自測題 (Quick Review Quiz)</h2>
+<h3>題目一：地圖判讀題</h3>
+<p>若你在歷史考卷上看到一張清領時期的台灣行政區劃地圖，圖中東部出現了「卑南廳」，而北部設有「臺北府」，請問這張地圖最可能是哪一位官員治台時期的劃分？當時改劃的歷史觸發事件為何？</p>
+<ul>
+<li><strong>解題思維與答案</strong>：</li>
+<li><strong>解題思維</strong>：看到「卑南廳」與「臺北府」同時存在，屬於「二府八縣四廳」體制。卑南廳是廢除番界後於東部設立的行政區。</li>
+<li><strong>答案</strong>：此為<strong>沈葆楨</strong>治台時期；觸發事件為 \(1874\) 年的<strong>牡丹社事件</strong>。</li>
+</ul>
+<hr />
+<h3>題目二：歷史觀念比較題</h3>
+<p>請問清領時期「諸羅縣」改名為「嘉義縣」，以及「臺東直隸州」的設立，分別是因為哪兩個歷史事件？</p>
+<ul>
+<li><strong>解題思維與答案</strong>：</li>
+<li><strong>解題思維</strong>：諸羅改嘉義是為了褒揚協助平亂的義民；臺東直隸州則是建省後將卑南廳升格。</li>
+<li><strong>答案</strong>：諸羅改名嘉義縣是因為 <strong>林爽文事件</strong>；臺東直隸州的設立則是因為 <strong>清法戰爭</strong>（劉銘傳推動台灣建省）。</li>
+</ul>
+<hr />
+<h3>題目三：史實情境題</h3>
+<p>\(1895\) 年台灣民主國成立後，劉永福大將軍最終是如何離開台灣的？而台北城與台南城又分別是由誰出面交涉，才免於日軍的屠城危機？</p>
+<ul>
+<li><strong>解題思維與答案</strong>：</li>
+<li><strong>解題思維</strong>：回想課堂老師講述的經典歷史細節與避難人物。</li>
+<li><strong>答案</strong>：<ol>
+<li>劉永福在台南城破後，喬裝打扮成「老太太」（僕人扮成小孫子），於安平港搭乘德國商船逃往廈門。</li>
+<li>台北城由富商<strong>辜顯榮</strong>開城門引日軍入城維安；台南城則由長老教會傳教士<strong>巴克禮</strong>代表紳商出面談判和平入城。</li>
+</ol>
+</li>
+</ul>
+<p>💡 <strong>課後複習小叮嚀</strong>：考前請務必將此份筆記重點與課本地圖對照閱讀，特別注意「卑南廳」與「臺東直隸州」的地圖差異，祝段考順利拿高分！</p>
+    </div>
+    <footer class="doc-foot">
+      自動生成於 NotebookLM Study Assistant • 專為高中學生課後複習與考前衝刺打造
+    </footer>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.mermaid) {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'neutral',
+          fontFamily: "'Noto Sans TC', 'Inter', sans-serif",
+          flowchart: { curve: 'basis', htmlLabels: true },
+          securityLevel: 'loose'
+        });
+      }
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+  
+  <script>
+    (function() {
+      const treeData = {"name": "晚清台灣涉外事件與行政區劃演變", "children": [{"name": "晚清主要涉外事件", "children": [{"name": "羅妹號事件", "children": [{"name": "涉事國家：美國"}, {"name": "關鍵人物：李仙得"}, {"name": "事件性質：番地主權爭議"}]}, {"name": "樟腦事件", "children": [{"name": "涉事國家：英國"}, {"name": "地點：安平"}, {"name": "起因：樟腦專賣與官府公文延誤"}]}, {"name": "牡丹社事件", "children": [{"name": "涉事國家：日本"}, {"name": "導火線：琉球漁民漂流事件"}, {"name": "清廷因應：派沈葆楨來台處理海防"}, {"name": "政策轉變：轉為積極治台與廢除番界"}]}, {"name": "清法戰爭", "children": [{"name": "涉事國家：法國"}, {"name": "起因：越南宗主權爭端"}, {"name": "關鍵人物：劉銘傳"}, {"name": "主要戰役：基隆與淡水之役（西仔反）"}, {"name": "法軍佔領澎湖：孤拔將軍病逝"}, {"name": "結果：促成台灣建省（1885年）"}]}]}, {"name": "行政區劃演變", "children": [{"name": "一府三縣時期", "children": [{"name": "背景：施琅攻台納入版圖"}, {"name": "一府：臺灣府（今臺南）"}, {"name": "三縣：諸羅縣、臺灣縣、鳳山縣"}]}, {"name": "四縣二廳時期", "children": [{"name": "觸發事件：朱一貴事件"}, {"name": "增設縣治：彰化縣"}, {"name": "增設廳治：淡水廳、澎湖廳"}]}, {"name": "四縣三廳時期", "children": [{"name": "增設廳治：噶瑪蘭廳"}, {"name": "歷史背景：吳沙開墾與蔡牽騷擾"}, {"name": "改名：諸羅縣改為嘉義縣（林爽文事件）"}]}, {"name": "二府時代（二府八縣四廳）", "children": [{"name": "觸發事件：牡丹社事件（沈葆楨治台）"}, {"name": "二府：臺北府、臺灣府"}, {"name": "增設行政區：恆春縣、卑南廳"}]}, {"name": "三府時代（三府十一縣一直隸州）", "children": [{"name": "觸發事件：清法戰爭與台灣建省（劉銘傳）"}, {"name": "三府：臺北府、臺灣府（中部）、臺南府"}, {"name": "特殊行政區：臺東直隸州"}]}]}, {"name": "甲午戰爭與台灣民主國", "children": [{"name": "甲午戰爭（1894-1895年）", "children": [{"name": "導火線：朝鮮東學黨之亂"}, {"name": "黃海海戰：北洋艦隊對決日本海軍"}, {"name": "條約：馬關條約（1895年 / 乙未年）"}, {"name": "內容：割讓台灣與澎湖予日本"}]}, {"name": "台灣民主國（1895年）", "children": [{"name": "策略：援引國際法與尋求西方列強干預"}, {"name": "交換籌碼：樟腦專賣利益"}, {"name": "核心領導：唐景崧（總統）、丘逢甲、劉永福"}, {"name": "結果：短暫抵抗後迅速潰敗"}]}, {"name": "和平入城關鍵人物", "children": [{"name": "台北：辜顯榮（開城門引日軍入城）"}, {"name": "台南：巴克禮（代表談判和平入城）"}]}]}]};
+      const container = document.getElementById("tree-svg-container");
+      if (!container || !treeData) return;
+
+      const width = container.clientWidth || 880;
+      const height = 520;
+
+      const svg = d3.select("#tree-svg-container")
+        .append("svg")
+        .attr("width", "100%")
+        .attr("height", height)
+        .attr("viewBox", [0, 0, width, height]);
+
+      const g = svg.append("g");
+
+      const zoom = d3.zoom()
+        .scaleExtent([0.25, 2.5])
+        .on("zoom", (e) => g.attr("transform", e.transform));
+
+      svg.call(zoom);
+
+      const root = d3.hierarchy(treeData);
+      root.x0 = height / 2;
+      root.y0 = 0;
+
+      let i = 0;
+      const duration = 380;
+      // [dy, dx]: 垂直節距 58px (確保上下不重疊), 水平層級 320px (確保長文字不穿透父層)
+      const treeLayout = d3.tree().nodeSize([58, 320]);
+
+      function splitNodeText(text, maxChars) {
+        if (!text) return [""];
+        if (text.length <= maxChars) return [text];
+
+        // 優先在括號處斷行，例如：世風日下之自身矛盾對比（擇師教子 vs. 於身恥師）
+        const parenIdx = text.search(/[（(]/);
+        if (parenIdx >= 3 && parenIdx <= maxChars + 4) {
+          const p1 = text.slice(0, parenIdx).trim();
+          const p2 = text.slice(parenIdx).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 優先在冒號、破折號、頓號處斷行
+        const sepIdx = text.search(/[：:—、]/);
+        if (sepIdx >= 3 && sepIdx <= maxChars + 2) {
+          const p1 = text.slice(0, sepIdx + 1).trim();
+          const p2 = text.slice(sepIdx + 1).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 預設在 maxChars 處均勻斷行
+        return [text.slice(0, maxChars), text.slice(maxChars)];
+      }
+
+      if (root.children) {
+        root.children.forEach(c => {
+          if (c.children) {
+            c.children.forEach(collapse);
+          }
+        });
+      }
+
+      function collapse(d) {
+        if (d.children) {
+          d._children = d.children;
+          d._children.forEach(collapse);
+          d.children = null;
+        }
+      }
+
+      function expand(d) {
+        if (d._children) {
+          d.children = d._children;
+          d.children.forEach(expand);
+          d._children = null;
+        }
+      }
+
+      const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
+
+      function getNodeColor(d) {
+        if (d.depth === 0) return "#2563eb";
+        let p = d;
+        while (p.depth > 1) p = p.parent;
+        return colorScale(p.data.name);
+      }
+
+      function update(source) {
+        const nodes = root.descendants();
+        const links = root.links();
+
+        treeLayout(root);
+
+        const node = g.selectAll("g.node")
+          .data(nodes, d => d.id || (d.id = ++i));
+
+        const nodeEnter = node.enter().append("g")
+          .attr("class", "node")
+          .attr("transform", d => `translate(${source.y0},${source.x0})`)
+          .on("click", (event, d) => {
+            if (d.children) {
+              d._children = d.children;
+              d.children = null;
+            } else if (d._children) {
+              d.children = d._children;
+              d._children = null;
+            }
+            update(d);
+          });
+
+        nodeEnter.append("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        const textNode = nodeEnter.append("text")
+          .attr("class", "node-text")
+          .attr("text-anchor", d => (d.children || d._children) ? "end" : "start")
+          .style("fill-opacity", 0);
+
+        textNode.each(function(d) {
+          const el = d3.select(this);
+          const isParent = Boolean(d.children || d._children);
+          const xOffset = isParent ? -14 : 14;
+          const maxChars = isParent ? 13 : 18;
+          const lines = splitNodeText(d.data.name, maxChars);
+
+          if (lines.length === 1) {
+            el.attr("x", xOffset)
+              .attr("dy", "0.32em")
+              .text(lines[0]);
+          } else {
+            el.attr("x", xOffset)
+              .attr("dy", "-0.35em")
+              .text(lines[0]);
+            el.append("tspan")
+              .attr("x", xOffset)
+              .attr("dy", "1.25em")
+              .text(lines[1]);
+          }
+        });
+
+        const nodeUpdate = node.merge(nodeEnter).transition().duration(duration)
+          .attr("transform", d => `translate(${d.y},${d.x})`);
+
+        nodeUpdate.select("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        nodeUpdate.select("text")
+          .style("fill-opacity", 1);
+
+        const nodeExit = node.exit().transition().duration(duration)
+          .attr("transform", d => `translate(${source.y},${source.x})`)
+          .remove();
+
+        nodeExit.select("circle").attr("r", 1e-6);
+        nodeExit.select("text").style("fill-opacity", 1e-6);
+
+        const link = g.selectAll("path.link")
+          .data(links, d => d.target.id);
+
+        const linkEnter = link.enter().insert("path", "g")
+          .attr("class", "link")
+          .attr("d", d => {
+            const o = {x: source.x0, y: source.y0};
+            return diagonal(o, o);
+          });
+
+        link.merge(linkEnter).transition().duration(duration)
+          .attr("d", d => diagonal(d.source, d.target));
+
+        link.exit().transition().duration(duration)
+          .attr("d", d => {
+            const o = {x: source.x, y: source.y};
+            return diagonal(o, o);
+          })
+          .remove();
+
+        nodes.forEach(d => {
+          d.x0 = d.x;
+          d.y0 = d.y;
+        });
+      }
+
+      function diagonal(s, d) {
+        return `M ${s.y} ${s.x}
+                C ${(s.y + d.y) / 2} ${s.x},
+                  ${(s.y + d.y) / 2} ${d.x},
+                  ${d.y} ${d.x}`;
+      }
+
+      function autoFitTree(duration = 450) {
+        const nodes = root.descendants();
+        if (!nodes || nodes.length === 0) return;
+
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        nodes.forEach(d => {
+          const isParent = Boolean(d.children || d._children);
+          const leftBound = d.y - (isParent ? 180 : 20);
+          const rightBound = d.y + (isParent ? 20 : 220);
+          const topBound = d.x - 32;
+          const bottomBound = d.x + 32;
+
+          if (leftBound < minX) minX = leftBound;
+          if (rightBound > maxX) maxX = rightBound;
+          if (topBound < minY) minY = topBound;
+          if (bottomBound > maxY) maxY = bottomBound;
+        });
+
+        const fullWidth = container.clientWidth || 880;
+        const fullHeight = height;
+        const treeW = maxX - minX;
+        const treeH = maxY - minY;
+
+        if (treeW <= 0 || treeH <= 0) return;
+
+        const scale = Math.min(0.92, (fullWidth * 0.90) / treeW, (fullHeight * 0.90) / treeH);
+        const clampedScale = Math.max(scale, 0.42);
+
+        const midTreeX = (minX + maxX) / 2;
+        const midTreeY = (minY + maxY) / 2;
+        const tx = fullWidth / 2 - clampedScale * midTreeX;
+        const ty = fullHeight / 2 - clampedScale * midTreeY;
+
+        if (duration > 0) {
+          svg.transition().duration(duration).call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        } else {
+          svg.call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        }
+      }
+
+      window.expandAll = function() {
+        root.each(expand);
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.collapseAll = function() {
+        if (root.children) {
+          root.children.forEach(collapse);
+        }
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.resetZoom = function() {
+        autoFitTree(450);
+      };
+
+      // 首次繪製節點並自動縮放置中全覽
+      update(root);
+      autoFitTree(0);
+    })();
+  </script>
+
+</body>
+</html>

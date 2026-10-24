@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【歷史】260910_荷蘭鄭氏與清領時期的原住民政策與台地開發</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --border: #e2e8f0;
+      --border-focus: #cbd5e1;
+      --tag-bg: #e0f2fe;
+      --tag-text: #0369a1;
+      --header-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans TC', 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.8;
+      font-size: 16px;
+      padding: 30px 16px 60px;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.06), 0 2px 6px -1px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    header.hero {
+      background: var(--header-gradient);
+      color: #ffffff;
+      padding: 36px 40px 30px;
+      position: relative;
+    }
+    header.hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      color: #f1f5f9;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    header.hero h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.5px;
+    }
+    header.hero .meta {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .content-body {
+      padding: 40px 48px;
+    }
+    @media (max-width: 640px) {
+      .content-body { padding: 24px 20px; }
+      header.hero { padding: 28px 24px 22px; }
+      header.hero h1 { font-size: 1.5rem; }
+    }
+    h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 2.2em;
+      margin-bottom: 0.9em;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h2:first-of-type { margin-top: 0.5em; }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1e3a8a;
+      margin-top: 1.6em;
+      margin-bottom: 0.6em;
+      padding-left: 10px;
+      border-left: 4px solid var(--accent);
+    }
+    p { margin-bottom: 1.1em; }
+    ul, ol { margin-bottom: 1.2em; padding-left: 1.8em; }
+    li { margin-bottom: 0.4em; }
+    .mermaid {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 16px;
+      margin: 1.6em 0;
+      text-align: center;
+      overflow-x: auto;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 1.6em 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    thead th {
+      background: #f1f5f9;
+      color: #1e293b;
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+    tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) { background: #fafafa; }
+    tbody tr:hover { background: #f0f7ff; }
+    tbody tr:last-child td { border-bottom: none; }
+    code {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      background: #f1f5f9;
+      color: #b91c1c;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 1.4em 0;
+      font-size: 0.92em;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; }
+    blockquote {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 14px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 1.4em 0;
+      color: #1e40af;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2.2em 0; }
+    .katex-display {
+      margin: 1.2em 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 6px 0;
+    }
+    .katex { font-size: 1.05em; }
+    
+    /* NotebookLM 原生 D3 互動心智圖樣式 */
+    .mindmap-box {
+      margin: 2em 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .mindmap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .mindmap-title {
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mindmap-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .mm-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: #334155;
+      transition: all 0.2s;
+    }
+    .mm-btn:hover { background: #f1f5f9; }
+    #tree-svg-container {
+      width: 100%;
+      height: 520px;
+      background: #ffffff;
+      cursor: grab;
+    }
+    #tree-svg-container:active { cursor: grabbing; }
+    .node circle {
+      cursor: pointer;
+      stroke-width: 2.5px;
+      transition: all 0.2s;
+    }
+    .node circle:hover { transform: scale(1.25); }
+    .node text {
+      font-size: 13px;
+      font-weight: 500;
+      font-family: inherit;
+      fill: #1e293b;
+      cursor: pointer;
+      paint-order: stroke fill;
+      stroke: #ffffff;
+      stroke-width: 4.5px;
+      stroke-linejoin: round;
+      user-select: none;
+    }
+    .link {
+      fill: none;
+      stroke: #cbd5e1;
+      stroke-width: 1.8px;
+      stroke-opacity: 0.85;
+      transition: stroke-width 0.2s;
+    }
+    .link:hover { stroke: #94a3b8; stroke-width: 2.5px; }
+
+    footer.doc-foot {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      background: #fcfdfe;
+    }
+    .print-btn {
+      position: absolute;
+      top: 36px;
+      right: 40px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .print-btn:hover { background: rgba(255,255,255,0.25); }
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      body {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+      }
+      .container {
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+      }
+      .print-btn, .mindmap-btns {
+        display: none !important;
+      }
+      header.hero {
+        background: var(--header-gradient) !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+        padding: 24px 30px !important;
+        margin-bottom: 20px !important;
+      }
+      header.hero h1 {
+        color: #ffffff !important;
+        font-size: 1.6rem !important;
+      }
+      header.hero .badge {
+        background: rgba(255,255,255,0.2) !important;
+        color: #ffffff !important;
+      }
+      header.hero .meta {
+        color: #cbd5e1 !important;
+      }
+      .content-body {
+        padding: 10px 0 !important;
+      }
+      h1, h2, h3, h4, table, tr, pre, .mermaid, .mindmap-box, blockquote {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      h2, h3 {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <div class="badge">📖 高中課堂互動圖文筆記</div>
+      <button class="print-btn" onclick="window.print()">🖨️ 列印 / 另存 PDF</button>
+      <h1>【歷史】260910_荷蘭鄭氏與清領時期的原住民政策與台地開發</h1>
+      <div class="meta">
+        <span>⏱️ 數位筆記儀表板</span>
+        <span>🏷️ 含可縮放互動心智圖、時間軸與觀念對比</span>
+      </div>
+    </header>
+    <div class="content-body">
+      
+      <div class="mindmap-box">
+        <div class="mindmap-header">
+          <div class="mindmap-title">
+            <span>🧠 本課核心知識脈絡（NotebookLM 原生互動心智圖 • 支援縮放與展開）</span>
+          </div>
+          <div class="mindmap-btns">
+            <button class="mm-btn" onclick="expandAll()">展開全部</button>
+            <button class="mm-btn" onclick="collapseAll()">收合分支</button>
+            <button class="mm-btn" onclick="resetZoom()">重設視角</button>
+          </div>
+        </div>
+        <div id="tree-svg-container"></div>
+      </div>
+        
+      <h2>📖 課堂主題與核心摘要 (Class Overview)</h2>
+<p>本堂課深入探討台灣歷史上荷蘭東印度公司、鄭氏政權以及清領時期（前期與後期）對原住民的統治政策與土地開發演變。課堂重點剖析少數外來政權如何透過「以當地的少數人統治多數人」的殖民技巧（如地方會議與長老制度）、經濟承包（贌社制度）、文字拼音（新港文）及軍屯鎮壓來建立統治權力。此外，更詳細梳理了中部大肚王國在三朝演變下的興衰脈絡，以及清領時期從消極「畫界封山」轉為積極「開山撫番」的歷史背景與具體措施，協助學生釐清考題關鍵字與常見易錯陷阱。</p>
+<div class="mermaid">
+graph LR
+  Root["荷鄭清時期的原住民政策與開發"] --> A["荷蘭時期 (1624-1662)"]
+  Root --> B["鄭氏時期 (1662-1683)"]
+  Root --> C["清領時期 (1683-1895)"]
+
+  A --> A1["政治：長老制度與地方會議"]
+  A --> A2["經濟：贌社制度與鹿皮貿易"]
+  A --> A3["文化：羅馬拼音創『新港文』"]
+  A --> A4["關係：大肚王國呈『半獨立』"]
+
+  B --> B1["經濟：軍屯政策（營/鎮地名）"]
+  B --> B2["衝突：強硬鎮壓大肚王國"]
+  B --> B3["協商：竹堑原住民抗官與和解"]
+
+  C --> C1["清前期（消極）：渡台禁令、畫界封山（土牛溝/隘寮）"]
+  C --> C2["清後期（積極）：牡丹社事件後『開山撫番』、自強運動經費"]
+  C --> C3["土地：漢原通婚（瑠公圳）、新港文書（清代地契）"]
+</div>
+<h2>💡 核心知識點與觀念詳解 (Key Concepts)</h2>
+<h3>一、 荷蘭東印度公司的統治政策與原住民關係</h3>
+<ol>
+<li><strong>武力征服與平定南部</strong>：<br />
+   - 荷蘭人以台南赤崁為基地（稱台灣為大員），擊敗麻豆社（西拉雅族）後確實控制南部部落，要求原住民服從、繳稅與負擔服勞役。<br />
+   - <strong>北上擊退西班牙與東部探金（1642年）</strong>：荷蘭人欲往東部採金，因中央山脈無路可通而沿西海岸北上。在淡水擊毀西班牙建之「聖多明哥城」（後於廢墟重建為淡水紅毛城）。當時西班牙軍隊因馬尼拉伊斯蘭教徒叛亂被調回，且日本實施天主教鎖國，西班牙已近乎放棄北部。荷蘭人後續東部探金未果（金礦實位於北部金瓜石，清代才被發現）。</li>
+<li><strong>政治殖民技巧：長老制度與地方會議</strong>：<br />
+   - <strong>少數統治多數策略</strong>：荷蘭東印度公司在台人員極少（最多僅約300人），無法直接管理各社。因此挑選部落頭目稱為「<strong>長老</strong>」，賦予其部落內部之行政權與司法權（刑事案件由長老審判，荷蘭人不干涉）。<br />
+   - <strong>地方會議</strong>：每年定期召集長老開會，宣達政令、根據考核進行賞罰。老師強調此為典型殖民技巧（如西班牙殖民美洲、日軍在中國成立汪精衛偽政權等，皆是用當地少數人統治大多數人）。</li>
+<li><strong>經濟貿易：贌社制度與鹿產貿易</strong>：<br />
+   - <strong>贌社制度（承包制）</strong>：荷蘭人不親自與原住民交易，將各部落交易權公開標售（發贌），由漢人商人承包。<br />
+   - <strong>交易內容</strong>：漢人拿鹽、鐵器及生活必需品向原住民交換獵捕的整隻鹿（鹿產貿易）。<br />
+   - <strong>資源分配與去向</strong>：鹿肉、鹿角中藥材歸漢人賣出；但<strong>鹿皮必須全數繳交給荷蘭人</strong>。荷蘭人再轉賣給日本，作為日本武士盔甲的柔和內襯。</li>
+<li><strong>文化推廣：新港文與新港文書</strong>：<br />
+   - <strong>新港文</strong>：荷蘭傳教士於新港社建立教堂與學校，利用「羅馬拼音」拼寫西拉雅族母語來翻譯聖經、傳播基督教。<br />
+   - <strong>新港文書（雙語地契）</strong>：清代漢人大量來台後向原住民租買土地，原住民為確保權益，要求在契據上同時列出漢文與新港文做對照。新港文書是<strong>清代</strong>產生的地契，保存了西拉雅語文，也是今日西拉雅族爭取復名與官方認定的重要歷史依據。</li>
+<li><strong>荷蘭與大肚王國的互動</strong>：<br />
+   - 大肚王國為跨部落的共主盟主。荷蘭人南北往來時曾與其發生武力誤會衝突。<br />
+   - 雙方和解後，大肚王答應「納貢/繳稅」（視為交朋友禮物），但<strong>堅決拒絕傳教</strong>。因此在荷蘭文獻中記錄大肚王國維持「<strong>半獨立狀態</strong>」。</li>
+</ol>
+<h3>二、 鄭氏政權的開發政策與原住民衝突</h3>
+<ol>
+<li><strong>軍屯政策（解決糧食危機）</strong>：<br />
+   - 鄭成功率領約3萬軍民來台，首要任務為解決軍糧，實施「軍屯」制度，由軍隊派駐各地開墾。<br />
+   - <strong>地名痕跡</strong>：今日台灣許多帶有「營」、「鎮」字樣的地名，均為鄭氏屯田遺跡（如：新營、左營、下營、林鳳營、大里杄/鎮等）。</li>
+<li><strong>對原住民的態度與大肚王國的衰落</strong>：<br />
+   - 鄭軍為常備正規軍且有強烈生存需求，遭遇大肚王國阻撓時採取強硬消滅態度，導致大肚王國勢力大傷、急劇衰落。</li>
+<li><strong>竹堑（新竹）原住民抗官與談判和解</strong>：<br />
+   - 鄭氏軍隊向北開墾至竹堑時，引發原住民強烈反抗並殺死鄭軍將領。原住民因害怕報復而集體逃離清空該地。<br />
+   - 鄭成功恪守「不可強奪原住民土地」之訓令，親自派人談判協商，承諾不追究殺將之罪，最終促成原住民重返竹堑。</li>
+</ol>
+<h3>三、 清領時期的原住民政策演變</h3>
+<ol>
+<li><strong>清領前期（消極治理：1683-1874）</strong>：<br />
+   - <strong>政策核心</strong>：將台灣視為邊疆海防防線，避免台灣成為亂源，採取消極隔離政策（如渡台禁令、畫界封山、禁鐵禁竹）。老師特別補充：劃界隔離並非台灣首創，清朝在廣西對付壯族時亦曾使用類似界線。<br />
+   - <strong>畫界封山與防禦措施</strong>：<ul>
+<li><strong>土牛溝</strong>：沿山麓挖掘深約1至1.5層樓的溝渠，將挖出的土堆於溝旁形成似伏牛形狀的「土牛」，作為漢原邊界。</li>
+<li><strong>界碑</strong>：地質堅硬無法挖溝處（如岩石、河床），立石碑告示禁止跨越。</li>
+<li><strong>隘口與隘寮</strong>：於山口設置隘口檢查站，雇用「熟番」守衛隘寮（實施「以番制番」）。</li>
+<li><strong>漢人取得土地的途徑</strong>：</li>
+<li><strong>武力搶奪/租借</strong>：漢人開墾天性強烈（老師比喻：NASA要開墾火星派幾個漢人去就全種出來了），無視禁令跨界開墾。</li>
+<li><strong>番漢通婚與土地獲取</strong>：如郭留（瑠公）父子為了開鑿水圳與取得開墾地，父親娶泰雅族姐姐、兒子娶妹妹，成功獲取土地並開鑿「瑠公圳」。</li>
+</ul>
+</li>
+<li><strong>清領後期（積極治理：1874-1895）</strong>：<br />
+   - <strong>轉折事件</strong>：1874年「牡丹社事件」，日本以琉球漂民被殺為由出兵台灣，並主張「番地無主論」。清廷驚覺台灣國防地位重要，轉為積極開發。<br />
+   - <strong>開山撫番與廢除禁令</strong>：沈葆楨等人來台，廢除渡台禁令與劃界封山，推動「開山撫番」，打通前後山道路，鼓勵漢人進入東部。<br />
+   - <strong>經費來源（洋務運動/自強運動專款）</strong>：1860-1870年代沈葆楨、丁日昌、劉銘傳在台推動的現代化建設（鐵路、電報、郵政等），資金均來自中國大陸「自強運動」的專款預算。</li>
+</ol>
+<hr />
+<p>【⏱️ 大肚王國演變時序時間軸】：</p>
+<div class="mermaid">
+timeline
+    title 大肚王國的歷史演化時序
+    荷蘭時期 (1624-1662) : 發生誤會衝突後和解 : 答應納貢繳稅，但拒絕傳教 : 荷蘭文獻上記為「半獨立狀態」
+    鄭氏時期 (1662-1683) : 正規軍因屯田需要強行進逼 : 強勢武力鎮壓打擊 : 王國勢力極度衰落
+    清領時期 (雍正九年/1731) : 爆發「大甲西社事件」 : 清軍與平埔族聯合鎮壓 : 大肚王國徹底覆滅（今僅存沙鹿地區等地名）
+</div>
+<hr />
+<p>【📊 荷、鄭、清三朝原住民政策與開發比較表】：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">比較項目</th>
+<th style="text-align: left;">荷蘭時期</th>
+<th style="text-align: left;">鄭氏時期</th>
+<th style="text-align: left;">清領前期</th>
+<th style="text-align: left;">清領後期</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>治理態度</strong></td>
+<td style="text-align: left;">商業利益導向、少數殖民</td>
+<td style="text-align: left;">生存導向、強硬軍屯</td>
+<td style="text-align: left;">消極隔離、防民甚於防寇</td>
+<td style="text-align: left;">積極開發、開山撫番</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>土地政策</strong></td>
+<td style="text-align: left;">劃定社域、贌社貿易</td>
+<td style="text-align: left;">軍隊屯田（營/鎮地名）</td>
+<td style="text-align: left;">畫界封山、土牛溝隔離</td>
+<td style="text-align: left;">廢除禁令、跨界開墾東部</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>原住民關係</strong></td>
+<td style="text-align: left;">設立長老、舉辦地方會議</td>
+<td style="text-align: left;">武力鎮壓大肚王國、竹堑談判</td>
+<td style="text-align: left;">「以番制番」（熟番守隘）</td>
+<td style="text-align: left;">開山撫番、撫綏納入編戶</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>核心關鍵字</strong></td>
+<td style="text-align: left;">長官、長老、贌社、新港文</td>
+<td style="text-align: left;">軍屯、大里杄、新營/左營</td>
+<td style="text-align: left;">土牛溝、隘寮、新港文書</td>
+<td style="text-align: left;">牡丹社事件、沈葆楨、自強運動</td>
+</tr>
+</tbody>
+</table>
+<h2>⚠️ 老師強調考點與易錯陷阱 (Exam Focus &amp; Pitfalls)</h2>
+<ol>
+<li>
+<p><strong>★【題型速解關鍵字】長官、長老與地方會議</strong>：<br />
+   - 題目敘述中只要出現「<strong>長官</strong>」（荷蘭駐台首長）或「<strong>長老</strong>」（荷蘭任命之原住民頭目）以及「<strong>地方會議</strong>」，<strong>100% 為荷蘭時期</strong>！不需要讀完整篇文章即可秒殺選答案。</p>
+</li>
+<li>
+<p><strong>★【易錯陷阱】「新港文」與「新港文書」的年代歸屬</strong>：<br />
+   - <strong>新港文</strong>：荷蘭傳教士創立（羅馬拼音拼寫西拉雅語，清代稱為紅毛字）。<br />
+   - <strong>新港文書</strong>：<strong>清代</strong>漢人與原住民簽訂的「雙語地契」（漢文與新港文對照）。看到「新港文書」切勿直覺選荷蘭時期，它是<strong>清代</strong>的契約文書！</p>
+</li>
+<li>
+<p><strong>★【考點剖析】大肚王國的覆滅時間</strong>：<br />
+   - 荷蘭時期：半獨立狀態（繳稅但不接受傳教）。<br />
+   - 鄭氏時期：軍屯衝突，嚴重衰落。<br />
+   - <strong>真正消滅時間</strong>：清領時期（<strong>雍正九年大甲西社事件</strong>才徹底被消滅）。</p>
+</li>
+<li>
+<p><strong>★【歷史貫通考點】清後期台灣建設經費來源</strong>：<br />
+   - 沈葆楨、丁日昌、劉銘傳在台灣推動的各項物力現代化建設，其經費均來自中國大陸的「<strong>自強運動（洋務運動）</strong>」專款預算。</p>
+</li>
+</ol>
+<h2>🔑 記憶口訣與解題技巧 (Mnemonics &amp; Shortcuts)</h2>
+<ul>
+<li><strong>關鍵字秒殺法</strong>：</li>
+<li>看見「長官 / 長老 / 地方會議 / 贌社 / 鹿皮出口」➔ 秒選 <strong>荷蘭時期</strong>。</li>
+<li>看見地名包含「營 / 鎮」（如左營、新營、柳營、林鳳營）➔ 秒選 <strong>鄭氏軍屯遺跡</strong>。</li>
+<li>看見「土牛溝 / 隘寮 / 熟番守隘 / 雙語地契（新港文書）」➔ 秒選 <strong>清領前期</strong>。</li>
+<li>
+<p>看見「牡丹社事件 / 開山撫番 / 自強運動經費 / 廢除渡台禁令」➔ 秒選 <strong>清領後期</strong>。</p>
+</li>
+<li>
+<p><strong>解題邏輯小結</strong>：</p>
+</li>
+<li>荷蘭人要的是「<strong>鹿皮與貿易利益</strong>」（派漢人贌社、拿鹿皮賣日本）。</li>
+<li>鄭成功要的是「<strong>軍糧與土地</strong>」（派軍屯田、鎮壓大肚王）。</li>
+<li>清前期要的是「<strong>社會穩定不造反</strong>」（封山隔離、土牛防禦）。</li>
+<li>清後期要的是「<strong>防止列強佔領台灣</strong>」（開山撫番、全島開發）。</li>
+</ul>
+<h2>📝 課後作業與待辦事項 (Homework &amp; Tasks)</h2>
+<ul>
+<li><strong>課堂作業</strong>：無特定作業（請著重複習本堂課之對比表格與關鍵字判斷）。</li>
+<li><strong>下次小考預告</strong>：請預習清領時期台灣的經濟轉型（三大開港通商與茶、糖、樟腦出口貿易）。</li>
+</ul>
+<hr />
+<h2>📚 專有名詞與重要公式/定義 (Glossary &amp; Formulas)</h2>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+<h2>🧠 課後自測題 (Quick Review Quiz)</h2>
+<ol>
+<li>
+<p><strong>問：某份史料記載：「該部落願意每年向我方繳納禮物以維持友好，但堅決拒絕我方派駐傳教士進入其領地說明教義……」請問這段記載最可能描述哪一個政權與哪一個在地勢力的互動？</strong><br />
+   - <em>解題思維</em>：關鍵字為「願意繳納禮物（納貢/繳稅）」且「堅決拒絕傳教士」，符合荷蘭東印度公司對「大肚王國」呈「半獨立狀態」的歷史描述。答案為：荷蘭東印度公司與大肚王國。</p>
+</li>
+<li>
+<p><strong>問：阿明在研究一份18世紀（清領時期）的台灣土地買賣契約時，發現左半段為漢文，右半段為羅馬拼音字母組成的文字。請問這份史料名稱為何？右半段文字最初是由誰所創立？</strong><br />
+   - <em>解題思維</em>：清代漢人與原住民簽訂的漢文與羅馬拼音對照地契稱為「新港文書」；右半段之羅馬拼音文字（新港文）最初是由17世紀荷蘭傳教士所創立。</p>
+</li>
+<li>
+<p><strong>問：清領後期沈葆楨、劉銘傳等人在台灣興建電報線、鐵路等物力現代化建設，其主要資金來源與中國大陸當時的哪一場改革運動密切相關？</strong><br />
+   - <em>解題思維</em>：1860-1870年代清廷撥給台灣進行現代化建設與開山撫番的專款預算，均來自大陸推動的「自強運動（洋務運動）」。</p>
+</li>
+</ol>
+<hr />
+<p>💡 <strong>溫馨提示</strong>：如果需要將這份筆記生成為更便利複習的 <strong>測驗題庫</strong>、<strong>單字/概念閃卡</strong> 或 <strong>簡報/心智圖檔案</strong>，都可以隨時告訴我喔！</p>
+    </div>
+    <footer class="doc-foot">
+      自動生成於 NotebookLM Study Assistant • 專為高中學生課後複習與考前衝刺打造
+    </footer>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.mermaid) {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'neutral',
+          fontFamily: "'Noto Sans TC', 'Inter', sans-serif",
+          flowchart: { curve: 'basis', htmlLabels: true },
+          securityLevel: 'loose'
+        });
+      }
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+  
+  <script>
+    (function() {
+      const treeData = {"name": "荷鄭清時期的原住民政策與開發", "children": [{"name": "鄭氏時期 (1662-1683)", "children": [{"name": "經濟：軍屯政策（營/鎮地名）"}, {"name": "衝突：強硬鎮壓大肚王國"}, {"name": "協商：竹堑原住民抗官與和解"}]}, {"name": "清領時期 (1683-1895)", "children": [{"name": "清前期（消極）：渡台禁令、畫界封山（土牛溝/隘寮）"}, {"name": "清後期（積極）：牡丹社事件後『開山撫番』、自強運動經費"}, {"name": "土地：漢原通婚（瑠公圳）、新港文書（清代地契）"}]}]};
+      const container = document.getElementById("tree-svg-container");
+      if (!container || !treeData) return;
+
+      const width = container.clientWidth || 880;
+      const height = 520;
+
+      const svg = d3.select("#tree-svg-container")
+        .append("svg")
+        .attr("width", "100%")
+        .attr("height", height)
+        .attr("viewBox", [0, 0, width, height]);
+
+      const g = svg.append("g");
+
+      const zoom = d3.zoom()
+        .scaleExtent([0.25, 2.5])
+        .on("zoom", (e) => g.attr("transform", e.transform));
+
+      svg.call(zoom);
+
+      const root = d3.hierarchy(treeData);
+      root.x0 = height / 2;
+      root.y0 = 0;
+
+      let i = 0;
+      const duration = 380;
+      // [dy, dx]: 垂直節距 58px (確保上下不重疊), 水平層級 320px (確保長文字不穿透父層)
+      const treeLayout = d3.tree().nodeSize([58, 320]);
+
+      function splitNodeText(text, maxChars) {
+        if (!text) return [""];
+        if (text.length <= maxChars) return [text];
+
+        // 優先在括號處斷行，例如：世風日下之自身矛盾對比（擇師教子 vs. 於身恥師）
+        const parenIdx = text.search(/[（(]/);
+        if (parenIdx >= 3 && parenIdx <= maxChars + 4) {
+          const p1 = text.slice(0, parenIdx).trim();
+          const p2 = text.slice(parenIdx).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 優先在冒號、破折號、頓號處斷行
+        const sepIdx = text.search(/[：:—、]/);
+        if (sepIdx >= 3 && sepIdx <= maxChars + 2) {
+          const p1 = text.slice(0, sepIdx + 1).trim();
+          const p2 = text.slice(sepIdx + 1).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 預設在 maxChars 處均勻斷行
+        return [text.slice(0, maxChars), text.slice(maxChars)];
+      }
+
+      if (root.children) {
+        root.children.forEach(c => {
+          if (c.children) {
+            c.children.forEach(collapse);
+          }
+        });
+      }
+
+      function collapse(d) {
+        if (d.children) {
+          d._children = d.children;
+          d._children.forEach(collapse);
+          d.children = null;
+        }
+      }
+
+      function expand(d) {
+        if (d._children) {
+          d.children = d._children;
+          d.children.forEach(expand);
+          d._children = null;
+        }
+      }
+
+      const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
+
+      function getNodeColor(d) {
+        if (d.depth === 0) return "#2563eb";
+        let p = d;
+        while (p.depth > 1) p = p.parent;
+        return colorScale(p.data.name);
+      }
+
+      function update(source) {
+        const nodes = root.descendants();
+        const links = root.links();
+
+        treeLayout(root);
+
+        const node = g.selectAll("g.node")
+          .data(nodes, d => d.id || (d.id = ++i));
+
+        const nodeEnter = node.enter().append("g")
+          .attr("class", "node")
+          .attr("transform", d => `translate(${source.y0},${source.x0})`)
+          .on("click", (event, d) => {
+            if (d.children) {
+              d._children = d.children;
+              d.children = null;
+            } else if (d._children) {
+              d.children = d._children;
+              d._children = null;
+            }
+            update(d);
+          });
+
+        nodeEnter.append("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        const textNode = nodeEnter.append("text")
+          .attr("class", "node-text")
+          .attr("text-anchor", d => (d.children || d._children) ? "end" : "start")
+          .style("fill-opacity", 0);
+
+        textNode.each(function(d) {
+          const el = d3.select(this);
+          const isParent = Boolean(d.children || d._children);
+          const xOffset = isParent ? -14 : 14;
+          const maxChars = isParent ? 13 : 18;
+          const lines = splitNodeText(d.data.name, maxChars);
+
+          if (lines.length === 1) {
+            el.attr("x", xOffset)
+              .attr("dy", "0.32em")
+              .text(lines[0]);
+          } else {
+            el.attr("x", xOffset)
+              .attr("dy", "-0.35em")
+              .text(lines[0]);
+            el.append("tspan")
+              .attr("x", xOffset)
+              .attr("dy", "1.25em")
+              .text(lines[1]);
+          }
+        });
+
+        const nodeUpdate = node.merge(nodeEnter).transition().duration(duration)
+          .attr("transform", d => `translate(${d.y},${d.x})`);
+
+        nodeUpdate.select("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        nodeUpdate.select("text")
+          .style("fill-opacity", 1);
+
+        const nodeExit = node.exit().transition().duration(duration)
+          .attr("transform", d => `translate(${source.y},${source.x})`)
+          .remove();
+
+        nodeExit.select("circle").attr("r", 1e-6);
+        nodeExit.select("text").style("fill-opacity", 1e-6);
+
+        const link = g.selectAll("path.link")
+          .data(links, d => d.target.id);
+
+        const linkEnter = link.enter().insert("path", "g")
+          .attr("class", "link")
+          .attr("d", d => {
+            const o = {x: source.x0, y: source.y0};
+            return diagonal(o, o);
+          });
+
+        link.merge(linkEnter).transition().duration(duration)
+          .attr("d", d => diagonal(d.source, d.target));
+
+        link.exit().transition().duration(duration)
+          .attr("d", d => {
+            const o = {x: source.x, y: source.y};
+            return diagonal(o, o);
+          })
+          .remove();
+
+        nodes.forEach(d => {
+          d.x0 = d.x;
+          d.y0 = d.y;
+        });
+      }
+
+      function diagonal(s, d) {
+        return `M ${s.y} ${s.x}
+                C ${(s.y + d.y) / 2} ${s.x},
+                  ${(s.y + d.y) / 2} ${d.x},
+                  ${d.y} ${d.x}`;
+      }
+
+      function autoFitTree(duration = 450) {
+        const nodes = root.descendants();
+        if (!nodes || nodes.length === 0) return;
+
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        nodes.forEach(d => {
+          const isParent = Boolean(d.children || d._children);
+          const leftBound = d.y - (isParent ? 180 : 20);
+          const rightBound = d.y + (isParent ? 20 : 220);
+          const topBound = d.x - 32;
+          const bottomBound = d.x + 32;
+
+          if (leftBound < minX) minX = leftBound;
+          if (rightBound > maxX) maxX = rightBound;
+          if (topBound < minY) minY = topBound;
+          if (bottomBound > maxY) maxY = bottomBound;
+        });
+
+        const fullWidth = container.clientWidth || 880;
+        const fullHeight = height;
+        const treeW = maxX - minX;
+        const treeH = maxY - minY;
+
+        if (treeW <= 0 || treeH <= 0) return;
+
+        const scale = Math.min(0.92, (fullWidth * 0.90) / treeW, (fullHeight * 0.90) / treeH);
+        const clampedScale = Math.max(scale, 0.42);
+
+        const midTreeX = (minX + maxX) / 2;
+        const midTreeY = (minY + maxY) / 2;
+        const tx = fullWidth / 2 - clampedScale * midTreeX;
+        const ty = fullHeight / 2 - clampedScale * midTreeY;
+
+        if (duration > 0) {
+          svg.transition().duration(duration).call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        } else {
+          svg.call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        }
+      }
+
+      window.expandAll = function() {
+        root.each(expand);
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.collapseAll = function() {
+        if (root.children) {
+          root.children.forEach(collapse);
+        }
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.resetZoom = function() {
+        autoFitTree(450);
+      };
+
+      // 首次繪製節點並自動縮放置中全覽
+      update(root);
+      autoFitTree(0);
+    })();
+  </script>
+
+</body>
+</html>

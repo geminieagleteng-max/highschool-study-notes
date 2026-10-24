@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【歷史】261006_戰後台灣移民與多元族群</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --border: #e2e8f0;
+      --border-focus: #cbd5e1;
+      --tag-bg: #e0f2fe;
+      --tag-text: #0369a1;
+      --header-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans TC', 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.8;
+      font-size: 16px;
+      padding: 30px 16px 60px;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.06), 0 2px 6px -1px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    header.hero {
+      background: var(--header-gradient);
+      color: #ffffff;
+      padding: 36px 40px 30px;
+      position: relative;
+    }
+    header.hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      color: #f1f5f9;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    header.hero h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.5px;
+    }
+    header.hero .meta {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .content-body {
+      padding: 40px 48px;
+    }
+    @media (max-width: 640px) {
+      .content-body { padding: 24px 20px; }
+      header.hero { padding: 28px 24px 22px; }
+      header.hero h1 { font-size: 1.5rem; }
+    }
+    h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 2.2em;
+      margin-bottom: 0.9em;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h2:first-of-type { margin-top: 0.5em; }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1e3a8a;
+      margin-top: 1.6em;
+      margin-bottom: 0.6em;
+      padding-left: 10px;
+      border-left: 4px solid var(--accent);
+    }
+    p { margin-bottom: 1.1em; }
+    ul, ol { margin-bottom: 1.2em; padding-left: 1.8em; }
+    li { margin-bottom: 0.4em; }
+    .mermaid {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 16px;
+      margin: 1.6em 0;
+      text-align: center;
+      overflow-x: auto;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 1.6em 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    thead th {
+      background: #f1f5f9;
+      color: #1e293b;
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+    tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) { background: #fafafa; }
+    tbody tr:hover { background: #f0f7ff; }
+    tbody tr:last-child td { border-bottom: none; }
+    code {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      background: #f1f5f9;
+      color: #b91c1c;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 1.4em 0;
+      font-size: 0.92em;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; }
+    blockquote {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 14px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 1.4em 0;
+      color: #1e40af;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2.2em 0; }
+    .katex-display {
+      margin: 1.2em 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 6px 0;
+    }
+    .katex { font-size: 1.05em; }
+    
+    /* NotebookLM 原生 D3 互動心智圖樣式 */
+    .mindmap-box {
+      margin: 2em 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .mindmap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .mindmap-title {
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mindmap-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .mm-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: #334155;
+      transition: all 0.2s;
+    }
+    .mm-btn:hover { background: #f1f5f9; }
+    #tree-svg-container {
+      width: 100%;
+      height: 520px;
+      background: #ffffff;
+      cursor: grab;
+    }
+    #tree-svg-container:active { cursor: grabbing; }
+    .node circle {
+      cursor: pointer;
+      stroke-width: 2.5px;
+      transition: all 0.2s;
+    }
+    .node circle:hover { transform: scale(1.25); }
+    .node text {
+      font-size: 13px;
+      font-weight: 500;
+      font-family: inherit;
+      fill: #1e293b;
+      cursor: pointer;
+      paint-order: stroke fill;
+      stroke: #ffffff;
+      stroke-width: 4.5px;
+      stroke-linejoin: round;
+      user-select: none;
+    }
+    .link {
+      fill: none;
+      stroke: #cbd5e1;
+      stroke-width: 1.8px;
+      stroke-opacity: 0.85;
+      transition: stroke-width 0.2s;
+    }
+    .link:hover { stroke: #94a3b8; stroke-width: 2.5px; }
+
+    footer.doc-foot {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      background: #fcfdfe;
+    }
+    .print-btn {
+      position: absolute;
+      top: 36px;
+      right: 40px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .print-btn:hover { background: rgba(255,255,255,0.25); }
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      body {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+      }
+      .container {
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+      }
+      .print-btn, .mindmap-btns {
+        display: none !important;
+      }
+      header.hero {
+        background: var(--header-gradient) !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+        padding: 24px 30px !important;
+        margin-bottom: 20px !important;
+      }
+      header.hero h1 {
+        color: #ffffff !important;
+        font-size: 1.6rem !important;
+      }
+      header.hero .badge {
+        background: rgba(255,255,255,0.2) !important;
+        color: #ffffff !important;
+      }
+      header.hero .meta {
+        color: #cbd5e1 !important;
+      }
+      .content-body {
+        padding: 10px 0 !important;
+      }
+      h1, h2, h3, h4, table, tr, pre, .mermaid, .mindmap-box, blockquote {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      h2, h3 {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <div class="badge">📖 高中課堂互動圖文筆記</div>
+      <button class="print-btn" onclick="window.print()">🖨️ 列印 / 另存 PDF</button>
+      <h1>【歷史】261006_戰後台灣移民與多元族群</h1>
+      <div class="meta">
+        <span>⏱️ 數位筆記儀表板</span>
+        <span>🏷️ 含可縮放互動心智圖、時間軸與觀念對比</span>
+      </div>
+    </header>
+    <div class="content-body">
+      
+      <div class="mindmap-box">
+        <div class="mindmap-header">
+          <div class="mindmap-title">
+            <span>🧠 本課核心知識脈絡（NotebookLM 原生互動心智圖 • 支援縮放與展開）</span>
+          </div>
+          <div class="mindmap-btns">
+            <button class="mm-btn" onclick="expandAll()">展開全部</button>
+            <button class="mm-btn" onclick="collapseAll()">收合分支</button>
+            <button class="mm-btn" onclick="resetZoom()">重設視角</button>
+          </div>
+        </div>
+        <div id="tree-svg-container"></div>
+      </div>
+        
+      <h2>📖 課堂主題與核心摘要 (Class Overview)</h2>
+<p>本堂課聚焦於二戰後臺灣的移民潮與族群演變，詳細剖析自 1945 年戰後接收至 1949 年國共內戰引發的 200 萬外省移民潮，並延伸探討滇緬泰孤軍、大陳義胞與韓戰反共義士等特殊移民歷史。同時，課程梳理了眷村建築由「竹籬笆」到「高樓大廈」的四階段演變、榮民對臺灣基礎建設（如中橫公路）的奉獻與生活困境，以及 1980 年代起東南亞婚姻移民（新住民）對臺灣社會結構的深遠影響。本課核心目標在於建立對戰後臺灣多元族群形成脈絡、歷史記憶與現代社會交融的完整認知。</p>
+<div class="mermaid">
+graph LR
+  Root["戰後台灣移民與多元族群"] --> A["戰後外省移民潮"]
+  Root --> B["特殊移民群體與撤遷"]
+  Root --> C["眷村演變與老兵生活"]
+  Root --> D["1980年代跨國婚姻移民"]
+
+  A --> A1["1945年戰後接收移民"]
+  A --> A2["1949年國共內戰大撤退 (200萬人)"]
+
+  B --> B1["滇緬泰孤軍 (金三角地區)"]
+  B --> B2["大陳義胞 (一江山戰役)"]
+  B --> B3["韓戰反共義士與第七艦隊"]
+
+  C --> C1["眷村四階段演變 (竹籬笆→大廈)"]
+  C --> C2["榮民開路、婚姻限制與榮總"]
+  C --> C3["老兵返鄉探親歷史記憶"]
+
+  D --> D1["東南亞跨國婚姻 (越南配偶)"]
+  D --> D2["新住民與新二代發展"]
+</div>
+<hr />
+<h2>💡 核心知識點與觀念詳解 (Key Concepts)</h2>
+<h3>1. 戰後外省移民潮的階段與規模</h3>
+<ul>
+<li><strong>「外省人」稱呼的起源</strong>：課本常將 1949 年隨國民政府遷台者統稱為外省人，但實際上從 <strong>1945 年國民政府接收臺灣</strong> 起，即有陸續來台的移民被稱為外省人，概念並非始於 1949 年。</li>
+<li><strong>1949 年大撤退規模</strong>：國共內戰爆發後，來台軍人及軍眷約 <strong>100 萬人</strong>，非軍人身分的難民與平民亦約 <strong>100 萬人</strong>，總計約 <strong>200 萬人</strong> 湧入臺灣。</li>
+<li><strong>人口結構衝擊</strong>：臺灣人口短時間內從 400 萬急遽暴增至 600 萬，此波移民潮亦被視為 20 世紀全球規模最大的難民潮之一。</li>
+</ul>
+<hr />
+<h3>2. 特殊邊境與離島撤遷群體</h3>
+<h4>🟡 滇緬泰孤軍（金三角地區）</h4>
+<ul>
+<li><strong>地理範圍</strong>：位於雲南、緬甸、泰國、寮國（老撾）四國交界的「金三角地區」。</li>
+<li><strong>成因與遷移</strong>：國軍於對日抗戰時期駐防四川，內戰時轉駐雲南。國民黨敗退後，高官搭乘飛機撤台，留守雲南的上萬部隊（由戴國會將軍等人領導）撤入泰緬邊境。</li>
+<li><strong>生存與毒品交易</strong>：為在孤立無援環境中生存並籌措軍費，部隊於緬甸擊退緬軍建立據點，並種植大麻與生產海洛因，與當地「馬幫」合作外銷全球。</li>
+<li><strong>兩次撤台與留守泰北</strong>：民國 43 年（1954 年）緬甸告上聯合國，聯合國要求中華民國撤軍。政府派機分兩批撤回約 6,200 人，剩餘 <strong>3,800 人</strong> 因許多家屬安葬當地（堅信「有墳墓可拜的地方才是家鄉」）選擇留守。</li>
+<li><strong>歸化泰國與現代影響</strong>：留守部隊後受泰國政府邀請剿滅馬幫，換取全數歸化泰國國籍並妥善安葬家屬遺骸。如今泰北地區仍掛中華民國國旗，臺灣設有泰北臺灣學校及伊甸基金會志工服務。</li>
+<li><strong>臺灣安置點</strong>：撤台的 6,000 多人主要安置於 <strong>桃園中壢（如龍岡忠貞新村）</strong>、<strong>新北雙和地區（中永和）</strong> 及 <strong>南投清境農場</strong>。</li>
+</ul>
+<h4>🟡 大陳島撤退（1955 年一江山戰役）</h4>
+<ul>
+<li><strong>背景</strong>：大陳島位於浙江外海。蔣中正因浙江籍貫情結堅持死守。</li>
+<li><strong>一江山戰役</strong>：1955 年中共攻陷一江山島，大陳島陷入絕境。蔣中正請美軍協助人道撤離，將島上上萬軍民全數撤往臺灣，稱為「大陳義胞」。</li>
+<li><strong>產業與安置</strong>：大陳義胞撤台後安置於南投埔里等地。因浙江特產為紹興酒，政府特地設立 <strong>埔里酒廠</strong> 由大陳義胞專門釀造紹興酒。</li>
+</ul>
+<h4>🟡 韓戰爆發與反共義士</h4>
+<ul>
+<li><strong>美國外交政策轉折</strong>：1949 年美方發表《對華政策白皮書》，檢討國民黨敗退係因自身貪腐失人心，一度欲放棄國民政府。1950 年韓戰爆發後，美軍派 <strong>第七艦隊</strong> 執行「海峽中立政策」（防中共攻台，亦防臺灣反攻大陸）。</li>
+<li><strong>韓戰戰俘</strong>：韓戰期間國軍參戰並接收被俘或投誠的共軍（稱為反共義士），後將其收編納入國軍部隊。</li>
+</ul>
+<div class="mermaid">
+graph TD
+    A["國共內戰兵敗 (雲南撤退)"] --> B["退入滇緬泰邊境 (金三角地區)"]
+    B --> C["擊退緬甸軍，靠馬幫與毒品交易籌措軍費生存"]
+    C --> D["1954年緬甸告上聯合國，政府兩次撤台 6,200 人"]
+    D --> E["留守 3,800 人拒絕撤離 (守護家人墳墓)"]
+    E --> F["協助泰國剿平馬幫，全數歸化泰國 (泰北孤軍)"]
+    F --> G["撤台者安置於桃園中壢、雙和、南投清境農場"]
+</div>
+<hr />
+<h3>3. 眷村建築演變與老兵生活脈絡</h3>
+<div class="mermaid">
+timeline
+    title 眷村居住型態四階段演變時間軸
+    遷台初期 : 竹籬笆（竹編抹泥土之臨時遮蔽建築）
+    1950 年代 : 磚造平房（提供基本家庭居住空間）
+    1980 年代 : 眷村改建公寓與國宅（現代化集合式住宅）
+    1996 年起 : 興建高樓大廈（配合眷改條例全面改建）
+</div>
+<ul>
+<li><strong>榮民（榮譽國民）與臺灣建設</strong>：退伍國軍由退輔會安排參與重大工程，如開闢 <strong>中橫公路</strong>、泰魯閣工程及開墾清境農場，過程中許多人不幸殉職。</li>
+<li><strong>婚姻限制與榮總成立</strong>：蔣中正為維持部隊戰力，對軍人結婚設有極嚴格之軍階、年齡與政審限制，導致大量基層老兵終生未婚、孤苦無依。政府後設榮民安養中心（榮家），並為滿足醫療需求成立 <strong>榮民總醫院（榮總）</strong>。</li>
+</ul>
+<blockquote>
+<p>📖 <strong>【課堂感人歷史故事拆解】</strong><br />
+老師於座談會遇見一位六歲來台的老兵：當年他在南京下關碼頭拿著五塊錢與醬油瓶準備去買醬油，突遇蜂湧至港口的撤退難民潮，被無意間擠上最後一艘撤退貨輪。躲在船艙三日來到基隆，被好心老兵收養長大。直到民國 76 年（1987年）兩岸開放探親，他憑著一只保存 38 年的醬油瓶回到南京老家，在即將拆除的老宅佛堂裡，與 80 多歲的老母親相認擁抱落淚，道盡時代變局下的離散悲劇。</p>
+</blockquote>
+<hr />
+<h3>4. 1980 年代起全球性婚姻移民（新住民）</h3>
+<ul>
+<li><strong>背景</strong>：1980 年代起，臺灣部分經濟弱勢男性選擇透過跨國婚姻娶東南亞（特別是越南）女性。</li>
+<li><strong>社會貢獻</strong>：越南配偶勤勞養家，甚至在台繼續求學取得高學歷；其生育的「新住民二代」數量已達數十萬，成為臺灣少子化浪潮中極為關鍵的新生代力量。</li>
+</ul>
+<hr />
+<h3>📊 觀念與易混淆對比表：戰後移民群體全方位對比</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">群體名稱</th>
+<th style="text-align: left;">主要來源與時空背景</th>
+<th style="text-align: left;">遷台/落腳原因</th>
+<th style="text-align: left;">臺灣主要安置與分布地點</th>
+<th style="text-align: left;">特色與歷史影響</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>一般外省移民</strong></td>
+<td style="text-align: left;">1945年接收與1949年國共內戰（約200萬人）</td>
+<td style="text-align: left;">隨國民政府撤退、避難</td>
+<td style="text-align: left;">全台各大眷村、都會區</td>
+<td style="text-align: left;">人口暴增，形成獨特的眷村文化與飲食</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>滇緬泰孤軍</strong></td>
+<td style="text-align: left;">雲南退入金三角之國軍部隊</td>
+<td style="text-align: left;">聯合國協調撤台（撤離 6,200 人）</td>
+<td style="text-align: left;">桃園中壢（龍岡）、雙和、南投清境農場</td>
+<td style="text-align: left;">留守 3,800 人歸化泰籍（泰北孤軍）；撤台者帶入滇緬雲南美食文化</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>大陳義胞</strong></td>
+<td style="text-align: left;">浙江外海大陳島軍民（1955年）</td>
+<td style="text-align: left;">一江山戰役失守，美軍協助整體撤離</td>
+<td style="text-align: left;">南投埔里、花蓮、高雄等大陳新村</td>
+<td style="text-align: left;">安置於埔里並設立埔里酒廠釀造紹興酒</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>韓戰反共義士</strong></td>
+<td style="text-align: left;">韓戰期間被俘或投誠之共軍</td>
+<td style="text-align: left;">拒絕返回中國，選擇來台</td>
+<td style="text-align: left;">收編編入國軍各部隊</td>
+<td style="text-align: left;">奠定 123 自由日，作為冷戰宣傳範例</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>東南亞新住民</strong></td>
+<td style="text-align: left;">1980年代起之跨國婚姻配偶（以越南為主）</td>
+<td style="text-align: left;">臺灣跨國婚姻發展</td>
+<td style="text-align: left;">全台各地</td>
+<td style="text-align: left;">填補臺灣少子化缺口，新二代成為臺灣重要新力量</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>⚠️ 老師強調考點與易錯陷阱 (Exam Focus &amp; Pitfalls)</h2>
+<ul>
+<li><strong>考點一：「外省人」出現的時間點</strong>：課本題目常設定 1949 年，但需注意「1945 年戰後接收即已開始有外省移民」。</li>
+<li><strong>考點二：美軍第七艦隊任務性質</strong>：非單純「保衛臺灣」，而是因韓戰爆發執行的「海峽中立政策」（防中共攻台，同時也阻止國軍反攻大陸）。</li>
+<li><strong>考點三：《對華政策白皮書》的背景</strong>：1949 年美方發表白皮書，檢討國民黨因失人心而敗退，責在國民黨而非美國；直到韓戰爆發美國才改變對台態度。</li>
+<li><strong>考點四：特殊移民落腳地與產業對應（極高頻考點）</strong>：</li>
+<li>滇緬孤軍 → 桃園中壢（龍岡忠貞新村）、雙和、南投清境農場（雲南滇緬美食）。</li>
+<li>大陳義胞 → 南投埔里（設立埔里酒廠釀造紹興酒）。</li>
+</ul>
+<hr />
+<h2>🔑 記憶口訣與解題技巧 (Mnemonics &amp; Shortcuts)</h2>
+<h3>💡 眷村建築演變四口訣</h3>
+<blockquote>
+<p><strong>「40竹籬笆，50起平房，80蓋公寓，96變大廈」</strong></p>
+</blockquote>
+<h3>💡 歷史選擇題破題關鍵字判斷 SOP</h3>
+<ul>
+<li>看到 <strong>「浙江外海、一江山戰役、紹興酒、埔里酒廠」</strong> ➔ 答案秒選：<strong>大陳義胞</strong>。</li>
+<li>看到 <strong>「金三角、雲南緬甸、泰北、忠貞新村、清境農場」</strong> ➔ 答案秒選：<strong>滇緬泰孤軍</strong>。</li>
+<li>看到 <strong>「第七艦隊、海峽中立政策、對華政策白皮書」</strong> ➔ 答案秒選：<strong>韓戰爆發（冷戰轉折）</strong>。</li>
+</ul>
+<hr />
+<h2>📝 課後作業與待辦事項 (Homework &amp; Tasks)</h2>
+<ul>
+<li><strong>課堂作業</strong>：無特定作業（請徹底複習本章節戰後臺灣移民與族群演變內容）。</li>
+</ul>
+<hr />
+<h2>📚 專有名詞與重要公式/定義 (Glossary &amp; Formulas)</h2>
+<ul>
+<li><strong>外省人</strong>：指二戰後（1945年起）及國共內戰（1949年）隨國民政府由中國大陸各省遷居臺灣的移民及其後代。</li>
+<li><strong>滇緬泰孤軍（泰北孤軍）</strong>：國共內戰後撤入滇緬泰邊境金三角地區的國軍部隊，歷經聯合國撤軍，留守者後歸化泰國，主要分佈於泰北地區。</li>
+<li><strong>大陳義胞</strong>：1955 年一江山戰役後，在美軍協助下從浙江省大陳島整體撤退來台的軍民。</li>
+<li><strong>海峽中立政策</strong>：1950 年韓戰爆發後，美國總統杜魯門派遣第七艦隊巡邏臺灣海峽，防止中共攻台亦阻止國軍反攻大陸的冷戰戰略。</li>
+<li><strong>榮民（榮譽國民）</strong>：退伍軍人的尊稱，政府設有退輔會輔導其就業（如開闢中橫公路）、就養與就醫（設立榮民總醫院）。</li>
+<li><strong>新住民</strong>：自 1980 年代起透過跨國婚姻（以東南亞及中國大陸為主）移居臺灣並取得國籍的新移民及其二代。</li>
+</ul>
+<hr />
+<h2>🧠 課後自測題 (Quick Review Quiz)</h2>
+<h3>題目一（單選題）</h3>
+<p><strong>關於二戰後遷台特殊群體的敘述，下列何者正確？</strong><br />
+(A) 滇緬孤軍全數於民國 43 年在聯合國協調下撤回臺灣安置於埔里<br />
+(B) 大陳義胞因撤退來台後安置於南投埔里，促成了埔里酒廠釀造紹興酒的產業發展<br />
+(C) 美軍第七艦隊協防台海主要目的是全力支持蔣中正反攻中國大陸<br />
+(D) 「外省人」這一稱呼嚴格始於 1949 年國共內戰大撤退之後  </p>
+<blockquote>
+<p><strong>【解題思維與答案】</strong><br />
+- (A) 錯誤，孤軍僅部分撤台（約6,200人），剩餘3,800人留守泰北；且埔里主要是大陳義胞與埔里酒廠。<br />
+- (B) 正確，大陳義胞來自浙江，善釀紹興酒，政府於埔里設酒廠由其釀造。<br />
+- (C) 錯誤，第七艦隊執行的是「海峽中立政策」，防止雙方互相攻擊。<br />
+- (D) 錯誤，1945年戰後接收即已開始有外省人稱呼。<br />
+<strong>答案：(B)</strong></p>
+</blockquote>
+<hr />
+<h3>題目二（思考問答題）</h3>
+<p><strong>請簡述 1950 年「韓戰爆發」對美國對台政策產生的關鍵轉變，以及其對臺灣局勢的影響。</strong></p>
+<blockquote>
+<p><strong>【解題思維與答案】</strong><br />
+1. <strong>政策轉變</strong>：1949 年國民政府敗退來台後，美國發表《對華政策白皮書》擬放棄國民政府；但 1950 年韓戰爆發後，美國意識到臺灣在冷戰防線中的戰略地位，隨即派遣第七艦隊協防臺灣海峽。<br />
+2. <strong>對台影響</strong>：美軍執行「海峽中立政策」，客觀上阻止了中共對臺灣的軍事進攻，穩定了一代偏安的臺灣局勢，也開啟了日後美援與中美共同防禦條約的合作契機。</p>
+</blockquote>
+    </div>
+    <footer class="doc-foot">
+      自動生成於 NotebookLM Study Assistant • 專為高中學生課後複習與考前衝刺打造
+    </footer>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.mermaid) {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'neutral',
+          fontFamily: "'Noto Sans TC', 'Inter', sans-serif",
+          flowchart: { curve: 'basis', htmlLabels: true },
+          securityLevel: 'loose'
+        });
+      }
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+  
+  <script>
+    (function() {
+      const treeData = {"name": "戰後台灣移民與多元族群", "children": [{"name": "特殊移民群體與撤遷", "children": [{"name": "滇緬泰孤軍 (金三角地區)"}, {"name": "大陳義胞 (一江山戰役)"}, {"name": "韓戰反共義士與第七艦隊"}]}, {"name": "眷村演變與老兵生活", "children": [{"name": "眷村四階段演變 (竹籬笆→大廈)"}, {"name": "榮民開路、婚姻限制與榮總"}, {"name": "老兵返鄉探親歷史記憶"}]}, {"name": "1980年代跨國婚姻移民", "children": [{"name": "東南亞跨國婚姻 (越南配偶)"}, {"name": "新住民與新二代發展"}]}]};
+      const container = document.getElementById("tree-svg-container");
+      if (!container || !treeData) return;
+
+      const width = container.clientWidth || 880;
+      const height = 520;
+
+      const svg = d3.select("#tree-svg-container")
+        .append("svg")
+        .attr("width", "100%")
+        .attr("height", height)
+        .attr("viewBox", [0, 0, width, height]);
+
+      const g = svg.append("g");
+
+      const zoom = d3.zoom()
+        .scaleExtent([0.25, 2.5])
+        .on("zoom", (e) => g.attr("transform", e.transform));
+
+      svg.call(zoom);
+
+      const root = d3.hierarchy(treeData);
+      root.x0 = height / 2;
+      root.y0 = 0;
+
+      let i = 0;
+      const duration = 380;
+      // [dy, dx]: 垂直節距 58px (確保上下不重疊), 水平層級 320px (確保長文字不穿透父層)
+      const treeLayout = d3.tree().nodeSize([58, 320]);
+
+      function splitNodeText(text, maxChars) {
+        if (!text) return [""];
+        if (text.length <= maxChars) return [text];
+
+        // 優先在括號處斷行，例如：世風日下之自身矛盾對比（擇師教子 vs. 於身恥師）
+        const parenIdx = text.search(/[（(]/);
+        if (parenIdx >= 3 && parenIdx <= maxChars + 4) {
+          const p1 = text.slice(0, parenIdx).trim();
+          const p2 = text.slice(parenIdx).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 優先在冒號、破折號、頓號處斷行
+        const sepIdx = text.search(/[：:—、]/);
+        if (sepIdx >= 3 && sepIdx <= maxChars + 2) {
+          const p1 = text.slice(0, sepIdx + 1).trim();
+          const p2 = text.slice(sepIdx + 1).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 預設在 maxChars 處均勻斷行
+        return [text.slice(0, maxChars), text.slice(maxChars)];
+      }
+
+      if (root.children) {
+        root.children.forEach(c => {
+          if (c.children) {
+            c.children.forEach(collapse);
+          }
+        });
+      }
+
+      function collapse(d) {
+        if (d.children) {
+          d._children = d.children;
+          d._children.forEach(collapse);
+          d.children = null;
+        }
+      }
+
+      function expand(d) {
+        if (d._children) {
+          d.children = d._children;
+          d.children.forEach(expand);
+          d._children = null;
+        }
+      }
+
+      const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
+
+      function getNodeColor(d) {
+        if (d.depth === 0) return "#2563eb";
+        let p = d;
+        while (p.depth > 1) p = p.parent;
+        return colorScale(p.data.name);
+      }
+
+      function update(source) {
+        const nodes = root.descendants();
+        const links = root.links();
+
+        treeLayout(root);
+
+        const node = g.selectAll("g.node")
+          .data(nodes, d => d.id || (d.id = ++i));
+
+        const nodeEnter = node.enter().append("g")
+          .attr("class", "node")
+          .attr("transform", d => `translate(${source.y0},${source.x0})`)
+          .on("click", (event, d) => {
+            if (d.children) {
+              d._children = d.children;
+              d.children = null;
+            } else if (d._children) {
+              d.children = d._children;
+              d._children = null;
+            }
+            update(d);
+          });
+
+        nodeEnter.append("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        const textNode = nodeEnter.append("text")
+          .attr("class", "node-text")
+          .attr("text-anchor", d => (d.children || d._children) ? "end" : "start")
+          .style("fill-opacity", 0);
+
+        textNode.each(function(d) {
+          const el = d3.select(this);
+          const isParent = Boolean(d.children || d._children);
+          const xOffset = isParent ? -14 : 14;
+          const maxChars = isParent ? 13 : 18;
+          const lines = splitNodeText(d.data.name, maxChars);
+
+          if (lines.length === 1) {
+            el.attr("x", xOffset)
+              .attr("dy", "0.32em")
+              .text(lines[0]);
+          } else {
+            el.attr("x", xOffset)
+              .attr("dy", "-0.35em")
+              .text(lines[0]);
+            el.append("tspan")
+              .attr("x", xOffset)
+              .attr("dy", "1.25em")
+              .text(lines[1]);
+          }
+        });
+
+        const nodeUpdate = node.merge(nodeEnter).transition().duration(duration)
+          .attr("transform", d => `translate(${d.y},${d.x})`);
+
+        nodeUpdate.select("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        nodeUpdate.select("text")
+          .style("fill-opacity", 1);
+
+        const nodeExit = node.exit().transition().duration(duration)
+          .attr("transform", d => `translate(${source.y},${source.x})`)
+          .remove();
+
+        nodeExit.select("circle").attr("r", 1e-6);
+        nodeExit.select("text").style("fill-opacity", 1e-6);
+
+        const link = g.selectAll("path.link")
+          .data(links, d => d.target.id);
+
+        const linkEnter = link.enter().insert("path", "g")
+          .attr("class", "link")
+          .attr("d", d => {
+            const o = {x: source.x0, y: source.y0};
+            return diagonal(o, o);
+          });
+
+        link.merge(linkEnter).transition().duration(duration)
+          .attr("d", d => diagonal(d.source, d.target));
+
+        link.exit().transition().duration(duration)
+          .attr("d", d => {
+            const o = {x: source.x, y: source.y};
+            return diagonal(o, o);
+          })
+          .remove();
+
+        nodes.forEach(d => {
+          d.x0 = d.x;
+          d.y0 = d.y;
+        });
+      }
+
+      function diagonal(s, d) {
+        return `M ${s.y} ${s.x}
+                C ${(s.y + d.y) / 2} ${s.x},
+                  ${(s.y + d.y) / 2} ${d.x},
+                  ${d.y} ${d.x}`;
+      }
+
+      function autoFitTree(duration = 450) {
+        const nodes = root.descendants();
+        if (!nodes || nodes.length === 0) return;
+
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        nodes.forEach(d => {
+          const isParent = Boolean(d.children || d._children);
+          const leftBound = d.y - (isParent ? 180 : 20);
+          const rightBound = d.y + (isParent ? 20 : 220);
+          const topBound = d.x - 32;
+          const bottomBound = d.x + 32;
+
+          if (leftBound < minX) minX = leftBound;
+          if (rightBound > maxX) maxX = rightBound;
+          if (topBound < minY) minY = topBound;
+          if (bottomBound > maxY) maxY = bottomBound;
+        });
+
+        const fullWidth = container.clientWidth || 880;
+        const fullHeight = height;
+        const treeW = maxX - minX;
+        const treeH = maxY - minY;
+
+        if (treeW <= 0 || treeH <= 0) return;
+
+        const scale = Math.min(0.92, (fullWidth * 0.90) / treeW, (fullHeight * 0.90) / treeH);
+        const clampedScale = Math.max(scale, 0.42);
+
+        const midTreeX = (minX + maxX) / 2;
+        const midTreeY = (minY + maxY) / 2;
+        const tx = fullWidth / 2 - clampedScale * midTreeX;
+        const ty = fullHeight / 2 - clampedScale * midTreeY;
+
+        if (duration > 0) {
+          svg.transition().duration(duration).call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        } else {
+          svg.call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        }
+      }
+
+      window.expandAll = function() {
+        root.each(expand);
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.collapseAll = function() {
+        if (root.children) {
+          root.children.forEach(collapse);
+        }
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.resetZoom = function() {
+        autoFitTree(450);
+      };
+
+      // 首次繪製節點並自動縮放置中全覽
+      update(root);
+      autoFitTree(0);
+    })();
+  </script>
+
+</body>
+</html>

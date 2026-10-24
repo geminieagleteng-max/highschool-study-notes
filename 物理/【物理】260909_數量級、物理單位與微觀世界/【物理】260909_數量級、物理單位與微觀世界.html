@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【物理】260909_數量級、物理單位與微觀世界</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --border: #e2e8f0;
+      --border-focus: #cbd5e1;
+      --tag-bg: #e0f2fe;
+      --tag-text: #0369a1;
+      --header-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans TC', 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.8;
+      font-size: 16px;
+      padding: 30px 16px 60px;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.06), 0 2px 6px -1px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    header.hero {
+      background: var(--header-gradient);
+      color: #ffffff;
+      padding: 36px 40px 30px;
+      position: relative;
+    }
+    header.hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      color: #f1f5f9;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    header.hero h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.5px;
+    }
+    header.hero .meta {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .content-body {
+      padding: 40px 48px;
+    }
+    @media (max-width: 640px) {
+      .content-body { padding: 24px 20px; }
+      header.hero { padding: 28px 24px 22px; }
+      header.hero h1 { font-size: 1.5rem; }
+    }
+    h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 2.2em;
+      margin-bottom: 0.9em;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h2:first-of-type { margin-top: 0.5em; }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1e3a8a;
+      margin-top: 1.6em;
+      margin-bottom: 0.6em;
+      padding-left: 10px;
+      border-left: 4px solid var(--accent);
+    }
+    p { margin-bottom: 1.1em; }
+    ul, ol { margin-bottom: 1.2em; padding-left: 1.8em; }
+    li { margin-bottom: 0.4em; }
+    .mermaid {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 16px;
+      margin: 1.6em 0;
+      text-align: center;
+      overflow-x: auto;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 1.6em 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    thead th {
+      background: #f1f5f9;
+      color: #1e293b;
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+    tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) { background: #fafafa; }
+    tbody tr:hover { background: #f0f7ff; }
+    tbody tr:last-child td { border-bottom: none; }
+    code {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      background: #f1f5f9;
+      color: #b91c1c;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 1.4em 0;
+      font-size: 0.92em;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; }
+    blockquote {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 14px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 1.4em 0;
+      color: #1e40af;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2.2em 0; }
+    .katex-display {
+      margin: 1.2em 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 6px 0;
+    }
+    .katex { font-size: 1.05em; }
+    
+    /* NotebookLM 原生 D3 互動心智圖樣式 */
+    .mindmap-box {
+      margin: 2em 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .mindmap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .mindmap-title {
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mindmap-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .mm-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: #334155;
+      transition: all 0.2s;
+    }
+    .mm-btn:hover { background: #f1f5f9; }
+    #tree-svg-container {
+      width: 100%;
+      height: 520px;
+      background: #ffffff;
+      cursor: grab;
+    }
+    #tree-svg-container:active { cursor: grabbing; }
+    .node circle {
+      cursor: pointer;
+      stroke-width: 2.5px;
+      transition: all 0.2s;
+    }
+    .node circle:hover { transform: scale(1.25); }
+    .node text {
+      font-size: 13px;
+      font-weight: 500;
+      font-family: inherit;
+      fill: #1e293b;
+      cursor: pointer;
+      paint-order: stroke fill;
+      stroke: #ffffff;
+      stroke-width: 4.5px;
+      stroke-linejoin: round;
+      user-select: none;
+    }
+    .link {
+      fill: none;
+      stroke: #cbd5e1;
+      stroke-width: 1.8px;
+      stroke-opacity: 0.85;
+      transition: stroke-width 0.2s;
+    }
+    .link:hover { stroke: #94a3b8; stroke-width: 2.5px; }
+
+    footer.doc-foot {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      background: #fcfdfe;
+    }
+    .print-btn {
+      position: absolute;
+      top: 36px;
+      right: 40px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .print-btn:hover { background: rgba(255,255,255,0.25); }
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      body {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+      }
+      .container {
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+      }
+      .print-btn, .mindmap-btns {
+        display: none !important;
+      }
+      header.hero {
+        background: var(--header-gradient) !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+        padding: 24px 30px !important;
+        margin-bottom: 20px !important;
+      }
+      header.hero h1 {
+        color: #ffffff !important;
+        font-size: 1.6rem !important;
+      }
+      header.hero .badge {
+        background: rgba(255,255,255,0.2) !important;
+        color: #ffffff !important;
+      }
+      header.hero .meta {
+        color: #cbd5e1 !important;
+      }
+      .content-body {
+        padding: 10px 0 !important;
+      }
+      h1, h2, h3, h4, table, tr, pre, .mermaid, .mindmap-box, blockquote {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      h2, h3 {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <div class="badge">📖 高中課堂互動圖文筆記</div>
+      <button class="print-btn" onclick="window.print()">🖨️ 列印 / 另存 PDF</button>
+      <h1>【物理】260909_數量級、物理單位與微觀世界</h1>
+      <div class="meta">
+        <span>⏱️ 數位筆記儀表板</span>
+        <span>🏷️ 含可縮放互動心智圖、時間軸與觀念對比</span>
+      </div>
+    </header>
+    <div class="content-body">
+      
+      <div class="mindmap-box">
+        <div class="mindmap-header">
+          <div class="mindmap-title">
+            <span>🧠 本課核心知識脈絡（NotebookLM 原生互動心智圖 • 支援縮放與展開）</span>
+          </div>
+          <div class="mindmap-btns">
+            <button class="mm-btn" onclick="expandAll()">展開全部</button>
+            <button class="mm-btn" onclick="collapseAll()">收合分支</button>
+            <button class="mm-btn" onclick="resetZoom()">重設視角</button>
+          </div>
+        </div>
+        <div id="tree-svg-container"></div>
+      </div>
+        
+      <h2>📖 課堂主題與核心摘要 (Class Overview)</h2>
+<p>本堂課為高中物理的核心基礎單元，主題涵蓋「數量級判斷」、「物理單位前綴」、「四種基本交互作用與微觀尺度」，以及「富蘭克林油膜實驗推算分子大小與阿伏伽德羅常數」。課堂中老師特別釐清了科學記號以 \(\sqrt{10} \approx 3.16\) 作為數量級進位臨界點的標準判準，並透過生活化的比喻（如皮秒雷射、卡路里與香蕉換算、行動電源庫侖數）介紹各項國際單位（SI）與能量換算。最後藉由富蘭克林油膜實驗的幾何模型拆解，引導學生掌握微觀尺度的數量級估算與最新 SI 單位（如利用普朗克常數定義公斤）的推導邏輯，為即將到來的第一次段考與學測複習奠定堅實基礎。</p>
+<div class="mermaid">
+graph LR
+  Root["數量級、物理單位與微觀世界"] --> A["數量級與單位前綴"]
+  Root --> B["四種基本交互作用"]
+  Root --> C["油膜實驗與微觀估算"]
+  Root --> D["SI單位與物理常數定義"]
+
+  A --> A1["數量級進位判準：$a > \sqrt{10} \approx 3.16$"]
+  A --> A2["單位前綴 ($G, M, k, m, \mu, n, p, f, a$)"]
+  A --> A3["能量單位對比 ($\text{J}, \text{cal}, \text{度}, \text{eV}, \text{mAh}$)"]
+
+  B --> B1["強力：維護原子核穩定 ($10^{-15} \text{ m}$ / 飛米)")
+  B --> B2["弱力：引發 $\beta$ 衰變與質中子變身 ($10^{-18} \text{ m}$ / 阿米)")
+
+  C --> C1["形狀模型假定：正立方體 vs 球體"]
+  C2["分子厚度估算：$h = \frac{V}{A}$"]
+  C --> C3["莫耳分子數與阿伏伽德羅常數正比推算"]
+
+  D --> D1["時間單位：秒擺 $T=2\pi\sqrt{\frac{L}{g}}$ 與銫原子鐘"]
+  D --> D2["質量單位：普朗克常數 $h$ 反推公斤 ($\text{kg}$)"]
+</div>
+<hr />
+<h2>💡 核心知識點與觀念詳解 (Key Concepts)</h2>
+<h3>1. 數量級判定原則與國際單位前綴 (Orders of Magnitude &amp; Prefixes)</h3>
+<ul>
+<li>
+<p><strong>數量級（Order of Magnitude）進位規準</strong>：<br />
+    將任意物理量寫為科學記號 \(N = a \times 10^b\)（其中 \(1 \le a &lt; 10\)）。由於對數尺度（Log scale）的中點為 \(\sqrt{10} \approx 3.16\)，故進位判斷標準如下：</p>
+<ul>
+<li>若 \(a &gt; \sqrt{10} \approx 3.16\)，則數量級取 <strong>\(10^{b+1}\)</strong>（強制進位）。</li>
+<li>若 \(a &lt; \sqrt{10} \approx 3.16\)，則數量級維持 <strong>\(10^b\)</strong>（保持原狀）。</li>
+</ul>
+<p><strong>【經典例題拆解與試算】</strong>：<br />
+*   <strong>電子質量</strong>：\(m_e = 9.11 \times 10^{-31} \text{ kg} \implies 9.11 &gt; 3.16 \implies \text{數量級為 } 10^{-30} \text{ kg}\)<br />
+*   <strong>電子電量</strong>：\(e = 1.6 \times 10^{-19} \text{ C} \implies 1.6 &lt; 3.16 \implies \text{數量級為 } 10^{-19} \text{ C}\)<br />
+*   <strong>光速</strong>：\(c = 3.0 \times 10^8 \text{ m/s} \implies 3.0 &lt; 3.16 \implies \text{數量級為 } 10^8 \text{ m/s}\)<br />
+*   <strong>一光年距離</strong>：\(1 \text{ ly} = 9.46 \times 10^{15} \text{ m} \implies 9.46 &gt; 3.16 \implies \text{數量級為 } 10^{16} \text{ m}\)</p>
+</li>
+<li>
+<p><strong>常見單位前綴與生活實例</strong>：<br />
+    老師以醫美雷射作為生活比喻：</p>
+<ul>
+<li><strong>皮秒雷射（Pico-laser）</strong>：作用時間為皮秒等級（\(10^{-12} \text{ s}\)），時間極短且脈衝能量極高，能精準震碎毛孔色素，打的時候會聞到臉部蛋白質燒焦味。</li>
+<li><strong>淨膚雷射</strong>：作用時間為奈米等級（\(10^{-9} \text{ s}\)），能量較溫和，用於日常去角質與表皮保養。</li>
+</ul>
+</li>
+<li>
+<p><strong>常見能量單位與換算總整理</strong>：</p>
+<ol>
+<li><strong>焦耳 (\(\text{J}\))</strong>：SI 標準能量單位（\(\text{N} \cdot \text{m} = \text{kg} \cdot \text{m}^2 \cdot \text{s}^{-2}\)）。</li>
+<li><strong>卡路里 (\(\text{cal}\))</strong>：熱量單位。\(1 \text{ cal} \approx 4.2 \text{ J}\)；反之 \(1 \text{ J} \approx 0.24 \text{ cal}\)。</li>
+<li><strong>電費單位「度」(\(\text{kWh}\))</strong>：功功率與時間之積。<br />
+    \[ 1 \text{ 度} = 1 \text{ kW} \times 1 \text{ h} = 1000 \text{ W} \times 3600 \text{ s} = 3.6 \times 10^6 \text{ J} \]</li>
+<li><strong>電子伏特 (\(\text{eV}\))</strong>：微觀粒子（如電子、光子）專用能量單位。\(1 \text{ eV} = 1.6 \times 10^{-19} \text{ J}\)。</li>
+<li><strong>電池電容量 (\(\text{mAh}\))</strong>：注意！這<strong>不是能量</strong>，而是<strong>電量（庫侖 \(\text{C}\)）</strong>單位。<br />
+    \[ 1 \text{ mAh} = 10^{-3} \text{ A} \times 3600 \text{ s} = 3.6 \text{ A} \cdot \text{s} = 3.6 \text{ C} \]<br />
+<em>課堂實例</em>：容量 \(2300 \text{ mAh}\) 的行動電源，其儲存的總電量為：<br />
+    \[ Q = 2.3 \text{ A} \times 3600 \text{ s} = 8280 \text{ C} \approx 8.28 \times 10^3 \text{ C} \]</li>
+</ol>
+</li>
+</ul>
+<hr />
+<h3>2. 四種基本交互作用與微觀尺度對比 (Fundamental Interactions)</h3>
+<p>物理學中自然界四大基本作用力分別支配不同的尺度領域，課堂重點著重於原子核內部的「強力」與「弱力」：</p>
+<ul>
+<li><strong>原子與原子核尺度</strong>：<ul>
+<li>原子整體直徑：約 \(1 \text{ \AA} = 10^{-10} \text{ m}\)。</li>
+<li>原子核直徑：約 \(10^{-15} \text{ m} = 1 \text{ fm}\)（飛米）。</li>
+</ul>
+</li>
+<li><strong>強力（Strong Interaction）</strong>：<ul>
+<li><strong>核心功能</strong>：克服質子間強烈的電磁排斥力，將質子與中子緊緊束縛在原子核內。</li>
+<li><strong>作用範圍</strong>：僅限於原子核內部尺度，約 <strong>\(10^{-15} \text{ m}\)（飛米 \(\text{fm}\)）</strong>。若原子序大於 83（如鈾等重元素），原子核過大導致強力無法全面籠罩時，原子核會丟出部分粒子引發 <strong>\(\alpha\) 衰變</strong>。</li>
+</ul>
+</li>
+<li><strong>弱力（Weak Interaction）</strong>：<ul>
+<li><strong>核心功能</strong>：引發基本粒子的「變身」（如中子衰變成質子、電子與反微中子），為引發 <strong>\(\beta\) 衰變</strong>與太陽內部<strong>核融合反應</strong>的主因。</li>
+<li><strong>作用範圍</strong>：極短，僅約 <strong>\(10^{-18} \text{ m}\)（阿米 \(\text{am}\)）</strong>。</li>
+</ul>
+</li>
+</ul>
+<h4>📊 觀念與易混淆對比表：基本交互作用對比</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">比較項目</th>
+<th style="text-align: left;">強力 (Strong Force)</th>
+<th style="text-align: left;">弱力 (Weak Force)</th>
+<th style="text-align: left;">電磁力 (Electromagnetic)</th>
+<th style="text-align: left;">重力 (Gravity)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>主要功能</strong></td>
+<td style="text-align: left;">維持原子核穩定、束縛夸克與核子</td>
+<td style="text-align: left;">引發粒子變身與放射性衰變</td>
+<td style="text-align: left;">電子繞核運動、分子間作用力</td>
+<td style="text-align: left;">支配宏觀天體運動與重力場</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>代表現象</strong></td>
+<td style="text-align: left;">\(\alpha\) 衰變、原子核結合能</td>
+<td style="text-align: left;">\(\beta\) 衰變、太陽內部核融合</td>
+<td style="text-align: left;">正負電相吸、摩擦力、正向力</td>
+<td style="text-align: left;">蘋果落地、行星繞日</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>作用範圍</strong></td>
+<td style="text-align: left;">\(\approx 10^{-15} \text{ m}\) (飛米 \(\text{fm}\))</td>
+<td style="text-align: left;">\(\approx 10^{-18} \text{ m}\) (阿米 \(\text{am}\))</td>
+<td style="text-align: left;">無限遠 (\(r^{-2}\) 遞減)</td>
+<td style="text-align: left;">無限遠 (\(r^{-2}\) 遞減)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>相對強度</strong></td>
+<td style="text-align: left;">\(1\) (最強)</td>
+<td style="text-align: left;">\(\approx 10^{-13}\)</td>
+<td style="text-align: left;">\(\approx 10^{-2}\)</td>
+<td style="text-align: left;">\(\approx 10^{-39}\) (最弱)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>3. 經典油膜實驗：估算分子大小與阿伏伽德羅常數 (Oil Film Experiment)</h3>
+<p>富蘭克林（Benjamin Franklin）將一茶匙的油倒在湖面上，油滴鋪展成單分子厚度的薄膜，藉此可推算分子的幾何尺度與阿伏伽德羅常數。</p>
+<h4>⏱️ 油膜實驗步驟與推導流程圖</h4>
+<div class="mermaid">
+graph TD
+    Step1["1. 量測油滴體積 $V$<br>(例如一茶匙 $V = 0.5 \text{ cm}^3$)" ] --> Step2["2. 滴於水面形成單分子油膜<br>擴張至極限測得面積 $A$<br>(如 $A = 2.0 \times 10^7 \text{ cm}^2$)" ]
+    Step2 --> Step3["3. 利用體積守恆計算油膜厚度<br>$h = \frac{V}{A}$，即單一分子邊長/直徑" ]
+    Step3 --> Step4["4. 幾何模型假設與單一分子截面積<br>正立方體模型：$A_{\text{單}} = h^2$<br>球體模型：$V_{\text{單}} = \frac{4}{3}\pi r^3$" ]
+    Step4 --> Step5["5. 估算油膜總分子數 $N$<br>$N = \frac{A_{\text{總}}}{A_{\text{單}}}$" ]
+    Step5 --> Step6["6. 結合油滴質量與莫耳質量<br>利用正比推導阿伏伽德羅常數 $N_A$" ]
+</div>
+<h4>【經典學測例題步驟拆解】</h4>
+<p><strong>【已知條件】</strong>：油滴體積 \(V = 0.5 \text{ cm}^3\)，擴張之油膜面積 \(A = 2.0 \times 10^7 \text{ cm}^2\)，油的密度 \(\rho = 0.95 \text{ g/cm}^3\)，油的莫耳質量為 \(200 \text{ g/mol}\)。假定油分子為緊密排列之正立方體。</p>
+<ol>
+<li><strong>推導單一分子厚度（邊長 \(h\)）</strong>：<br />
+    由體積公式 \(V = A \times h\) 移項得：<br />
+    \[ h = \frac{V}{A} = \frac{0.5 \text{ cm}^3}{2.0 \times 10^7 \text{ cm}^2} = 2.5 \times 10^{-8} \text{ cm} = 2.5 \times 10^{-10} \text{ m} = 0.25 \text{ nm} \]</li>
+<li><strong>計算水面上鋪展之總分子數 \(N\)</strong>：<br />
+    單一正立方體分子的頂面截面積 \(A_{\text{單}} = h^2 = (2.5 \times 10^{-8} \text{ cm})^2 = 6.25 \times 10^{-16} \text{ cm}^2\)。<br />
+    \[ N = \frac{A_{\text{總}}}{A_{\text{單}}} = \frac{2.0 \times 10^7 \text{ cm}^2}{6.25 \times 10^{-16} \text{ cm}^2} = 3.2 \times 10^{22} \text{ 個} \]<br />
+<em>(註：依數量級進位規準，\(3.2 &gt; 3.16\)，故數量級可估為 \(10^{23}\) 個)</em>。</li>
+<li><strong>反推一莫耳分子數（阿伏伽德羅常數 \(N_A\)）</strong>：<br />
+    該滴油的總質量 \(m = V \times \rho = 0.5 \text{ cm}^3 \times 0.95 \text{ g/cm}^3 = 0.475 \text{ g}\)（若以一茶匙 \(5 \text{ cm}^3\) 計則為 \(4.75 \text{ g}\)）。<br />
+    依質量與分子數成正比：<br />
+    \[ \frac{4.75 \text{ g}}{3.2 \times 10^{22} \text{ 個}} = \frac{200 \text{ g/mol}}{N_A} \implies N_A \approx 4.2 \times 10^{23} \text{ 個/mol} \]</li>
+</ol>
+<hr />
+<h3>4. 國際單位制（SI）與基本物理常數推導 (SI Units &amp; Constants)</h3>
+<ul>
+<li><strong>時間單位（秒，\(\text{s}\)）</strong>：<ul>
+<li>古代：定義為一平均太陽日的 \(\frac{1}{86400}\)。</li>
+<li>秒擺（Second Pendulum）：擺角極小時，單擺週期公式為 \(T = 2\pi \sqrt{\frac{L}{g}}\)。當擺長 \(L = 1 \text{ m}\)、\(g \approx 9.8 \text{ m/s}^2 \approx \pi^2\) 時，來回一次的週期 \(T \approx 2 \text{ s}\)（單趟為 1 秒）。</li>
+<li>現代定義：採用<strong>銫-133（\(\text{Cs}\)）</strong>原子鐘躍遷輻射頻率作為極高精準度的定義。</li>
+</ul>
+</li>
+<li><strong>長度單位（公尺，\(\text{m}\)）</strong>：<ul>
+<li>古代定義：經過巴黎從北極到赤道子午線距離的<strong>千萬分之一（\(\frac{1}{10,000,000}\)）</strong>。</li>
+<li>現代定義：以真空中的<strong>光速 \(c\)</strong> 定義。</li>
+</ul>
+</li>
+<li>
+<p><strong>質量單位（公斤，\(\text{kg}\)）定義推導</strong>：<br />
+    2019 年國際度量衡大會正式廢除「國際公斤原器」，改用<strong>普朗克常數 \(h\)</strong> 進行基本物理單位定義。</p>
+<p><strong>【普朗克常數單位推導公斤 SOP】</strong>：<br />
+*   已知能量焦耳 \(\text{J} = \text{N} \cdot \text{m} = (\text{kg} \cdot \text{m} \cdot \text{s}^{-2}) \cdot \text{m} = \text{kg} \cdot \text{m}^2 \cdot \text{s}^{-2}\)<br />
+*   普朗克常數 \(h\) 的單位為 \(\text{J} \cdot \text{s}\)，帶入得：<br />
+    \[ [h] = \text{kg} \cdot \text{m}^2 \cdot \text{s}^{-1} \]<br />
+*   移項求公斤（\(\text{kg}\)）的表示式：<br />
+    \[ 1 \text{ kg} = \frac{h \cdot \text{s}}{\text{m}^2} = h \cdot \text{s} \cdot \text{m}^{-2} \]</p>
+</li>
+</ul>
+<hr />
+<h2>⚠️ 老師強調考點與易錯陷阱 (Exam Focus &amp; Pitfalls)</h2>
+<ol>
+<li><strong>數量級判定切勿使用四捨五入（五進位）</strong>：<ul>
+<li><em>常見陷阱</em>：學生習慣看到 \(4 \times 10^5\) 就以為小於 5 不用進位。</li>
+<li><em>觀念校正</em>：數量級是基於對數軸，臨界值是 <strong>\(\sqrt{10} \approx 3.16\)</strong>！因為 \(4 &gt; 3.16\)，所以 \(4 \times 10^5\) 的數量級必須強制進位成 <strong>\(10^6\)</strong>！</li>
+</ul>
+</li>
+<li><strong>公制單位 vs 國際單位名詞混淆</strong>：<ul>
+<li>「公厘/毫米」（\(\text{mm}\)）\(= 10^{-3} \text{ m} = 0.1 \text{ cm}\)（公制長度單位）。</li>
+<li>「厘米/厘米」（\(\text{cm}\)）\(= 10^{-2} \text{ m} = 1 \text{ cm}\)（國際常用單位）。</li>
+<li>考試看到「厘米」千萬不要誤算成 \(10^{-3} \text{ m}\)。</li>
+</ul>
+</li>
+<li><strong>油膜實驗的模型幾何假定差異</strong>：<ul>
+<li>解題時務必看清題目是將油分子假定為<strong>正立方體</strong>（\(\text{截面積 } = h^2\)，\(\text{體積 } = h^3\)）還是<strong>球體</strong>（\(\text{體積 } = \frac{4}{3}\pi r^3\)）。假定不同，計算公式與係數即完全不同。</li>
+</ul>
+</li>
+<li><strong>電池電量單位 \(\text{mAh}\) 的屬性陷阱</strong>：<ul>
+<li>\(\text{mAh}\) 是「<strong>電量單位（庫侖 \(\text{C}\)）</strong>」，絕非電功率（\(\text{W}\)）或能量（\(\text{J}\)）。選項中若問「該行動電源儲存了多少焦耳能量」，不可直接拿 \(\text{mAh}\) 的數值填入。</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2>🔑 記憶口訣與解題技巧 (Mnemonics &amp; Shortcuts)</h2>
+<ul>
+<li><strong>前綴負次方口訣（老師自創速記法）</strong>：<ul>
+<li>\(10^{-3}\) (m, 毫)：<strong>三毫米</strong></li>
+<li>\(10^{-6}\) (\(\mu\), 微)：<strong>微（喂）不飽</strong></li>
+<li>\(10^{-9}\) (n, 奈)：<strong>Nano / Good night / 九</strong></li>
+<li>\(10^{-12}\) (p, 皮)：<strong>皮卡丘放屁（皮等於 12，12隻皮卡丘）</strong></li>
+<li>\(10^{-15}\) (f, 飛)：<strong>Femto / 廢米 / F五（15）</strong></li>
+<li>\(10^{-18}\) (a, 阿)：<strong>Atto / 阿西巴 / 18</strong></li>
+</ul>
+</li>
+<li><strong>能量換算速解破題技巧</strong>：<ul>
+<li><strong>卡路里換焦耳</strong>：<strong>「一張卡片換 4.2 隻香蕉」</strong>（\(1 \text{ cal} \approx 4.2 \text{ J}\)）。</li>
+<li><strong>電費換焦耳</strong>：<strong>「6636」</strong>（\(1 \text{ 度} = 3.6 \times 10^6 \text{ J}\)）。</li>
+</ul>
+</li>
+<li><strong>數量級快速判定三步驟</strong>：<ol>
+<li>寫成標準科學記號 \(a \times 10^b\)。</li>
+<li>檢查 \(a\) 是否大於 \(3.16\)。</li>
+<li>若大於 \(3.16 \implies b+1\)；若小於 \(3.16 \implies\) 維持 \(b\)。</li>
+</ol>
+</li>
+</ul>
+<hr />
+<h2>📝 課後作業與待辦事項 (Homework &amp; Tasks)</h2>
+<ul>
+<li><strong>課後講義練習</strong>：<ul>
+<li>完成講義第 10 頁與第 11 頁（富蘭克林油膜實驗經典題型：正立方體 vs 球體模型推算）。</li>
+<li>完成講義第 15 頁素養推導題（普朗克常數 \(h\) 與國際單位換算）。</li>
+</ul>
+</li>
+<li><strong>考前衝刺提醒</strong>：<ul>
+<li>距離第一次段考（10 月 6 日、7 日）僅剩<strong>三個星期</strong>，請務必精通前綴換算與基本交互作用之作用範圍。</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2>📚 專有名詞與重要公式/定義 (Glossary &amp; Formulas)</h2>
+<ul>
+<li><strong>數量級進位判準</strong>：當 \(N = a \times 10^b\) (\(1 \le a &lt; 10\))，若 \(a &gt; \sqrt{10} \approx 3.16\)，則數量級為 \(10^{b+1}\)。</li>
+<li><strong>單擺週期公式</strong>：<br />
+    \[ T = 2\pi \sqrt{\frac{L}{g}} \]</li>
+<li><strong>熱功當量換算</strong>：<br />
+    \[ 1 \text{ cal} \approx 4.2 \text{ J} \quad (1 \text{ J} \approx 0.24 \text{ cal}) \]</li>
+<li><strong>電能「度」定義</strong>：<br />
+    \[ 1 \text{ 度} = 1 \text{ kWh} = 3.6 \times 10^6 \text{ J} \]</li>
+<li><strong>電子伏特 (\(\text{eV}\))</strong>：<br />
+    \[ 1 \text{ eV} = 1.6 \times 10^{-19} \text{ J} \]</li>
+<li><strong>安培小時/毫安培小時 (\(\text{mAh}\))</strong>：<br />
+    \[ 1 \text{ mAh} = 3.6 \text{ C} \]</li>
+<li><strong>油膜單分子厚度公式</strong>：<br />
+    \[ h = \frac{V}{A} \]</li>
+<li><strong>普朗克常數與公斤關係</strong>：<br />
+    \[ 1 \text{ kg} = h \cdot \text{s} \cdot \text{m}^{-2} \]</li>
+</ul>
+<hr />
+<h2>🧠 課後自測題 (Quick Review Quiz)</h2>
+<h3>題一：數量級進位判斷</h3>
+<p><strong>題目</strong>：已知氫原子的波爾半徑約為 \(5.3 \times 10^{-11} \text{ m}\)，請試求氫原子半徑與氫原子直徑的「數量級」分別為何？</p>
+<ul>
+<li><strong>解題思維與答案</strong>：<ol>
+<li>半徑 \(r = 5.3 \times 10^{-11} \text{ m}\)。因為 \(5.3 &gt; 3.16\)，次方需加 1，故半徑數量級為 <strong>\(10^{-10} \text{ m}\)</strong>（即 \(1 \text{ \AA}\)）。</li>
+<li>直徑 \(d = 2r = 2 \times (5.3 \times 10^{-11}) = 1.06 \times 10^{-10} \text{ m}\)。因為 \(1.06 &lt; 3.16\)，次方不變，故直徑數量級亦為 <strong>\(10^{-10} \text{ m}\)</strong>。</li>
+</ol>
+</li>
+</ul>
+<hr />
+<h3>題二：基本交互作用作用範圍與現象對應</h3>
+<p><strong>題目</strong>：下列有關基本交互作用的敘述，何者正確？<br />
+(A) 強力可以引發 \(\beta\) 衰變，作用範圍約為 \(10^{-18} \text{ m}\)<br />
+(B) 弱力主要功能為克服質子間電磁排斥力以維持原子核穩定<br />
+(C) 太陽內部的核融合反應主要與弱力有關<br />
+(D) 原子核半徑大小與弱力的作用範圍相當</p>
+<ul>
+<li><strong>解題思維與答案</strong>：<ul>
+<li>(A) 錯誤：引發 \(\beta\) 衰變的是弱力（範圍 \(10^{-18} \text{ m}\)）。</li>
+<li>(B) 錯誤：克服電磁排斥力維持原子核穩定的是強力。</li>
+<li>(C) <strong>正確</strong>：太陽核融合涉及質子與中子的轉變（變身），由弱力支配。</li>
+<li>(D) 錯誤：原子核半徑（約 \(10^{-15} \text{ m}\)）與強力的作用範圍相當。</li>
+<li><strong>答案：(C)</strong></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3>題三：能量單位與電量單位綜合計算</h3>
+<p><strong>題目</strong>：某同學使用的行動電源標示為 \(10000 \text{ mAh}\)，輸出電壓為 \(5 \text{ V}\)。試問：<br />
+(1) 該行動電源可釋放的總電量為多少庫侖（\(\text{C}\)）？<br />
+(2) 若將此電能完全轉換，約相當於多少焦耳（\(\text{J}\)）？（提示：能量 \(W = Q \times V\)）</p>
+<ul>
+<li><strong>解題思維與答案</strong>：<ol>
+<li>總電量：<br />
+    \[ Q = 10000 \text{ mAh} = 10 \text{ Ah} = 10 \text{ A} \times 3600 \text{ s} = 36000 \text{ C} = 3.6 \times 10^4 \text{ C} \]</li>
+<li>總能量：<br />
+    \[ W = Q \times V = 36000 \text{ C} \times 5 \text{ V} = 180000 \text{ J} = 1.8 \times 10^5 \text{ J} \]<br />
+*   <strong>答案</strong>：(1) \(3.6 \times 10^4 \text{ C}\)；(2) \(1.8 \times 10^5 \text{ J}\)</li>
+</ol>
+</li>
+</ul>
+<hr />
+<p>💡 這份筆記已將課堂中的觀念、口訣、公式推導與例題完整整理完畢！你可以隨時溫習這份筆記來衝刺 10 月初的第一次段考。祝你複習順利！</p>
+    </div>
+    <footer class="doc-foot">
+      自動生成於 NotebookLM Study Assistant • 專為高中學生課後複習與考前衝刺打造
+    </footer>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.mermaid) {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'neutral',
+          fontFamily: "'Noto Sans TC', 'Inter', sans-serif",
+          flowchart: { curve: 'basis', htmlLabels: true },
+          securityLevel: 'loose'
+        });
+      }
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+  
+  <script>
+    (function() {
+      const treeData = {"name": "數量級與單位前綴", "children": [{"name": "數量級進位判準：\\(a > \\sqrt{10} \\approx 3.16\\)"}, {"name": "單位前綴 (\\(G, M, k, m, \\mu, n, p, f, a\\))"}, {"name": "能量單位對比 (\\(\\text{J}, \\text{cal}, \\text{度}, \\text{eV}, \\text{mAh}\\))"}]};
+      const container = document.getElementById("tree-svg-container");
+      if (!container || !treeData) return;
+
+      const width = container.clientWidth || 880;
+      const height = 520;
+
+      const svg = d3.select("#tree-svg-container")
+        .append("svg")
+        .attr("width", "100%")
+        .attr("height", height)
+        .attr("viewBox", [0, 0, width, height]);
+
+      const g = svg.append("g");
+
+      const zoom = d3.zoom()
+        .scaleExtent([0.25, 2.5])
+        .on("zoom", (e) => g.attr("transform", e.transform));
+
+      svg.call(zoom);
+
+      const root = d3.hierarchy(treeData);
+      root.x0 = height / 2;
+      root.y0 = 0;
+
+      let i = 0;
+      const duration = 380;
+      // [dy, dx]: 垂直節距 58px (確保上下不重疊), 水平層級 320px (確保長文字不穿透父層)
+      const treeLayout = d3.tree().nodeSize([58, 320]);
+
+      function splitNodeText(text, maxChars) {
+        if (!text) return [""];
+        if (text.length <= maxChars) return [text];
+
+        // 優先在括號處斷行，例如：世風日下之自身矛盾對比（擇師教子 vs. 於身恥師）
+        const parenIdx = text.search(/[（(]/);
+        if (parenIdx >= 3 && parenIdx <= maxChars + 4) {
+          const p1 = text.slice(0, parenIdx).trim();
+          const p2 = text.slice(parenIdx).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 優先在冒號、破折號、頓號處斷行
+        const sepIdx = text.search(/[：:—、]/);
+        if (sepIdx >= 3 && sepIdx <= maxChars + 2) {
+          const p1 = text.slice(0, sepIdx + 1).trim();
+          const p2 = text.slice(sepIdx + 1).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 預設在 maxChars 處均勻斷行
+        return [text.slice(0, maxChars), text.slice(maxChars)];
+      }
+
+      if (root.children) {
+        root.children.forEach(c => {
+          if (c.children) {
+            c.children.forEach(collapse);
+          }
+        });
+      }
+
+      function collapse(d) {
+        if (d.children) {
+          d._children = d.children;
+          d._children.forEach(collapse);
+          d.children = null;
+        }
+      }
+
+      function expand(d) {
+        if (d._children) {
+          d.children = d._children;
+          d.children.forEach(expand);
+          d._children = null;
+        }
+      }
+
+      const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
+
+      function getNodeColor(d) {
+        if (d.depth === 0) return "#2563eb";
+        let p = d;
+        while (p.depth > 1) p = p.parent;
+        return colorScale(p.data.name);
+      }
+
+      function update(source) {
+        const nodes = root.descendants();
+        const links = root.links();
+
+        treeLayout(root);
+
+        const node = g.selectAll("g.node")
+          .data(nodes, d => d.id || (d.id = ++i));
+
+        const nodeEnter = node.enter().append("g")
+          .attr("class", "node")
+          .attr("transform", d => `translate(${source.y0},${source.x0})`)
+          .on("click", (event, d) => {
+            if (d.children) {
+              d._children = d.children;
+              d.children = null;
+            } else if (d._children) {
+              d.children = d._children;
+              d._children = null;
+            }
+            update(d);
+          });
+
+        nodeEnter.append("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        const textNode = nodeEnter.append("text")
+          .attr("class", "node-text")
+          .attr("text-anchor", d => (d.children || d._children) ? "end" : "start")
+          .style("fill-opacity", 0);
+
+        textNode.each(function(d) {
+          const el = d3.select(this);
+          const isParent = Boolean(d.children || d._children);
+          const xOffset = isParent ? -14 : 14;
+          const maxChars = isParent ? 13 : 18;
+          const lines = splitNodeText(d.data.name, maxChars);
+
+          if (lines.length === 1) {
+            el.attr("x", xOffset)
+              .attr("dy", "0.32em")
+              .text(lines[0]);
+          } else {
+            el.attr("x", xOffset)
+              .attr("dy", "-0.35em")
+              .text(lines[0]);
+            el.append("tspan")
+              .attr("x", xOffset)
+              .attr("dy", "1.25em")
+              .text(lines[1]);
+          }
+        });
+
+        const nodeUpdate = node.merge(nodeEnter).transition().duration(duration)
+          .attr("transform", d => `translate(${d.y},${d.x})`);
+
+        nodeUpdate.select("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        nodeUpdate.select("text")
+          .style("fill-opacity", 1);
+
+        const nodeExit = node.exit().transition().duration(duration)
+          .attr("transform", d => `translate(${source.y},${source.x})`)
+          .remove();
+
+        nodeExit.select("circle").attr("r", 1e-6);
+        nodeExit.select("text").style("fill-opacity", 1e-6);
+
+        const link = g.selectAll("path.link")
+          .data(links, d => d.target.id);
+
+        const linkEnter = link.enter().insert("path", "g")
+          .attr("class", "link")
+          .attr("d", d => {
+            const o = {x: source.x0, y: source.y0};
+            return diagonal(o, o);
+          });
+
+        link.merge(linkEnter).transition().duration(duration)
+          .attr("d", d => diagonal(d.source, d.target));
+
+        link.exit().transition().duration(duration)
+          .attr("d", d => {
+            const o = {x: source.x, y: source.y};
+            return diagonal(o, o);
+          })
+          .remove();
+
+        nodes.forEach(d => {
+          d.x0 = d.x;
+          d.y0 = d.y;
+        });
+      }
+
+      function diagonal(s, d) {
+        return `M ${s.y} ${s.x}
+                C ${(s.y + d.y) / 2} ${s.x},
+                  ${(s.y + d.y) / 2} ${d.x},
+                  ${d.y} ${d.x}`;
+      }
+
+      function autoFitTree(duration = 450) {
+        const nodes = root.descendants();
+        if (!nodes || nodes.length === 0) return;
+
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        nodes.forEach(d => {
+          const isParent = Boolean(d.children || d._children);
+          const leftBound = d.y - (isParent ? 180 : 20);
+          const rightBound = d.y + (isParent ? 20 : 220);
+          const topBound = d.x - 32;
+          const bottomBound = d.x + 32;
+
+          if (leftBound < minX) minX = leftBound;
+          if (rightBound > maxX) maxX = rightBound;
+          if (topBound < minY) minY = topBound;
+          if (bottomBound > maxY) maxY = bottomBound;
+        });
+
+        const fullWidth = container.clientWidth || 880;
+        const fullHeight = height;
+        const treeW = maxX - minX;
+        const treeH = maxY - minY;
+
+        if (treeW <= 0 || treeH <= 0) return;
+
+        const scale = Math.min(0.92, (fullWidth * 0.90) / treeW, (fullHeight * 0.90) / treeH);
+        const clampedScale = Math.max(scale, 0.42);
+
+        const midTreeX = (minX + maxX) / 2;
+        const midTreeY = (minY + maxY) / 2;
+        const tx = fullWidth / 2 - clampedScale * midTreeX;
+        const ty = fullHeight / 2 - clampedScale * midTreeY;
+
+        if (duration > 0) {
+          svg.transition().duration(duration).call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        } else {
+          svg.call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        }
+      }
+
+      window.expandAll = function() {
+        root.each(expand);
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.collapseAll = function() {
+        if (root.children) {
+          root.children.forEach(collapse);
+        }
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.resetZoom = function() {
+        autoFitTree(450);
+      };
+
+      // 首次繪製節點並自動縮放置中全覽
+      update(root);
+      autoFitTree(0);
+    })();
+  </script>
+
+</body>
+</html>

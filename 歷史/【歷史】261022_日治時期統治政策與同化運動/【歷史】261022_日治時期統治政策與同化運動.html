@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【歷史】261022_日治時期統治政策與同化運動</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --border: #e2e8f0;
+      --border-focus: #cbd5e1;
+      --tag-bg: #e0f2fe;
+      --tag-text: #0369a1;
+      --header-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans TC', 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.8;
+      font-size: 16px;
+      padding: 30px 16px 60px;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.06), 0 2px 6px -1px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    header.hero {
+      background: var(--header-gradient);
+      color: #ffffff;
+      padding: 36px 40px 30px;
+      position: relative;
+    }
+    header.hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      color: #f1f5f9;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    header.hero h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.5px;
+    }
+    header.hero .meta {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .content-body {
+      padding: 40px 48px;
+    }
+    @media (max-width: 640px) {
+      .content-body { padding: 24px 20px; }
+      header.hero { padding: 28px 24px 22px; }
+      header.hero h1 { font-size: 1.5rem; }
+    }
+    h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 2.2em;
+      margin-bottom: 0.9em;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h2:first-of-type { margin-top: 0.5em; }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1e3a8a;
+      margin-top: 1.6em;
+      margin-bottom: 0.6em;
+      padding-left: 10px;
+      border-left: 4px solid var(--accent);
+    }
+    p { margin-bottom: 1.1em; }
+    ul, ol { margin-bottom: 1.2em; padding-left: 1.8em; }
+    li { margin-bottom: 0.4em; }
+    .mermaid {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 16px;
+      margin: 1.6em 0;
+      text-align: center;
+      overflow-x: auto;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 1.6em 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    thead th {
+      background: #f1f5f9;
+      color: #1e293b;
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+    tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) { background: #fafafa; }
+    tbody tr:hover { background: #f0f7ff; }
+    tbody tr:last-child td { border-bottom: none; }
+    code {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      background: #f1f5f9;
+      color: #b91c1c;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 1.4em 0;
+      font-size: 0.92em;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; }
+    blockquote {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 14px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 1.4em 0;
+      color: #1e40af;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2.2em 0; }
+    .katex-display {
+      margin: 1.2em 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 6px 0;
+    }
+    .katex { font-size: 1.05em; }
+    
+    /* NotebookLM 原生 D3 互動心智圖樣式 */
+    .mindmap-box {
+      margin: 2em 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .mindmap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .mindmap-title {
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mindmap-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .mm-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: #334155;
+      transition: all 0.2s;
+    }
+    .mm-btn:hover { background: #f1f5f9; }
+    #tree-svg-container {
+      width: 100%;
+      height: 520px;
+      background: #ffffff;
+      cursor: grab;
+    }
+    #tree-svg-container:active { cursor: grabbing; }
+    .node circle {
+      cursor: pointer;
+      stroke-width: 2.5px;
+      transition: all 0.2s;
+    }
+    .node circle:hover { transform: scale(1.25); }
+    .node text {
+      font-size: 13px;
+      font-weight: 500;
+      font-family: inherit;
+      fill: #1e293b;
+      cursor: pointer;
+      paint-order: stroke fill;
+      stroke: #ffffff;
+      stroke-width: 4.5px;
+      stroke-linejoin: round;
+      user-select: none;
+    }
+    .link {
+      fill: none;
+      stroke: #cbd5e1;
+      stroke-width: 1.8px;
+      stroke-opacity: 0.85;
+      transition: stroke-width 0.2s;
+    }
+    .link:hover { stroke: #94a3b8; stroke-width: 2.5px; }
+
+    footer.doc-foot {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      background: #fcfdfe;
+    }
+    .print-btn {
+      position: absolute;
+      top: 36px;
+      right: 40px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .print-btn:hover { background: rgba(255,255,255,0.25); }
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      body {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+      }
+      .container {
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+      }
+      .print-btn, .mindmap-btns {
+        display: none !important;
+      }
+      header.hero {
+        background: var(--header-gradient) !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+        padding: 24px 30px !important;
+        margin-bottom: 20px !important;
+      }
+      header.hero h1 {
+        color: #ffffff !important;
+        font-size: 1.6rem !important;
+      }
+      header.hero .badge {
+        background: rgba(255,255,255,0.2) !important;
+        color: #ffffff !important;
+      }
+      header.hero .meta {
+        color: #cbd5e1 !important;
+      }
+      .content-body {
+        padding: 10px 0 !important;
+      }
+      h1, h2, h3, h4, table, tr, pre, .mermaid, .mindmap-box, blockquote {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      h2, h3 {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <div class="badge">📖 高中課堂互動圖文筆記</div>
+      <button class="print-btn" onclick="window.print()">🖨️ 列印 / 另存 PDF</button>
+      <h1>【歷史】261022_日治時期統治政策與同化運動</h1>
+      <div class="meta">
+        <span>⏱️ 數位筆記儀表板</span>
+        <span>🏷️ 含可縮放互動心智圖、時間軸與觀念對比</span>
+      </div>
+    </header>
+    <div class="content-body">
+      
+      <div class="mindmap-box">
+        <div class="mindmap-header">
+          <div class="mindmap-title">
+            <span>🧠 本課核心知識脈絡（NotebookLM 原生互動心智圖 • 支援縮放與展開）</span>
+          </div>
+          <div class="mindmap-btns">
+            <button class="mm-btn" onclick="expandAll()">展開全部</button>
+            <button class="mm-btn" onclick="collapseAll()">收合分支</button>
+            <button class="mm-btn" onclick="resetZoom()">重設視角</button>
+          </div>
+        </div>
+        <div id="tree-svg-container"></div>
+      </div>
+        
+      <h2>📖 課堂主題與核心摘要 (Class Overview)</h2>
+<p>本堂歷史課深入剖析日治時期台灣的三大統治階段演變，包含特別統治時期、內地延長主義與皇民化運動的歷史背景與核心政策。課程梳理了一戰後全球「民族自覺」思潮對日本同化政策（如「日台一體」、三一法）的催化，以及二戰期間日本走入極右派軍國主義後實施的皇民化、工業化與南進基地化策略。此外，課堂亦涵蓋日治時期的教育體系變遷（公學校、中學校到日台共學與國民義務教育）與基礎建設（縱貫鐵路與州郡街制），協助學生完整掌握日治台灣的法制、社會與文化全貌。</p>
+<p>【🌳 本課大綱樹狀心智導圖 (Mindmap)】：</p>
+<div class="mermaid">
+graph LR
+  Root["日治時期統治與本土意識"] --> A["三大統治時期演變"]
+  Root --> B["教育體系與基礎建設"]
+  Root --> C["政治社會運動背景"]
+
+  A --> A1["特別統治時期：匪徒刑罰令與招撫"]
+  A --> A2["內地延長主義：日台一體與三一法"]
+  A --> A3["皇民化運動：皇民化、工業化、南進基地化"]
+
+  B --> B1["初等與中等教育：小學校/公學校/日台共學"]
+  B --> B2["基礎建設：縱貫鐵路(1908)與州郡街三級制"]
+  B --> B3["義務教育：1943年六年國小義務教育"]
+
+  C --> C1["國際思潮：民族自覺與大正民主(1919)"]
+  C --> C2["法制爭議：六三法改三一法引發抗爭"]
+</div>
+<h2>💡 核心知識點與觀念詳解 (Key Concepts)</h2>
+<h3>一、 三大統治時期政策與國際背景演變</h3>
+<ol>
+<li>
+<p><strong>特別統治時期（無方針主義）</strong><br />
+   - <strong>法制與鎮壓</strong>：兒玉源太郎與後藤新平主導時期，頒布《匪徒刑罰令》，將抗日人士全數定義為「匪徒」並移送法庭（共有 <code>$1,413$</code> 人受審）。相較於乃木希典時期的純粹軍事戰鬥，此時期已轉向「法治化」與行政系統的強勢鎮壓。<br />
+   - <strong>懷柔招撫策略</strong>：後藤新平採取「賞老點」與物質利益懷柔台灣地方領袖，甚至安排莫那魯道等原住民領袖造訪日本、接受招待，以收買人心。</p>
+</li>
+<li>
+<p><strong>內地延長主義（1919–1937）</strong><br />
+   - <strong>國際思潮背景</strong>：第一次世界大戰結束後，德意志、奧匈、俄羅斯、鄂圖曼土耳其四大帝國瓦解。美國總統威爾遜提出「民族自覺」並倡導國聯（但美國國會因戰後經濟恐慌與孤立主義未加入）。<br />
+   - <strong>同化政策（日台一體）</strong>：日本為防範台灣受民族自覺影響而尋求獨立，提出「內地延長主義」，宣稱將日本本土的法律、領土與教育延長至台灣，稱台灣為「內地」。<br />
+   - <strong>法律矛盾與政治反彈</strong>：總督府雖宣稱「日台一體」，但實際上僅將《六三法》修改為《三一法》，總督仍掌握專斷立法權。林獻堂、蔣渭水、蔡培火等人批判此為「換湯不換藥」，進而引爆台灣文化協會、台灣議會設置請願運動等一系列政治社會運動。<br />
+   - <strong>自治試辦</strong>：<code>$1935$</code> 年舉辦台灣首次地方自治選舉，但因隨後爆發戰爭而終止。</p>
+</li>
+<li>
+<p><strong>皇民化運動（1937–1945）</strong><br />
+   - <strong>戰爭背景與軍國主義</strong>：經濟大恐慌引發全球危機，日、德（希特勒）、意（墨索里尼）三大極右派勢力抬頭，信奉軍國主義與弱肉強食，企圖「以戰爭解決經濟問題」。<br />
+   - <strong>三大核心方針</strong>：</p>
+<ul>
+<li><strong>皇民化</strong>：文化精神改造與精神同化。</li>
+<li><strong>工業化</strong>：因應軍需，轉向軍事物資生產。</li>
+<li><strong>南進基地化</strong>：面對美國經濟制裁（禁運石油、鋼鐵），日本轟炸珍珠港並進攻東南亞奪取資源，將台灣視為南進戰略跳板。</li>
+<li><strong>人力徵集演變</strong>：</li>
+<li><strong>初期（1937起）</strong>：僅徵集「軍夫」與「軍屬」（後勤人員），不敢直接派台灣人至中國戰場，擔心「同文同種」引發倒戈。</li>
+<li><strong>中期（1942起）</strong>：太平洋戰爭爆發後人力吃緊，實施「陸軍特別志願兵」與徵集「高砂義勇隊」。</li>
+<li><strong>後期（1945年）</strong>：戰爭末期傷亡慘重，全面實施「強制徵兵制」。</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h3>二、 日治時期的教育與基礎建設</h3>
+<ol>
+<li>
+<p><strong>基礎建設與行政區劃</strong><br />
+   - <strong>全島交通一體化</strong>：<code>$1908$</code> 年縱貫鐵路（基隆至高雄）全線通車，串聯西部位地。<br />
+   - <strong>行政與治安網絡</strong>：實施「州、郡、街（庄）」三級制（五州三廳），並結合警察網絡深入基層控制。</p>
+</li>
+<li>
+<p><strong>教育制度變遷</strong><br />
+   - <strong>早期差別教育（1922前）</strong>：初等教育依身分分為「小學校」（日人）與「公學校」（台人）。中等教育方面，傳統「中學校」（如建中、台南一中）主要供日人就讀；台人多讀實業/技術學校（如師範學校、農試所、醫學校）培養基層技術人才。林獻堂等仕紳因而自籌創辦「台中學校」（今台中一中）爭取台人教育權。<br />
+   - <strong>日台共學（1922《新台灣教育令》）</strong>：因應內地延長主義，開放中等以上學校台人升學。<br />
+   - <strong>高等教育</strong>：<code>$1928$</code> 年成立台北帝國大學，主因係為了提供「灣生」（日籍在台子弟）升學，台籍學生極少。<br />
+   - <strong>皇民化與普及教育</strong>：<code>$1937$</code> 年廢除漢文；<code>$1941$</code> 年將小學校與公學校統一改稱為「國民學校」；<code>$1943$</code> 年實施「六年國民義務教育」，學齡兒童就學率突破 <code>$70\%$</code>。</p>
+</li>
+</ol>
+<hr />
+<h3>課堂經典比喻與生活實例</h3>
+<ul>
+<li><strong>【左右派的課堂比喻】</strong>：老師以「課間下課」比喻左右派差異：</li>
+<li><strong>右派（自由主義）</strong>：主張極致自由與個人競爭。如老師宣布下課自由活動，大家各自為政；但當右派走向極端（極右派），便會主張弱肉強食與適者生存，甚至視戰爭為解決經濟危機的捷徑（將失業者徵召入伍、工廠改產軍火、靠掠奪賠款養活本國）。</li>
+<li><strong>左派（社會主義）</strong>：強調集體團結。如下課時要求全班留下來一起打掃環境，雖然犧牲了個人自由，但換取了集體的整體福祉。</li>
+<li><strong>【「國語家庭」的生存綁定】</strong>：皇民化時期推行「國語（日語）家庭」與改日姓，老師特別強調這是將「文化改造」與「基本生存需求」強制捆綁。因為戰時物資實施嚴格配給制，只有獲得「國語家庭」認定的戶籍，才能獲分較多的糧食與民生物資。</li>
+<li><strong>【前總統李登輝的升學故事】</strong>：老師藉由李登輝的求學經歷說明當時台人的教育困境。李登輝在公學校時期為了考第一名，常在晚上宿舍熄燈後躲在廁所苦讀。公學校日籍校長看重其才華，親自向中學校（傳統僅收日人）校長擔保「若他沒拿第一名我就辭職」，才破例錄取。李登輝後來於 <code>$1928$</code> 年成為台北帝國大學農業系的首批台籍學生（當時台帝大嚴格限制台人就讀政治人文學科）。</li>
+</ul>
+<hr />
+<h3>【⏱️ 時序時間軸 / 步驟流程圖】</h3>
+<h4>1. 日治時期台灣統治政策演變時間軸</h4>
+<div class="mermaid">
+timeline
+    title 日治時期統治政策與法制演變時間軸
+    1895 - 1919 : 特別統治時期（無方針主義）
+                : 乃木希典軍事鎮壓 / 兒玉源太郎與後藤新平《匪徒刑罰令》
+                : 1908年 縱貫鐵路（基隆至高雄）全線通車
+    1919 - 1937 : 內地延長主義時期
+                : 1919年 威爾遜提出民族自覺 / 六三法改為三一法
+                : 1922年 《新台灣教育令》實施「日台共學」
+                : 1928年 成立台北帝國大學
+                : 1935年 台灣首次地方自治選舉
+    1937 - 1945 : 皇民化運動時期
+                : 1937年 廢除漢文欄 / 推行國語家庭與改日姓
+                : 1941年 學校改稱「國語學校/國民學校」
+                : 1942年 徵集高砂義勇隊與實施志願兵制
+                : 1943年 實施六年國民義務教育（就學率突破 70%）
+                : 1945年 全面實施強制徵兵制
+</div>
+<h4>2. 日治時期台人軍事人力徵集演變流程圖</h4>
+<div class="mermaid">
+graph TD
+    A["1937年 皇民化初期"] -->|防範台人倒戈中國| B["僅徵集『軍夫』與『軍屬』<br/>（擔任後勤軍需勞務）"]
+    B -->|1942年 太平洋戰爭戰況吃緊| C["實施『特別志願兵制』<br/>與徵集『高砂義勇隊』"]
+    C -->|1945年 二戰末期死傷慘重| D["全面實施『強制徵兵制』<br/>（直接強制推向前線）"]
+</div>
+<hr />
+<h3>【📊 觀念與易混淆對比表】</h3>
+<h4>表一：三大統治時期核心特徵對比表</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">對比維度</th>
+<th style="text-align: left;">特別統治時期（1895–1919）</th>
+<th style="text-align: left;">內地延長主義（1919–1937）</th>
+<th style="text-align: left;">皇民化運動（1937–1945）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>國際與時代背景</strong></td>
+<td style="text-align: left;">乙未割台、殖民初期鎮壓</td>
+<td style="text-align: left;">一戰結束、民族自覺、大正民主</td>
+<td style="text-align: left;">二戰爆發、軍國主義、經濟大恐慌</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>核心統治方針</strong></td>
+<td style="text-align: left;">特別統治（無方針主義）、警察政治</td>
+<td style="text-align: left;">同化主義、日台一體</td>
+<td style="text-align: left;">皇民化、工業化、南進基地化</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>關鍵法制與政策</strong></td>
+<td style="text-align: left;">《六三法》、《匪徒刑罰令》</td>
+<td style="text-align: left;">《三一法》、《新台灣教育令》</td>
+<td style="text-align: left;">廢漢文、正廳改善、寺廟整理</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>文化與宗教態度</strong></td>
+<td style="text-align: left;">尊重並調查舊慣（如保甲制）</td>
+<td style="text-align: left;">漸進同化、推廣日語</td>
+<td style="text-align: left;">強制改日姓、拜神道教（神佛升天）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>軍事與人力徵調</strong></td>
+<td style="text-align: left;">鎮壓內部抗日力量</td>
+<td style="text-align: left;">社會治安維護</td>
+<td style="text-align: left;">徵集軍夫/軍屬 \(\rightarrow\) 志願兵 \(\rightarrow\) 強制徵兵</td>
+</tr>
+</tbody>
+</table>
+<h4>表二：日治時期學制與學校類型對比表</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">學校類別</th>
+<th style="text-align: left;">主要招生對象</th>
+<th style="text-align: left;">學校名稱與代表</th>
+<th style="text-align: left;">課程重點與設立目的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>日人初等教育</strong></td>
+<td style="text-align: left;">日籍子弟（灣生）</td>
+<td style="text-align: left;"><strong>小學校</strong></td>
+<td style="text-align: left;">比照日本本土課程，資源豐富</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>台人初等教育</strong></td>
+<td style="text-align: left;">台灣漢籍子弟</td>
+<td style="text-align: left;"><strong>公學校</strong></td>
+<td style="text-align: left;">國語（日語）學習為主，實施同化</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>原住民初等教育</strong></td>
+<td style="text-align: left;">原住民子弟</td>
+<td style="text-align: left;"><strong>蕃人公學校 / 蕃童教育所</strong></td>
+<td style="text-align: left;">基礎日語與山地撫育管理</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>中等技術學校</strong></td>
+<td style="text-align: left;">台人為主（培養基層人才）</td>
+<td style="text-align: left;"><strong>實業學校、師範學校、醫學校</strong></td>
+<td style="text-align: left;">培養基層技術人力（如農、工、師資、醫療）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>傳統普通中學</strong></td>
+<td style="text-align: left;">日人為主（極少數台人）</td>
+<td style="text-align: left;"><strong>中學校</strong>（如建中、台南一中）</td>
+<td style="text-align: left;">高級升學預備（台人多需赴日留學或讀台中學校）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>台人自辦中學</strong></td>
+<td style="text-align: left;">專為台灣子弟設立</td>
+<td style="text-align: left;"><strong>台中學校</strong>（今台中一中）</td>
+<td style="text-align: left;">林獻堂等台籍仕紳出資創辦，爭取教育權利</td>
+</tr>
+</tbody>
+</table>
+<h2>⚠️ 老師強調考點與易錯陷阱 (Exam Focus &amp; Pitfalls)</h2>
+<ul>
+<li><strong>《六三法》與《三一法》的實質差異（必考首選）</strong>：</li>
+<li><strong>陷阱</strong>：題目常誤導「三一法實施後，總督便失去了立法權」。</li>
+<li><strong>破解</strong>：三一法雖然規定日本國內法律原則上適用於台灣，但總督仍擁有發布具有法律效力之「律令」的特別權限，本質上仍是獨裁統治，被林獻堂等人批為「換湯不換藥」。</li>
+<li><strong>關鍵年份 <code>$1919$</code> 年的歷史交會點</strong>：</li>
+<li><code>$1919$</code> 年是多項重大事件的交集點，極易考綜合排序題：一戰結束國聯成立、威爾遜提出民族自覺、韓國爆發三一運動、中國爆發五四運動，以及台灣進入內地延長主義時期。</li>
+<li><strong>台人參戰人力徵集的時間點順序（極易混淆）</strong>：</li>
+<li><strong>陷阱</strong>：誤以為高砂義勇隊或徵兵制在二戰一爆發（<code>$1937$</code> 年）就實施。</li>
+<li><strong>正確脈絡</strong>：<code>$1937$</code> 年僅徵集後勤的<strong>軍夫/軍屬</strong>；<code>$1942$</code> 年（太平洋戰爭）才開始實施<strong>志願兵</strong>與<strong>高砂義勇隊</strong>；<code>$1945$</code> 年（戰爭末期）才實施<strong>強制徵兵</strong>。</li>
+<li><strong>台北帝國大學（<code>$1928$</code> 年成立）的設立初衷與限制</strong>：</li>
+<li><strong>陷阱</strong>：以為台北帝大是為了嘉惠台灣廣大青年而建。</li>
+<li><strong>破解</strong>：台北帝大主要是為了提供日人「灣生」升學，且嚴格限制台籍學生就讀政治、人文或法律系，台人多半僅能進入醫學或農學領域。</li>
+<li><strong>宗教政策中的「神佛升天」</strong>：</li>
+<li>皇民化後期推行「寺廟整理」，強制收繳民間傳統信仰的神像並集中焚燒，官方稱此過程為「神佛升天」，意在全盤廢除台灣本土民間信仰，全面改拜神道教。</li>
+</ul>
+<h2>🔑 記憶口訣與解題技巧 (Mnemonics &amp; Shortcuts)</h2>
+<ul>
+<li><strong>解題關鍵字快速判斷法（三階段統治速判 SOP）</strong>：</li>
+<li><strong>若題幹出現</strong>：「匪徒刑罰令」、「保甲制度」、「賞老點」、「乃木希典」、「兒玉源太郎/後藤新平」 \(\rightarrow\) <strong>直接定位【特別統治時期】</strong>。</li>
+<li><strong>若題幹出現</strong>：「日台一體」、「三一法」、「日台共學」、「大正民主」、「民族自覺」、「地方自治選舉」 \(\rightarrow\) <strong>直接定位【內地延長主義】</strong>。</li>
+<li><strong>若題幹出現</strong>：「廢漢文」、「國語家庭/改日姓」、「正廳改善/寺廟整理/神佛升天」、「南進基地」、「高砂義勇隊/志願兵/徵兵」 \(\rightarrow\) <strong>直接定位【皇民化運動】</strong>。</li>
+<li><strong>軍事人力徵集口訣</strong>：</li>
+<li><strong>「37 夫屬，42 志勇，45 徵兵」</strong>（<code>$1937$</code> 年軍夫軍屬；<code>$1942$</code> 年志願兵與高砂義勇隊；<code>$1945$</code> 年強制徵兵）。</li>
+</ul>
+<h2>📝 課後作業與待辦事項 (Homework &amp; Tasks)</h2>
+<ul>
+<li><strong>課後複習</strong>：重點閱讀講義第 <code>$70$</code> 至 <code>$72$</code> 頁內容，複習「台灣文化協會」、「台灣議會設置請願運動」與「台灣民眾黨」等團體之成立背景與訴求。</li>
+<li><strong>課後作業</strong>：無特定指派作業，請自行完成課本對應章節之選擇題練習。</li>
+</ul>
+<hr />
+<h2>📚 專有名詞與重要公式/定義 (Glossary &amp; Formulas)</h2>
+<ul>
+<li><strong>《匪徒刑罰令》</strong>：特別統治時期由兒玉源太郎總督頒布，將抗日人士定義為匪徒，運用刑法系統嚴加處決，確立日本在台的法治鎮壓體系。</li>
+<li><strong>內地延長主義</strong>：<code>$1919$</code> 年起日本因應「民族自覺」思潮採取的同化政策，強調將日本本土（內地）法律、制度與教育延長至台灣，主張「日台一體」。</li>
+<li><strong>《三一法》</strong>：<code>$1921$</code> 年取代《六三法》之法律，宣稱日本法律適用台灣，但總督仍保有補充律令權，實質上維持獨裁立法權。</li>
+<li><strong>皇民化運動</strong>：<code>$1937$</code> 年二戰爆發後日本在台推行的全盤同化運動，包含「皇民化（文化同化）」、「工業化」與「南進基地化」三大方針。</li>
+<li><strong>國語家庭</strong>：皇民化時期全家通曉日語且改用日式姓名的家庭，可獲得官方頒發之認定，並在戰時配給制中獲得較多民生物資。</li>
+<li><strong>寺廟整理（神佛升天）</strong>：皇民化後期強行廢止台灣傳統寺廟、集中焚燒傳統神像的宗教控制運動，逼迫民眾改信日本神道教。</li>
+<li><strong>高砂義勇隊</strong>：<code>$1942$</code> 年太平洋戰爭期間，日本利用台灣原住民適應熱帶叢林作戰之特長，招募組成的南洋戰場特別部隊。</li>
+<li><strong>《新台灣教育令》（1922）</strong>：內地延長主義時期頒布之教育法規，取消名義上的差別教育，實施中等學校以上的「日台共學」。</li>
+</ul>
+<h2>🧠 課後自測題 (Quick Review Quiz)</h2>
+<p><strong>第一題：</strong><br />
+日本在 <code>$1919$</code> 年將台灣的統治方針轉變為「內地延長主義」，其最主要的國際外部背景為何？而台灣知識份子為何仍對此時期的《三一法》感到不滿？</p>
+<blockquote>
+<p><strong>解題思維與答案</strong>：<br />
+1. <strong>外部背景</strong>：一戰結束後四大帝國瓦解，美國總統威爾遜提出「民族自覺」思潮，日本為防止台灣人萌生獨立意識，故推行同化政策以維護殖民統治。<br />
+2. <strong>不滿原因</strong>：雖然《三一法》宣稱日本法律延長至台灣，但總督依然保留了發布「特別律令」的專斷權力，實質上並未改變總督獨裁的本質，被稱為「換湯不換藥」。</p>
+</blockquote>
+<p><strong>第二題：</strong><br />
+皇民化時期，日本政府如何巧妙地將「文化改造（如日語推廣、改日姓）」與「民眾的生存需求」互相結合？</p>
+<blockquote>
+<p><strong>解題思維與答案</strong>：<br />
+日本政府利用二戰期間物資匱乏、實施嚴格「配給制」的時機，規定凡全家通曉日語並改用日式姓名的家庭可認定為「國語家庭」。國語家庭在物資配給時能獲得較高配額與優先照顧，從而誘使民眾為了生存而接受皇民化改造。</p>
+</blockquote>
+<p><strong>第三題：</strong><br />
+請說明日治時期台人進入軍事體系服務的「三個階段演變」，並指出各階段的時間點與性質。</p>
+<blockquote>
+<p><strong>解題思維與答案</strong>：<br />
+1. <strong>第一階段（1937年起）</strong>：徵集「軍夫與軍屬」，僅擔任後勤勞務與物資運送，防範台人倒戈。<br />
+2. <strong>第二階段（1942年起）</strong>：因太平洋戰爭爆發，實施「陸軍特別志願兵」與招募「高砂義勇隊」前往南洋參戰。<br />
+3. <strong>第三階段（1945年）</strong>：二戰末期日軍傷亡慘重，全面實施「強制徵兵制」，強制台人進入前線作戰。</p>
+</blockquote>
+<hr />
+<p>💡 <strong>溫馨提示</strong>：如果需要將這份筆記產出為簡報、心智圖、單字卡或進一步生成考前測驗題，隨時告訴我，我可以為你進一步製作成各式學習工具！</p>
+    </div>
+    <footer class="doc-foot">
+      自動生成於 NotebookLM Study Assistant • 專為高中學生課後複習與考前衝刺打造
+    </footer>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.mermaid) {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'neutral',
+          fontFamily: "'Noto Sans TC', 'Inter', sans-serif",
+          flowchart: { curve: 'basis', htmlLabels: true },
+          securityLevel: 'loose'
+        });
+      }
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+  
+  <script>
+    (function() {
+      const treeData = {"name": "三大統治時期演變", "children": [{"name": "特別統治時期：匪徒刑罰令與招撫"}, {"name": "內地延長主義：日台一體與三一法"}, {"name": "皇民化運動：皇民化、工業化、南進基地化"}]};
+      const container = document.getElementById("tree-svg-container");
+      if (!container || !treeData) return;
+
+      const width = container.clientWidth || 880;
+      const height = 520;
+
+      const svg = d3.select("#tree-svg-container")
+        .append("svg")
+        .attr("width", "100%")
+        .attr("height", height)
+        .attr("viewBox", [0, 0, width, height]);
+
+      const g = svg.append("g");
+
+      const zoom = d3.zoom()
+        .scaleExtent([0.25, 2.5])
+        .on("zoom", (e) => g.attr("transform", e.transform));
+
+      svg.call(zoom);
+
+      const root = d3.hierarchy(treeData);
+      root.x0 = height / 2;
+      root.y0 = 0;
+
+      let i = 0;
+      const duration = 380;
+      // [dy, dx]: 垂直節距 58px (確保上下不重疊), 水平層級 320px (確保長文字不穿透父層)
+      const treeLayout = d3.tree().nodeSize([58, 320]);
+
+      function splitNodeText(text, maxChars) {
+        if (!text) return [""];
+        if (text.length <= maxChars) return [text];
+
+        // 優先在括號處斷行，例如：世風日下之自身矛盾對比（擇師教子 vs. 於身恥師）
+        const parenIdx = text.search(/[（(]/);
+        if (parenIdx >= 3 && parenIdx <= maxChars + 4) {
+          const p1 = text.slice(0, parenIdx).trim();
+          const p2 = text.slice(parenIdx).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 優先在冒號、破折號、頓號處斷行
+        const sepIdx = text.search(/[：:—、]/);
+        if (sepIdx >= 3 && sepIdx <= maxChars + 2) {
+          const p1 = text.slice(0, sepIdx + 1).trim();
+          const p2 = text.slice(sepIdx + 1).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 預設在 maxChars 處均勻斷行
+        return [text.slice(0, maxChars), text.slice(maxChars)];
+      }
+
+      if (root.children) {
+        root.children.forEach(c => {
+          if (c.children) {
+            c.children.forEach(collapse);
+          }
+        });
+      }
+
+      function collapse(d) {
+        if (d.children) {
+          d._children = d.children;
+          d._children.forEach(collapse);
+          d.children = null;
+        }
+      }
+
+      function expand(d) {
+        if (d._children) {
+          d.children = d._children;
+          d.children.forEach(expand);
+          d._children = null;
+        }
+      }
+
+      const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
+
+      function getNodeColor(d) {
+        if (d.depth === 0) return "#2563eb";
+        let p = d;
+        while (p.depth > 1) p = p.parent;
+        return colorScale(p.data.name);
+      }
+
+      function update(source) {
+        const nodes = root.descendants();
+        const links = root.links();
+
+        treeLayout(root);
+
+        const node = g.selectAll("g.node")
+          .data(nodes, d => d.id || (d.id = ++i));
+
+        const nodeEnter = node.enter().append("g")
+          .attr("class", "node")
+          .attr("transform", d => `translate(${source.y0},${source.x0})`)
+          .on("click", (event, d) => {
+            if (d.children) {
+              d._children = d.children;
+              d.children = null;
+            } else if (d._children) {
+              d.children = d._children;
+              d._children = null;
+            }
+            update(d);
+          });
+
+        nodeEnter.append("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        const textNode = nodeEnter.append("text")
+          .attr("class", "node-text")
+          .attr("text-anchor", d => (d.children || d._children) ? "end" : "start")
+          .style("fill-opacity", 0);
+
+        textNode.each(function(d) {
+          const el = d3.select(this);
+          const isParent = Boolean(d.children || d._children);
+          const xOffset = isParent ? -14 : 14;
+          const maxChars = isParent ? 13 : 18;
+          const lines = splitNodeText(d.data.name, maxChars);
+
+          if (lines.length === 1) {
+            el.attr("x", xOffset)
+              .attr("dy", "0.32em")
+              .text(lines[0]);
+          } else {
+            el.attr("x", xOffset)
+              .attr("dy", "-0.35em")
+              .text(lines[0]);
+            el.append("tspan")
+              .attr("x", xOffset)
+              .attr("dy", "1.25em")
+              .text(lines[1]);
+          }
+        });
+
+        const nodeUpdate = node.merge(nodeEnter).transition().duration(duration)
+          .attr("transform", d => `translate(${d.y},${d.x})`);
+
+        nodeUpdate.select("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        nodeUpdate.select("text")
+          .style("fill-opacity", 1);
+
+        const nodeExit = node.exit().transition().duration(duration)
+          .attr("transform", d => `translate(${source.y},${source.x})`)
+          .remove();
+
+        nodeExit.select("circle").attr("r", 1e-6);
+        nodeExit.select("text").style("fill-opacity", 1e-6);
+
+        const link = g.selectAll("path.link")
+          .data(links, d => d.target.id);
+
+        const linkEnter = link.enter().insert("path", "g")
+          .attr("class", "link")
+          .attr("d", d => {
+            const o = {x: source.x0, y: source.y0};
+            return diagonal(o, o);
+          });
+
+        link.merge(linkEnter).transition().duration(duration)
+          .attr("d", d => diagonal(d.source, d.target));
+
+        link.exit().transition().duration(duration)
+          .attr("d", d => {
+            const o = {x: source.x, y: source.y};
+            return diagonal(o, o);
+          })
+          .remove();
+
+        nodes.forEach(d => {
+          d.x0 = d.x;
+          d.y0 = d.y;
+        });
+      }
+
+      function diagonal(s, d) {
+        return `M ${s.y} ${s.x}
+                C ${(s.y + d.y) / 2} ${s.x},
+                  ${(s.y + d.y) / 2} ${d.x},
+                  ${d.y} ${d.x}`;
+      }
+
+      function autoFitTree(duration = 450) {
+        const nodes = root.descendants();
+        if (!nodes || nodes.length === 0) return;
+
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        nodes.forEach(d => {
+          const isParent = Boolean(d.children || d._children);
+          const leftBound = d.y - (isParent ? 180 : 20);
+          const rightBound = d.y + (isParent ? 20 : 220);
+          const topBound = d.x - 32;
+          const bottomBound = d.x + 32;
+
+          if (leftBound < minX) minX = leftBound;
+          if (rightBound > maxX) maxX = rightBound;
+          if (topBound < minY) minY = topBound;
+          if (bottomBound > maxY) maxY = bottomBound;
+        });
+
+        const fullWidth = container.clientWidth || 880;
+        const fullHeight = height;
+        const treeW = maxX - minX;
+        const treeH = maxY - minY;
+
+        if (treeW <= 0 || treeH <= 0) return;
+
+        const scale = Math.min(0.92, (fullWidth * 0.90) / treeW, (fullHeight * 0.90) / treeH);
+        const clampedScale = Math.max(scale, 0.42);
+
+        const midTreeX = (minX + maxX) / 2;
+        const midTreeY = (minY + maxY) / 2;
+        const tx = fullWidth / 2 - clampedScale * midTreeX;
+        const ty = fullHeight / 2 - clampedScale * midTreeY;
+
+        if (duration > 0) {
+          svg.transition().duration(duration).call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        } else {
+          svg.call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        }
+      }
+
+      window.expandAll = function() {
+        root.each(expand);
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.collapseAll = function() {
+        if (root.children) {
+          root.children.forEach(collapse);
+        }
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.resetZoom = function() {
+        autoFitTree(450);
+      };
+
+      // 首次繪製節點並自動縮放置中全覽
+      update(root);
+      autoFitTree(0);
+    })();
+  </script>
+
+</body>
+</html>

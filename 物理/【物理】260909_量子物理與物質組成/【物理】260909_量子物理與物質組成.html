@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【物理】260909_量子物理與物質組成</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --border: #e2e8f0;
+      --border-focus: #cbd5e1;
+      --tag-bg: #e0f2fe;
+      --tag-text: #0369a1;
+      --header-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans TC', 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.8;
+      font-size: 16px;
+      padding: 30px 16px 60px;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.06), 0 2px 6px -1px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    header.hero {
+      background: var(--header-gradient);
+      color: #ffffff;
+      padding: 36px 40px 30px;
+      position: relative;
+    }
+    header.hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      color: #f1f5f9;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    header.hero h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.5px;
+    }
+    header.hero .meta {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .content-body {
+      padding: 40px 48px;
+    }
+    @media (max-width: 640px) {
+      .content-body { padding: 24px 20px; }
+      header.hero { padding: 28px 24px 22px; }
+      header.hero h1 { font-size: 1.5rem; }
+    }
+    h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 2.2em;
+      margin-bottom: 0.9em;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h2:first-of-type { margin-top: 0.5em; }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1e3a8a;
+      margin-top: 1.6em;
+      margin-bottom: 0.6em;
+      padding-left: 10px;
+      border-left: 4px solid var(--accent);
+    }
+    p { margin-bottom: 1.1em; }
+    ul, ol { margin-bottom: 1.2em; padding-left: 1.8em; }
+    li { margin-bottom: 0.4em; }
+    .mermaid {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 16px;
+      margin: 1.6em 0;
+      text-align: center;
+      overflow-x: auto;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 1.6em 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    thead th {
+      background: #f1f5f9;
+      color: #1e293b;
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+    tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) { background: #fafafa; }
+    tbody tr:hover { background: #f0f7ff; }
+    tbody tr:last-child td { border-bottom: none; }
+    code {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      background: #f1f5f9;
+      color: #b91c1c;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 1.4em 0;
+      font-size: 0.92em;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; }
+    blockquote {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 14px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 1.4em 0;
+      color: #1e40af;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2.2em 0; }
+    .katex-display {
+      margin: 1.2em 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 6px 0;
+    }
+    .katex { font-size: 1.05em; }
+    
+    /* NotebookLM 原生 D3 互動心智圖樣式 */
+    .mindmap-box {
+      margin: 2em 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .mindmap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .mindmap-title {
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mindmap-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .mm-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: #334155;
+      transition: all 0.2s;
+    }
+    .mm-btn:hover { background: #f1f5f9; }
+    #tree-svg-container {
+      width: 100%;
+      height: 520px;
+      background: #ffffff;
+      cursor: grab;
+    }
+    #tree-svg-container:active { cursor: grabbing; }
+    .node circle {
+      cursor: pointer;
+      stroke-width: 2.5px;
+      transition: all 0.2s;
+    }
+    .node circle:hover { transform: scale(1.25); }
+    .node text {
+      font-size: 13px;
+      font-weight: 500;
+      font-family: inherit;
+      fill: #1e293b;
+      cursor: pointer;
+      paint-order: stroke fill;
+      stroke: #ffffff;
+      stroke-width: 4.5px;
+      stroke-linejoin: round;
+      user-select: none;
+    }
+    .link {
+      fill: none;
+      stroke: #cbd5e1;
+      stroke-width: 1.8px;
+      stroke-opacity: 0.85;
+      transition: stroke-width 0.2s;
+    }
+    .link:hover { stroke: #94a3b8; stroke-width: 2.5px; }
+
+    footer.doc-foot {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      background: #fcfdfe;
+    }
+    .print-btn {
+      position: absolute;
+      top: 36px;
+      right: 40px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .print-btn:hover { background: rgba(255,255,255,0.25); }
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      body {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+      }
+      .container {
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+      }
+      .print-btn, .mindmap-btns {
+        display: none !important;
+      }
+      header.hero {
+        background: var(--header-gradient) !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+        padding: 24px 30px !important;
+        margin-bottom: 20px !important;
+      }
+      header.hero h1 {
+        color: #ffffff !important;
+        font-size: 1.6rem !important;
+      }
+      header.hero .badge {
+        background: rgba(255,255,255,0.2) !important;
+        color: #ffffff !important;
+      }
+      header.hero .meta {
+        color: #cbd5e1 !important;
+      }
+      .content-body {
+        padding: 10px 0 !important;
+      }
+      h1, h2, h3, h4, table, tr, pre, .mermaid, .mindmap-box, blockquote {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      h2, h3 {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <div class="badge">📖 高中課堂互動圖文筆記</div>
+      <button class="print-btn" onclick="window.print()">🖨️ 列印 / 另存 PDF</button>
+      <h1>【物理】260909_量子物理與物質組成</h1>
+      <div class="meta">
+        <span>⏱️ 數位筆記儀表板</span>
+        <span>🏷️ 含可縮放互動心智圖、時間軸與觀念對比</span>
+      </div>
+    </header>
+    <div class="content-body">
+      
+      <div class="mindmap-box">
+        <div class="mindmap-header">
+          <div class="mindmap-title">
+            <span>🧠 本課核心知識脈絡（NotebookLM 原生互動心智圖 • 支援縮放與展開）</span>
+          </div>
+          <div class="mindmap-btns">
+            <button class="mm-btn" onclick="expandAll()">展開全部</button>
+            <button class="mm-btn" onclick="collapseAll()">收合分支</button>
+            <button class="mm-btn" onclick="resetZoom()">重設視角</button>
+          </div>
+        </div>
+        <div id="tree-svg-container"></div>
+      </div>
+        
+      <h2>📖 課堂主題與核心摘要 (Class Overview)</h2>
+<p>本堂課為高中物理第十六頁「量子物理的開端」與第二十二頁「物質的組成與交互作用」之核心概念講解。課堂上半段聚焦於量子物理發展史中的四位關鍵科學家（普朗克、愛因斯坦、波爾、德布羅意），並說明「能量量子化」、「光子假說」與「波粒二象性」如何顛覆古典物理學，隨後結合新型學測長敘述素養題拆解普朗克常數與國際單位制（SI）公斤的量綱推導。課堂下半段則導入物質組成的發展脈絡，詳細解析道耳頓原子說、布朗運動的微觀物理機制與愛因斯坦的理論證明，最後介紹現代觀察原子結構的微觀顯微工具（AFM、STM、TEM）。</p>
+<p>【🌳 本課大綱樹狀心智導圖 (Mindmap)】：</p>
+<div class="mermaid">
+graph LR
+  Root["高一物理：量子物理與物質組成"] --> A["一、量子物理的建立"]
+  Root --> B["二、單位制與新型學測題"]
+  Root --> C["三、物質組成與原子說"]
+  Root --> D["四、微觀觀察工具與基本力"]
+
+  A --> A1["普朗克：能量量子化 & 黑體輻射"]
+  A --> A2["愛因斯坦：光子理論 & 波粒二象性"]
+  A --> A3["波爾：氫原子特殊軌道模型"]
+  A --> A4["德布羅意：物質波概念"]
+
+  B --> B1["國際公斤原器 (IPK) 演變"]
+  B --> B2["普朗克常數 h 定義公斤"]
+  B --> B3["量綱因次分析與單位推導"]
+
+  C --> C1["道耳頓：原子說"]
+  C --> C2["布朗：布朗運動實驗現象"]
+  C --> C3["愛因斯坦：布朗運動數學化證明"]
+
+  D --> D1["顯微工具：AFM / STM / TEM"]
+  D --> D2["自然界四種基本交互作用力"]
+</div>
+<h2>💡 核心知識點與觀念詳解 (Key Concepts)</h2>
+<h3>1. 量子物理的開端與四位代表科學家</h3>
+<p>古典物理認為能量的變化是「連續性」的，但十九世紀末至二十世紀初的黑體輻射與氣體光譜實驗，揭開了能量「不連續性（量子化）」的序幕。老師特別以加熱金屬與加熱氣體兩類實驗，將四位關鍵科學家分為兩組對比：</p>
+<ul>
+<li><strong>加熱金屬實驗組（黑體輻射研究）</strong>：</li>
+<li><strong>普朗克（Max Planck, 1900）</strong>：<ul>
+<li>首位提出<strong>能量量子化（Energy Quantization）</strong>概念的科學家。</li>
+<li>提出振子能量與其振動頻率成正比：\(E = h f\)；若有 \(n\) 個振動粒子，能量為：<br />
+  \[ E = n h f \quad (n \in \mathbb{N}) \]</li>
+<li><strong>古典連續 vs. 量子不連續比喻</strong>：</li>
+<li><em>古典連續</em>：質量 \(m = 1\text{ kg}\) 的物體做自由落體，經 \(t = 2\text{ s}\)（設 \(g = 10\text{ m/s}^2\)），末速 \(v = gt = 20\text{ m/s}\)，動能 \(E_k = \frac{1}{2} m v^2 = 200\text{ J}\)。在此過程中，動能從 \(0\text{ J}\) 到 \(200\text{ J}\) 是連續變化的（包含 \(20\text{ J}\)、\(30\text{ J}\)、\(40\text{ J}\) 等任何實數值）。</li>
+<li><em>量子不連續</em>：在量子世界中，能量只允許特定的不連續數值存在（例如只有 \(0\text{ J}\)、\(20\text{ J}\)、\(40\text{ J}\)，中間的 \(30\text{ J}\) 絕不存在）。</li>
+<li><em>老師生活比喻</em>：能量就像去 7-Eleven 買「肉包」，只能買 1 顆、2 顆整數顆，買不到 1.5 顆或 2.5 顆。</li>
+</ul>
+</li>
+<li>
+<p><strong>愛因斯坦（Albert Einstein, 1905）</strong>：</p>
+<ul>
+<li>提出<strong>光子假說（Photon Hypothesis）</strong>，解釋黑體輻射出的光是以一顆顆如「肉包」般獨立的粒子包（光子）釋放能量。</li>
+<li>單一光子能量公式：<br />
+  \[ E = h f \]<br />
+  其中 \(h\) 為普朗克常數，\(f\) 為光子頻率。此理論完美解答了普朗克的疑惑，並確立光具有<strong>波粒二象性（Wave-Particle Duality）</strong>。</li>
+</ul>
+</li>
+<li>
+<p><strong>加熱氣體實驗組（氣體發光與軌道研究）</strong>：</p>
+</li>
+<li><strong>波爾（Niels Bohr）</strong>：將氫氣充入玻璃管加熱，觀察激發態原子回到基態發光的過程。為了建立原子不崩潰的安定模型，提出了<strong>特殊定態軌道理論</strong>。</li>
+<li>
+<p><strong>德布羅意（Louis de Broglie）</strong>：提出<strong>物質波（Matter Wave）</strong>概念，解釋電子在特殊軌道繞核運動時具備波的特性。量子力學核心即在探討「波可以是粒子，粒子也可以是波」。</p>
+</li>
+<li>
+<p><strong>課堂延伸概念說明</strong>：</p>
+</li>
+<li><strong>薛丁格的貓（Schrödinger's Cat）</strong>：原為薛丁格提出用來反駁量子力學不確定性思想的思想實驗（把貓與毒藥封在盒子裡，未觀測前貓處於「半生半死」的疊加態）。愛因斯坦亦對不確定性抱持質疑，曾說出著名名言：「上帝不擲骰子」。</li>
+<li><strong>量子糾纏（Quantum Entanglement）</strong>：涉及化學中的「包利不相容原理」（同軌道電子自旋方向一上一下）。若將兩相耦電子的自旋鎖定並拉至無窮遠處，只要觀測其中一顆的自旋狀態，另一顆的狀態便瞬間確定。</li>
+</ul>
+<h3>2. 新型學測素養題型：公斤定義演變與量綱分析</h3>
+<p>課堂以講義第 20 頁的素養長敘述題為範例，拆解國際單位制（SI）的改革：<br />
+- <strong>歷史背景</strong>：自 1889 年起，公斤由「國際公斤原器（IPK）」定義。台灣工研院於 1995 年複製第 78 號原器。因金屬原器會隨時間吸附微塵使質量發生微小變化，2018 年國際度量衡大會正式改以<strong>普朗克常數 \(h\)</strong> 為基準改寫公斤定義。<br />
+- <strong>單位受影響範圍</strong>：公斤（\(\text{kg}\)）作為基本單位改變時，推導單位如力的單位牛頓（\(\text{N}\)）、壓力單位帕斯卡（\(\text{Pa}\)）、能量單位焦耳（\(\text{J}\)）、功率單位瓦特（\(\text{W}\)）、電量單位庫侖（\(\text{C}\)）、電位單位伏特（\(\text{V}\)）與磁場單位特斯拉（\(\text{T}\)）等皆會隨之改變；但長度（\(\text{m}\)）與時間（\(\text{s}\)）不受影響。<br />
+- <strong>普朗克常數的因次導推（老師板書 SOP）</strong>：<br />
+  普朗克常數 \(h\) 的單位為焦耳\(\cdot\)秒（\(\text{J}\cdot\text{s}\)），利用物理定義將導出單位逐步還原為基本單位：<br />
+  1. 由功的定義：\(\text{J} = \text{N} \cdot \text{m}\)<br />
+  2. 由牛頓第二運動定律 \(F = ma\)：\(\text{N} = \text{kg} \cdot \text{m} / \text{s}^2\)<br />
+  3. 帶入 \(h\) 的單位：<br />
+     \[ [h] = \text{J} \cdot \text{s} = (\text{N} \cdot \text{m}) \cdot \text{s} = \left(\text{kg} \cdot \frac{\text{m}}{\text{s}^2} \cdot \text{m}\right) \cdot \text{s} = \text{kg} \cdot \frac{\text{m}^2}{\text{s}} \]<br />
+  4. 移項求出公斤（\(\text{kg}\)）以 \(h\)、\(\text{m}\)、\(\text{s}\) 表示之數學式：<br />
+     \[ \text{kg} = \frac{h \cdot \text{s}}{\text{m}^2} = h \cdot \text{s} \cdot \text{m}^{-2} \]</p>
+<h3>3. 物質組成與布朗運動的歷史發展</h3>
+<ul>
+<li><strong>道耳頓（John Dalton, 1803）</strong>：首位提出「原子假說（Atomic Hypothesis）」，主張物質由不可再分割的原子（Atom）組成，奠定近代化學與物質結構的基礎。</li>
+<li><strong>布朗（Robert Brown, 1827）</strong>：觀察懸浮於水中的花粉粒子，在顯微鏡下展現連續且不規則折線移動，稱為「布朗運動」。</li>
+<li><strong>愛因斯坦（Albert Einstein, 1905）</strong>：將布朗運動進行嚴謹的數學化推導，指出花粉折線移動是由周圍無數看不見的水分子撞擊所致，成功證明了原子的真實存在。</li>
+<li><strong>佩蘭（Jean Baptiste Perrin, 1908）</strong>：透過實驗驗證愛因斯坦的布朗運動理論，確立了原子的實體存在。</li>
+</ul>
+<p>【⏱️ 物理學史與物理觀念演進流程圖】：</p>
+<div class="mermaid">
+graph TD
+  A["1803 道耳頓提出原子假說<br/>（主張物質由不可分割之原子組成）"] --> B["1827 布朗發現布朗運動<br/>（花粉於水中進行不規則跳動）"]
+  B --> C["1900 普朗克提出能量量子化<br/>（黑體輻射 E = hf）"]
+  C --> D["1905 愛因斯坦發表光子假說 &<br/>數學化證明布朗運動"]
+  D --> E["1908 佩蘭實驗證實布朗運動，<br/>堅實確立原子存在"]
+  E --> F["2018 國際度量衡大會：<br/>改用普朗克常數 h 精確重新定義『公斤』"]
+</div>
+<h3>4. 布朗運動的微觀物理機制與顯微觀察工具</h3>
+<ul>
+<li><strong>布朗運動軌跡分析</strong>：</li>
+<li><strong>觀察條件</strong>：必須使用「顯微鏡」觀察，肉眼無法看見。</li>
+<li><strong>直線運動段</strong>：花粉受水分子撞擊後的合力方向，可做等速度運動或等加速度運動。</li>
+<li><strong>轉折點產生原因</strong>：花粉受到周圍水分子來自不同方向的<strong>「受力不平衡（不平均撞擊）」</strong>，導致瞬間轉向。</li>
+<li><strong>現代微觀觀察工具對比</strong>：<br />
+  由於原子尺寸遠小於可見光波長，無法使用光學顯微鏡觀察，現代採用以下高階工具：</li>
+</ul>
+<p>【📊 現代微觀顯微工具特性比較表】：<br />
+| 顯微工具名稱 | 全稱與縮寫 | 運作原理與機制 | 適用樣本與限制 |<br />
+| :--- | :--- | :--- | :--- |<br />
+| <strong>AFM</strong> | 原子力顯微鏡 (Atomic Force Microscope) | 利用探針與樣品表面原子間的微小作用力感測 | 適用於多數材料表面微觀探測 |<br />
+| <strong>STM</strong> | 掃描穿隧顯微鏡 (Scanning Tunneling Microscope) | 利用探針與樣品間的穿隧電流與庫侖力（\(F = k\frac{q_1q_2}{r^2}\)） | <strong>僅適用於導電材料</strong> |<br />
+| <strong>TEM</strong> | 穿透式電子顯微鏡 (Transmission Electron Microscope) | 利用高能電子束穿透極薄樣品進行成像 | 適用於生物病毒、極薄薄膜（標本製作難度高） |</p>
+<hr />
+<h2>⚠️ 老師強調考點與易錯陷阱 (Exam Focus &amp; Pitfalls)</h2>
+<h3>1. 必考熱門考點</h3>
+<ul>
+<li><strong>大考新型素養題型（長敘述題）</strong>：</li>
+<li>遇到文字又臭又長的素養題時，<strong>前段背景敘述可快速瀏覽</strong>，重點鎖定「單位變更影響範圍」與「公式量綱轉換」。</li>
+<li>考題常要求將導出單位（焦耳、牛頓）拆解為基本單位（\(\text{kg}, \text{m}, \text{s}\)）進行因次代換，務必熟練 \(F = ma\) 與 \(W = F \cdot d\) 的單位推導。</li>
+<li><strong>科學家與實驗成就對應（星號必背）</strong>：</li>
+<li><strong>奧斯特</strong>：發現「電流磁效應（有電生磁）」。</li>
+<li><strong>法拉第</strong>：發現「電磁感應（磁生電）」，非 Friday！</li>
+<li><strong>麥克斯威</strong>：整理電磁學方程式並預測電磁波。</li>
+<li><strong>普朗克</strong>：提出量子論與能量量子化。</li>
+</ul>
+<h3>2. 學生常見易錯陷阱</h3>
+<ul>
+<li><strong>陷阱一：誤以為布朗運動是花粉「活著」或「熱運動」造成的</strong></li>
+<li><em>錯觀念</em>：以為花粉因為生命現象或自身熱劇烈運動而跳動。</li>
+<li><em>正解</em>：布朗運動是<strong>水分子隨機撞擊花粉</strong>造成的受力不平衡，即使使用死掉的花粉粒進行實驗，布朗運動依然存在。</li>
+<li><strong>陷阱二：誤解「薛丁格的貓」是真實虐貓實驗</strong></li>
+<li><em>錯觀念</em>：以為科學家真的拿活貓與毒藥做實驗。</li>
+<li><em>正解</em>：「薛丁格的貓」是一個<strong>思想實驗（Thought Experiment）</strong>，原本是用來諷刺量子力學巨觀疊加態的荒謬性。</li>
+<li><strong>陷阱三：混淆 STM 與 TEM 的適用對象</strong></li>
+<li><em>錯觀念</em>：以為所有電子顯微鏡都可以看病毒或任何材料。</li>
+<li><em>正解</em>：STM 依賴導電特性，<strong>僅限導電材料</strong>；TEM 靠電子束穿透，可觀察<strong>生物病毒標本</strong>（但樣品必須切得極薄）。</li>
+</ul>
+<hr />
+<h2>🔑 記憶口訣與解題技巧 (Mnemonics &amp; Shortcuts)</h2>
+<h3>1. 普朗克常數因次推導三步破題 SOP</h3>
+<p>遇到求 \(h\) 的單位或用 \(h\) 表示基本單位時，請依據下列 SOP 拆解：<br />
+\[\text{焦耳 (J)} \xrightarrow{W=Fd} \text{牛頓} \cdot \text{公尺 (N} \cdot \text{m)} \xrightarrow{F=ma} \left(\text{kg} \cdot \frac{\text{m}}{\text{s}^2}\right) \cdot \text{m}\]<br />
+因此 \(h\) 的單位：<br />
+\[ [h] = \text{J} \cdot \text{s} = \text{kg} \cdot \text{m}^2 \cdot \text{s}^{-1} \]<br />
+反推公斤：<br />
+\[ \text{kg} = h \cdot \text{s} \cdot \text{m}^{-2} \]</p>
+<h3>2. 布朗運動轉折關鍵字判斷</h3>
+<ul>
+<li>題目問及「為何軌道會產生<strong>轉折／偏折</strong>？」\(\rightarrow\) 關鍵字立刻選<strong>「撞擊力不平均／受力不平衡」</strong>。</li>
+<li>題目問及「直線運動段」\(\rightarrow\) 可為等速度或等加速度運動。</li>
+</ul>
+<hr />
+<h2>📝 課後作業與待辦事項 (Homework &amp; Tasks)</h2>
+<ol>
+<li><strong>課後練習題</strong>：<br />
+   - 完成講義第 20 頁「新型學測素養題」第 3 小題（自主練習）。</li>
+<li><strong>預習與進度規劃</strong>：<br />
+   - 下週一課堂將從講義第 24 頁「物質的交互作用與四種基本力」正式開始講授，請提前預習。</li>
+<li><strong>班級行政事項</strong>：<br />
+   - 請尚未繳交個人照片（彩印）或帶水瓶的同學儘速完成（照片彩印約 10 元，請勿直接繳交黑白模糊影本）。</li>
+</ol>
+<hr />
+<h2>📚 專有名詞與重要公式/定義 (Glossary &amp; Formulas)</h2>
+<ul>
+<li><strong>能量量子化 (Energy Quantization)</strong>: 能量不為連續值，而必須為某一最小能量單元（量子）之整數倍。</li>
+<li><strong>普朗克公式</strong>:<br />
+  \[ E = n h f \quad (n = 1, 2, 3, \dots) \]<br />
+  其中 \(h \approx 6.63 \times 10^{-34} \text{ J}\cdot\text{s}\) 為普朗克常數，\(f\) 為頻率。</li>
+<li><strong>光子能量公式 (Photon Energy)</strong>:<br />
+  \[ E = h f \]<br />
+  愛因斯坦提出，單一光子所攜帶之能量與其頻率成正比。</li>
+<li><strong>布朗運動 (Brownian Motion)</strong>: 懸浮在流體中的微小粒子受到周圍流體分子隨機熱運動碰撞，所產生的不規則折線移動現象。</li>
+<li><strong>掃描穿隧顯微鏡 (STM)</strong>: 利用針尖與樣品之間的量子穿隧電流來測量表面原子結構之顯微儀器，限制為樣品須具備導電性。</li>
+<li><strong>自然界四大基本交互作用 (Four Fundamental Forces)</strong>:<br />
+  1. 重力 (Gravitational Force)<br />
+  2. 電磁力 (Electromagnetic Force)<br />
+  3. 強核力 / 強合力 (Strong Nuclear Force)<br />
+  4. 弱核力 / 弱合力 (Weak Nuclear Force)</li>
+</ul>
+<hr />
+<h2>🧠 課後自測題 (Quick Review Quiz)</h2>
+<h3>題一：量子觀念測驗</h3>
+<p><strong>問</strong>：古典物理與量子物理在描述「能量」時，最核心的根本差異為何？請以課堂中老師舉的例子進行簡短說明。</p>
+<blockquote>
+<p><strong>解析/答案</strong>：<br />
+古典物理認為能量是「連續的」（例如自由落體運動中，物體動能可以連續取 0 到 200 焦耳間的任何實數值）；而量子物理認為能量是「不連續的／量子化的」（例如只能取特定數值如 0、20、40 焦耳）。如同去便利商店買「肉包」，只能買 1 顆或 2 顆整數顆，無法購買 1.5 顆。</p>
+</blockquote>
+<h3>題二：單位因次推導題</h3>
+<p><strong>問</strong>：已知力的單位為牛頓（\(\text{N}\)），壓力的單位為帕斯卡（\(\text{Pa} = \text{N}/\text{m}^2\)）。若國際公斤原器（IPK）的質量微小改變，請利用基本單位（\(\text{kg}, \text{m}, \text{s}\)）推導帕斯卡（\(\text{Pa}\)）的因次，並說明為何帕斯卡會受到影響。</p>
+<blockquote>
+<p><strong>解析/答案</strong>：<br />
+因 \(\text{N} = \text{kg} \cdot \text{m} \cdot \text{s}^{-2}\)，故壓力的單位：<br />
+\[ \text{Pa} = \frac{\text{N}}{\text{m}^2} = \frac{\text{kg} \cdot \text{m} \cdot \text{s}^{-2}}{\text{m}^2} = \text{kg} \cdot \text{m}^{-1} \cdot \text{s}^{-2} \]<br />
+由於帕斯卡導出的基本因次中包含公斤（\(\text{kg}\)），故當公斤標準重新定義或質量改變時，帕斯卡單位必定隨之受影響。</p>
+</blockquote>
+<h3>題三：實驗現象診斷題</h3>
+<p><strong>問</strong>：小明在顯微鏡下觀察水中的花粉粒子，發現花粉做折線跳動，他宣稱：「這是因為花粉具有生命力且進行熱運動所致。」請問小明的說法是否正確？若不正確，請指出其錯誤並給出正確的物理機制。</p>
+<blockquote>
+<p><strong>解析/答案</strong>：<br />
+不正確。布朗運動並非花粉自身的生命現象或熱運動，而是周圍無數看不見的水分子從各方向隨機碰撞花粉，當各方向碰撞力不平衡時，所導致的不規則移動現象。即使使用無生命死掉的花粉，該現象依然存在。</p>
+</blockquote>
+    </div>
+    <footer class="doc-foot">
+      自動生成於 NotebookLM Study Assistant • 專為高中學生課後複習與考前衝刺打造
+    </footer>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.mermaid) {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'neutral',
+          fontFamily: "'Noto Sans TC', 'Inter', sans-serif",
+          flowchart: { curve: 'basis', htmlLabels: true },
+          securityLevel: 'loose'
+        });
+      }
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+  
+  <script>
+    (function() {
+      const treeData = {"name": "一、量子物理的建立", "children": [{"name": "普朗克：能量量子化 & 黑體輻射"}, {"name": "愛因斯坦：光子理論 & 波粒二象性"}, {"name": "波爾：氫原子特殊軌道模型"}, {"name": "德布羅意：物質波概念"}]};
+      const container = document.getElementById("tree-svg-container");
+      if (!container || !treeData) return;
+
+      const width = container.clientWidth || 880;
+      const height = 520;
+
+      const svg = d3.select("#tree-svg-container")
+        .append("svg")
+        .attr("width", "100%")
+        .attr("height", height)
+        .attr("viewBox", [0, 0, width, height]);
+
+      const g = svg.append("g");
+
+      const zoom = d3.zoom()
+        .scaleExtent([0.25, 2.5])
+        .on("zoom", (e) => g.attr("transform", e.transform));
+
+      svg.call(zoom);
+
+      const root = d3.hierarchy(treeData);
+      root.x0 = height / 2;
+      root.y0 = 0;
+
+      let i = 0;
+      const duration = 380;
+      // [dy, dx]: 垂直節距 58px (確保上下不重疊), 水平層級 320px (確保長文字不穿透父層)
+      const treeLayout = d3.tree().nodeSize([58, 320]);
+
+      function splitNodeText(text, maxChars) {
+        if (!text) return [""];
+        if (text.length <= maxChars) return [text];
+
+        // 優先在括號處斷行，例如：世風日下之自身矛盾對比（擇師教子 vs. 於身恥師）
+        const parenIdx = text.search(/[（(]/);
+        if (parenIdx >= 3 && parenIdx <= maxChars + 4) {
+          const p1 = text.slice(0, parenIdx).trim();
+          const p2 = text.slice(parenIdx).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 優先在冒號、破折號、頓號處斷行
+        const sepIdx = text.search(/[：:—、]/);
+        if (sepIdx >= 3 && sepIdx <= maxChars + 2) {
+          const p1 = text.slice(0, sepIdx + 1).trim();
+          const p2 = text.slice(sepIdx + 1).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 預設在 maxChars 處均勻斷行
+        return [text.slice(0, maxChars), text.slice(maxChars)];
+      }
+
+      if (root.children) {
+        root.children.forEach(c => {
+          if (c.children) {
+            c.children.forEach(collapse);
+          }
+        });
+      }
+
+      function collapse(d) {
+        if (d.children) {
+          d._children = d.children;
+          d._children.forEach(collapse);
+          d.children = null;
+        }
+      }
+
+      function expand(d) {
+        if (d._children) {
+          d.children = d._children;
+          d.children.forEach(expand);
+          d._children = null;
+        }
+      }
+
+      const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
+
+      function getNodeColor(d) {
+        if (d.depth === 0) return "#2563eb";
+        let p = d;
+        while (p.depth > 1) p = p.parent;
+        return colorScale(p.data.name);
+      }
+
+      function update(source) {
+        const nodes = root.descendants();
+        const links = root.links();
+
+        treeLayout(root);
+
+        const node = g.selectAll("g.node")
+          .data(nodes, d => d.id || (d.id = ++i));
+
+        const nodeEnter = node.enter().append("g")
+          .attr("class", "node")
+          .attr("transform", d => `translate(${source.y0},${source.x0})`)
+          .on("click", (event, d) => {
+            if (d.children) {
+              d._children = d.children;
+              d.children = null;
+            } else if (d._children) {
+              d.children = d._children;
+              d._children = null;
+            }
+            update(d);
+          });
+
+        nodeEnter.append("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        const textNode = nodeEnter.append("text")
+          .attr("class", "node-text")
+          .attr("text-anchor", d => (d.children || d._children) ? "end" : "start")
+          .style("fill-opacity", 0);
+
+        textNode.each(function(d) {
+          const el = d3.select(this);
+          const isParent = Boolean(d.children || d._children);
+          const xOffset = isParent ? -14 : 14;
+          const maxChars = isParent ? 13 : 18;
+          const lines = splitNodeText(d.data.name, maxChars);
+
+          if (lines.length === 1) {
+            el.attr("x", xOffset)
+              .attr("dy", "0.32em")
+              .text(lines[0]);
+          } else {
+            el.attr("x", xOffset)
+              .attr("dy", "-0.35em")
+              .text(lines[0]);
+            el.append("tspan")
+              .attr("x", xOffset)
+              .attr("dy", "1.25em")
+              .text(lines[1]);
+          }
+        });
+
+        const nodeUpdate = node.merge(nodeEnter).transition().duration(duration)
+          .attr("transform", d => `translate(${d.y},${d.x})`);
+
+        nodeUpdate.select("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        nodeUpdate.select("text")
+          .style("fill-opacity", 1);
+
+        const nodeExit = node.exit().transition().duration(duration)
+          .attr("transform", d => `translate(${source.y},${source.x})`)
+          .remove();
+
+        nodeExit.select("circle").attr("r", 1e-6);
+        nodeExit.select("text").style("fill-opacity", 1e-6);
+
+        const link = g.selectAll("path.link")
+          .data(links, d => d.target.id);
+
+        const linkEnter = link.enter().insert("path", "g")
+          .attr("class", "link")
+          .attr("d", d => {
+            const o = {x: source.x0, y: source.y0};
+            return diagonal(o, o);
+          });
+
+        link.merge(linkEnter).transition().duration(duration)
+          .attr("d", d => diagonal(d.source, d.target));
+
+        link.exit().transition().duration(duration)
+          .attr("d", d => {
+            const o = {x: source.x, y: source.y};
+            return diagonal(o, o);
+          })
+          .remove();
+
+        nodes.forEach(d => {
+          d.x0 = d.x;
+          d.y0 = d.y;
+        });
+      }
+
+      function diagonal(s, d) {
+        return `M ${s.y} ${s.x}
+                C ${(s.y + d.y) / 2} ${s.x},
+                  ${(s.y + d.y) / 2} ${d.x},
+                  ${d.y} ${d.x}`;
+      }
+
+      function autoFitTree(duration = 450) {
+        const nodes = root.descendants();
+        if (!nodes || nodes.length === 0) return;
+
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        nodes.forEach(d => {
+          const isParent = Boolean(d.children || d._children);
+          const leftBound = d.y - (isParent ? 180 : 20);
+          const rightBound = d.y + (isParent ? 20 : 220);
+          const topBound = d.x - 32;
+          const bottomBound = d.x + 32;
+
+          if (leftBound < minX) minX = leftBound;
+          if (rightBound > maxX) maxX = rightBound;
+          if (topBound < minY) minY = topBound;
+          if (bottomBound > maxY) maxY = bottomBound;
+        });
+
+        const fullWidth = container.clientWidth || 880;
+        const fullHeight = height;
+        const treeW = maxX - minX;
+        const treeH = maxY - minY;
+
+        if (treeW <= 0 || treeH <= 0) return;
+
+        const scale = Math.min(0.92, (fullWidth * 0.90) / treeW, (fullHeight * 0.90) / treeH);
+        const clampedScale = Math.max(scale, 0.42);
+
+        const midTreeX = (minX + maxX) / 2;
+        const midTreeY = (minY + maxY) / 2;
+        const tx = fullWidth / 2 - clampedScale * midTreeX;
+        const ty = fullHeight / 2 - clampedScale * midTreeY;
+
+        if (duration > 0) {
+          svg.transition().duration(duration).call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        } else {
+          svg.call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        }
+      }
+
+      window.expandAll = function() {
+        root.each(expand);
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.collapseAll = function() {
+        if (root.children) {
+          root.children.forEach(collapse);
+        }
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.resetZoom = function() {
+        autoFitTree(450);
+      };
+
+      // 首次繪製節點並自動縮放置中全覽
+      update(root);
+      autoFitTree(0);
+    })();
+  </script>
+
+</body>
+</html>

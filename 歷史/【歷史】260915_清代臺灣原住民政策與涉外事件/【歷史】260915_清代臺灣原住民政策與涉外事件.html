@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【歷史】260915_清代臺灣原住民政策與涉外事件</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --border: #e2e8f0;
+      --border-focus: #cbd5e1;
+      --tag-bg: #e0f2fe;
+      --tag-text: #0369a1;
+      --header-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans TC', 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.8;
+      font-size: 16px;
+      padding: 30px 16px 60px;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.06), 0 2px 6px -1px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    header.hero {
+      background: var(--header-gradient);
+      color: #ffffff;
+      padding: 36px 40px 30px;
+      position: relative;
+    }
+    header.hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      color: #f1f5f9;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    header.hero h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.5px;
+    }
+    header.hero .meta {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .content-body {
+      padding: 40px 48px;
+    }
+    @media (max-width: 640px) {
+      .content-body { padding: 24px 20px; }
+      header.hero { padding: 28px 24px 22px; }
+      header.hero h1 { font-size: 1.5rem; }
+    }
+    h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 2.2em;
+      margin-bottom: 0.9em;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h2:first-of-type { margin-top: 0.5em; }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1e3a8a;
+      margin-top: 1.6em;
+      margin-bottom: 0.6em;
+      padding-left: 10px;
+      border-left: 4px solid var(--accent);
+    }
+    p { margin-bottom: 1.1em; }
+    ul, ol { margin-bottom: 1.2em; padding-left: 1.8em; }
+    li { margin-bottom: 0.4em; }
+    .mermaid {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 16px;
+      margin: 1.6em 0;
+      text-align: center;
+      overflow-x: auto;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 1.6em 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    thead th {
+      background: #f1f5f9;
+      color: #1e293b;
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+    tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) { background: #fafafa; }
+    tbody tr:hover { background: #f0f7ff; }
+    tbody tr:last-child td { border-bottom: none; }
+    code {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      background: #f1f5f9;
+      color: #b91c1c;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 1.4em 0;
+      font-size: 0.92em;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; }
+    blockquote {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 14px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 1.4em 0;
+      color: #1e40af;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2.2em 0; }
+    .katex-display {
+      margin: 1.2em 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 6px 0;
+    }
+    .katex { font-size: 1.05em; }
+    
+    /* NotebookLM 原生 D3 互動心智圖樣式 */
+    .mindmap-box {
+      margin: 2em 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .mindmap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .mindmap-title {
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mindmap-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .mm-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: #334155;
+      transition: all 0.2s;
+    }
+    .mm-btn:hover { background: #f1f5f9; }
+    #tree-svg-container {
+      width: 100%;
+      height: 520px;
+      background: #ffffff;
+      cursor: grab;
+    }
+    #tree-svg-container:active { cursor: grabbing; }
+    .node circle {
+      cursor: pointer;
+      stroke-width: 2.5px;
+      transition: all 0.2s;
+    }
+    .node circle:hover { transform: scale(1.25); }
+    .node text {
+      font-size: 13px;
+      font-weight: 500;
+      font-family: inherit;
+      fill: #1e293b;
+      cursor: pointer;
+      paint-order: stroke fill;
+      stroke: #ffffff;
+      stroke-width: 4.5px;
+      stroke-linejoin: round;
+      user-select: none;
+    }
+    .link {
+      fill: none;
+      stroke: #cbd5e1;
+      stroke-width: 1.8px;
+      stroke-opacity: 0.85;
+      transition: stroke-width 0.2s;
+    }
+    .link:hover { stroke: #94a3b8; stroke-width: 2.5px; }
+
+    footer.doc-foot {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      background: #fcfdfe;
+    }
+    .print-btn {
+      position: absolute;
+      top: 36px;
+      right: 40px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .print-btn:hover { background: rgba(255,255,255,0.25); }
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      body {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+      }
+      .container {
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+      }
+      .print-btn, .mindmap-btns {
+        display: none !important;
+      }
+      header.hero {
+        background: var(--header-gradient) !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+        padding: 24px 30px !important;
+        margin-bottom: 20px !important;
+      }
+      header.hero h1 {
+        color: #ffffff !important;
+        font-size: 1.6rem !important;
+      }
+      header.hero .badge {
+        background: rgba(255,255,255,0.2) !important;
+        color: #ffffff !important;
+      }
+      header.hero .meta {
+        color: #cbd5e1 !important;
+      }
+      .content-body {
+        padding: 10px 0 !important;
+      }
+      h1, h2, h3, h4, table, tr, pre, .mermaid, .mindmap-box, blockquote {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      h2, h3 {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <div class="badge">📖 高中課堂互動圖文筆記</div>
+      <button class="print-btn" onclick="window.print()">🖨️ 列印 / 另存 PDF</button>
+      <h1>【歷史】260915_清代臺灣原住民政策與涉外事件</h1>
+      <div class="meta">
+        <span>⏱️ 數位筆記儀表板</span>
+        <span>🏷️ 含可縮放互動心智圖、時間軸與觀念對比</span>
+      </div>
+    </header>
+    <div class="content-body">
+      
+      <div class="mindmap-box">
+        <div class="mindmap-header">
+          <div class="mindmap-title">
+            <span>🧠 本課核心知識脈絡（NotebookLM 原生互動心智圖 • 支援縮放與展開）</span>
+          </div>
+          <div class="mindmap-btns">
+            <button class="mm-btn" onclick="expandAll()">展開全部</button>
+            <button class="mm-btn" onclick="collapseAll()">收合分支</button>
+            <button class="mm-btn" onclick="resetZoom()">重設視角</button>
+          </div>
+        </div>
+        <div id="tree-svg-container"></div>
+      </div>
+        
+      <h2>📖 課堂主題與核心摘要 (Class Overview)</h2>
+<p>本堂課深入探討清代臺灣原住民政策的演變、漢人開墾對原住民生存空間的影響，以及清末兩大重要涉外事件。課程重點涵蓋平埔族與生番的遷徙脈絡、清廷劃設番界（立界碑至土牛溝）的歷史背景、大甲西社事件與大肚王國的瓦解過程，以及漢原合作的「割地換水」水利開墾模式。最後剖析羅妹號事件與牡丹社事件，說明清廷「番界以外不歸我管」的態度如何引發「番地無主論」，進而影響近代臺灣國際政局。</p>
+<div class="mermaid">
+graph LR
+  Root["清代臺灣原住民政策與涉外事件"] --> A["原住民遷徙與劃界政策"]
+  Root --> B["原住民抗官：大甲西社事件"]
+  Root --> C["共同開墾與漢化通婚"]
+  Root --> D["清末涉外事件與國際局勢"]
+
+  A --> A1["熟番遷徙（噶瑪蘭/埔里/花東）"]
+  A --> A2["清代界線（立界碑 ➔ 土牛溝）"]
+
+  B --> B1["起因：無薪徭役與官逼民反"]
+  B --> B2["演變：糧箱石頭案與大肚王國瓦解"]
+
+  C --> C1["張達京與潘敦仔（貓霧捒圳）"]
+  C --> C2["郭錫瑠父子與泰雅族（瑠公圳）"]
+  C --> C3["平埔族漢化與母系社會特徵"]
+
+  D --> D1["羅妹號事件（1867）：南岬之盟"]
+  D --> D2["牡丹社事件（1874）：番地無主論"]
+</div>
+<hr />
+<h2>💡 核心知識點與觀念詳解 (Key Concepts)</h2>
+<h3>一、 原住民遷徙路線與清代番界變遷</h3>
+<ol>
+<li>
+<p><strong>熟番遷徙與高山族的形成</strong>：<br />
+   * 漢人越過番界侵墾熟番（平埔族）土地，迫使部分熟番遷移至界外。現今許多高山族（如阿美族）早期實際為平地平埔族，後被驅趕至界外才移居山地。<br />
+   * <strong>三大遷徙方向</strong>：</p>
+<ul>
+<li><strong>北部</strong>：遷至宜蘭，稱為<strong>噶瑪蘭族</strong>（屬熟番）。宜蘭當地的生番隨後被熟番噶瑪蘭族趕至花蓮。今日官方認證的噶瑪蘭族主要分佈於花蓮。</li>
+<li><strong>中部</strong>：迫於生存壓力遷入<strong>埔里</strong>盆地。</li>
+<li><strong>南部</strong>：一路向南遷往<strong>臺東、屏東</strong>一帶。</li>
+</ul>
+</li>
+<li>
+<p><strong>清廷劃界政策演變</strong>：<br />
+   * <strong>康熙時期（立界碑）</strong>：爆發<strong>朱一貴事件</strong>，臺灣官員逃跑，康熙皇帝大怒，隨後增設「澎湖廳」實施海禁，並採取「立石為界」政策，嚴禁漢人入山越界。<br />
+   * <strong>雍正與乾隆時期（土牛溝）</strong>：開始劃設「土牛溝」（地圖上以紅線標示，故又稱<strong>土牛線</strong>或<strong>土牛紅線</strong>），作為漢番分界的實體溝渠與土堆。</p>
+</li>
+</ol>
+<div class="mermaid">
+graph TD
+    A["康熙時期：朱一貴事件"] -->|官員逃跑/增設澎湖廳| B["初次劃界：立界碑（封山禁入）"]
+    B -->|雍正、乾隆時期| C["進階劃界：土牛溝（土牛線/紅線）"]
+    C -->|漢人持續越界侵墾| D["熟番三路大遷徙（宜蘭/埔里/臺東）"]
+</div>
+<hr />
+<h3>二、 清代原住民抗官事件：大甲西社事件</h3>
+<p>老師特別對比了三個不同時期的原住民抗官代表事件：<strong>荷蘭時期（麻豆社事件）</strong>、<strong>清代（大甲西社事件）</strong>、<strong>日治時期（霧社事件）</strong>。</p>
+<ol>
+<li><strong>大甲西社事件（雍正九年，1731年）</strong>：<br />
+   * <strong>地理背景</strong>：發生於臺中大甲一帶的大甲西社（平埔族熟番），屬於跨部落聯盟<strong>大肚王國</strong>轄下的部落。<br />
+   * <strong>爆發主因（無薪徭役）</strong>：清廷要求熟番承擔建縣衙、山區砍運木材等徭役。官員為趕進度強留熟番數週至月餘，且不付薪資。熟番荒廢農事導致無力繳稅，陷入「官逼民反」的惡性循環。<br />
+   * <strong>導火線與第一階段</strong>：官員姦淫番婦，熟番憤而放火燒毀官府與建築木材，打傷官員。清軍隨後派兵鎮壓並逮捕主謀。<br />
+   * <strong>第二階段（假案陷害與大肚王國瓦解）</strong>：<ul>
+<li><strong>地方官貪功造假</strong>：地方官員欲藉平亂立功調回中央（北京），故設計召集熟番運送數百斤「裝滿石頭」的糧箱。過後打開陷害熟番偷糧，逼迫交糧否則砍頭。</li>
+<li><strong>大肚王圍攻</strong>：大肚王不忍族人受誣陷，率領 13 個部落聯合圍攻清軍。清軍以重兵鎮壓，大肚王國軍隊幾乎被全殲（兩千餘人僅存十餘人）。</li>
+<li><strong>調查拆穿與結局</strong>：雍正帝派員調查，調查官查閱糧倉帳本，發現全縣一年糧倉總收入僅 50 斤，不可能被偷上百斤，拆穿此假案。乾隆皇帝隨後命令將大甲西社殘餘遺族遷至縣府周邊就近監視，<strong>大肚王國自此全面瓦解</strong>。</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h3>三、 漢原共同開墾與「割地換水」水利發展</h3>
+<p>清代開墾需要龐大資金與水利設施，形成「墾號」經營，並透過與原住民通婚或合作取得土地與水資源。</p>
+<ol>
+<li>
+<p><strong>水利結構層級與名詞解析</strong>：<br />
+   * <strong>埤 / 塘（陂）</strong>：大型蓄水池（如虎頭埤，規模極大可划船捕魚）。<br />
+   * <strong>圳</strong>：連結蓄水池的主幹水道。<br />
+   * <strong>溝</strong>：由圳分流出的中型分水溝。<br />
+   * <strong>渠</strong>：直接引水入田的小型水溝。</p>
+</li>
+<li>
+<p><strong>經典割地換水案例比較</strong>：<br />
+   * <strong>中部：張達京與潘敦仔（貓霧捒圳）</strong>：</p>
+<ul>
+<li>張達京為中部最大墾號「六館業戶」負責人（開墾範圍涵蓋台中市縣）。</li>
+<li>岸裡社（西拉雅族/巴宰族）頭目<strong>潘敦仔</strong>（後改漢名潘敦）擁有貓羅溪下游土地，但缺乏抽水技術；張達京提供資金技術開鑿<strong>貓霧捒圳</strong>，潘敦仔提供土地換取水資源。張達京更娶潘敦仔之女為妻（成為平埔族駙馬）。</li>
+<li><strong>北部：郭錫瑠父子與泰雅族（瑠公圳）</strong>：</li>
+<li>郭錫瑠開鑿<strong>瑠公圳</strong>引新店溪水至臺北盆地。因土地屬於泰雅族姊妹所有，郭錫瑠娶姊姊取得上游土地開圳；其子娶妹，父子二人娶姊妹花，順利取得整條瑠公圳的開發權。</li>
+</ul>
+</li>
+<li>
+<p><strong>平埔族漢化與社會型態</strong>：<br />
+   * <strong>生活轉變</strong>：平埔族逐漸漢化，飲食以米飯為主，農耕方式與漢人無異。<br />
+   * <strong>母系社會特徵</strong>：從歷史圖畫（如犁田、挑水者背上背有小孩）可觀察出平埔族保有傳統的<strong>母系社會</strong>特質。</p>
+</li>
+</ol>
+<hr />
+<h3>四、 清代涉外事件：羅妹號事件與牡丹社事件</h3>
+<p>清廷對番界的「消極管轄」態度，直接引發了兩起改變臺灣命運的涉外事件。</p>
+<div class="mermaid">
+graph TD
+    A1["1867 羅妹號事件"] --> A2["美船 Rover 號屏東觸礁 ➔ 排灣族出草殺害船員"]
+    A2 --> A3["清廷回應：『番界以外不歸我管』"]
+    A3 --> A4["李仙得提出『番地無主論』；美軍開砲後未上岸"]
+    A4 --> A5["李仙得、必麒麟入山 ➔ 與卓杞篤簽《南岬之盟》"]
+
+    B1["1874 牡丹社事件"] --> B2["琉球漁民遇颱風觸礁 ➔ 牡丹社排灣族殺害 76 人"]
+    B2 --> B3["清廷再次宣稱：『番地之外非我管轄』"]
+    B3 --> B4["日本明治維新後欲試軍力 ➔ 藉口出兵臺灣"]
+</div>
+<ol>
+<li>
+<p><strong>羅妹號事件（1867年）</strong>：<br />
+   * <strong>經過</strong>：美國蒸汽船羅妹號（Rover）於屏東墾丁外海珊瑚礁觸礁，船員登陸後被排灣族視為入侵者出草殺害。生還者逃往廈門美領館。<br />
+   * <strong>清廷態度</strong>：美國駐廈門領事<strong>李仙得（Charles W. Le Gendre）</strong>向清廷抗議，清廷官員回應：「番界以外不歸我管」（化外之地）。<br />
+   * <strong>番地無主論</strong>：李仙得據此得出<strong>「番地無主論」</strong>，認為清廷不實施管轄即代表該土地無主。美軍海軍隨後開砲，但不敢進入叢林。<br />
+   * <strong>《南岬之盟》</strong>：李仙得在英國商人<strong>必麒麟</strong>陪同下進入屏東「十八番社」，與總頭目<strong>卓杞篤</strong>談判。雙方簽署《南岬之盟》，約定美英船隻若遇難，排灣族將給予救援而非殺害。<br />
+   * <strong>觀念澄清</strong>：《南岬之盟》僅為<strong>私人救援協議</strong>，不具備國際法效力，非國與國條約。</p>
+</li>
+<li>
+<p><strong>牡丹社事件（1874年）</strong>：<br />
+   * <strong>經過</strong>：羅妹號事件 7 年後，琉球漁民遇颱風飄至屏東，被牡丹社排灣族殺害 76 人。<br />
+   * <strong>導火線</strong>：生還者向清廷告官，清廷再次以「番地之外非我管轄」推卸責任。琉球轉向日本求助。<br />
+   * <strong>日本出兵</strong>：剛完成明治維新的日本急於測試軍力，遂以保護琉球藩民為由出兵臺灣牡丹社。</p>
+</li>
+</ol>
+<hr />
+<h3>📊 觀念與易混淆對比表</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">對比項目</th>
+<th style="text-align: left;">羅妹號事件 (1867)</th>
+<th style="text-align: left;">牡丹社事件 (1874)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>受害對象</strong></td>
+<td style="text-align: left;">美國蒸汽船 Rover 號船員</td>
+<td style="text-align: left;">琉球遇難漁民</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>涉事原住民</strong></td>
+<td style="text-align: left;">屏東排灣族（十八番社）</td>
+<td style="text-align: left;">屏東排灣族（牡丹社）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>清廷回應</strong></td>
+<td style="text-align: left;">「番界以外不歸我管」</td>
+<td style="text-align: left;">「番地之外非我管轄」</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>關鍵人物</strong></td>
+<td style="text-align: left;">李仙得、必麒麟、卓杞篤</td>
+<td style="text-align: left;">日本政府（明治維新後）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>產生的結果</strong></td>
+<td style="text-align: left;">提出「番地無主論」、簽訂《南岬之盟》</td>
+<td style="text-align: left;">日本以此為藉口首次對外出兵臺灣</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>協議性質</strong></td>
+<td style="text-align: left;">《南岬之盟》為<strong>私人救援協議</strong>（無法律效力）</td>
+<td style="text-align: left;">引發清日角力，影響後續續開山撫番</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">開墾水利項目</th>
+<th style="text-align: left;">貓霧捒圳（中部）</th>
+<th style="text-align: left;">瑠公圳（北部）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>主導墾號/漢人</strong></td>
+<td style="text-align: left;">張達京（六館業戶）</td>
+<td style="text-align: left;">郭錫瑠（父子）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>合作原住民</strong></td>
+<td style="text-align: left;">岸裡社頭目潘敦仔（平埔族/熟番）</td>
+<td style="text-align: left;">太雅族（泰雅族/生番）婦女姊妹</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>水源與地區</strong></td>
+<td style="text-align: left;">引貓羅溪水，灌溉臺中地區</td>
+<td style="text-align: left;">引新店溪水，灌溉臺北盆地</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>通婚模式</strong></td>
+<td style="text-align: left;">張達京娶潘敦仔之女（平埔族駙馬）</td>
+<td style="text-align: left;">郭錫瑠娶姊姊、其子娶妹妹</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>⚠️ 老師強調考點與易錯陷阱 (Exam Focus &amp; Pitfalls)</h2>
+<ol>
+<li><strong>番地無主論的由來</strong>：<br />
+   * <strong>考點</strong>：清廷面對羅妹號事件回答「番界以外不歸我管」，使美國領事李仙得提出「番地無主論」，這成為後來日本在牡丹社事件中出兵臺灣的重要藉口。</li>
+<li><strong>《南岬之盟》的法律性質</strong>：<br />
+   * <strong>易錯陷阱</strong>：選項若稱《南岬之盟》是「臺灣對外的第一個國際條約」或「具備法律效力的官方協定」皆為<strong>錯誤</strong>！它僅是李仙得與卓杞篤簽署的<strong>私人救援協議</strong>。</li>
+<li><strong>清代劃界政策演變順序</strong>：<br />
+   * <strong>考點</strong>：康熙時期因朱一貴事件實施「立界碑」；雍正、乾隆時期才開始繪製劃設「土牛溝」（土牛線/紅線）。</li>
+<li><strong>大甲西社事件的本質</strong>：<br />
+   * <strong>考點</strong>：屬於清代平埔族熟番的抗官事件，主因為官府無薪徭役過重與官逼民反，並非無端叛亂。事件最終導致跨部落的「大肚王國」徹底瓦解。</li>
+</ol>
+<hr />
+<h2>🔑 記憶口訣與解題技巧 (Mnemonics &amp; Shortcuts)</h2>
+<ol>
+<li><strong>熟番遷徙順口溜</strong>：<br />
+   * <strong>「北去宜蘭噶瑪蘭，中入埔里，南前往台東屏東」</strong>：幫助快速記憶平埔族受漢人侵墾後的移墾路線。</li>
+<li><strong>水利系統層級結構 S.O.P.</strong>：<br />
+   * <strong>埤/塘 ➔ 圳 ➔ 溝 ➔ 渠</strong>（蓄水 ➔ 主幹 ➔ 分流 ➔ 入田）。</li>
+<li><strong>平埔族漢化判讀技巧</strong>：<br />
+   * 口訣：<strong>「平埔漢化，等同漢人」</strong>。若題目考圖表題，觀察圖中犁田/挑水者背上背有小孩，可直接判斷該族群具備<strong>母系社會</strong>特徵。</li>
+</ol>
+<hr />
+<h2>📝 課後作業與待辦事項 (Homework &amp; Tasks)</h2>
+<ul>
+<li><strong>課堂交代事項</strong>：無特定作業。請務必複習課本第 18 至 20 頁之「清代番界變遷、大甲西社事件與羅妹號/牡丹社事件」內容，預習下次課程（李仙得協助日本出兵之發展）。</li>
+</ul>
+<hr />
+<h2>📚 專有名詞與重要公式/定義 (Glossary &amp; Formulas)</h2>
+<ul>
+<li><strong>土牛溝（土牛線/土牛紅溝）</strong>: 清代雍正、乾隆年間劃分漢人與原住民生活區域的界線，以挖溝堆土（土牛）為界，於地圖上常以紅線標記。</li>
+<li><strong>大甲西社事件</strong>: 雍正九年（1731年）發生於臺中大甲一帶的平埔族熟番抗官事件，主因徭役不公與官員造假陷害，最終導致大肚王國瓦解。</li>
+<li><strong>大肚王國</strong>: 臺灣中部原住民平埔族（巴宰族、巴布拉族等）所建立的跨部落聯合政權，於清代大甲西社事件後被清軍鎮壓瓦解。</li>
+<li><strong>岸裡社與潘敦仔</strong>: 臺南/中部一帶的平埔族部落及其頭目。潘敦仔曾協助清廷平定大肚王國，後與張達京合作「割地換水」，改漢名潘敦並任清朝官職。</li>
+<li><strong>割地換水</strong>: 清代漢人墾首與原住民合作開墾的模式，原住民提供土地，漢人提供資金與技術開鑿水圳，雙方共享水資源與地利（如張達京之貓霧捒圳）。</li>
+<li><strong>羅妹號事件 (1867)</strong>: 美國船隻 Rover 號於墾丁觸礁，船員遭排灣族殺害。清廷宣稱「番界以外不歸我管」，引發李仙得提出「番地無主論」並簽署《南岬之盟》。</li>
+<li><strong>李仙得 (Charles W. Le Gendre)</strong>: 羅妹號事件時任美國駐廈門領事，深入屏東與原住民談判，提出「番地無主論」，對清末臺灣涉外局勢影響深遠。</li>
+<li><strong>南岬之盟</strong>: 1867 年李仙得與排灣族十八番社總頭目卓杞篤簽署的私人救援協議，約定救援遇難的美英船員。</li>
+<li><strong>牡丹社事件 (1874)</strong>: 琉球漁民遇難於屏東遭排灣族牡丹社殺害，日本藉口清廷宣稱「化外之地」而發兵攻打臺灣原住民，為日本明治維新後首次對外用兵。</li>
+</ul>
+<hr />
+<h2>🧠 課後自測題 (Quick Review Quiz)</h2>
+<p><strong>第一題：</strong><br />
+清廷在羅妹號事件與牡丹社事件中，面對外國公使抗議原住民殺害遇難船員時，皆回應「番界以外不歸我管」或「化外之地」。請說明此一態度對臺灣國際地位帶來了什麼嚴重的後果？</p>
+<blockquote>
+<p><strong>解題思維/答案</strong>：<br />
+清廷的推卸責任導致美國領事李仙得提出「番地無主論」（認為清廷不實施管轄即代表該土地無主）。這打破了清廷對臺灣全島的主權宣稱，更給予日本在 1874 年以保護琉球藩民為由出兵臺灣（牡丹社事件）的合法藉口。</p>
+</blockquote>
+<p><strong>第二題：</strong><br />
+清代的「大甲西社事件」與「貓霧捒圳開鑿」分別反映了漢人入墾臺灣後，與平埔族原住民產生的哪兩種不同互動關係？</p>
+<blockquote>
+<p><strong>解題思維/答案</strong>：<br />
+1. <strong>大甲西社事件</strong>：反映了「漢官對原住民的壓迫與衝突」，因無薪徭役過重與官員陷害，引發平埔族抗官與大肚王國的武力鎮壓瓦解。<br />
+2. <strong>貓霧捒圳開鑿</strong>：反映了「漢原合作與利益共享（割地換水）」，漢人墾首張達京提供開圳技術與資金，平埔族頭目潘敦仔提供土地，雙方並透過通婚建立緊密合作關係。</p>
+</blockquote>
+<hr />
+<p>💡 建議課後結合課本第 18-20 頁圖表進行複習，著重掌握涉外事件的時間軸與因果關聯！</p>
+    </div>
+    <footer class="doc-foot">
+      自動生成於 NotebookLM Study Assistant • 專為高中學生課後複習與考前衝刺打造
+    </footer>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.mermaid) {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'neutral',
+          fontFamily: "'Noto Sans TC', 'Inter', sans-serif",
+          flowchart: { curve: 'basis', htmlLabels: true },
+          securityLevel: 'loose'
+        });
+      }
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+  
+  <script>
+    (function() {
+      const treeData = {"name": "原住民遷徙與劃界政策", "children": [{"name": "熟番遷徙（噶瑪蘭/埔里/花東）"}, {"name": "清代界線（立界碑 ➔ 土牛溝）"}]};
+      const container = document.getElementById("tree-svg-container");
+      if (!container || !treeData) return;
+
+      const width = container.clientWidth || 880;
+      const height = 520;
+
+      const svg = d3.select("#tree-svg-container")
+        .append("svg")
+        .attr("width", "100%")
+        .attr("height", height)
+        .attr("viewBox", [0, 0, width, height]);
+
+      const g = svg.append("g");
+
+      const zoom = d3.zoom()
+        .scaleExtent([0.25, 2.5])
+        .on("zoom", (e) => g.attr("transform", e.transform));
+
+      svg.call(zoom);
+
+      const root = d3.hierarchy(treeData);
+      root.x0 = height / 2;
+      root.y0 = 0;
+
+      let i = 0;
+      const duration = 380;
+      // [dy, dx]: 垂直節距 58px (確保上下不重疊), 水平層級 320px (確保長文字不穿透父層)
+      const treeLayout = d3.tree().nodeSize([58, 320]);
+
+      function splitNodeText(text, maxChars) {
+        if (!text) return [""];
+        if (text.length <= maxChars) return [text];
+
+        // 優先在括號處斷行，例如：世風日下之自身矛盾對比（擇師教子 vs. 於身恥師）
+        const parenIdx = text.search(/[（(]/);
+        if (parenIdx >= 3 && parenIdx <= maxChars + 4) {
+          const p1 = text.slice(0, parenIdx).trim();
+          const p2 = text.slice(parenIdx).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 優先在冒號、破折號、頓號處斷行
+        const sepIdx = text.search(/[：:—、]/);
+        if (sepIdx >= 3 && sepIdx <= maxChars + 2) {
+          const p1 = text.slice(0, sepIdx + 1).trim();
+          const p2 = text.slice(sepIdx + 1).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 預設在 maxChars 處均勻斷行
+        return [text.slice(0, maxChars), text.slice(maxChars)];
+      }
+
+      if (root.children) {
+        root.children.forEach(c => {
+          if (c.children) {
+            c.children.forEach(collapse);
+          }
+        });
+      }
+
+      function collapse(d) {
+        if (d.children) {
+          d._children = d.children;
+          d._children.forEach(collapse);
+          d.children = null;
+        }
+      }
+
+      function expand(d) {
+        if (d._children) {
+          d.children = d._children;
+          d.children.forEach(expand);
+          d._children = null;
+        }
+      }
+
+      const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
+
+      function getNodeColor(d) {
+        if (d.depth === 0) return "#2563eb";
+        let p = d;
+        while (p.depth > 1) p = p.parent;
+        return colorScale(p.data.name);
+      }
+
+      function update(source) {
+        const nodes = root.descendants();
+        const links = root.links();
+
+        treeLayout(root);
+
+        const node = g.selectAll("g.node")
+          .data(nodes, d => d.id || (d.id = ++i));
+
+        const nodeEnter = node.enter().append("g")
+          .attr("class", "node")
+          .attr("transform", d => `translate(${source.y0},${source.x0})`)
+          .on("click", (event, d) => {
+            if (d.children) {
+              d._children = d.children;
+              d.children = null;
+            } else if (d._children) {
+              d.children = d._children;
+              d._children = null;
+            }
+            update(d);
+          });
+
+        nodeEnter.append("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        const textNode = nodeEnter.append("text")
+          .attr("class", "node-text")
+          .attr("text-anchor", d => (d.children || d._children) ? "end" : "start")
+          .style("fill-opacity", 0);
+
+        textNode.each(function(d) {
+          const el = d3.select(this);
+          const isParent = Boolean(d.children || d._children);
+          const xOffset = isParent ? -14 : 14;
+          const maxChars = isParent ? 13 : 18;
+          const lines = splitNodeText(d.data.name, maxChars);
+
+          if (lines.length === 1) {
+            el.attr("x", xOffset)
+              .attr("dy", "0.32em")
+              .text(lines[0]);
+          } else {
+            el.attr("x", xOffset)
+              .attr("dy", "-0.35em")
+              .text(lines[0]);
+            el.append("tspan")
+              .attr("x", xOffset)
+              .attr("dy", "1.25em")
+              .text(lines[1]);
+          }
+        });
+
+        const nodeUpdate = node.merge(nodeEnter).transition().duration(duration)
+          .attr("transform", d => `translate(${d.y},${d.x})`);
+
+        nodeUpdate.select("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        nodeUpdate.select("text")
+          .style("fill-opacity", 1);
+
+        const nodeExit = node.exit().transition().duration(duration)
+          .attr("transform", d => `translate(${source.y},${source.x})`)
+          .remove();
+
+        nodeExit.select("circle").attr("r", 1e-6);
+        nodeExit.select("text").style("fill-opacity", 1e-6);
+
+        const link = g.selectAll("path.link")
+          .data(links, d => d.target.id);
+
+        const linkEnter = link.enter().insert("path", "g")
+          .attr("class", "link")
+          .attr("d", d => {
+            const o = {x: source.x0, y: source.y0};
+            return diagonal(o, o);
+          });
+
+        link.merge(linkEnter).transition().duration(duration)
+          .attr("d", d => diagonal(d.source, d.target));
+
+        link.exit().transition().duration(duration)
+          .attr("d", d => {
+            const o = {x: source.x, y: source.y};
+            return diagonal(o, o);
+          })
+          .remove();
+
+        nodes.forEach(d => {
+          d.x0 = d.x;
+          d.y0 = d.y;
+        });
+      }
+
+      function diagonal(s, d) {
+        return `M ${s.y} ${s.x}
+                C ${(s.y + d.y) / 2} ${s.x},
+                  ${(s.y + d.y) / 2} ${d.x},
+                  ${d.y} ${d.x}`;
+      }
+
+      function autoFitTree(duration = 450) {
+        const nodes = root.descendants();
+        if (!nodes || nodes.length === 0) return;
+
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        nodes.forEach(d => {
+          const isParent = Boolean(d.children || d._children);
+          const leftBound = d.y - (isParent ? 180 : 20);
+          const rightBound = d.y + (isParent ? 20 : 220);
+          const topBound = d.x - 32;
+          const bottomBound = d.x + 32;
+
+          if (leftBound < minX) minX = leftBound;
+          if (rightBound > maxX) maxX = rightBound;
+          if (topBound < minY) minY = topBound;
+          if (bottomBound > maxY) maxY = bottomBound;
+        });
+
+        const fullWidth = container.clientWidth || 880;
+        const fullHeight = height;
+        const treeW = maxX - minX;
+        const treeH = maxY - minY;
+
+        if (treeW <= 0 || treeH <= 0) return;
+
+        const scale = Math.min(0.92, (fullWidth * 0.90) / treeW, (fullHeight * 0.90) / treeH);
+        const clampedScale = Math.max(scale, 0.42);
+
+        const midTreeX = (minX + maxX) / 2;
+        const midTreeY = (minY + maxY) / 2;
+        const tx = fullWidth / 2 - clampedScale * midTreeX;
+        const ty = fullHeight / 2 - clampedScale * midTreeY;
+
+        if (duration > 0) {
+          svg.transition().duration(duration).call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        } else {
+          svg.call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        }
+      }
+
+      window.expandAll = function() {
+        root.each(expand);
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.collapseAll = function() {
+        if (root.children) {
+          root.children.forEach(collapse);
+        }
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.resetZoom = function() {
+        autoFitTree(450);
+      };
+
+      // 首次繪製節點並自動縮放置中全覽
+      update(root);
+      autoFitTree(0);
+    })();
+  </script>
+
+</body>
+</html>

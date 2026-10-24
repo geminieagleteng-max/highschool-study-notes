@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【國文】260911_徐志摩《再別康橋》與新月派</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --border: #e2e8f0;
+      --border-focus: #cbd5e1;
+      --tag-bg: #e0f2fe;
+      --tag-text: #0369a1;
+      --header-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans TC', 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.8;
+      font-size: 16px;
+      padding: 30px 16px 60px;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.06), 0 2px 6px -1px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    header.hero {
+      background: var(--header-gradient);
+      color: #ffffff;
+      padding: 36px 40px 30px;
+      position: relative;
+    }
+    header.hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      color: #f1f5f9;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    header.hero h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.5px;
+    }
+    header.hero .meta {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .content-body {
+      padding: 40px 48px;
+    }
+    @media (max-width: 640px) {
+      .content-body { padding: 24px 20px; }
+      header.hero { padding: 28px 24px 22px; }
+      header.hero h1 { font-size: 1.5rem; }
+    }
+    h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 2.2em;
+      margin-bottom: 0.9em;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h2:first-of-type { margin-top: 0.5em; }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1e3a8a;
+      margin-top: 1.6em;
+      margin-bottom: 0.6em;
+      padding-left: 10px;
+      border-left: 4px solid var(--accent);
+    }
+    p { margin-bottom: 1.1em; }
+    ul, ol { margin-bottom: 1.2em; padding-left: 1.8em; }
+    li { margin-bottom: 0.4em; }
+    .mermaid {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 16px;
+      margin: 1.6em 0;
+      text-align: center;
+      overflow-x: auto;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 1.6em 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    thead th {
+      background: #f1f5f9;
+      color: #1e293b;
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+    tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) { background: #fafafa; }
+    tbody tr:hover { background: #f0f7ff; }
+    tbody tr:last-child td { border-bottom: none; }
+    code {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      background: #f1f5f9;
+      color: #b91c1c;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 1.4em 0;
+      font-size: 0.92em;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; }
+    blockquote {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 14px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 1.4em 0;
+      color: #1e40af;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2.2em 0; }
+    .katex-display {
+      margin: 1.2em 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 6px 0;
+    }
+    .katex { font-size: 1.05em; }
+    
+    /* NotebookLM 原生 D3 互動心智圖樣式 */
+    .mindmap-box {
+      margin: 2em 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .mindmap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .mindmap-title {
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mindmap-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .mm-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: #334155;
+      transition: all 0.2s;
+    }
+    .mm-btn:hover { background: #f1f5f9; }
+    #tree-svg-container {
+      width: 100%;
+      height: 520px;
+      background: #ffffff;
+      cursor: grab;
+    }
+    #tree-svg-container:active { cursor: grabbing; }
+    .node circle {
+      cursor: pointer;
+      stroke-width: 2.5px;
+      transition: all 0.2s;
+    }
+    .node circle:hover { transform: scale(1.25); }
+    .node text {
+      font-size: 13px;
+      font-weight: 500;
+      font-family: inherit;
+      fill: #1e293b;
+      cursor: pointer;
+      paint-order: stroke fill;
+      stroke: #ffffff;
+      stroke-width: 4.5px;
+      stroke-linejoin: round;
+      user-select: none;
+    }
+    .link {
+      fill: none;
+      stroke: #cbd5e1;
+      stroke-width: 1.8px;
+      stroke-opacity: 0.85;
+      transition: stroke-width 0.2s;
+    }
+    .link:hover { stroke: #94a3b8; stroke-width: 2.5px; }
+
+    footer.doc-foot {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      background: #fcfdfe;
+    }
+    .print-btn {
+      position: absolute;
+      top: 36px;
+      right: 40px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .print-btn:hover { background: rgba(255,255,255,0.25); }
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      body {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+      }
+      .container {
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+      }
+      .print-btn, .mindmap-btns {
+        display: none !important;
+      }
+      header.hero {
+        background: var(--header-gradient) !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+        padding: 24px 30px !important;
+        margin-bottom: 20px !important;
+      }
+      header.hero h1 {
+        color: #ffffff !important;
+        font-size: 1.6rem !important;
+      }
+      header.hero .badge {
+        background: rgba(255,255,255,0.2) !important;
+        color: #ffffff !important;
+      }
+      header.hero .meta {
+        color: #cbd5e1 !important;
+      }
+      .content-body {
+        padding: 10px 0 !important;
+      }
+      h1, h2, h3, h4, table, tr, pre, .mermaid, .mindmap-box, blockquote {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      h2, h3 {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <div class="badge">📖 高中課堂互動圖文筆記</div>
+      <button class="print-btn" onclick="window.print()">🖨️ 列印 / 另存 PDF</button>
+      <h1>【國文】260911_徐志摩《再別康橋》與新月派</h1>
+      <div class="meta">
+        <span>⏱️ 數位筆記儀表板</span>
+        <span>🏷️ 含可縮放互動心智圖、時間軸與觀念對比</span>
+      </div>
+    </header>
+    <div class="content-body">
+      
+      <div class="mindmap-box">
+        <div class="mindmap-header">
+          <div class="mindmap-title">
+            <span>🧠 本課核心知識脈絡（NotebookLM 原生互動心智圖 • 支援縮放與展開）</span>
+          </div>
+          <div class="mindmap-btns">
+            <button class="mm-btn" onclick="expandAll()">展開全部</button>
+            <button class="mm-btn" onclick="collapseAll()">收合分支</button>
+            <button class="mm-btn" onclick="resetZoom()">重設視角</button>
+          </div>
+        </div>
+        <div id="tree-svg-container"></div>
+      </div>
+        
+      <h2>📖 課堂主題與核心摘要 (Class Overview)</h2>
+<p>本堂課重點研讀高中國文經典課文——徐志摩的《再別康橋》。老師由徐志摩顯赫的富商家世與感性率真的性格切入，詳細梳理其一生「三赴康橋」的情感起伏與心境轉折，帶領學生深入體會詩中唯美卻又隱含惆悵的不捨情懷。課堂同時系統化剖析了「新月詩派」的核心理論——「三美主張」（音樂美、繪畫美、建築美），並延伸介紹台灣現代詩發展的四大重要流派對比，協助學生全方位掌握段考與大考的常考重點。</p>
+<div class="mermaid">
+graph LR
+  Root["徐志摩《再別康橋》與新月詩派"] --> A["徐志摩生平與風格"]
+  Root --> B["三赴康橋與情感脈絡"]
+  Root --> C["新月詩派與三美主張"]
+  Root --> D["現代詩流派發展對比"]
+
+  A --> A1["家世背景：富商世家/錢莊/火力發電廠"]
+  A --> A2["性格特質：真誠感性/追求自由、愛與美"]
+
+  B --> B1["第一次 (民9-11)：哥大轉赴劍橋/遇林徽因/覺醒真我"]
+  B --> B2["第二次 (民14)：避風頭/陪張幼儀散心/寫《我所知道的康橋》"]
+  B --> B3["第三次 (民17)：逃離生活重壓/尋回精神靈魂/寫《再別康橋》"]
+
+  C --> C1["音樂美：有音節節奏/講求押韻"]
+  C --> C2["繪畫美：詞藻華麗/色彩畫面感強"]
+  C --> C3["建築美：字數行數整齊/被稱豆腐幹體"]
+
+  D --> D1["大陸時期：五四嘗試期/新月派/象徵派"]
+  D --> D2["台灣時期：現代詩社/藍星詩社/創世紀/鄉土詩派"]
+</div>
+<hr />
+<h2>💡 核心知識點與觀念詳解 (Key Concepts)</h2>
+<h3>一、 徐志摩的生平背景與性格特質</h3>
+<ol>
+<li>
+<p><strong>顯赫顯貴的家世背景</strong>：<br />
+   - 徐志摩出生於江南富商世家且為獨子，家中事業版圖極大，開醬園、錢莊，甚至在當時的中國擁有罕見的<strong>火力發電廠</strong>。<br />
+   - 19 歲時由家族安排娶 16 歲的<strong>張幼儀</strong>（張氏精明幹練，後來甚至代為掌管徐家龐大產業）。父親原本寄望其出國學習金融管理以繼承家業。</p>
+</li>
+<li>
+<p><strong>熱情率真與真誠的性格</strong>：<br />
+   - <strong>老師課堂經典舉例（國中 vs. 高中對比）</strong>：</p>
+<ul>
+<li>國文中學過徐志摩的散文《我所知道的康橋》，他在文中描寫自己騎腳踏車追夕陽，因被美麗景致深深震撼，竟然直接在路上對著夕陽「跪了下來」。</li>
+<li>老師強調：一般人都帶有「偶像包袱」與面具（例如課堂上拿個人湯匙挖公用桶餐，大家心裡覺得噁心卻不敢講），但徐志摩是一個極度率真、毫無保留展現情感的人，眼界與感受力與常人不同。</li>
+<li><strong>個人文章風格</strong>：詞藻華麗、形容詞豐富、文青感十足。雖曾被部分讀者批評「太文」或文字浮躁，但這正是他內心熱情洋溢的自然流露。</li>
+</ul>
+</li>
+<li>
+<p><strong>文學精神的三大核心</strong>：<br />
+   - <strong>自由</strong>：主張人類的使命是「製造翅膀」，永恆追求靈魂的絕對自由，不受世俗規範束縛。<br />
+   - <strong>愛</strong>：對人對物充沛真誠，即使經歷複雜情感風波，親友與前妻（張幼儀）、情敵（梁思成）後續皆能與其保持良好友誼。<br />
+   - <strong>美</strong>：具備極高的審美敏銳度，能將尋常景物轉化為動人詩意。</p>
+</li>
+</ol>
+<hr />
+<h3>二、 徐志摩「三赴康橋」之情感與心境演變</h3>
+<p>徐志摩一生共造訪英國康橋（今譯劍橋）三次，每次造訪皆伴隨著重大的人生與感情轉折：</p>
+<div class="mermaid">
+graph TD
+  A["第一次赴康橋 (民國9–11年)"] -->|浪漫覺醒與感情風波| B["放棄哥大經濟碩士，遠赴英國尋羅素，順勢入康橋旁聽<br>結識18歲林徽因視為靈魂伴侶，文學與心靈大受震撼<br>民國11年與張幼儀離婚（開現代離婚先例），後林徽因嫁梁思成"]
+
+  B --> C["第二次赴康橋 (民國14年)"]
+  C -->|逃離輿論與悼念次子| D["因與好友王庚之妻陸小曼相愛引發社會輿論大罵<br>加上次子夭折，陪張幼儀赴歐散心，重遊康橋<br>寫下著名散文《我所知道的康橋》"]
+
+  D --> E["第三次赴康橋 (民國17年)"]
+  E -->|逃離現實重壓與靈魂喘息| F["與陸小曼結婚後，因妻子揮霍無度且吸食鴉片<br>徐志摩四處兼課兼職奔波賺錢，生活極度疲憊<br>為尋回靈魂自由與感性，重回康橋並寫下《再別康橋》"]
+</div>
+<ul>
+<li><strong>心境對比重點</strong>：</li>
+<li>《我所知道的康橋》（散文）：第二次前往，寫出康橋自然的熱烈與絢麗之美。</li>
+<li>《再別康橋》（新詩）：第三次前往，此時徐志摩深受現實生計折磨，康橋成為他唯一能脫離現實、尋回靈魂的聖地，因此詩中除了寫景優美之外，更瀰漫著濃厚的<strong>惆悵與不捨</strong>。</li>
+</ul>
+<hr />
+<h3>三、 新月詩派的核心理論——「三美主張」</h3>
+<ul>
+<li><strong>成立背景</strong>：民國初年由<strong>徐志摩</strong>、<strong>聞一多</strong>、<strong>梁實秋</strong>等人創立「新月社」（名稱源自泰戈爾詩集《新月集》）。徐志摩主攻詩歌創作，聞一多建立理論體系。</li>
+<li><strong>核心理念</strong>：反對五四初期新詩「過度自由、缺乏規範」的現象，主張詩歌應「<strong>帶著腳鐐跳舞</strong>」（即在規則束縛下展現更極致的藝術成就）。</li>
+<li><strong>「三美」標準</strong>：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">三美指標</th>
+<th style="text-align: left;">核心意涵</th>
+<th style="text-align: left;">課堂範例與細節說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>🎵 音樂美</strong></td>
+<td style="text-align: left;">重視音節與節奏感</td>
+<td style="text-align: left;">現代詩雖無近體詩嚴格限制，但新月派主張<strong>必須押韻</strong>、講求朗誦時的韻律與節奏變化。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>🎨 繪畫美</strong></td>
+<td style="text-align: left;">重視詞藻色彩與畫面感</td>
+<td style="text-align: left;">運用華麗精緻的字詞，使讀者閱讀時腦海中能浮現如圖畫般優明的意象。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>🏛️ 建築美</strong></td>
+<td style="text-align: left;">重視結構整齊與視覺對稱</td>
+<td style="text-align: left;">詩節結構嚴謹，<strong>每節行數相等、每行字數相近</strong>。視覺上極度整齊，因而被批評者稱為「<strong>豆腐幹體</strong>」或「<strong>方塊詩</strong>」。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>四、 台灣現代詩四大流派對比表</h3>
+<p>課堂補充講義第 6 頁梳理了台灣現代詩發展的重要流派，此為大考極高頻考點：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">詩社名稱</th>
+<th style="text-align: left;">代表人物</th>
+<th style="text-align: left;">核心主張與風格特色</th>
+<th style="text-align: left;">關鍵關鍵字</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>現代詩社</strong></td>
+<td style="text-align: left;">紀弦</td>
+<td style="text-align: left;">主張「<strong>橫的移植</strong>」，強調現代詩的「<strong>知性</strong>」與排斥情緒宣洩。</td>
+<td style="text-align: left;">橫的移植、知性、主智</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>藍星詩社</strong></td>
+<td style="text-align: left;">覃子豪、余光中</td>
+<td style="text-align: left;">主張「<strong>縱的繼承</strong>」，強調傳統詩情的延續，偏重「<strong>抒情</strong>」。</td>
+<td style="text-align: left;">縱的繼承、抒情、傳統</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>創世紀詩社</strong></td>
+<td style="text-align: left;">創世紀鐵三角（瘂弦、洛夫、張默）</td>
+<td style="text-align: left;">引進西方「<strong>超現實主義</strong>」，風格前衛、意象奇特。</td>
+<td style="text-align: left;">超現實主義、前衛、鐵三角</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>笠詩社 / 鄉土詩派</strong></td>
+<td style="text-align: left;">林亨泰等</td>
+<td style="text-align: left;">關懷本土社會、展現濃厚的<strong>本土情懷</strong>與土地認同。</td>
+<td style="text-align: left;">本土詩人、鄉土情懷、關懷現實</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>⚠️ 老師強調考點與易錯陷阱 (Exam Focus &amp; Pitfalls)</h2>
+<ol>
+<li>
+<p><strong>《再別康橋》的寫作時機與情感基調（★必考）</strong>：<br />
+   - ❌ <strong>易錯陷阱</strong>：誤以為《再別康橋》是徐志摩第一次離開康橋時所寫的告別詩。<br />
+   - ⭕ <strong>正確觀念</strong>：此詩寫於<strong>第三次（民國 17 年）</strong>造訪康橋。當時徐志摩正處於為生活經濟奔波（供養陸小曼）的困頓期，前往康橋是為了「喘一口氣」。因此詩中文字看似輕盈，實則蘊含對現實生活的無奈與對康橋靈魂聖地的極度不捨。</p>
+</li>
+<li>
+<p><strong>新月詩派的批評與平反（★星號重點）</strong>：<br />
+   - ❌ <strong>易錯陷阱</strong>：認為現代詩絕對不能有格式，或認為「豆腐幹體」是褒義詞。<br />
+   - ⭕ <strong>正確觀念</strong>：「豆腐幹體/方塊詩」是外界對其視覺形式過於整齊的批評，但對新月派而言，這是堅持「建築美」與「帶著腳鐐跳舞」的藝術展現。</p>
+</li>
+<li>
+<p><strong>著名經典詩句與對象判定（選題關鍵）</strong>：<br />
+   - 《偶然》（「你我相逢在黑夜的海上，你有你的，我有我的，方向...」）：寫給<strong>林徽因</strong>的情感交會詩。<br />
+   - 《致梁啟超書》（「我將於茫茫人海中訪我唯一靈魂之伴侶；得之，我幸；不得，我命，如此而已。」）：為徐志摩回覆老師梁啟超勸誡其婚姻感情問題的名句。</p>
+</li>
+</ol>
+<hr />
+<h2>🔑 記憶口訣與解題技巧 (Mnemonics &amp; Shortcuts)</h2>
+<h3>1. 新月詩派三大特徵速記口訣</h3>
+<blockquote>
+<p><strong>「新月三美：音、畫、建（豆腐幹）」</strong><br />
+- <strong>音</strong>樂美 ➔ 有節奏、講押韻<br />
+- <strong>畫</strong>美 ➔ 詞藻華麗、色彩畫面<br />
+- <strong>建</strong>築美 ➔ 字數整齊、豆腐幹體</p>
+</blockquote>
+<h3>2. 詩派判讀破題 SOP</h3>
+<p>在閱讀題型中，看到以下關鍵字即可快速秒殺答案：<br />
+1. 看見「<strong>戴著腳鐐跳舞</strong>」、「<strong>形式整齊如方塊</strong>」、「<strong>三美原則</strong>」 ➔ 判定為 <strong>新月詩派</strong><br />
+2. 看見「<strong>橫的移植</strong>」、「<strong>主智知性</strong>」 ➔ 判定為 <strong>現代詩社（紀弦）</strong><br />
+3. 看見「<strong>縱的繼承</strong>」、「<strong>抒情傳統</strong>」 ➔ 判定為 <strong>藍星詩社（余光中）</strong><br />
+4. 看見「<strong>超現實主義</strong>」 ➔ 判定為 <strong>創世紀詩社（瘂弦、洛夫、張默）</strong></p>
+<hr />
+<h2>📝 課後作業與待辦事項 (Homework &amp; Tasks)</h2>
+<ul>
+<li><strong>下次小考預告</strong>：老師課末特別叮嚀<strong>「下禮拜要考試」</strong>，考試範圍包含《再別康橋》課文意象、徐志摩生平背景、新月詩派主張與台灣四大詩社對比。</li>
+<li><strong>講義畫線與複習</strong>：完成補充講義第 4 頁至第 6 頁劃線內容之複習（特別是新月派與台灣現代詩發展簡表）。</li>
+</ul>
+<hr />
+<h2>📚 專有名詞與重要公式/定義 (Glossary &amp; Formulas)</h2>
+<ul>
+<li><strong>新月社 / 新月詩派</strong>：民國初年由徐志摩、聞一多、梁實秋等人成立的文學社團，名稱源自泰戈爾《新月集》。主張新詩格律化，提出音樂美、繪畫美、建築美之「三美理論」。</li>
+<li><strong>建築美（豆腐幹體）</strong>：新月詩派主張詩歌結構應具備視覺上的對稱與整齊，每節行數相同、每行字數相近，呈現方塊狀。</li>
+<li><strong>帶著腳鐐跳舞</strong>：聞一多提出的詩歌創作觀點，指詩人在嚴格的格律規範（腳鐐）限制下，依然能創作展現出絕佳的藝術美感（跳舞）。</li>
+<li><strong>得之我幸，不得我命</strong>：徐志摩於《致梁啟超書》中的名句，表達其甘願冒世俗輿論壓力，亦要勇敢追求真愛與靈魂伴侶的浪漫堅定態度。</li>
+</ul>
+<hr />
+<h2>🧠 課後自測題 (Quick Review Quiz)</h2>
+<p><strong>【第一題：觀念題】</strong><br />
+* <strong>題目</strong>：新月詩派主張詩歌創作應具備「三美」，若一首新詩在視覺排版上呈現每節行數相等、每行字數相近的方塊結構，請問這是符合三美中的哪一種美？<br />
+* <strong>解析/答案</strong>：<strong>建築美</strong>。因為字數與行數整齊劃一，在視覺上如同建築物般對稱穩固（亦被外界稱為「豆腐幹體」）。</p>
+<p><strong>【第二題：情境理解題】</strong><br />
+* <strong>題目</strong>：徐志摩創作經典新詩《再別康橋》時，是他第幾次造訪康橋？當時的心境與創作背景為何？<br />
+* <strong>解析/答案</strong>：<strong>第三次造訪（民國 17 年）</strong>。當時徐志摩正深陷生活與經濟重壓（為供養陸小曼兼多份差事），重遊康橋是為了逃離現實獲得靈魂喘息，因此詩中除了描繪康橋之美，更蘊含了濃厚的惆悵與不捨。</p>
+<p><strong>【第三題：詩派對比題】</strong><br />
+* <strong>題目</strong>：台灣現代詩發展中，主張「橫的移植」、強調現代詩應注重「知性」而非情緒宣洩的詩社是哪一個？其代表人物為何？<br />
+* <strong>解析/答案</strong>：<strong>現代詩社</strong>，代表人物為<strong>紀弦</strong>。</p>
+    </div>
+    <footer class="doc-foot">
+      自動生成於 NotebookLM Study Assistant • 專為高中學生課後複習與考前衝刺打造
+    </footer>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.mermaid) {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'neutral',
+          fontFamily: "'Noto Sans TC', 'Inter', sans-serif",
+          flowchart: { curve: 'basis', htmlLabels: true },
+          securityLevel: 'loose'
+        });
+      }
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+  
+  <script>
+    (function() {
+      const treeData = {"name": "徐志摩與康橋", "children": [{"name": "文學風格", "children": [{"name": "浪漫主義"}, {"name": "詞藻華麗"}, {"name": "情感充沛"}, {"name": "核心主題：自由、愛與美"}]}, {"name": "新月社", "children": [{"name": "由徐志摩與聞一多創立"}, {"name": "三美主張", "children": [{"name": "音樂美（節奏與押韻）"}, {"name": "繪畫美（色彩與意象）"}, {"name": "建築美（結構與對稱）"}]}, {"name": "格律詩派"}]}, {"name": "生平背景與情感關係", "children": [{"name": "家世背景：富商世家"}, {"name": "原配妻子：張幼儀（包辦婚姻）"}, {"name": "靈魂伴侶：林徽因"}, {"name": "繼室妻子：陸小曼"}]}, {"name": "三赴康橋", "children": [{"name": "第一次赴康橋：留學與結識林徽因"}, {"name": "第二次赴康橋：逃離輿論與陪伴張幼儀"}, {"name": "第三次赴康橋：逃離生活重壓與告別"}]}, {"name": "代表作品", "children": [{"name": "《再別康橋》"}, {"name": "《我所知道的康橋》"}, {"name": "《偶然》"}]}]};
+      const container = document.getElementById("tree-svg-container");
+      if (!container || !treeData) return;
+
+      const width = container.clientWidth || 880;
+      const height = 520;
+
+      const svg = d3.select("#tree-svg-container")
+        .append("svg")
+        .attr("width", "100%")
+        .attr("height", height)
+        .attr("viewBox", [0, 0, width, height]);
+
+      const g = svg.append("g");
+
+      const zoom = d3.zoom()
+        .scaleExtent([0.25, 2.5])
+        .on("zoom", (e) => g.attr("transform", e.transform));
+
+      svg.call(zoom);
+
+      const root = d3.hierarchy(treeData);
+      root.x0 = height / 2;
+      root.y0 = 0;
+
+      let i = 0;
+      const duration = 380;
+      // [dy, dx]: 垂直節距 58px (確保上下不重疊), 水平層級 320px (確保長文字不穿透父層)
+      const treeLayout = d3.tree().nodeSize([58, 320]);
+
+      function splitNodeText(text, maxChars) {
+        if (!text) return [""];
+        if (text.length <= maxChars) return [text];
+
+        // 優先在括號處斷行，例如：世風日下之自身矛盾對比（擇師教子 vs. 於身恥師）
+        const parenIdx = text.search(/[（(]/);
+        if (parenIdx >= 3 && parenIdx <= maxChars + 4) {
+          const p1 = text.slice(0, parenIdx).trim();
+          const p2 = text.slice(parenIdx).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 優先在冒號、破折號、頓號處斷行
+        const sepIdx = text.search(/[：:—、]/);
+        if (sepIdx >= 3 && sepIdx <= maxChars + 2) {
+          const p1 = text.slice(0, sepIdx + 1).trim();
+          const p2 = text.slice(sepIdx + 1).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 預設在 maxChars 處均勻斷行
+        return [text.slice(0, maxChars), text.slice(maxChars)];
+      }
+
+      if (root.children) {
+        root.children.forEach(c => {
+          if (c.children) {
+            c.children.forEach(collapse);
+          }
+        });
+      }
+
+      function collapse(d) {
+        if (d.children) {
+          d._children = d.children;
+          d._children.forEach(collapse);
+          d.children = null;
+        }
+      }
+
+      function expand(d) {
+        if (d._children) {
+          d.children = d._children;
+          d.children.forEach(expand);
+          d._children = null;
+        }
+      }
+
+      const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
+
+      function getNodeColor(d) {
+        if (d.depth === 0) return "#2563eb";
+        let p = d;
+        while (p.depth > 1) p = p.parent;
+        return colorScale(p.data.name);
+      }
+
+      function update(source) {
+        const nodes = root.descendants();
+        const links = root.links();
+
+        treeLayout(root);
+
+        const node = g.selectAll("g.node")
+          .data(nodes, d => d.id || (d.id = ++i));
+
+        const nodeEnter = node.enter().append("g")
+          .attr("class", "node")
+          .attr("transform", d => `translate(${source.y0},${source.x0})`)
+          .on("click", (event, d) => {
+            if (d.children) {
+              d._children = d.children;
+              d.children = null;
+            } else if (d._children) {
+              d.children = d._children;
+              d._children = null;
+            }
+            update(d);
+          });
+
+        nodeEnter.append("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        const textNode = nodeEnter.append("text")
+          .attr("class", "node-text")
+          .attr("text-anchor", d => (d.children || d._children) ? "end" : "start")
+          .style("fill-opacity", 0);
+
+        textNode.each(function(d) {
+          const el = d3.select(this);
+          const isParent = Boolean(d.children || d._children);
+          const xOffset = isParent ? -14 : 14;
+          const maxChars = isParent ? 13 : 18;
+          const lines = splitNodeText(d.data.name, maxChars);
+
+          if (lines.length === 1) {
+            el.attr("x", xOffset)
+              .attr("dy", "0.32em")
+              .text(lines[0]);
+          } else {
+            el.attr("x", xOffset)
+              .attr("dy", "-0.35em")
+              .text(lines[0]);
+            el.append("tspan")
+              .attr("x", xOffset)
+              .attr("dy", "1.25em")
+              .text(lines[1]);
+          }
+        });
+
+        const nodeUpdate = node.merge(nodeEnter).transition().duration(duration)
+          .attr("transform", d => `translate(${d.y},${d.x})`);
+
+        nodeUpdate.select("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        nodeUpdate.select("text")
+          .style("fill-opacity", 1);
+
+        const nodeExit = node.exit().transition().duration(duration)
+          .attr("transform", d => `translate(${source.y},${source.x})`)
+          .remove();
+
+        nodeExit.select("circle").attr("r", 1e-6);
+        nodeExit.select("text").style("fill-opacity", 1e-6);
+
+        const link = g.selectAll("path.link")
+          .data(links, d => d.target.id);
+
+        const linkEnter = link.enter().insert("path", "g")
+          .attr("class", "link")
+          .attr("d", d => {
+            const o = {x: source.x0, y: source.y0};
+            return diagonal(o, o);
+          });
+
+        link.merge(linkEnter).transition().duration(duration)
+          .attr("d", d => diagonal(d.source, d.target));
+
+        link.exit().transition().duration(duration)
+          .attr("d", d => {
+            const o = {x: source.x, y: source.y};
+            return diagonal(o, o);
+          })
+          .remove();
+
+        nodes.forEach(d => {
+          d.x0 = d.x;
+          d.y0 = d.y;
+        });
+      }
+
+      function diagonal(s, d) {
+        return `M ${s.y} ${s.x}
+                C ${(s.y + d.y) / 2} ${s.x},
+                  ${(s.y + d.y) / 2} ${d.x},
+                  ${d.y} ${d.x}`;
+      }
+
+      function autoFitTree(duration = 450) {
+        const nodes = root.descendants();
+        if (!nodes || nodes.length === 0) return;
+
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        nodes.forEach(d => {
+          const isParent = Boolean(d.children || d._children);
+          const leftBound = d.y - (isParent ? 180 : 20);
+          const rightBound = d.y + (isParent ? 20 : 220);
+          const topBound = d.x - 32;
+          const bottomBound = d.x + 32;
+
+          if (leftBound < minX) minX = leftBound;
+          if (rightBound > maxX) maxX = rightBound;
+          if (topBound < minY) minY = topBound;
+          if (bottomBound > maxY) maxY = bottomBound;
+        });
+
+        const fullWidth = container.clientWidth || 880;
+        const fullHeight = height;
+        const treeW = maxX - minX;
+        const treeH = maxY - minY;
+
+        if (treeW <= 0 || treeH <= 0) return;
+
+        const scale = Math.min(0.92, (fullWidth * 0.90) / treeW, (fullHeight * 0.90) / treeH);
+        const clampedScale = Math.max(scale, 0.42);
+
+        const midTreeX = (minX + maxX) / 2;
+        const midTreeY = (minY + maxY) / 2;
+        const tx = fullWidth / 2 - clampedScale * midTreeX;
+        const ty = fullHeight / 2 - clampedScale * midTreeY;
+
+        if (duration > 0) {
+          svg.transition().duration(duration).call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        } else {
+          svg.call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        }
+      }
+
+      window.expandAll = function() {
+        root.each(expand);
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.collapseAll = function() {
+        if (root.children) {
+          root.children.forEach(collapse);
+        }
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.resetZoom = function() {
+        autoFitTree(450);
+      };
+
+      // 首次繪製節點並自動縮放置中全覽
+      update(root);
+      autoFitTree(0);
+    })();
+  </script>
+
+</body>
+</html>

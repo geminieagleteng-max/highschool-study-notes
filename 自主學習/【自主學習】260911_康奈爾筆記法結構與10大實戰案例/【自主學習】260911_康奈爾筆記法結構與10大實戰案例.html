@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【自主學習】260911_康奈爾筆記法結構與10大實戰案例</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --border: #e2e8f0;
+      --border-focus: #cbd5e1;
+      --tag-bg: #e0f2fe;
+      --tag-text: #0369a1;
+      --header-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans TC', 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.8;
+      font-size: 16px;
+      padding: 30px 16px 60px;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.06), 0 2px 6px -1px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    header.hero {
+      background: var(--header-gradient);
+      color: #ffffff;
+      padding: 36px 40px 30px;
+      position: relative;
+    }
+    header.hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      color: #f1f5f9;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    header.hero h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.5px;
+    }
+    header.hero .meta {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .content-body {
+      padding: 40px 48px;
+    }
+    @media (max-width: 640px) {
+      .content-body { padding: 24px 20px; }
+      header.hero { padding: 28px 24px 22px; }
+      header.hero h1 { font-size: 1.5rem; }
+    }
+    h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 2.2em;
+      margin-bottom: 0.9em;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h2:first-of-type { margin-top: 0.5em; }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1e3a8a;
+      margin-top: 1.6em;
+      margin-bottom: 0.6em;
+      padding-left: 10px;
+      border-left: 4px solid var(--accent);
+    }
+    p { margin-bottom: 1.1em; }
+    ul, ol { margin-bottom: 1.2em; padding-left: 1.8em; }
+    li { margin-bottom: 0.4em; }
+    .mermaid {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 16px;
+      margin: 1.6em 0;
+      text-align: center;
+      overflow-x: auto;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 1.6em 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    thead th {
+      background: #f1f5f9;
+      color: #1e293b;
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+    tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) { background: #fafafa; }
+    tbody tr:hover { background: #f0f7ff; }
+    tbody tr:last-child td { border-bottom: none; }
+    code {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      background: #f1f5f9;
+      color: #b91c1c;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 1.4em 0;
+      font-size: 0.92em;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; }
+    blockquote {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 14px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 1.4em 0;
+      color: #1e40af;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2.2em 0; }
+    .katex-display {
+      margin: 1.2em 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 6px 0;
+    }
+    .katex { font-size: 1.05em; }
+    
+    /* NotebookLM 原生 D3 互動心智圖樣式 */
+    .mindmap-box {
+      margin: 2em 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .mindmap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .mindmap-title {
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mindmap-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .mm-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: #334155;
+      transition: all 0.2s;
+    }
+    .mm-btn:hover { background: #f1f5f9; }
+    #tree-svg-container {
+      width: 100%;
+      height: 520px;
+      background: #ffffff;
+      cursor: grab;
+    }
+    #tree-svg-container:active { cursor: grabbing; }
+    .node circle {
+      cursor: pointer;
+      stroke-width: 2.5px;
+      transition: all 0.2s;
+    }
+    .node circle:hover { transform: scale(1.25); }
+    .node text {
+      font-size: 13px;
+      font-weight: 500;
+      font-family: inherit;
+      fill: #1e293b;
+      cursor: pointer;
+      paint-order: stroke fill;
+      stroke: #ffffff;
+      stroke-width: 4.5px;
+      stroke-linejoin: round;
+      user-select: none;
+    }
+    .link {
+      fill: none;
+      stroke: #cbd5e1;
+      stroke-width: 1.8px;
+      stroke-opacity: 0.85;
+      transition: stroke-width 0.2s;
+    }
+    .link:hover { stroke: #94a3b8; stroke-width: 2.5px; }
+
+    footer.doc-foot {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      background: #fcfdfe;
+    }
+    .print-btn {
+      position: absolute;
+      top: 36px;
+      right: 40px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .print-btn:hover { background: rgba(255,255,255,0.25); }
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      body {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+      }
+      .container {
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+      }
+      .print-btn, .mindmap-btns {
+        display: none !important;
+      }
+      header.hero {
+        background: var(--header-gradient) !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+        padding: 24px 30px !important;
+        margin-bottom: 20px !important;
+      }
+      header.hero h1 {
+        color: #ffffff !important;
+        font-size: 1.6rem !important;
+      }
+      header.hero .badge {
+        background: rgba(255,255,255,0.2) !important;
+        color: #ffffff !important;
+      }
+      header.hero .meta {
+        color: #cbd5e1 !important;
+      }
+      .content-body {
+        padding: 10px 0 !important;
+      }
+      h1, h2, h3, h4, table, tr, pre, .mermaid, .mindmap-box, blockquote {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      h2, h3 {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <div class="badge">📖 高中課堂互動圖文筆記</div>
+      <button class="print-btn" onclick="window.print()">🖨️ 列印 / 另存 PDF</button>
+      <h1>【自主學習】260911_康奈爾筆記法結構與10大實戰案例</h1>
+      <div class="meta">
+        <span>⏱️ 數位筆記儀表板</span>
+        <span>🏷️ 含可縮放互動心智圖、時間軸與觀念對比</span>
+      </div>
+    </header>
+    <div class="content-body">
+      
+      <div class="mindmap-box">
+        <div class="mindmap-header">
+          <div class="mindmap-title">
+            <span>🧠 本課核心知識脈絡（NotebookLM 原生互動心智圖 • 支援縮放與展開）</span>
+          </div>
+          <div class="mindmap-btns">
+            <button class="mm-btn" onclick="expandAll()">展開全部</button>
+            <button class="mm-btn" onclick="collapseAll()">收合分支</button>
+            <button class="mm-btn" onclick="resetZoom()">重設視角</button>
+          </div>
+        </div>
+        <div id="tree-svg-container"></div>
+      </div>
+        
+      <h2>📖 課堂主題與核心摘要 (Class Overview)</h2>
+<p>本堂課以高效學習法中的經典工具——<strong>「康奈爾筆記法」（Cornell Note-taking System）</strong>為核心主題 [1, 2]。課堂中詳細剖析了康奈爾筆記法的版面分割原則與核心運作機制，強調透過「左欄提問/關鍵字」搭配「右欄知識解答」來實現<strong>主動回想（Active Recall）</strong>與高效遮擋複習 [1-3]。此外，講師與老師展示了涵蓋語言考試、書籍閱讀、學科複習（歷史、地理、生物科技）及職場講座等 10 大實戰應用案例，幫助學生打造最適合自己的無價知識庫 [4-8]。</p>
+<div class="mermaid">
+graph LR
+  Root["康奈爾筆記法 (Cornell Notes)"] --> A["版面四區塊架構"]
+  Root --> B["核心複習機制"]
+  Root --> C["10 大實戰案例場景"]
+
+  A --> A1["表頭 (Header)"]
+  A --> A2["右側筆記欄 (Notes)"]
+  A --> A3["左側整理欄 (Cue Column)"]
+  A --> A4["下方摘要欄 (Summary)"]
+
+  B --> B1["主動回想 (Active Recall)"]
+  B --> B2["遮擋右欄自我檢測"]
+  B --> B3["跨章節/跨朝代知識串聯"]
+
+  C --> C1["語言與檢定 (英文/多益)"]
+  C --> C2["閱讀與線上課 (第二大腦/邏輯)"]
+  C --> C3["中學學科 (地理/歷史)"]
+  C --> C4["講座與自媒體 (聽講/寫作)"]
+</div>
+<hr />
+<h2>💡 核心知識點與觀念詳解 (Key Concepts)</h2>
+<h3>一、 康奈爾筆記法版面切割（三線分四區）</h3>
+<p>康奈爾筆記法透過在筆記頁面繪製 3 條線，將版面精準切割為 4 個功能獨立的區塊 [1, 2]：</p>
+<ol>
+<li><strong>表頭 (Header)</strong>：位於頁面最上方，記錄<strong>筆記主題</strong>、<strong>學習素材名稱</strong>（如科目名、書名、YouTube 頻道、Podcast 或網路文章）、<strong>日期</strong>與<strong>頁碼</strong> [1, 2]。</li>
+<li><strong>筆記欄 / 記錄欄 (Note-taking Column, 佔右側較大區域)</strong>：用於上課或閱讀時，盡量完整記錄所聽所聞、詳細內容、主幹觀點與例證 [1, 2]。</li>
+<li><strong>整理欄 / 檢索欄 (Cue Column, 佔左側較小區域)</strong>：課後提煉右欄內容，記錄相對應的<strong>關鍵字</strong>、<strong>重點</strong>或<strong>提問問題</strong> [1, 2]。</li>
+<li><strong>摘要欄 / 總結欄 (Summary Column, 佔頁面底部橫條區域)</strong>：歸納整頁重點、寫下個人反思、心得、延伸聯想或進行跨單元的知識匯整 [2, 3]。</li>
+</ol>
+<hr />
+<h3>二、 核心運作機制：提問與遮擋複習 (Active Recall)</h3>
+<p>康奈爾筆記法的威力在於課後的<strong>重組與主動提取</strong> [1, 9]：<br />
+* <strong>問題化整理</strong>：若將左欄設計為針對右欄知識點的「提問」，右欄即為「解答」 [1]。<br />
+* <strong>遮擋複習法</strong>：複習時用手或紙<strong>遮住右側筆記欄</strong>，僅看左欄的提問嘗試口頭或心算回答 [2, 3]。回答完後再查看右欄與下方摘要欄，驗證自己的理解程度與知識關聯 [3]。<br />
+* <strong>卡片盒與串聯閱讀</strong>：下方摘要欄可跨領域連結，例如在讀歷史某一朝代科舉制度時，於摘要欄列出其他朝代的科舉制度進行對比，建構系統化知識網絡 [3, 9]。</p>
+<hr />
+<h3>三、 筆記製作與複習 SOP 流程圖</h3>
+<div class="mermaid">
+graph TD
+    S1["1. 記錄 (Record)<br/>上課或閱讀時，於右側筆記欄詳細記錄內容"] --> S2["2. 提煉 (Reduce / Cue)<br/>課後立即於左側整理欄寫出關鍵字或相對應問題"]
+    S2 --> S3["3. 歸納 (Summarize)<br/>於下方摘要欄寫出 1-2 句總結、心得或延伸聯想"]
+    S3 --> S4["4. 遮擋複習 (Recite / Review)<br/>遮住右側筆記，看左側提問進行主動回想與自我測驗"]
+    S4 --> S5["5. 系統串聯 (Reflect)<br/>對照下方摘要，將新知識與過往學過的觀念進行網絡連結"]
+</div>
+<hr />
+<h3>四、 左側整理欄取向對比表</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">對比維度</th>
+<th style="text-align: left;">關鍵字/重點提煉型</th>
+<th style="text-align: left;">問題化導向型 (推薦衝刺用)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>主要作法</strong></td>
+<td style="text-align: left;">提取右欄文章或課堂筆記的關鍵詞與核心條列 [1]</td>
+<td style="text-align: left;">針對右欄知識點反推並設計出對應的考題/提問 [1]</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>適用目標</strong></td>
+<td style="text-align: left;">快速掌控資料全貌、建立索引 [1]</td>
+<td style="text-align: left;">課後深度複習、考前衝刺與自我測驗 [1, 3]</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>複習機制</strong></td>
+<td style="text-align: left;">順閱關鍵字帶出整體印象 [1, 10]</td>
+<td style="text-align: left;"><strong>遮擋右欄解答</strong>，進行主動回想 (Active Recall) [2, 3]</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>學習心智模式</strong></td>
+<td style="text-align: left;">被動吸收與重點標記 [1]</td>
+<td style="text-align: left;">強迫大腦進行主動提取與概念輸出 [2, 3]</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>五、 課堂展示之 10 大實戰應用案例</h3>
+<p>老師與影片展示了 10 個不同學科與情境的康奈爾筆記應用實例 [5-8, 10, 11]：</p>
+<ol>
+<li><strong>英文線上課程筆記</strong>：右欄記對話盲點與精妙句型；左欄提煉生字與片語；底欄記錄特殊文法與句型區辨 [5]。</li>
+<li><strong>多益 (TOEIC) 考試錯題本</strong>：右欄抄寫錯題與正確解析；左欄整理高頻考點生字；底欄點出常見搭配詞陷阱（如「降低利率」應用 <code>$ \text{cut interest rates} $</code> 而非 <code>$ \text{decrease} $</code>）[5, 10]。</li>
+<li><strong>瀏覽網站簡報文章</strong>：右欄擷取簡報技巧段落；左欄梳理核心優勢重點；底欄連結實際工作/課堂簡報經驗 [10, 11]。</li>
+<li><strong>閱讀書籍《打造第二大腦》</strong>：右欄用自己的話轉述「漸進式摘要法」；左欄摘要步驟與結構；底欄記錄作者提醒（筆記無需一次完美，有需要再精煉）[11]。</li>
+<li><strong>線上課程《邏輯表達力》</strong>：右欄記錄邏輯表達基本功；左欄設計提問自主回想；底欄規劃單元作業與實際生活應用場景 [6, 11]。</li>
+<li><strong>觀看 YouTube 知識影片（如小船文案課）</strong>：右欄記錄文案寫作步驟；左欄條列關鍵要點；底欄無想法可暫時留白 [6]。</li>
+<li><strong>國中地理科筆記（河流作用）</strong>：右欄記錄侵蝕、搬運、堆積地形；左欄列關鍵字；底欄用<strong>樹狀圖</strong>進行整體河流作用總整理 [6, 7]。</li>
+<li><strong>高中歷史科筆記（中古歐洲）</strong>：右欄記錄日耳曼民族、哥德人建國、封建制度與宗教；左欄標記關鍵字；頂欄或底欄總結中古歐洲社會特徵 [7]。</li>
+<li><strong>大學生閱讀筆記（科技報導）</strong>：右欄記錄白血球、瘧疾、疫苗與保護力；左欄標註專有名詞索引；底欄補充延伸英文單字 [7, 8]。</li>
+<li><strong>實體講座聽講筆記（傾聽力講座）</strong>：右欄快記演講內容；左欄整理重點詞彙；底欄擬定課後可採取的具體行動方針 [8]。</li>
+</ol>
+<hr />
+<h2>⚠️ 老師強調考點與易錯陷阱 (Exam Focus &amp; Pitfalls)</h2>
+<ul>
+<li><strong>★ 考點一：最適合自己的筆記才是「無價」的</strong><br />
+  老師特別提及北一女學霸將精美的台大醫科筆記賣了 <code>$4000$</code> 元的案例 [4]。老師叮嚀：別人的筆記再漂亮也終究是別人的心血，盲目追求多色筆（紅、綠、橘色切換）標記反而耗費大量時間 [4]。<strong>做出適合自己理解邏輯的筆記才是無價且最有效的</strong> [4]。</li>
+<li><strong>★ 考點二：當天不及時提煉關鍵字，後續複習事倍功半</strong><br />
+  若上課僅在右欄（A欄）做記錄，課後沒有及時在左欄（B欄）抓出關鍵字或設計問題，未來複習時就必須重新閱讀大段文字，非常浪費時間 [2, 4]。</li>
+<li><strong>⚠️ 易錯陷阱：多益與英文搭配詞用法</strong><br />
+  在英文寫作與檢定中，常犯直譯錯誤。例如「降低利率」，學生習慣聯想 <code>$ \text{decrease} $</code> 或 <code>$ \text{lower} $</code>，但英文標準地道用法應使用動詞 <code>$ \text{cut} $</code>（即 <code>$ \text{cut interest rates} $</code>）[10]。</li>
+</ul>
+<hr />
+<h2>🔑 記憶口訣與解題技巧 (Mnemonics &amp; Shortcuts)</h2>
+<h3>💡 康奈爾筆記法速記口訣</h3>
+<blockquote>
+<p><strong>「三線切四區，左問右答下總結；遮右答左強回想，跨科串聯建系統。」</strong></p>
+</blockquote>
+<h3>🛠️ 考前衝刺破題 SOP</h3>
+<ol>
+<li><strong>衝刺第 1 步</strong>：拿出康奈爾筆記，拿遮紙<strong>蓋住右側筆記欄</strong> [2, 3]。</li>
+<li><strong>衝刺第 2 步</strong>：看左側「整理欄」的問題，在腦中進行快速檢測 [2, 3]。</li>
+<li><strong>衝刺第 3 步</strong>：若卡關，立即移開遮紙查看右側解答與下方摘要，重點補強弱點 [3]。</li>
+</ol>
+<hr />
+<h2>📝 課後作業與待辦事項 (Homework &amp; Tasks)</h2>
+<ol>
+<li><strong>上課軟體準備</strong>：請同學先打開 Google Chrome 瀏覽器（若無法開啟，可使用 Microsoft Edge 的 Copilot 協助運作）[10]。</li>
+<li><strong>課後自主搜尋</strong>：請上網搜尋「康奈爾筆記 Melody」（或 Mody），觀看示範影片並熟悉實際排版細節 [8]。</li>
+<li><strong>實作練習</strong>：請選擇本週任一學科（如歷史、地理或英文），試著繪製「三線四區」並完成一份康奈爾複習筆記 [1, 5, 7]。</li>
+</ol>
+<hr />
+<h2>📚 專有名詞與重要公式/定義 (Glossary &amp; Formulas)</h2>
+<ul>
+<li><strong>康奈爾筆記法 (Cornell Note-taking System)</strong>：由 Walter Pauk 教授提出，透過分割為表頭、筆記欄、整理欄與摘要欄四區，促進高效學習與複習的筆記系統 [1, 2]。</li>
+<li><strong>主動回想 (Active Recall)</strong>：透過主動提取記憶（如遮擋解答思考問題）而非被動重讀，以極大幅度強化大腦神經連結的學習科學機制 [2, 3]。</li>
+<li><strong>漸進式摘要法 (Progressive Summarization)</strong>：源自《打造第二大腦》，指不強求一次把筆記做完美，而是在每次重新調用資料時逐步精煉重點的筆記策略 [11]。</li>
+<li><strong>搭配詞替換公式</strong>：<br />
+  \[ \text{降低利率} \implies \text{Incorrect: } \text{decrease/lower interest rates} \quad \longrightarrow \quad \text{Correct: } \text{cut interest rates} \] [10]</li>
+</ul>
+<hr />
+<h2>🧠 課後自測題 (Quick Review Quiz)</h2>
+<p><strong>第一題（觀念題）：</strong><br />
+康奈爾筆記法中，左側「整理欄」與右側「筆記欄」在複習時的核心互動機制是什麼？如何操作才能達到最佳記憶效果？</p>
+<blockquote>
+<p><strong>解題思維/答案提示：</strong><br />
+核心機制為「主動回想」與「遮擋複習」[2, 3]。複習時應遮住右側筆記欄，僅看左側整理欄列出的「問題」或「關鍵字」，嘗試口頭或書面回答出右側的解答內容，最後再對照右欄與下方摘要確認正確性 [2, 3]。</p>
+</blockquote>
+<p><strong>第二題（應用題）：</strong><br />
+如果在準備英文多益（TOEIC）或國文/歷史等考科時，下方「摘要欄」除了寫課文總結之外，還可以發揮什麼跨單元的學習功能？</p>
+<blockquote>
+<p><strong>解題思維/答案提示：</strong><br />
+摘要欄可用於知識串聯與跨單元對比 [3, 9]。例如歷史科可將不同朝代的相同制度（如科舉制）集中在摘要欄進行匯整；英文科則可整理特殊句型、文法陷阱或易混淆搭配詞（如 <code>$ \text{cut interest rates} $</code>）[3, 9, 10]。</p>
+</blockquote>
+<hr />
+<p>💡 <strong>下一步建議</strong>：這份筆記已完整歸納課堂中關於「康奈爾筆記法」的架構與 10 大實戰範例！您希望我接著為您將這套筆記法繪製成一張精美的<strong>心智圖 (Mind Map)</strong>，或是設計一份<strong>課後練習快閃卡 (Flashcards)</strong> 來幫助您進行遮擋複習呢？</p>
+    </div>
+    <footer class="doc-foot">
+      自動生成於 NotebookLM Study Assistant • 專為高中學生課後複習與考前衝刺打造
+    </footer>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.mermaid) {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'neutral',
+          fontFamily: "'Noto Sans TC', 'Inter', sans-serif",
+          flowchart: { curve: 'basis', htmlLabels: true },
+          securityLevel: 'loose'
+        });
+      }
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+  
+  <script>
+    (function() {
+      const treeData = {"name": "康乃爾筆記法 (Cornell Notes)", "children": [{"name": "核心複習機制", "children": [{"name": "主動回想 (Active Recall)"}, {"name": "遮擋右欄自我檢測"}, {"name": "跨章節/跨朝代知識串聯"}]}, {"name": "10 大實戰案例場景", "children": [{"name": "語言與檢定 (英文/多益)"}, {"name": "閱讀與線上課 (第二大腦/邏輯)"}, {"name": "中學學科 (地理/歷史)"}, {"name": "講座與自媒體 (聽講/寫作)"}]}]};
+      const container = document.getElementById("tree-svg-container");
+      if (!container || !treeData) return;
+
+      const width = container.clientWidth || 880;
+      const height = 520;
+
+      const svg = d3.select("#tree-svg-container")
+        .append("svg")
+        .attr("width", "100%")
+        .attr("height", height)
+        .attr("viewBox", [0, 0, width, height]);
+
+      const g = svg.append("g");
+
+      const zoom = d3.zoom()
+        .scaleExtent([0.25, 2.5])
+        .on("zoom", (e) => g.attr("transform", e.transform));
+
+      svg.call(zoom);
+
+      const root = d3.hierarchy(treeData);
+      root.x0 = height / 2;
+      root.y0 = 0;
+
+      let i = 0;
+      const duration = 380;
+      // [dy, dx]: 垂直節距 58px (確保上下不重疊), 水平層級 320px (確保長文字不穿透父層)
+      const treeLayout = d3.tree().nodeSize([58, 320]);
+
+      function splitNodeText(text, maxChars) {
+        if (!text) return [""];
+        if (text.length <= maxChars) return [text];
+
+        // 優先在括號處斷行，例如：世風日下之自身矛盾對比（擇師教子 vs. 於身恥師）
+        const parenIdx = text.search(/[（(]/);
+        if (parenIdx >= 3 && parenIdx <= maxChars + 4) {
+          const p1 = text.slice(0, parenIdx).trim();
+          const p2 = text.slice(parenIdx).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 優先在冒號、破折號、頓號處斷行
+        const sepIdx = text.search(/[：:—、]/);
+        if (sepIdx >= 3 && sepIdx <= maxChars + 2) {
+          const p1 = text.slice(0, sepIdx + 1).trim();
+          const p2 = text.slice(sepIdx + 1).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 預設在 maxChars 處均勻斷行
+        return [text.slice(0, maxChars), text.slice(maxChars)];
+      }
+
+      if (root.children) {
+        root.children.forEach(c => {
+          if (c.children) {
+            c.children.forEach(collapse);
+          }
+        });
+      }
+
+      function collapse(d) {
+        if (d.children) {
+          d._children = d.children;
+          d._children.forEach(collapse);
+          d.children = null;
+        }
+      }
+
+      function expand(d) {
+        if (d._children) {
+          d.children = d._children;
+          d.children.forEach(expand);
+          d._children = null;
+        }
+      }
+
+      const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
+
+      function getNodeColor(d) {
+        if (d.depth === 0) return "#2563eb";
+        let p = d;
+        while (p.depth > 1) p = p.parent;
+        return colorScale(p.data.name);
+      }
+
+      function update(source) {
+        const nodes = root.descendants();
+        const links = root.links();
+
+        treeLayout(root);
+
+        const node = g.selectAll("g.node")
+          .data(nodes, d => d.id || (d.id = ++i));
+
+        const nodeEnter = node.enter().append("g")
+          .attr("class", "node")
+          .attr("transform", d => `translate(${source.y0},${source.x0})`)
+          .on("click", (event, d) => {
+            if (d.children) {
+              d._children = d.children;
+              d.children = null;
+            } else if (d._children) {
+              d.children = d._children;
+              d._children = null;
+            }
+            update(d);
+          });
+
+        nodeEnter.append("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        const textNode = nodeEnter.append("text")
+          .attr("class", "node-text")
+          .attr("text-anchor", d => (d.children || d._children) ? "end" : "start")
+          .style("fill-opacity", 0);
+
+        textNode.each(function(d) {
+          const el = d3.select(this);
+          const isParent = Boolean(d.children || d._children);
+          const xOffset = isParent ? -14 : 14;
+          const maxChars = isParent ? 13 : 18;
+          const lines = splitNodeText(d.data.name, maxChars);
+
+          if (lines.length === 1) {
+            el.attr("x", xOffset)
+              .attr("dy", "0.32em")
+              .text(lines[0]);
+          } else {
+            el.attr("x", xOffset)
+              .attr("dy", "-0.35em")
+              .text(lines[0]);
+            el.append("tspan")
+              .attr("x", xOffset)
+              .attr("dy", "1.25em")
+              .text(lines[1]);
+          }
+        });
+
+        const nodeUpdate = node.merge(nodeEnter).transition().duration(duration)
+          .attr("transform", d => `translate(${d.y},${d.x})`);
+
+        nodeUpdate.select("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        nodeUpdate.select("text")
+          .style("fill-opacity", 1);
+
+        const nodeExit = node.exit().transition().duration(duration)
+          .attr("transform", d => `translate(${source.y},${source.x})`)
+          .remove();
+
+        nodeExit.select("circle").attr("r", 1e-6);
+        nodeExit.select("text").style("fill-opacity", 1e-6);
+
+        const link = g.selectAll("path.link")
+          .data(links, d => d.target.id);
+
+        const linkEnter = link.enter().insert("path", "g")
+          .attr("class", "link")
+          .attr("d", d => {
+            const o = {x: source.x0, y: source.y0};
+            return diagonal(o, o);
+          });
+
+        link.merge(linkEnter).transition().duration(duration)
+          .attr("d", d => diagonal(d.source, d.target));
+
+        link.exit().transition().duration(duration)
+          .attr("d", d => {
+            const o = {x: source.x, y: source.y};
+            return diagonal(o, o);
+          })
+          .remove();
+
+        nodes.forEach(d => {
+          d.x0 = d.x;
+          d.y0 = d.y;
+        });
+      }
+
+      function diagonal(s, d) {
+        return `M ${s.y} ${s.x}
+                C ${(s.y + d.y) / 2} ${s.x},
+                  ${(s.y + d.y) / 2} ${d.x},
+                  ${d.y} ${d.x}`;
+      }
+
+      function autoFitTree(duration = 450) {
+        const nodes = root.descendants();
+        if (!nodes || nodes.length === 0) return;
+
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        nodes.forEach(d => {
+          const isParent = Boolean(d.children || d._children);
+          const leftBound = d.y - (isParent ? 180 : 20);
+          const rightBound = d.y + (isParent ? 20 : 220);
+          const topBound = d.x - 32;
+          const bottomBound = d.x + 32;
+
+          if (leftBound < minX) minX = leftBound;
+          if (rightBound > maxX) maxX = rightBound;
+          if (topBound < minY) minY = topBound;
+          if (bottomBound > maxY) maxY = bottomBound;
+        });
+
+        const fullWidth = container.clientWidth || 880;
+        const fullHeight = height;
+        const treeW = maxX - minX;
+        const treeH = maxY - minY;
+
+        if (treeW <= 0 || treeH <= 0) return;
+
+        const scale = Math.min(0.92, (fullWidth * 0.90) / treeW, (fullHeight * 0.90) / treeH);
+        const clampedScale = Math.max(scale, 0.42);
+
+        const midTreeX = (minX + maxX) / 2;
+        const midTreeY = (minY + maxY) / 2;
+        const tx = fullWidth / 2 - clampedScale * midTreeX;
+        const ty = fullHeight / 2 - clampedScale * midTreeY;
+
+        if (duration > 0) {
+          svg.transition().duration(duration).call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        } else {
+          svg.call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        }
+      }
+
+      window.expandAll = function() {
+        root.each(expand);
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.collapseAll = function() {
+        if (root.children) {
+          root.children.forEach(collapse);
+        }
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.resetZoom = function() {
+        autoFitTree(450);
+      };
+
+      // 首次繪製節點並自動縮放置中全覽
+      update(root);
+      autoFitTree(0);
+    })();
+  </script>
+
+</body>
+</html>

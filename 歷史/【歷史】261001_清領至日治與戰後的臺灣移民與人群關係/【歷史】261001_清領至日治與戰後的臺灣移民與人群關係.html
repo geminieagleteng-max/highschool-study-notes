@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【歷史】261001_清領至日治與戰後的臺灣移民與人群關係</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --border: #e2e8f0;
+      --border-focus: #cbd5e1;
+      --tag-bg: #e0f2fe;
+      --tag-text: #0369a1;
+      --header-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans TC', 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.8;
+      font-size: 16px;
+      padding: 30px 16px 60px;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.06), 0 2px 6px -1px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    header.hero {
+      background: var(--header-gradient);
+      color: #ffffff;
+      padding: 36px 40px 30px;
+      position: relative;
+    }
+    header.hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      color: #f1f5f9;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    header.hero h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.5px;
+    }
+    header.hero .meta {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .content-body {
+      padding: 40px 48px;
+    }
+    @media (max-width: 640px) {
+      .content-body { padding: 24px 20px; }
+      header.hero { padding: 28px 24px 22px; }
+      header.hero h1 { font-size: 1.5rem; }
+    }
+    h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 2.2em;
+      margin-bottom: 0.9em;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h2:first-of-type { margin-top: 0.5em; }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1e3a8a;
+      margin-top: 1.6em;
+      margin-bottom: 0.6em;
+      padding-left: 10px;
+      border-left: 4px solid var(--accent);
+    }
+    p { margin-bottom: 1.1em; }
+    ul, ol { margin-bottom: 1.2em; padding-left: 1.8em; }
+    li { margin-bottom: 0.4em; }
+    .mermaid {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 16px;
+      margin: 1.6em 0;
+      text-align: center;
+      overflow-x: auto;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 1.6em 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    thead th {
+      background: #f1f5f9;
+      color: #1e293b;
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+    tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) { background: #fafafa; }
+    tbody tr:hover { background: #f0f7ff; }
+    tbody tr:last-child td { border-bottom: none; }
+    code {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      background: #f1f5f9;
+      color: #b91c1c;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 1.4em 0;
+      font-size: 0.92em;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; }
+    blockquote {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 14px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 1.4em 0;
+      color: #1e40af;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2.2em 0; }
+    .katex-display {
+      margin: 1.2em 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 6px 0;
+    }
+    .katex { font-size: 1.05em; }
+    
+    /* NotebookLM 原生 D3 互動心智圖樣式 */
+    .mindmap-box {
+      margin: 2em 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .mindmap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .mindmap-title {
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mindmap-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .mm-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: #334155;
+      transition: all 0.2s;
+    }
+    .mm-btn:hover { background: #f1f5f9; }
+    #tree-svg-container {
+      width: 100%;
+      height: 520px;
+      background: #ffffff;
+      cursor: grab;
+    }
+    #tree-svg-container:active { cursor: grabbing; }
+    .node circle {
+      cursor: pointer;
+      stroke-width: 2.5px;
+      transition: all 0.2s;
+    }
+    .node circle:hover { transform: scale(1.25); }
+    .node text {
+      font-size: 13px;
+      font-weight: 500;
+      font-family: inherit;
+      fill: #1e293b;
+      cursor: pointer;
+      paint-order: stroke fill;
+      stroke: #ffffff;
+      stroke-width: 4.5px;
+      stroke-linejoin: round;
+      user-select: none;
+    }
+    .link {
+      fill: none;
+      stroke: #cbd5e1;
+      stroke-width: 1.8px;
+      stroke-opacity: 0.85;
+      transition: stroke-width 0.2s;
+    }
+    .link:hover { stroke: #94a3b8; stroke-width: 2.5px; }
+
+    footer.doc-foot {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      background: #fcfdfe;
+    }
+    .print-btn {
+      position: absolute;
+      top: 36px;
+      right: 40px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .print-btn:hover { background: rgba(255,255,255,0.25); }
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      body {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+      }
+      .container {
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+      }
+      .print-btn, .mindmap-btns {
+        display: none !important;
+      }
+      header.hero {
+        background: var(--header-gradient) !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+        padding: 24px 30px !important;
+        margin-bottom: 20px !important;
+      }
+      header.hero h1 {
+        color: #ffffff !important;
+        font-size: 1.6rem !important;
+      }
+      header.hero .badge {
+        background: rgba(255,255,255,0.2) !important;
+        color: #ffffff !important;
+      }
+      header.hero .meta {
+        color: #cbd5e1 !important;
+      }
+      .content-body {
+        padding: 10px 0 !important;
+      }
+      h1, h2, h3, h4, table, tr, pre, .mermaid, .mindmap-box, blockquote {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      h2, h3 {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <div class="badge">📖 高中課堂互動圖文筆記</div>
+      <button class="print-btn" onclick="window.print()">🖨️ 列印 / 另存 PDF</button>
+      <h1>【歷史】261001_清領至日治與戰後的臺灣移民與人群關係</h1>
+      <div class="meta">
+        <span>⏱️ 數位筆記儀表板</span>
+        <span>🏷️ 含可縮放互動心智圖、時間軸與觀念對比</span>
+      </div>
+    </header>
+    <div class="content-body">
+      
+      <div class="mindmap-box">
+        <div class="mindmap-header">
+          <div class="mindmap-title">
+            <span>🧠 本課核心知識脈絡（NotebookLM 原生互動心智圖 • 支援縮放與展開）</span>
+          </div>
+          <div class="mindmap-btns">
+            <button class="mm-btn" onclick="expandAll()">展開全部</button>
+            <button class="mm-btn" onclick="collapseAll()">收合分支</button>
+            <button class="mm-btn" onclick="resetZoom()">重設視角</button>
+          </div>
+        </div>
+        <div id="tree-svg-container"></div>
+      </div>
+        
+      <h2>📖 課堂主題與核心摘要 (Class Overview)</h2>
+<p>本堂歷史課以臺灣跨時期的「移民史」與「人群關係演變」為核心脈絡，深度剖析清領時期、日治時期至戰後初期的族群互動與社會結構變遷。課程重點解析清領時期分類械鬥（如頂下郊拼）與族群合作（如吳沙開墾噶瑪蘭、金廣福墾號）的背後成因，並透過祭祀信仰從「唐山祖」過渡至「開台祖」的轉變，說明臺灣社會如何由「移墾社會」轉型為「定居社會（在地化）」。最後，探討日治時期官私營移民村（如吉野村）的推動與挫折、南進政策下的專賣經濟（菸草與美濃/吉安菸樓），以及戰後初期的軍政移民移入，構建完整的臺灣多元族群發展全貌。</p>
+<p>【🌳 本課大綱樹狀心智導圖 (Mindmap)】：</p>
+<div class="mermaid">
+graph LR
+  Root["臺灣移民與人群關係演變"] --> A["清領時期：械鬥與合作"]
+  Root --> B["信仰轉變：社會在地化"]
+  Root --> C["日治時期：日人移民與開墾"]
+  Root --> D["戰後初期：軍政移民移入"]
+
+  A --> A1["分類械鬥：頂下郊拼與產業轉移"]
+  A --> A2["族群合作：合股開墾（吳沙、金廣福）"]
+
+  B --> B1["唐山祖：移墾階段、同姓無血緣、遠古神話"]
+  B --> B2["開台祖：定居階段、同宗有血緣、第一代始祖"]
+
+  C --> C1["移民村：私營失敗（缺資）與官營吉野村（甘蔗失敗）"]
+  C --> C2["專賣經濟：美濃/吉安種植煙草與菸樓文化"]
+  C --> C3["東部漢人：客家與閩南人避戰移居"]
+
+  D --> D1["1945接收：行政長官公署與隨軍人員"]
+</div>
+<hr />
+<h2>💡 核心知識點與觀念詳解 (Key Concepts)</h2>
+<h3>觀念一：清領時期的族群關係——分類械鬥與合股合作</h3>
+<p>清領時期因資源有限與利益競爭，衝突與合作並存，展現出高度經濟與空間導向的人群互動。</p>
+<ol>
+<li>
+<p><strong>分類械鬥與「頂下郊拼」</strong><br />
+   - <strong>械鬥質性</strong>：械鬥常呈現複合式型態，包含省籍、州縣、甚至同姓氏不同職業與庄頭的衝突。打輸的一方往往被迫離開原墾地。<br />
+   - <strong>經典歷史事件：頂下郊拼（艋舺）</strong></p>
+<ul>
+<li><strong>背景與成員</strong>：雙方皆為泉州人。<strong>頂郊</strong>為三邑人（惠安、安溪、南安）；<strong>下郊</strong>（又稱廈郊）為同安人，主要從事與廈門的貿易。</li>
+<li><strong>衝突原因</strong>：爭奪艋舺（今萬華）商貿地盤與碼頭利權。</li>
+<li><strong>過程與結果</strong>：頂郊打贏；下郊打輸後離開艋舺，北遷至<strong>大稻埕</strong>（今迪化街、大龍洞一帶，如保安宮周邊）重新發展。</li>
+<li><strong>後續產業轉變</strong>：1860 年臺灣開港通商後，艋舺因河沙淤積導致大船無法進出而沒落；大稻埕反而因淡水開港，快速發展為<strong>茶葉集散地（茶葉棧）</strong>，出現著名買辦商人李春生，下郊因而「因禍得福」。</li>
+</ul>
+</li>
+<li>
+<p><strong>族群合作與合股制度</strong><br />
+   - <strong>合股制度背後成因</strong>：開墾需向官府購買開墾執照（墾照），因執照昂貴且個人資金不足，故採取「合股湊錢」模式，進而促進跨族群合作。<br />
+   - <strong>經典例題與歷史實例</strong>：</p>
+<ul>
+<li><strong>吳沙開墾噶瑪蘭（宜蘭）</strong>：漳州人吳沙採取「閩粵合作」，帶領閩南人與廣東客家人越過界線開墾噶瑪蘭（因西部位子已被佔滿）。墾民克服海盜（蔡牽）威脅並向官府納稅，嘉慶年間官府順勢將蘭陽平原納入界內，設立<strong>噶瑪蘭廳</strong>。</li>
+<li><strong>新竹金廣福墾號</strong>：由粵籍姜秀鑾與閩籍周邦正等集資合股成立，共同推動新竹隘墾區的開發。</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h3>觀念二：祖先信仰與社會轉型——從「唐山祖」到「開台祖」</h3>
+<p>臺灣社會結構由移民渡海的「移墾社會」，轉變為繁衍後代的「定居社會」，其演變過程體現在祖先祭祀型態的改變。</p>
+<ol>
+<li>
+<p><strong>唐山祖信仰（移墾社會階段）</strong><br />
+   - <strong>社會背景</strong>：受「渡臺禁令」限制（僅限單身男子，不得攜家帶眷），初期移民彼此之間<strong>大多無血緣關係</strong>。<br />
+   - <strong>祭祀型態</strong>：同姓氏者為求生存與結夥互助，共同出資尊奉原鄉神祇或遠古歷史/神話名人為共同祖先。<br />
+   - <strong>舉例說明</strong>：姓劉者祭祀漢高祖劉邦、漢武帝劉徹或劉備；姓李者祭祀老子；姓孔者祭祀孔子；姓關者祭祀關公；姓丁者祭祀穆罕默德等。</p>
+</li>
+<li>
+<p><strong>開台祖信仰（定居社會 / 在地化階段）</strong><br />
+   - <strong>社會背景</strong>：移民在臺娶妻生子、繁衍世代（第二、三代以上），對遠古唐山祖缺乏實感，轉而重視在臺灣落地生根的家族脈絡。<br />
+   - <strong>祭祀型態</strong>：改為祭祀「來臺第一代祖先（開台祖）」。祭祀成員具有<strong>明確的血緣關係</strong>，屬於同宗族（分大房、二房、三房等）。<br />
+   - <strong>歷史意義</strong>：象徵移民社會正式過渡為定居社會，順利完成「落地生根（在地化）」。</p>
+</li>
+</ol>
+<p>【⏱️ 臺灣社會轉型與祖先信仰演變流程圖】：</p>
+<div class="mermaid">
+graph TD
+  A["移墾社會階段（清領初期）"] -->|渡臺禁令限制、單身赴臺| B["同姓結拜與湊錢集資"]
+  B -->|無血緣關係| C["祭祀「唐山祖」（遠古神話/歷史名人）"]
+  C -->|開墾有成、世代繁衍| D["定居社會階段（在地化）"]
+  D -->|宗族血緣形成、分房立業| E["祭祀「開台祖」（來臺第一代祖先）"]
+</div>
+<p>【📊 唐山祖與開台祖對比表】：<br />
+| 比較維度 | 唐山祖信仰 | 開台祖信仰 |<br />
+| :--- | :--- | :--- |<br />
+| <strong>社會發展階段</strong> | 移墾社會（移民初期、移墾開荒） | 定居社會（落地生根、在地化完成） |<br />
+| <strong>成員血緣關係</strong> | <strong>無血緣關係</strong>（僅同姓氏、結拜兄弟或同鄉） | <strong>具有明確血緣關係</strong>（同宗族、分房子孫） |<br />
+| <strong>祭祀對象</strong> | 原鄉神祇、遠古神話人物或歷史名人（如劉邦、老子、關公） | 來臺開基第一代祖先（開台始祖） |<br />
+| <strong>主要功能</strong> | 集資購買墾照、共同開墾、結夥互助防衛 | 凝聚血緣宗族向心力、分配家族產業與祭祀 |</p>
+<hr />
+<h3>觀念三：日治時期的日人移民與東部開發</h3>
+<p>日治時期總督府為紓解本國人口壓力與推動政策，推動了規模不一的移民與產業開發。</p>
+<ol>
+<li>
+<p><strong>移民背景與結構</strong><br />
+   - <strong>人口壓力</strong>：日本本島二戰末期人口達 1 億，而割臺初期臺灣人口僅約 300 萬人。<br />
+   - <strong>人口結構</strong>：二戰結束時在臺日人約 30 萬，其中高達 20 萬人為在臺灣出生的<strong>「灣生」</strong>，實際自日本移入者約 10 萬人。移入職業包含軍公教、警察、商人，以及最大宗的<strong>農業移民</strong>。</p>
+</li>
+<li>
+<p><strong>官私營移民村比較</strong><br />
+   - <strong>私營移民村（早期）</strong>：私人企業於東部推動，因嚴重缺乏資金與造鎮經驗（興建房舍、醫院、學校、自來水等設施極為耗資）而告失敗。<br />
+   - <strong>官營移民村（1910年代起）</strong>：總督府直接主導，東部第一個官營移民村為花蓮港廳<strong>吉野村</strong>。<br />
+   - <strong>失敗原因</strong>：官方盲目套用開墾北海道的成功經驗，以為農業技術可克服一切；企圖在東部種植戰略作物<strong>甘蔗</strong>（原規劃發酵為酒精/乙醇供工業與軍事使用），但因東部土質不適宜、氣候水土不服及傳染病蔓延而挫敗，後改為獎勵性質。</p>
+</li>
+<li>
+<p><strong>1930年代南進政策與專賣經濟（菸草文化）</strong><br />
+   - 配合南進政策與軍備整頓，配合專賣制度推動高利潤作物<strong>煙草（菸草）</strong>種植。<br />
+   - 著名日人移民村與菸樓分布：高雄<strong>美濃</strong>、花蓮<strong>吉安</strong>。區內保留許多專為烤乾煙草設計的「菸樓」（樓中樓構造、中央鏤空、底層燒火烤乾煙草）。</p>
+</li>
+<li>
+<p><strong>漢人移居東部</strong><br />
+   - 桃竹苗客家人與臺南、雲林閩南人，為「避戰（躲避戰亂）」移居東部開墾，帶動東部漢人人口快速成長。</p>
+</li>
+</ol>
+<p>【📊 私營移民村與官營移民村對比表】：<br />
+| 比較項目 | 私營移民村（早期試辦） | 官營移民村（1910年代起） |<br />
+| :--- | :--- | :--- |<br />
+| <strong>主導單位</strong> | 私人企業 / 民間公司 | 臺灣總督府（官方直營） |<br />
+| <strong>代表地點</strong> | 臺灣東部早期墾區 | 花蓮港廳吉野村（東部第一個官營移民村） |<br />
+| <strong>挫折與失敗成因</strong> | 缺乏資金與造鎮經驗（水電、醫院、學校等公共設施耗資過巨） | 盲目套用北海道經驗；企圖種植甘蔗因土質不適、傳染病與水土不服挫敗 |</p>
+<hr />
+<h3>觀念四：戰後初期的軍政移民</h3>
+<p>1945 年二戰結束後，國民政府接收臺灣，行政長官公署（陳儀部隊、隨軍文武官員與接收人員）移入臺灣，成為戰後外省籍移民移入臺灣的第一波起點。</p>
+<hr />
+<h2>⚠️ 老師強調考點與易錯陷阱 (Exam Focus &amp; Pitfalls)</h2>
+<ul>
+<li>🌟 <strong>頂下郊拼的勝負影響（必考！）</strong>：切記「頂郊（三邑人）打勝留艋舺；下郊（同安人）打敗遷大稻埕」。大稻埕後來因 <strong>1860 年開港通商</strong> 及<strong>茶葉貿易崛起</strong>，而艋舺因「河沙淤積」沒落，下郊呈現「因禍得福」的演變。</li>
+<li>⚠️ <strong>唐山祖 vs. 開台祖的判斷陷阱</strong>：題目若提到「祭祀遠古歷史名人/神話人物（如劉邦、關公、老子）」且成員「同姓但無血緣關係」，必為<strong>唐山祖</strong>；若提及「祭祀來臺第一代」、「同宗族有血緣關係、分房祭祀」，則為<strong>開台祖</strong>。</li>
+<li>⚠️️ <strong>官營移民村的試錯作物陷阱</strong>：日治東部官營移民村（如吉野村）當初試圖種植的戰略作物是<strong>甘蔗</strong>（非稻米，亦非小麥），因土質不適與傳染病而未能如願成功。</li>
+</ul>
+<hr />
+<h2>🔑 記憶口訣與解題技巧 (Mnemonics &amp; Shortcuts)</h2>
+<ul>
+<li>💡 <strong>頂下郊拼記憶速記法</strong>：</li>
+<li>「三邑頂勝留在萬，同安下敗到大道」：三邑人（頂郊）勝，留在艋舺（萬華）；同安人（下郊）敗，遷往大稻埕（迪化街/茶葉棧）。</li>
+<li>💡 <strong>祖先信仰二分破題法</strong>：</li>
+<li><strong>無血緣 + 拜名人 = 唐山祖</strong>（移墾社會）</li>
+<li><strong>有血緣 + 拜第一代 = 開台祖</strong>（定居社會 / 在地化）</li>
+</ul>
+<hr />
+<h2>📝 課後作業與待辦事項 (Homework &amp; Tasks)</h2>
+<ul>
+<li>複習本章「臺灣族群關係與移民史」講義內容。</li>
+<li>整理「頂下郊拼與大稻埕發展歷史」簡短條列。</li>
+<li>無特定作業，請預習下次課程章節。</li>
+</ul>
+<hr />
+<h2>📚 專有名詞與重要公式/定義 (Glossary &amp; Formulas)</h2>
+<ul>
+<li><strong>頂下郊拼</strong>: 1853 年發生於艋舺的泉州同鄉分類械鬥事件，由頂郊（三邑人）對抗下郊（同安人），導致下郊移居大稻埕並帶動當地茶葉貿易發展。</li>
+<li><strong>合股制度</strong>: 清領時期墾民因墾照昂貴且個人資金不足，共同湊錢購買執照並合作開墾的經濟合作模式（如吳沙開墾噶瑪蘭、金廣福墾號）。</li>
+<li><strong>唐山祖</strong>: 移墾社會初期，無血緣關係的同姓移民共同湊錢祭祀的原鄉神祇或遠古歷史/神話名人。</li>
+<li><strong>開台祖</strong>: 定居社會階段，具有明確血緣關係的同宗族子孫，共同祭祀來臺開墾的第一代始祖。</li>
+<li><strong>灣生</strong>: 日治時期在臺灣出生（生於臺灣）的日籍移民後代。二戰結束前約有 20 萬人。</li>
+<li><strong>吉野村</strong>: 位於花蓮港廳，為臺灣東部第一個由總督府推動設立的官營日人移民村。</li>
+<li><strong>菸樓</strong>: 日治時期配合專賣制度種植煙草（美濃、吉安等地）所興建用於烘烤燻乾煙草的高樓建築。</li>
+</ul>
+<hr />
+<h2>🧠 課後自測題 (Quick Review Quiz)</h2>
+<p><strong>第一題：</strong><br />
+清領時期艋舺發生「頂下郊拼」後，打輸的下郊（同安人）遷往大稻埕發展。請問大稻埕後來之所以能超越艋舺，最關鍵的歷史契機與產業轉變為何？</p>
+<blockquote>
+<p><strong>解題思維與答案：</strong><br />
+關鍵契機為 <strong>1860 年臺灣開港通商</strong>。艋舺因淡水河河沙淤積導致大船無法駛入而逐漸沒落；大稻埕則藉由淡水開港的便利，發展成為臺灣最重要的<strong>茶葉集散地（茶葉棧）</strong>，進而躍升為繁榮的商貿重鎮。</p>
+</blockquote>
+<p><strong>第二題：</strong><br />
+小明在臺灣某地考察一座古老宗祠，發現該宗祠由姓劉的村民共同建立，祠堂內供奉的祖先為漢高祖劉邦與三國蜀漢劉備。請問這座宗祠反映了當時臺灣社會的何種信仰特徵與社會型態？</p>
+<blockquote>
+<p><strong>解題思維與答案：</strong><br />
+反映了<strong>「唐山祖」</strong>信仰與<strong>「移墾社會」</strong>型態。因為祭祀對象為遠古歷史人物（劉邦、劉備），且成員僅為同姓氏結夥、無直接血緣關係，屬於移民開荒初期為了互相扶持而建立的唐山祖組織。</p>
+</blockquote>
+<hr />
+<h2>📖 課堂主題與核心摘要 (Class Overview)</h2>
+<p>本堂歷史課以臺灣跨時期的「移民史」與「人群關係演變」為核心脈絡，深度剖析清領時期、日治時期至戰後初期的族群互動與社會結構變遷。課程重點解析清領時期分類械鬥（如頂下郊拼）與族群合作（如吳沙開墾噶瑪蘭、金廣福墾號）的背後成因，並透過祭祀信仰從「唐山祖」過渡至「開台祖」的轉變，說明臺灣社會如何由「移墾社會」轉型為「定居社會（在地化）」。最後，探討日治時期官私營移民村（如吉野村）的推動與挫折、南進政策下的專賣經濟（菸草與美濃/吉安菸樓），以及戰後初期的軍政移民移入，構建完整的臺灣多元族群發展全貌。</p>
+<p>【🌳 本課大綱樹狀心智導圖 (Mindmap)】：</p>
+<div class="mermaid">
+graph LR
+  Root["臺灣移民與人群關係演變"] --> A["清領時期：械鬥與合作"]
+  Root --> B["信仰轉變：社會在地化"]
+  Root --> C["日治時期：日人移民與開墾"]
+  Root --> D["戰後初期：軍政移民移入"]
+
+  A --> A1["分類械鬥：頂下郊拼與產業轉移"]
+  A --> A2["族群合作：合股開墾（吳沙、金廣福）"]
+
+  B --> B1["唐山祖：移墾階段、同姓無血緣、遠古神話"]
+  B --> B2["開台祖：定居階段、同宗有血緣、第一代始祖"]
+
+  C --> C1["移民村：私營失敗（缺資）與官營吉野村（甘蔗失敗）"]
+  C --> C2["專賣經濟：美濃/吉安種植煙草與菸樓文化"]
+  C --> C3["東部漢人：客家與閩南人避戰移居"]
+
+  D --> D1["1945接收：行政長官公署與隨軍人員"]
+</div>
+<hr />
+<h2>💡 核心知識點與觀念詳解 (Key Concepts)</h2>
+<h3>觀念一：清領時期的族群關係——分類械鬥與合股合作</h3>
+<p>清領時期因資源有限與利益競爭，衝突與合作並存，展現出高度經濟與空間導向的人群互動。</p>
+<ol>
+<li>
+<p><strong>分類械鬥與「頂下郊拼」</strong><br />
+   - <strong>械鬥質性</strong>：械鬥常呈現複合式型態，包含省籍、州縣、甚至同姓氏不同職業與庄頭的衝突。打輸的一方往往被迫離開原墾地。<br />
+   - <strong>經典歷史事件：頂下郊拼（艋舺）</strong></p>
+<ul>
+<li><strong>背景與成員</strong>：雙方皆為泉州人。<strong>頂郊</strong>為三邑人（惠安、安溪、南安）；<strong>下郊</strong>（又稱廈郊）為同安人，主要從事與廈門的貿易。</li>
+<li><strong>衝突原因</strong>：爭奪艋舺（今萬華）商貿地盤與碼頭利權。</li>
+<li><strong>過程與結果</strong>：頂郊打贏；下郊打輸後離開艋舺，北遷至<strong>大稻埕</strong>（今迪化街、大龍洞一帶，如保安宮周邊）重新發展。</li>
+<li><strong>後續產業轉變</strong>：1860 年臺灣開港通商後，艋舺因河沙淤積導致大船無法進出而沒落；大稻埕反而因淡水開港，快速發展為<strong>茶葉集散地（茶葉棧）</strong>，出現著名買辦商人李春生，下郊因而「因禍得福」。</li>
+</ul>
+</li>
+<li>
+<p><strong>族群合作與合股制度</strong><br />
+   - <strong>合股制度背後成因</strong>：開墾需向官府購買開墾執照（墾照），因執照昂貴且個人資金不足，故採取「合股湊錢」模式，進而促進跨族群合作。<br />
+   - <strong>經典例題與歷史實例</strong>：</p>
+<ul>
+<li><strong>吳沙開墾噶瑪蘭（宜蘭）</strong>：漳州人吳沙採取「閩粵合作」，帶領閩南人與廣東客家人越過界線開墾噶瑪蘭（因西部位子已被佔滿）。墾民克服海盜（蔡牽）威脅並向官府納稅，嘉慶年間官府順勢將蘭陽平原納入界內，設立<strong>噶瑪蘭廳</strong>。</li>
+<li><strong>新竹金廣福墾號</strong>：由粵籍姜秀鑾與閩籍周邦正等集資合股成立，共同推動新竹隘墾區的開發。</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h3>觀念二：祖先信仰與社會轉型——從「唐山祖」到「開台祖」</h3>
+<p>臺灣社會結構由移民渡海的「移墾社會」，轉變為繁衍後代的「定居社會」，其演變過程體現在祖先祭祀型態的改變。</p>
+<ol>
+<li>
+<p><strong>唐山祖信仰（移墾社會階段）</strong><br />
+   - <strong>社會背景</strong>：受「渡臺禁令」限制（僅限單身男子，不得攜家帶眷），初期移民彼此之間<strong>大多無血緣關係</strong>。<br />
+   - <strong>祭祀型態</strong>：同姓氏者為求生存與結夥互助，共同出資尊奉原鄉神祇或遠古歷史/神話名人為共同祖先。<br />
+   - <strong>舉例說明</strong>：姓劉者祭祀漢高祖劉邦、漢武帝劉徹或劉備；姓李者祭祀老子；姓孔者祭祀孔子；姓關者祭祀關公；姓丁者祭祀穆罕默德等。</p>
+</li>
+<li>
+<p><strong>開台祖信仰（定居社會 / 在地化階段）</strong><br />
+   - <strong>社會背景</strong>：移民在臺娶妻生子、繁衍世代（第二、三代以上），對遠古唐山祖缺乏實感，轉而重視在臺灣落地生根的家族脈絡。<br />
+   - <strong>祭祀型態</strong>：改為祭祀「來臺第一代祖先（開台祖）」。祭祀成員具有<strong>明確的血緣關係</strong>，屬於同宗族（分大房、二房、三房等）。<br />
+   - <strong>歷史意義</strong>：象徵移民社會正式過渡為定居社會，順利完成「落地生根（在地化）」。</p>
+</li>
+</ol>
+<p>【⏱️ 臺灣社會轉型與祖先信仰演變流程圖】：</p>
+<div class="mermaid">
+graph TD
+  A["移墾社會階段（清領初期）"] -->|渡臺禁令限制、單身赴臺| B["同姓結拜與湊錢集資"]
+  B -->|無血緣關係| C["祭祀「唐山祖」（遠古神話/歷史名人）"]
+  C -->|開墾有成、世代繁衍| D["定居社會階段（在地化）"]
+  D -->|宗族血緣形成、分房立業| E["祭祀「開台祖」（來臺第一代祖先）"]
+</div>
+<p>【📊 唐山祖與開台祖對比表】：<br />
+| 比較維度 | 唐山祖信仰 | 開台祖信仰 |<br />
+| :--- | :--- | :--- |<br />
+| <strong>社會發展階段</strong> | 移墾社會（移民初期、移墾開荒） | 定居社會（落地生根、在地化完成） |<br />
+| <strong>成員血緣關係</strong> | <strong>無血緣關係</strong>（僅同姓氏、結拜兄弟或同鄉） | <strong>具有明確血緣關係</strong>（同宗族、分房子孫） |<br />
+| <strong>祭祀對象</strong> | 原鄉神祇、遠古神話人物或歷史名人（如劉邦、老子、關公） | 來臺開基第一代祖先（開台始祖） |<br />
+| <strong>主要功能</strong> | 集資購買墾照、共同開墾、結夥互助防衛 | 凝聚血緣宗族向心力、分配家族產業與祭祀 |</p>
+<hr />
+<h3>觀念三：日治時期的日人移民與東部開發</h3>
+<p>日治時期總督府為紓解本國人口壓力與推動政策，推動了規模不一的移民與產業開發。</p>
+<ol>
+<li>
+<p><strong>移民背景與結構</strong><br />
+   - <strong>人口壓力</strong>：日本本島二戰末期人口達 1 億，而割臺初期臺灣人口僅約 300 萬人。<br />
+   - <strong>人口結構</strong>：二戰結束時在臺日人約 30 萬，其中高達 20 萬人為在臺灣出生的<strong>「灣生」</strong>，實際自日本移入者約 10 萬人。移入職業包含軍公教、警察、商人，以及最大宗的<strong>農業移民</strong>。</p>
+</li>
+<li>
+<p><strong>官私營移民村比較</strong><br />
+   - <strong>私營移民村（早期）</strong>：私人企業於東部推動，因嚴重缺乏資金與造鎮經驗（興建房舍、醫院、學校、自來水等設施極為耗資）而告失敗。<br />
+   - <strong>官營移民村（1910年代起）</strong>：總督府直接主導，東部第一個官營移民村為花蓮港廳<strong>吉野村</strong>。<br />
+   - <strong>失敗原因</strong>：官方盲目套用開墾北海道的成功經驗，以為農業技術可克服一切；企圖在東部種植戰略作物<strong>甘蔗</strong>（原規劃發酵為酒精/乙醇供工業與軍事使用），但因東部土質不適宜、氣候水土不服及傳染病蔓延而挫敗，後改為獎勵性質。</p>
+</li>
+<li>
+<p><strong>1930年代南進政策與專賣經濟（菸草文化）</strong><br />
+   - 配合南進政策與軍備整頓，配合專賣制度推動高利潤作物<strong>煙草（菸草）</strong>種植。<br />
+   - 著名日人移民村與菸樓分布：高雄<strong>美濃</strong>、花蓮<strong>吉安</strong>。區內保留許多專為烤乾煙草設計的「菸樓」（樓中樓構造、中央鏤空、底層燒火烤乾煙草）。</p>
+</li>
+<li>
+<p><strong>漢人移居東部</strong><br />
+   - 桃竹苗客家人與臺南、雲林閩南人，為「避戰（躲避戰亂）」移居東部開墾，帶動東部漢人人口快速成長。</p>
+</li>
+</ol>
+<p>【📊 私營移民村與官營移民村對比表】：<br />
+| 比較項目 | 私營移民村（早期試辦） | 官營移民村（1910年代起） |<br />
+| :--- | :--- | :--- |<br />
+| <strong>主導單位</strong> | 私人企業 / 民間公司 | 臺灣總督府（官方直營） |<br />
+| <strong>代表地點</strong> | 臺灣東部早期墾區 | 花蓮港廳吉野村（東部第一個官營移民村） |<br />
+| <strong>挫折與失敗成因</strong> | 缺乏資金與造鎮經驗（水電、醫院、學校等公共設施耗資過巨） | 盲目套用北海道經驗；企圖種植甘蔗因土質不適、傳染病與水土不服挫敗 |</p>
+<hr />
+<h3>觀念四：戰後初期的軍政移民</h3>
+<p>1945 年二戰結束後，國民政府接收臺灣，行政長官公署（陳儀部隊、隨軍文武官員與接收人員）移入臺灣，成為戰後外省籍移民移入臺灣的第一波起點。</p>
+<hr />
+<h2>⚠️ 老師強調考點與易錯陷阱 (Exam Focus &amp; Pitfalls)</h2>
+<ul>
+<li>🌟 <strong>頂下郊拼的勝負影響（必考！）</strong>：切記「頂郊（三邑人）打勝留艋舺；下郊（同安人）打敗遷大稻埕」。大稻埕後來因 <strong>1860 年開港通商</strong> 及<strong>茶葉貿易崛起</strong>，而艋舺因「河沙淤積」沒落，下郊呈現「因禍得福」的演變。</li>
+<li>⚠️ <strong>唐山祖 vs. 開台祖的判斷陷阱</strong>：題目若提到「祭祀遠古歷史名人/神話人物（如劉邦、關公、老子）」且成員「同姓但無血緣關係」，必為<strong>唐山祖</strong>；若提及「祭祀來臺第一代」、「同宗族有血緣關係、分房祭祀」，則為<strong>開台祖</strong>。</li>
+<li>⚠️ <strong>官營移民村的試錯作物陷阱</strong>：日治東部官營移民村（如吉野村）當初試圖種植的戰略作物是<strong>甘蔗</strong>（非稻米，亦非小麥），因土質不適與傳染病而未能如願成功。</li>
+</ul>
+<hr />
+<h2>🔑 記憶口訣與解題技巧 (Mnemonics &amp; Shortcuts)</h2>
+<ul>
+<li>💡 <strong>頂下郊拼記憶速記法</strong>：</li>
+<li>「三邑頂勝留在萬，同安下敗到大道」：三邑人（頂郊）勝，留在艋舺（萬華）；同安人（下郊）敗，遷往大稻埕（迪化街/茶葉棧）。</li>
+<li>💡 <strong>祖先信仰二分破題法</strong>：</li>
+<li><strong>無血緣 + 拜名人 = 唐山祖</strong>（移墾社會）</li>
+<li><strong>有血緣 + 拜第一代 = 開台祖</strong>（定居社會 / 在地化）</li>
+</ul>
+<hr />
+<h2>📝 課後作業與待辦事項 (Homework &amp; Tasks)</h2>
+<ul>
+<li>複習本章「臺灣族群關係與移民史」講義內容。</li>
+<li>整理「頂下郊拼與大稻埕發展歷史」簡短條列。</li>
+<li>無特定作業，請預習下次課程章節。</li>
+</ul>
+<hr />
+<h2>📚 專有名詞與重要公式/定義 (Glossary &amp; Formulas)</h2>
+<ul>
+<li><strong>頂下郊拼</strong>: 1853 年發生於艋舺的泉州同鄉分類械鬥事件，由頂郊（三邑人）對抗下郊（同安人），導致下郊移居大稻埕並帶動當地茶葉貿易發展。</li>
+<li><strong>合股制度</strong>: 清領時期墾民因墾照昂貴且個人資金不足，共同湊錢購買執照並合作開墾的經濟合作模式（如吳沙開墾噶瑪蘭、金廣福墾號）。</li>
+<li><strong>唐山祖</strong>: 移墾社會初期，無血緣關係的同姓移民共同湊錢祭祀的原鄉神祇或遠古歷史/神話名人。</li>
+<li><strong>開台祖</strong>: 定居社會階段，具有明確血緣關係的同宗族子孫，共同祭祀來臺開墾的第一代始祖。</li>
+<li><strong>灣生</strong>: 日治時期在臺灣出生（生於臺灣）的日籍移民後代。二戰結束前約有 20 萬人。</li>
+<li><strong>吉野村</strong>: 位於花蓮港廳，為臺灣東部第一個由總督府推動設立的官營日人移民村。</li>
+<li><strong>菸樓</strong>: 日治時期配合專賣制度種植煙草（美濃、吉安等地）所興建用於烘烤燻乾煙草的高樓建築。</li>
+</ul>
+<hr />
+<h2>🧠 課後自測題 (Quick Review Quiz)</h2>
+<p><strong>第一題：</strong><br />
+清領時期艋舺發生「頂下郊拼」後，打輸的下郊（同安人）遷往大稻埕發展。請問大稻埕後來之所以能超越艋舺，最關鍵的歷史契機與產業轉變為何？</p>
+<blockquote>
+<p><strong>解題思維與答案：</strong><br />
+關鍵契機為 <strong>1860 年臺灣開港通商</strong>。艋舺因淡水河河沙淤積導致大船無法駛入而逐漸沒落；大稻埕則藉由淡水開港的便利，發展成為臺灣最重要的<strong>茶葉集散地（茶葉棧）</strong>，進而躍升為繁榮的商貿重鎮。</p>
+</blockquote>
+<p><strong>第二題：</strong><br />
+小明在臺灣某地考察一座古老宗祠，發現該宗祠由姓劉的村民共同建立，祠堂內供奉的祖先為漢高祖劉邦與三國蜀漢劉備。請問這座宗祠反映了當時臺灣社會的何種信仰特徵與社會型態？</p>
+<blockquote>
+<p><strong>解題思維與答案：</strong><br />
+反映了<strong>「唐山祖」</strong>信仰與<strong>「移墾社會」</strong>型態。因為祭祀對象為遠古歷史人物（劉邦、劉備），且成員僅為同姓氏結夥、無直接血緣關係，屬於移民開荒初期為了互相扶持而建立的唐山祖組織。</p>
+</blockquote>
+<hr />
+<p>💡 <strong>溫馨提示</strong>：已為您整理好這份完整的高中歷史學習筆記！若想針對「頂下郊拼」或「日治移民村」製作更深入的考前單頁圖表或測驗卡片，都可以隨時告訴我喔！</p>
+    </div>
+    <footer class="doc-foot">
+      自動生成於 NotebookLM Study Assistant • 專為高中學生課後複習與考前衝刺打造
+    </footer>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.mermaid) {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'neutral',
+          fontFamily: "'Noto Sans TC', 'Inter', sans-serif",
+          flowchart: { curve: 'basis', htmlLabels: true },
+          securityLevel: 'loose'
+        });
+      }
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+  
+  <script>
+    (function() {
+      const treeData = {"name": "臺灣移民與人群關係演變", "children": [{"name": "信仰轉變：社會在地化", "children": [{"name": "唐山祖：移墾階段、同姓無血緣、遠古神話"}, {"name": "開台祖：定居階段、同宗有血緣、第一代始祖"}]}, {"name": "日治時期：日人移民與開墾", "children": [{"name": "移民村：私營失敗（缺資）與官營吉野村（甘蔗失敗）"}, {"name": "專賣經濟：美濃/吉安種植煙草與菸樓文化"}, {"name": "東部漢人：客家與閩南人避戰移居"}]}, {"name": "戰後初期：軍政移民移入", "children": [{"name": "1945接收：行政長官公署與隨軍人員"}]}]};
+      const container = document.getElementById("tree-svg-container");
+      if (!container || !treeData) return;
+
+      const width = container.clientWidth || 880;
+      const height = 520;
+
+      const svg = d3.select("#tree-svg-container")
+        .append("svg")
+        .attr("width", "100%")
+        .attr("height", height)
+        .attr("viewBox", [0, 0, width, height]);
+
+      const g = svg.append("g");
+
+      const zoom = d3.zoom()
+        .scaleExtent([0.25, 2.5])
+        .on("zoom", (e) => g.attr("transform", e.transform));
+
+      svg.call(zoom);
+
+      const root = d3.hierarchy(treeData);
+      root.x0 = height / 2;
+      root.y0 = 0;
+
+      let i = 0;
+      const duration = 380;
+      // [dy, dx]: 垂直節距 58px (確保上下不重疊), 水平層級 320px (確保長文字不穿透父層)
+      const treeLayout = d3.tree().nodeSize([58, 320]);
+
+      function splitNodeText(text, maxChars) {
+        if (!text) return [""];
+        if (text.length <= maxChars) return [text];
+
+        // 優先在括號處斷行，例如：世風日下之自身矛盾對比（擇師教子 vs. 於身恥師）
+        const parenIdx = text.search(/[（(]/);
+        if (parenIdx >= 3 && parenIdx <= maxChars + 4) {
+          const p1 = text.slice(0, parenIdx).trim();
+          const p2 = text.slice(parenIdx).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 優先在冒號、破折號、頓號處斷行
+        const sepIdx = text.search(/[：:—、]/);
+        if (sepIdx >= 3 && sepIdx <= maxChars + 2) {
+          const p1 = text.slice(0, sepIdx + 1).trim();
+          const p2 = text.slice(sepIdx + 1).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 預設在 maxChars 處均勻斷行
+        return [text.slice(0, maxChars), text.slice(maxChars)];
+      }
+
+      if (root.children) {
+        root.children.forEach(c => {
+          if (c.children) {
+            c.children.forEach(collapse);
+          }
+        });
+      }
+
+      function collapse(d) {
+        if (d.children) {
+          d._children = d.children;
+          d._children.forEach(collapse);
+          d.children = null;
+        }
+      }
+
+      function expand(d) {
+        if (d._children) {
+          d.children = d._children;
+          d.children.forEach(expand);
+          d._children = null;
+        }
+      }
+
+      const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
+
+      function getNodeColor(d) {
+        if (d.depth === 0) return "#2563eb";
+        let p = d;
+        while (p.depth > 1) p = p.parent;
+        return colorScale(p.data.name);
+      }
+
+      function update(source) {
+        const nodes = root.descendants();
+        const links = root.links();
+
+        treeLayout(root);
+
+        const node = g.selectAll("g.node")
+          .data(nodes, d => d.id || (d.id = ++i));
+
+        const nodeEnter = node.enter().append("g")
+          .attr("class", "node")
+          .attr("transform", d => `translate(${source.y0},${source.x0})`)
+          .on("click", (event, d) => {
+            if (d.children) {
+              d._children = d.children;
+              d.children = null;
+            } else if (d._children) {
+              d.children = d._children;
+              d._children = null;
+            }
+            update(d);
+          });
+
+        nodeEnter.append("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        const textNode = nodeEnter.append("text")
+          .attr("class", "node-text")
+          .attr("text-anchor", d => (d.children || d._children) ? "end" : "start")
+          .style("fill-opacity", 0);
+
+        textNode.each(function(d) {
+          const el = d3.select(this);
+          const isParent = Boolean(d.children || d._children);
+          const xOffset = isParent ? -14 : 14;
+          const maxChars = isParent ? 13 : 18;
+          const lines = splitNodeText(d.data.name, maxChars);
+
+          if (lines.length === 1) {
+            el.attr("x", xOffset)
+              .attr("dy", "0.32em")
+              .text(lines[0]);
+          } else {
+            el.attr("x", xOffset)
+              .attr("dy", "-0.35em")
+              .text(lines[0]);
+            el.append("tspan")
+              .attr("x", xOffset)
+              .attr("dy", "1.25em")
+              .text(lines[1]);
+          }
+        });
+
+        const nodeUpdate = node.merge(nodeEnter).transition().duration(duration)
+          .attr("transform", d => `translate(${d.y},${d.x})`);
+
+        nodeUpdate.select("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        nodeUpdate.select("text")
+          .style("fill-opacity", 1);
+
+        const nodeExit = node.exit().transition().duration(duration)
+          .attr("transform", d => `translate(${source.y},${source.x})`)
+          .remove();
+
+        nodeExit.select("circle").attr("r", 1e-6);
+        nodeExit.select("text").style("fill-opacity", 1e-6);
+
+        const link = g.selectAll("path.link")
+          .data(links, d => d.target.id);
+
+        const linkEnter = link.enter().insert("path", "g")
+          .attr("class", "link")
+          .attr("d", d => {
+            const o = {x: source.x0, y: source.y0};
+            return diagonal(o, o);
+          });
+
+        link.merge(linkEnter).transition().duration(duration)
+          .attr("d", d => diagonal(d.source, d.target));
+
+        link.exit().transition().duration(duration)
+          .attr("d", d => {
+            const o = {x: source.x, y: source.y};
+            return diagonal(o, o);
+          })
+          .remove();
+
+        nodes.forEach(d => {
+          d.x0 = d.x;
+          d.y0 = d.y;
+        });
+      }
+
+      function diagonal(s, d) {
+        return `M ${s.y} ${s.x}
+                C ${(s.y + d.y) / 2} ${s.x},
+                  ${(s.y + d.y) / 2} ${d.x},
+                  ${d.y} ${d.x}`;
+      }
+
+      function autoFitTree(duration = 450) {
+        const nodes = root.descendants();
+        if (!nodes || nodes.length === 0) return;
+
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        nodes.forEach(d => {
+          const isParent = Boolean(d.children || d._children);
+          const leftBound = d.y - (isParent ? 180 : 20);
+          const rightBound = d.y + (isParent ? 20 : 220);
+          const topBound = d.x - 32;
+          const bottomBound = d.x + 32;
+
+          if (leftBound < minX) minX = leftBound;
+          if (rightBound > maxX) maxX = rightBound;
+          if (topBound < minY) minY = topBound;
+          if (bottomBound > maxY) maxY = bottomBound;
+        });
+
+        const fullWidth = container.clientWidth || 880;
+        const fullHeight = height;
+        const treeW = maxX - minX;
+        const treeH = maxY - minY;
+
+        if (treeW <= 0 || treeH <= 0) return;
+
+        const scale = Math.min(0.92, (fullWidth * 0.90) / treeW, (fullHeight * 0.90) / treeH);
+        const clampedScale = Math.max(scale, 0.42);
+
+        const midTreeX = (minX + maxX) / 2;
+        const midTreeY = (minY + maxY) / 2;
+        const tx = fullWidth / 2 - clampedScale * midTreeX;
+        const ty = fullHeight / 2 - clampedScale * midTreeY;
+
+        if (duration > 0) {
+          svg.transition().duration(duration).call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        } else {
+          svg.call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        }
+      }
+
+      window.expandAll = function() {
+        root.each(expand);
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.collapseAll = function() {
+        if (root.children) {
+          root.children.forEach(collapse);
+        }
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.resetZoom = function() {
+        autoFitTree(450);
+      };
+
+      // 首次繪製節點並自動縮放置中全覽
+      update(root);
+      autoFitTree(0);
+    })();
+  </script>
+
+</body>
+</html>

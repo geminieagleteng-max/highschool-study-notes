@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【歷史】260922_日治至戰後臺灣原住民政策與變遷</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --border: #e2e8f0;
+      --border-focus: #cbd5e1;
+      --tag-bg: #e0f2fe;
+      --tag-text: #0369a1;
+      --header-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans TC', 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.8;
+      font-size: 16px;
+      padding: 30px 16px 60px;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.06), 0 2px 6px -1px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    header.hero {
+      background: var(--header-gradient);
+      color: #ffffff;
+      padding: 36px 40px 30px;
+      position: relative;
+    }
+    header.hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      color: #f1f5f9;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    header.hero h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.5px;
+    }
+    header.hero .meta {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .content-body {
+      padding: 40px 48px;
+    }
+    @media (max-width: 640px) {
+      .content-body { padding: 24px 20px; }
+      header.hero { padding: 28px 24px 22px; }
+      header.hero h1 { font-size: 1.5rem; }
+    }
+    h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 2.2em;
+      margin-bottom: 0.9em;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h2:first-of-type { margin-top: 0.5em; }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1e3a8a;
+      margin-top: 1.6em;
+      margin-bottom: 0.6em;
+      padding-left: 10px;
+      border-left: 4px solid var(--accent);
+    }
+    p { margin-bottom: 1.1em; }
+    ul, ol { margin-bottom: 1.2em; padding-left: 1.8em; }
+    li { margin-bottom: 0.4em; }
+    .mermaid {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 16px;
+      margin: 1.6em 0;
+      text-align: center;
+      overflow-x: auto;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 1.6em 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    thead th {
+      background: #f1f5f9;
+      color: #1e293b;
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+    tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) { background: #fafafa; }
+    tbody tr:hover { background: #f0f7ff; }
+    tbody tr:last-child td { border-bottom: none; }
+    code {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      background: #f1f5f9;
+      color: #b91c1c;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 1.4em 0;
+      font-size: 0.92em;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; }
+    blockquote {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 14px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 1.4em 0;
+      color: #1e40af;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2.2em 0; }
+    .katex-display {
+      margin: 1.2em 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 6px 0;
+    }
+    .katex { font-size: 1.05em; }
+    
+    /* NotebookLM 原生 D3 互動心智圖樣式 */
+    .mindmap-box {
+      margin: 2em 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .mindmap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .mindmap-title {
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mindmap-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .mm-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: #334155;
+      transition: all 0.2s;
+    }
+    .mm-btn:hover { background: #f1f5f9; }
+    #tree-svg-container {
+      width: 100%;
+      height: 520px;
+      background: #ffffff;
+      cursor: grab;
+    }
+    #tree-svg-container:active { cursor: grabbing; }
+    .node circle {
+      cursor: pointer;
+      stroke-width: 2.5px;
+      transition: all 0.2s;
+    }
+    .node circle:hover { transform: scale(1.25); }
+    .node text {
+      font-size: 13px;
+      font-weight: 500;
+      font-family: inherit;
+      fill: #1e293b;
+      cursor: pointer;
+      paint-order: stroke fill;
+      stroke: #ffffff;
+      stroke-width: 4.5px;
+      stroke-linejoin: round;
+      user-select: none;
+    }
+    .link {
+      fill: none;
+      stroke: #cbd5e1;
+      stroke-width: 1.8px;
+      stroke-opacity: 0.85;
+      transition: stroke-width 0.2s;
+    }
+    .link:hover { stroke: #94a3b8; stroke-width: 2.5px; }
+
+    footer.doc-foot {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      background: #fcfdfe;
+    }
+    .print-btn {
+      position: absolute;
+      top: 36px;
+      right: 40px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .print-btn:hover { background: rgba(255,255,255,0.25); }
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      body {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+      }
+      .container {
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+      }
+      .print-btn, .mindmap-btns {
+        display: none !important;
+      }
+      header.hero {
+        background: var(--header-gradient) !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+        padding: 24px 30px !important;
+        margin-bottom: 20px !important;
+      }
+      header.hero h1 {
+        color: #ffffff !important;
+        font-size: 1.6rem !important;
+      }
+      header.hero .badge {
+        background: rgba(255,255,255,0.2) !important;
+        color: #ffffff !important;
+      }
+      header.hero .meta {
+        color: #cbd5e1 !important;
+      }
+      .content-body {
+        padding: 10px 0 !important;
+      }
+      h1, h2, h3, h4, table, tr, pre, .mermaid, .mindmap-box, blockquote {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      h2, h3 {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <div class="badge">📖 高中課堂互動圖文筆記</div>
+      <button class="print-btn" onclick="window.print()">🖨️ 列印 / 另存 PDF</button>
+      <h1>【歷史】260922_日治至戰後臺灣原住民政策與變遷</h1>
+      <div class="meta">
+        <span>⏱️ 數位筆記儀表板</span>
+        <span>🏷️ 含可縮放互動心智圖、時間軸與觀念對比</span>
+      </div>
+    </header>
+    <div class="content-body">
+      
+      <div class="mindmap-box">
+        <div class="mindmap-header">
+          <div class="mindmap-title">
+            <span>🧠 本課核心知識脈絡（NotebookLM 原生互動心智圖 • 支援縮放與展開）</span>
+          </div>
+          <div class="mindmap-btns">
+            <button class="mm-btn" onclick="expandAll()">展開全部</button>
+            <button class="mm-btn" onclick="collapseAll()">收合分支</button>
+            <button class="mm-btn" onclick="resetZoom()">重設視角</button>
+          </div>
+        </div>
+        <div id="tree-svg-container"></div>
+      </div>
+        
+      <h2>📖 課堂主題與核心摘要 (Class Overview)</h2>
+<p>本堂歷史課以「日治時期至戰後臺灣原住民政策與社會變遷」為核心，梳理了從日治初期佐久間左馬太的「五年理番計畫」、理番警察管理，到爆發震撼國際的「霧社事件」脈絡。課程深入剖析霧社事件的深層背景、導火線及日軍無情鎮壓，並說明事件後總督十塚順藏下台、太田政弘頒布「理番大綱」與實施「大規模集團移住」的政策轉變。最後延伸至皇民化運動下的高砂義勇隊徵召，以及戰後國民政府接收臺灣後的「山地三大運動」、山地保留地劃撥給遷台軍民，乃至1970年代都市原住民（以阿美族為主）向基隆、高雄港口遷徙的社會歷史演變。</p>
+<p>【🌳 本課大綱樹狀心智導圖 (Mindmap)】：</p>
+<div class="mermaid">
+graph LR
+  Root["日治至戰後臺灣原住民政策與變遷"] --> A["日治初期理番與霧社事件"]
+  Root --> B["事件後政策轉向與皇民化"]
+  Root --> C["戰後政府接收與山地政策"]
+  Root --> D["1970年代都市原住民運動"]
+
+  A --> A1["佐久間左馬太五年理番計畫"]
+  A --> A2["莫那魯道與賽德克族背景"]
+  A --> A3["婚宴敬酒衝突導火線"]
+  A --> A4["日軍軍隊鎮壓與毒氣爭議"]
+
+  B --> B1["國際聯盟壓力與十塚順藏下台"]
+  B --> B2["太田政弘理番大綱與溫和同化"]
+  B --> B3["大規模集團移住：川中島"]
+  B --> B4["1937皇民化與高砂義勇隊"]
+
+  C --> C1["1945戰後接收與設山地鄉"]
+  C --> C2["山地三大運動：定根、造林、改生活"]
+  C --> C3["1949遷台軍民與保留地劃撥"]
+
+  D --> D1["1960進口替代與三地開發"]
+  D --> D2["1970移居西部的都市原住民"]
+  D --> D3["基隆與高雄港口：阿美族勞動力"]
+</div>
+<hr />
+<h2>💡 核心知識點與觀念詳解 (Key Concepts)</h2>
+<h3>一、 日治初期理番政策與霧社事件爆發</h3>
+<ul>
+<li><strong>理番政策的演進</strong>：日治初期將原住民分為生番、熟番與劃番，但此分類不利於日人全面開發臺灣山林資源。因此總督佐久間左馬太實施「五年理番計畫」，先用「隘勇線」包圍劃界，後期以「武力開山」，並派遣「蕃地警察」深入部落直接管理。</li>
+<li><strong>莫那魯道與賽德克族的親日背景（老師經典破題與實例）</strong>：</li>
+<li>賽德克族首領莫那魯道原本並不討厭日本，甚至認為日本比清朝文明禮貌。</li>
+<li>日本統治初期曾資助部落頭目赴日觀光，莫那魯道曾坐過飛機、目睹日本大街小巷滿地汽車與一次大戰先進武器，深刻了解日本的強盛。</li>
+<li>莫那魯道將妹嫁給日本蕃地警察，並協助日人開採山林，僅要求避開「祖靈之地」（主林之地）。</li>
+<li><strong>積怨與導火線（婚宴敬酒衝突）</strong>：</li>
+<li><strong>深層積怨</strong>：日人未給足勞動報酬（辛苦工作一個月僅能換取劣酒）、蕃地警察在日已有家室並拋棄莫那魯道之妹、日人不顧承諾強行開採祖靈之地。</li>
+<li><strong>直接導火線</strong>：一次婚宴上，莫那魯道的弟弟向三名蕃地警察敬酒，警察嫌其手髒，用警棍三次打落酒杯。弟弟忍無可忍揮巴掌反擊（原住民常年赤腳打獵，手腳粗糙如菜瓜布，力道極大），導致3名警察毆打1人，隨後引發30名原住民圍毆3名警察。</li>
+<li>莫那魯道事後帶禮陪罪，警察不肯原諒並向總督府通報叛變，逼使莫那魯道發動反抗。</li>
+<li><strong>霧社事件經過與日軍鎮壓</strong>：</li>
+<li><strong>起義時機</strong>：利用公學校運動會，日籍官員與商界名流聚集時突襲開殺。</li>
+<li><strong>叢林戰困境</strong>：日軍派兵600人鎮壓，死傷逾400人。原因在於日軍身穿長靴、攜帶重砲長槍，在臺灣茂密陡峭的叢林中寸步難行。</li>
+<li><strong>臺灣山林的自然屏障</strong>：課堂特別強調臺灣山林極度險惡，密林遮天，且有大雨後木材發黴產生的「瘴癘之氣」（如郁永河《裨海紀遊》所載），以及積水孵化的成千上萬「蚊子」傳播瘧疾與腦炎，許多日軍死於傳染病與自然環境。</li>
+<li><strong>違禁毒氣與烈士結局</strong>：日軍久攻不下，違規動用一戰禁用的毒氣由飛機空投。賽德克族戰士被迫衝出山口遭機關槍掃射，許多族人選擇懸樑或切腹自殺。莫那魯道殉道於山崖，遺體數十年後在台大人類學系地下室被發現（與山豬、黑熊標本堆放一起），直至民國60年代才移回南投仁愛鄉安葬。</li>
+</ul>
+<h3>二、 事件後的國際輿論壓力與理番政策轉向</h3>
+<ul>
+<li><strong>國際聯盟（國聯）輿論與「三個不應該」</strong>：</li>
+<li>臺灣民眾黨向國際聯盟控訴日軍暴行，引發國際社會對日本的強烈譴責。</li>
+<li><strong>日軍的三個巨大錯誤（三不該）</strong>：<ol>
+<li><strong>不該動用軍隊對付平民</strong>：軍隊僅能對外，動用軍隊會被認定為內戰或獨裁（老師舉陳水扁時期警察圍捕槍擊要犯詹龍欄，欲向陸軍借裝甲車衝鋒，高層獲悉後補充說明，強調不能用軍事武器對付國人）。</li>
+<li><strong>不該使用國際禁用的違禁武器（毒氣）</strong>。</li>
+<li><strong>不該強行掠奪原住民土地與勞力</strong>。</li>
+</ol>
+</li>
+<li><strong>總督更替與太田政弘「理番大綱」</strong>：</li>
+<li>總督十塚順藏因國際壓力遭彈劾下台，由太田政弘接任並頒布「理番大綱」。</li>
+<li>政策調整為「溫和理番、撫育同化、移風易俗」。</li>
+<li><strong>大規模集團移住（川中島）</strong>：</li>
+<li>為澈底改變原住民習俗並防止再度反抗，將賽德克族殘存族人「大規模集團移住」至南投川中島（今南投縣仁愛鄉清流部落）。</li>
+</ul>
+<h3>三、 皇民化時期與戰後國民政府的接收與山地政策</h3>
+<ul>
+<li><strong>1937年皇民化運動</strong>：推行皇民化，導致原住民傳統文化加速解體。</li>
+<li><strong>太平洋戰爭（二戰末期）</strong>：日軍將原住民青年徵召組成「高砂義勇隊」，投入東南亞叢林戰場（因原住民擅長叢林地形作戰）。</li>
+<li><strong>1945年戰後接收與強迫改姓</strong>：中華民國政府接收臺灣後，實施強迫改用漢姓，並設置「山地鄉」，以民意代表取代傳統部落頭目與長老。</li>
+<li><strong>三地三大運動</strong>：政府為名正言順取得原住民山地資源與土地，推行「定根（定居耕作）、造林（植樹）、改生活（改善生活）」運動。</li>
+<li><strong>1949年遷台軍民安置</strong>：200萬撤退來台的外省軍民被安置於「山地保留地」，進一步擠壓原住民原有的土地空間。</li>
+</ul>
+<h3>四、 1960-1970年代經濟轉型與都市原住民</h3>
+<ul>
+<li><strong>1960年代山地開發</strong>：進口替代時期，政府開放山地保留地給漢人開發。</li>
+<li><strong>1970年代都市原住民湧現</strong>：隨著臺灣工業化擴張與出口擴張，西部城市極度缺乏勞動力，原住民大量移居都市。</li>
+<li><strong>產業與地理分佈</strong>：</li>
+<li>主要從事高體力勞動的「漁業與礦業」。</li>
+<li>集中於臺灣南北兩大港口城市：<strong>基隆</strong>與<strong>高雄</strong>（採礦與遠洋漁業產品需經由港口輸送）。</li>
+<li><strong>阿美族</strong>是最多且最早移居都市的原住民族群。</li>
+<li><strong>性別分工</strong>：男性從事粗重體力活；女性大多在戶從事「家庭代工」（如老師阿嬤貼貼紙、裝牙籤，1萬張貼紙僅賺50元，收入微薄艱辛）。</li>
+</ul>
+<hr />
+<p>【⏱️ 時序時間軸 / 步驟流程圖】：</p>
+<div class="mermaid">
+timeline
+    title 臺灣原住民政策與社會變遷時間軸
+    日治初期 (1900-1920s) : 佐久間左馬太「五年理番計畫」 : 隘勇線劃界、武力開山、蕃地警察管理
+    1930年 : 霧社事件爆發 : 婚宴敬酒衝突為導火線 : 日軍動用毒氣鎮壓與賽德克族抗暴
+    1931年 : 政策轉折與集團移住 : 十塚順藏下台、太田政弘頒布「理番大綱」 : 大規模集團移住至川中島（仁愛鄉）
+    1937-1945年 : 皇民化與二戰末期 : 皇民化運動導致文化解體 : 徵召「高砂義勇隊」前往東南亞打叢林戰
+    1945-1949年 : 戰後接收與山地政策 : 中華民國接收臺灣、強迫改漢姓 : 設山地鄉、推行「三地三大運動」 : 200萬遷台軍民安置於保留地
+    1960-1970年代 : 都市原住民與工業化 : 進口替代與出口擴張 : 阿美族大量移居基隆、高雄港口從事漁礦業
+</div>
+<hr />
+<p>【📊 觀念與易混淆對比表】：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">對比維度</th>
+<th style="text-align: left;">日治初期理番政策</th>
+<th style="text-align: left;">日治中後期政策（霧社事件後）</th>
+<th style="text-align: left;">戰後國民政府山地政策</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>核心主持者/法規</strong></td>
+<td style="text-align: left;">佐久間左馬太（五年理番計畫）</td>
+<td style="text-align: left;">太田政弘（理番大綱）</td>
+<td style="text-align: left;">中華民國政府（山地三大運動）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>主要理番手段</strong></td>
+<td style="text-align: left;">隘勇線圍劃、武力開山、警政嚴管</td>
+<td style="text-align: left;">溫和理番、撫育同化、移風易俗</td>
+<td style="text-align: left;">強迫改漢姓、設山地鄉、民代取代頭目</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>人口與土地政策</strong></td>
+<td style="text-align: left;">小規模集團移住、開發山林資源</td>
+<td style="text-align: left;">大規模集團移住（如賽德克族移至川中島）</td>
+<td style="text-align: left;">開放保留地給漢人與遷台軍民，推行「定根、造林、改生活」</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>文化與社會影響</strong></td>
+<td style="text-align: left;">觸發激烈武力抗爭（霧社事件）</td>
+<td style="text-align: left;">1937皇民化運動，原住民傳統文化解體</td>
+<td style="text-align: left;">原住民失去土地，1970年代大量轉化為都市原民勞工</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>⚠️ 老師強調考點與易錯陷阱 (Exam Focus &amp; Pitfalls)</h2>
+<ol>
+<li><strong>霧社事件的起因非單一「仇日」</strong>：<br />
+   * <strong>必考點</strong>：莫那魯道初期極度讚賞日本文明與國力，並將妹妹嫁給日警。事件爆發是「長期薪資剝削、妹妹被拋棄、聖地被侵犯」與「婚宴敬酒打落酒杯」等衝突疊加的結果。</li>
+<li><strong>國際輿論與政局變動</strong>：<br />
+   * <strong>星號必背</strong>：臺灣民眾黨向「國際聯盟」控告日本，導致總督十塚順藏遭彈劾下台，繼任者太田政弘才推出「理番大綱」與「川中島集團移住」。</li>
+<li><strong>二戰期間的徵召</strong>：<br />
+   * <strong>常見陷阱</strong>：太平洋戰爭即二戰末期戰場，非兩場獨立戰爭。原住民被組編成「高砂義勇隊」是投放在「東南亞」進行叢林戰，而非中國戰場。</li>
+<li><strong>戰後山地三大運動的實質目的</strong>：<br />
+   * <strong>考點解析</strong>：口訣「定根、造林、改生活」，表面為輔導原住民農耕生活，實質為政府名正言順取得原住民山地土地與資源。</li>
+<li><strong>都市原住民的地理與族群特徵</strong>：<br />
+   * <strong>命題方向</strong>：1970年代都市原住民主要集中在<strong>基隆與高雄</strong>兩大港口（從事漁業與採礦業），且以<strong>阿美族</strong>人數最多、離鄉最早。</li>
+</ol>
+<hr />
+<h2>🔑 記憶口訣與解題技巧 (Mnemonics &amp; Shortcuts)</h2>
+<ol>
+<li><strong>戰後山地三大運動必背口訣</strong>：<br />
+   * 快速記憶：<strong>「定根、造林、改生活」</strong><br />
+   * 拆解：定居耕作（定根）＋ 植樹造林（造林）＋ 改善習慣（改生活） = 取得土地的名目。</li>
+<li><strong>日治理番政策演變四字 SOP</strong>：<br />
+   * <strong>「隘」線圍劃 \(\rightarrow\) 「武」力開山 \(\rightarrow\) 「警」政管理 \(\rightarrow\) 「溫」和移住（川中島） \(\rightarrow\) 「皇」民徵召</strong><br />
+   * （口訣提示：隘 \(\rightarrow\) 武 \(\rightarrow\) 警 \(\rightarrow\) 溫 \(\rightarrow\) 皇）</li>
+<li><strong>都市原住民破題關鍵字判斷</strong>：<br />
+   * 題目出現「1970年代」、「遠洋漁業 / 採礦業」、「家庭代工」、「基隆 / 高雄港口」 \(\rightarrow\) 破題直接鎖定：<strong>都市原住民（阿美族為主）</strong>。</li>
+</ol>
+<hr />
+<h2>📝 課後作業與待辦事項 (Homework &amp; Tasks)</h2>
+<ul>
+<li><strong>課堂交代事項</strong>：課堂中老師引導學生於課本/講義划線重點（包括1937皇民化、高砂義勇隊、戰後山地三大運動等核心概念）。</li>
+<li><strong>待辦事項</strong>：無特定作業。請同學課後自主複習本篇筆記，並熟記三地三大運動口訣與霧社事件前後政策轉變對比。</li>
+</ul>
+<hr />
+<h2>📚 專有名詞與重要公式/定義 (Glossary &amp; Formulas)</h2>
+<ul>
+<li><strong>五年的理番計畫 (Five-Year Governance Plan)</strong>: 日治初期總督佐久間左馬太提出的原住民治理政策，以隘勇線包圍、武力開山及理番警察壓制原住民，藉以開採山林資源。</li>
+<li><strong>霧社事件 (Wushe Incident, 1930)</strong>: 賽德克族首領莫那魯道因不滿日人長期剝削與警察壓迫，於公學校運動會發動的反抗事件，遭日軍以毒氣與重兵殘酷鎮壓。</li>
+<li><strong>理番大綱與川中島 (Policy Outline &amp; Kawanakajima)</strong>: 霧社事件後總督太田政弘頒布的溫和同化政策，並將賽德克族殘部大規模集團移住至南投川中島（今南投仁愛鄉清流部落）。</li>
+<li><strong>高砂義勇隊 (Takasago Volunteers)</strong>: 太平洋戰爭爆發後，日軍利用臺灣原住民精通叢林作戰特長所組成的臺灣原住民義勇軍，投放在東南亞戰場。</li>
+<li><strong>山地三大運動</strong>: 戰後國民政府於原住民山地鄉推行的「定根、造林、改生活」運動，實質目的在於取得山地保留地與國家資源管理權。</li>
+<li><strong>都市原住民 (Urban Indigenous People)</strong>: 1970年代因臺灣經濟轉型與工業化缺工，由原鄉移居西部位於基隆、高雄等港口城市從事漁礦業與基層勞動的原住民群體。</li>
+</ul>
+<hr />
+<h2>🧠 課後自測題 (Quick Review Quiz)</h2>
+<p><strong>第一題：單選思考題</strong><br />
+日治時期霧社事件爆發後，引發國際聯盟的高度關注與輿論壓力，最終導致時任臺灣總督十塚順藏下台。請問當時向國際社會揭發日軍使用違禁毒氣與軍隊暴行的臺灣本土政治團體為何？<br />
+(A) 臺灣文化協會<br />
+(B) 臺灣民眾黨<br />
+(C) 臺灣地方自治聯盟<br />
+(D) 臺灣共產黨</p>
+<blockquote>
+<p><strong>【解析與答案】</strong><br />
+<strong>答案：(B)</strong><br />
+課堂強調，當時向國際聯盟控告臺灣總督十塚順藏違反國際公約、動用毒氣與軍隊對付平民的團體正是<strong>臺灣民眾黨</strong>，此舉成功塑造國際壓力，迫使總督下台並轉向「溫和理番」。</p>
+</blockquote>
+<hr />
+<p><strong>第二題：觀念簡答題</strong><br />
+戰後國民政府在原住民地區推行「山地三大運動」，請寫出其三大運動的口訣內容，並簡述政府推行此運動背後的實質土地目的。</p>
+<blockquote>
+<p><strong>【解析與答案】</strong><br />
+1. <strong>三大運動口訣</strong>：<strong>「定根、造林、改生活」</strong>（即定居耕作、植樹造林、改善生活）。<br />
+2. <strong>實質目的</strong>：表面上為輔導原住民轉型農業與提升生活水準，實質上係政府藉由規範土地使用名目，逐步取得與控管原住民傳統山地保留地資源。</p>
+</blockquote>
+<p>💡 這份整理涵蓋了整堂課的脈絡與經典細節。如果你需要將這份筆記製作成「單元複習測驗卷」或是「簡報/圖卡摘要」，請隨時告訴我！</p>
+    </div>
+    <footer class="doc-foot">
+      自動生成於 NotebookLM Study Assistant • 專為高中學生課後複習與考前衝刺打造
+    </footer>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.mermaid) {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'neutral',
+          fontFamily: "'Noto Sans TC', 'Inter', sans-serif",
+          flowchart: { curve: 'basis', htmlLabels: true },
+          securityLevel: 'loose'
+        });
+      }
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+  
+  <script>
+    (function() {
+      const treeData = {"name": "日治初期理番與霧社事件", "children": [{"name": "佐久間左馬太五年理番計畫"}, {"name": "莫那魯道與賽德克族背景"}, {"name": "婚宴敬酒衝突導火線"}, {"name": "日軍軍隊鎮壓與毒氣爭議"}]};
+      const container = document.getElementById("tree-svg-container");
+      if (!container || !treeData) return;
+
+      const width = container.clientWidth || 880;
+      const height = 520;
+
+      const svg = d3.select("#tree-svg-container")
+        .append("svg")
+        .attr("width", "100%")
+        .attr("height", height)
+        .attr("viewBox", [0, 0, width, height]);
+
+      const g = svg.append("g");
+
+      const zoom = d3.zoom()
+        .scaleExtent([0.25, 2.5])
+        .on("zoom", (e) => g.attr("transform", e.transform));
+
+      svg.call(zoom);
+
+      const root = d3.hierarchy(treeData);
+      root.x0 = height / 2;
+      root.y0 = 0;
+
+      let i = 0;
+      const duration = 380;
+      // [dy, dx]: 垂直節距 58px (確保上下不重疊), 水平層級 320px (確保長文字不穿透父層)
+      const treeLayout = d3.tree().nodeSize([58, 320]);
+
+      function splitNodeText(text, maxChars) {
+        if (!text) return [""];
+        if (text.length <= maxChars) return [text];
+
+        // 優先在括號處斷行，例如：世風日下之自身矛盾對比（擇師教子 vs. 於身恥師）
+        const parenIdx = text.search(/[（(]/);
+        if (parenIdx >= 3 && parenIdx <= maxChars + 4) {
+          const p1 = text.slice(0, parenIdx).trim();
+          const p2 = text.slice(parenIdx).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 優先在冒號、破折號、頓號處斷行
+        const sepIdx = text.search(/[：:—、]/);
+        if (sepIdx >= 3 && sepIdx <= maxChars + 2) {
+          const p1 = text.slice(0, sepIdx + 1).trim();
+          const p2 = text.slice(sepIdx + 1).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 預設在 maxChars 處均勻斷行
+        return [text.slice(0, maxChars), text.slice(maxChars)];
+      }
+
+      if (root.children) {
+        root.children.forEach(c => {
+          if (c.children) {
+            c.children.forEach(collapse);
+          }
+        });
+      }
+
+      function collapse(d) {
+        if (d.children) {
+          d._children = d.children;
+          d._children.forEach(collapse);
+          d.children = null;
+        }
+      }
+
+      function expand(d) {
+        if (d._children) {
+          d.children = d._children;
+          d.children.forEach(expand);
+          d._children = null;
+        }
+      }
+
+      const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
+
+      function getNodeColor(d) {
+        if (d.depth === 0) return "#2563eb";
+        let p = d;
+        while (p.depth > 1) p = p.parent;
+        return colorScale(p.data.name);
+      }
+
+      function update(source) {
+        const nodes = root.descendants();
+        const links = root.links();
+
+        treeLayout(root);
+
+        const node = g.selectAll("g.node")
+          .data(nodes, d => d.id || (d.id = ++i));
+
+        const nodeEnter = node.enter().append("g")
+          .attr("class", "node")
+          .attr("transform", d => `translate(${source.y0},${source.x0})`)
+          .on("click", (event, d) => {
+            if (d.children) {
+              d._children = d.children;
+              d.children = null;
+            } else if (d._children) {
+              d.children = d._children;
+              d._children = null;
+            }
+            update(d);
+          });
+
+        nodeEnter.append("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        const textNode = nodeEnter.append("text")
+          .attr("class", "node-text")
+          .attr("text-anchor", d => (d.children || d._children) ? "end" : "start")
+          .style("fill-opacity", 0);
+
+        textNode.each(function(d) {
+          const el = d3.select(this);
+          const isParent = Boolean(d.children || d._children);
+          const xOffset = isParent ? -14 : 14;
+          const maxChars = isParent ? 13 : 18;
+          const lines = splitNodeText(d.data.name, maxChars);
+
+          if (lines.length === 1) {
+            el.attr("x", xOffset)
+              .attr("dy", "0.32em")
+              .text(lines[0]);
+          } else {
+            el.attr("x", xOffset)
+              .attr("dy", "-0.35em")
+              .text(lines[0]);
+            el.append("tspan")
+              .attr("x", xOffset)
+              .attr("dy", "1.25em")
+              .text(lines[1]);
+          }
+        });
+
+        const nodeUpdate = node.merge(nodeEnter).transition().duration(duration)
+          .attr("transform", d => `translate(${d.y},${d.x})`);
+
+        nodeUpdate.select("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        nodeUpdate.select("text")
+          .style("fill-opacity", 1);
+
+        const nodeExit = node.exit().transition().duration(duration)
+          .attr("transform", d => `translate(${source.y},${source.x})`)
+          .remove();
+
+        nodeExit.select("circle").attr("r", 1e-6);
+        nodeExit.select("text").style("fill-opacity", 1e-6);
+
+        const link = g.selectAll("path.link")
+          .data(links, d => d.target.id);
+
+        const linkEnter = link.enter().insert("path", "g")
+          .attr("class", "link")
+          .attr("d", d => {
+            const o = {x: source.x0, y: source.y0};
+            return diagonal(o, o);
+          });
+
+        link.merge(linkEnter).transition().duration(duration)
+          .attr("d", d => diagonal(d.source, d.target));
+
+        link.exit().transition().duration(duration)
+          .attr("d", d => {
+            const o = {x: source.x, y: source.y};
+            return diagonal(o, o);
+          })
+          .remove();
+
+        nodes.forEach(d => {
+          d.x0 = d.x;
+          d.y0 = d.y;
+        });
+      }
+
+      function diagonal(s, d) {
+        return `M ${s.y} ${s.x}
+                C ${(s.y + d.y) / 2} ${s.x},
+                  ${(s.y + d.y) / 2} ${d.x},
+                  ${d.y} ${d.x}`;
+      }
+
+      function autoFitTree(duration = 450) {
+        const nodes = root.descendants();
+        if (!nodes || nodes.length === 0) return;
+
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        nodes.forEach(d => {
+          const isParent = Boolean(d.children || d._children);
+          const leftBound = d.y - (isParent ? 180 : 20);
+          const rightBound = d.y + (isParent ? 20 : 220);
+          const topBound = d.x - 32;
+          const bottomBound = d.x + 32;
+
+          if (leftBound < minX) minX = leftBound;
+          if (rightBound > maxX) maxX = rightBound;
+          if (topBound < minY) minY = topBound;
+          if (bottomBound > maxY) maxY = bottomBound;
+        });
+
+        const fullWidth = container.clientWidth || 880;
+        const fullHeight = height;
+        const treeW = maxX - minX;
+        const treeH = maxY - minY;
+
+        if (treeW <= 0 || treeH <= 0) return;
+
+        const scale = Math.min(0.92, (fullWidth * 0.90) / treeW, (fullHeight * 0.90) / treeH);
+        const clampedScale = Math.max(scale, 0.42);
+
+        const midTreeX = (minX + maxX) / 2;
+        const midTreeY = (minY + maxY) / 2;
+        const tx = fullWidth / 2 - clampedScale * midTreeX;
+        const ty = fullHeight / 2 - clampedScale * midTreeY;
+
+        if (duration > 0) {
+          svg.transition().duration(duration).call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        } else {
+          svg.call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        }
+      }
+
+      window.expandAll = function() {
+        root.each(expand);
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.collapseAll = function() {
+        if (root.children) {
+          root.children.forEach(collapse);
+        }
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.resetZoom = function() {
+        autoFitTree(450);
+      };
+
+      // 首次繪製節點並自動縮放置中全覽
+      update(root);
+      autoFitTree(0);
+    })();
+  </script>
+
+</body>
+</html>

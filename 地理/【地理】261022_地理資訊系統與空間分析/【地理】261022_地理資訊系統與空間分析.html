@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【地理】261022_地理資訊系統與空間分析</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --border: #e2e8f0;
+      --border-focus: #cbd5e1;
+      --tag-bg: #e0f2fe;
+      --tag-text: #0369a1;
+      --header-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans TC', 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.8;
+      font-size: 16px;
+      padding: 30px 16px 60px;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.06), 0 2px 6px -1px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    header.hero {
+      background: var(--header-gradient);
+      color: #ffffff;
+      padding: 36px 40px 30px;
+      position: relative;
+    }
+    header.hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      color: #f1f5f9;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    header.hero h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.5px;
+    }
+    header.hero .meta {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .content-body {
+      padding: 40px 48px;
+    }
+    @media (max-width: 640px) {
+      .content-body { padding: 24px 20px; }
+      header.hero { padding: 28px 24px 22px; }
+      header.hero h1 { font-size: 1.5rem; }
+    }
+    h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 2.2em;
+      margin-bottom: 0.9em;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h2:first-of-type { margin-top: 0.5em; }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1e3a8a;
+      margin-top: 1.6em;
+      margin-bottom: 0.6em;
+      padding-left: 10px;
+      border-left: 4px solid var(--accent);
+    }
+    p { margin-bottom: 1.1em; }
+    ul, ol { margin-bottom: 1.2em; padding-left: 1.8em; }
+    li { margin-bottom: 0.4em; }
+    .mermaid {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 16px;
+      margin: 1.6em 0;
+      text-align: center;
+      overflow-x: auto;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 1.6em 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    thead th {
+      background: #f1f5f9;
+      color: #1e293b;
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+    tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) { background: #fafafa; }
+    tbody tr:hover { background: #f0f7ff; }
+    tbody tr:last-child td { border-bottom: none; }
+    code {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      background: #f1f5f9;
+      color: #b91c1c;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 1.4em 0;
+      font-size: 0.92em;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; }
+    blockquote {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 14px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 1.4em 0;
+      color: #1e40af;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2.2em 0; }
+    .katex-display {
+      margin: 1.2em 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 6px 0;
+    }
+    .katex { font-size: 1.05em; }
+    
+    /* NotebookLM 原生 D3 互動心智圖樣式 */
+    .mindmap-box {
+      margin: 2em 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .mindmap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .mindmap-title {
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mindmap-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .mm-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: #334155;
+      transition: all 0.2s;
+    }
+    .mm-btn:hover { background: #f1f5f9; }
+    #tree-svg-container {
+      width: 100%;
+      height: 520px;
+      background: #ffffff;
+      cursor: grab;
+    }
+    #tree-svg-container:active { cursor: grabbing; }
+    .node circle {
+      cursor: pointer;
+      stroke-width: 2.5px;
+      transition: all 0.2s;
+    }
+    .node circle:hover { transform: scale(1.25); }
+    .node text {
+      font-size: 13px;
+      font-weight: 500;
+      font-family: inherit;
+      fill: #1e293b;
+      cursor: pointer;
+      paint-order: stroke fill;
+      stroke: #ffffff;
+      stroke-width: 4.5px;
+      stroke-linejoin: round;
+      user-select: none;
+    }
+    .link {
+      fill: none;
+      stroke: #cbd5e1;
+      stroke-width: 1.8px;
+      stroke-opacity: 0.85;
+      transition: stroke-width 0.2s;
+    }
+    .link:hover { stroke: #94a3b8; stroke-width: 2.5px; }
+
+    footer.doc-foot {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      background: #fcfdfe;
+    }
+    .print-btn {
+      position: absolute;
+      top: 36px;
+      right: 40px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .print-btn:hover { background: rgba(255,255,255,0.25); }
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      body {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+      }
+      .container {
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+      }
+      .print-btn, .mindmap-btns {
+        display: none !important;
+      }
+      header.hero {
+        background: var(--header-gradient) !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+        padding: 24px 30px !important;
+        margin-bottom: 20px !important;
+      }
+      header.hero h1 {
+        color: #ffffff !important;
+        font-size: 1.6rem !important;
+      }
+      header.hero .badge {
+        background: rgba(255,255,255,0.2) !important;
+        color: #ffffff !important;
+      }
+      header.hero .meta {
+        color: #cbd5e1 !important;
+      }
+      .content-body {
+        padding: 10px 0 !important;
+      }
+      h1, h2, h3, h4, table, tr, pre, .mermaid, .mindmap-box, blockquote {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      h2, h3 {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <div class="badge">📖 高中課堂互動圖文筆記</div>
+      <button class="print-btn" onclick="window.print()">🖨️ 列印 / 另存 PDF</button>
+      <h1>【地理】261022_地理資訊系統與空間分析</h1>
+      <div class="meta">
+        <span>⏱️ 數位筆記儀表板</span>
+        <span>🏷️ 含可縮放互動心智圖、時間軸與觀念對比</span>
+      </div>
+    </header>
+    <div class="content-body">
+      
+      <div class="mindmap-box">
+        <div class="mindmap-header">
+          <div class="mindmap-title">
+            <span>🧠 本課核心知識脈絡（NotebookLM 原生互動心智圖 • 支援縮放與展開）</span>
+          </div>
+          <div class="mindmap-btns">
+            <button class="mm-btn" onclick="expandAll()">展開全部</button>
+            <button class="mm-btn" onclick="collapseAll()">收合分支</button>
+            <button class="mm-btn" onclick="resetZoom()">重設視角</button>
+          </div>
+        </div>
+        <div id="tree-svg-container"></div>
+      </div>
+        
+      <h2>📖 課堂主題與核心摘要 (Class Overview)</h2>
+<p>本堂課為高中地理科關於「地理資訊系統（GIS）與空間分析」的重點精華課程 [1, 2]。課堂首先釐清地理資訊（Geographic Information）係由「空間資料」與「屬性資料」結合而成，並以台北市立明倫高中的空間坐標與行政屬性作為實例剖析 [1, 3, 4]。接著深入比較 GIS 資料庫中的「向量模式」與「網格模式」之儲存架構、幾何特性與適用時機 [5, 6]。最後詳盡說明 GIS 四大核心空間分析功能（緩衝區分析、路網分析、地形分析、疊圖分析）的運算邏輯，並結合全球定位系統（GPS）、颱風路徑、高鐵震動管制、阿妹演唱會震動爭議、基隆河氾濫平原與 300 年台灣海岸線變遷等豐富的生活與考題實例進行解構 [1, 7-9]。</p>
+<div class="mermaid">
+graph LR
+  Root["地理資訊系統 (GIS)"] --> A["地理資料構成"]
+  Root --> B["資料儲存模式"]
+  Root --> C["四大空間分析功能"]
+  Root --> D["數值地形模型 (DTM)"]
+
+  A --> A1["空間資料 (坐標/圖元)"]
+  A --> A2["屬性資料 (文字/數值)"]
+
+  B --> B1["向量模式 (點/線/面精確坐標)"]
+  B --> B2["網格模式 (網格像素/連續現象)"]
+
+  C --> C1["緩衝區分析 (點線面擴散距離)"]
+  C --> C2["路網分析 (最佳路徑/塞車避讓)"]
+  C --> C3["地形分析 (坡度/坡向/視網/淹水)"]
+  C --> C4["疊圖分析 (多圖套疊/跨時間比對)"]
+
+  D --> D1["網格高程 Z 值 (16m×16m)"]
+  D --> D2["地勢走向與水系流向模擬"]
+</div>
+<hr />
+<h2>💡 核心知識點與觀念詳解 (Key Concepts)</h2>
+<h3>一、 地理資訊（GIS Data）的兩大核心構成</h3>
+<p>地理資訊系統（Geographic Information System, GIS）係結合地理學、電腦軟體、全球定位系統（GPS）與衛星遙測技術之綜合資訊系統 [1]。電腦欲處理地理資訊，必須同時具備以下兩種資料 [1]：</p>
+<ol>
+<li><strong>空間資料（Spatial Data）</strong>：代表地物在空間中的幾何位置與形狀 [1, 4]。包含點、線、面等二維坐標位置，例如使用 TWD97 二度分帶坐標系統標註地點 [4]。</li>
+<li><strong>屬性資料（Attribute Data）</strong>：代表地物的非空間特徵、名稱、說明文字或統計數值 [1, 4]。</li>
+</ol>
+<p>\[\text{地理資料 (Geographic Data)} = \text{空間資料 (Spatial Data)} + \text{屬性資料 (Attribute Data)}\] [1, 4]</p>
+<h4>🏫 課堂經典範例：明倫高中的 GIS 資料庫建立</h4>
+<p>老師在課堂上以「明倫高中」在網路與 GIS 資料庫中的儲存方式進行剖析 [3, 4]：<br />
+* <strong>屬性資料</strong>：學校名稱（明倫高中）、地址（台北市承德路三段 360 號）、郵遞區號（10580）、聯絡電話（2596-1567 轉 14）、全校總人數（約 1,600 人，每年級約 15 班，每班約 30 人）[3, 4, 10]。<br />
+* <strong>空間資料</strong>：明倫高中的二度分帶坐標，或是校區在地圖上的多邊形邊界點坐標 [4]。<br />
+* <strong>歷史生活插曲</strong>：明倫高中的正門雖已改至敦煌路，但官方登記地址仍維持承德路 [4, 10]。台北市許多路名反映了中國大陸地理名稱（如敦煌路、玉門街、哈密街、酒泉街、承德路等皆集中於西北方，象徵過去時代背景下的路名規劃思維）[4, 11]。</p>
+<hr />
+<h3>二、 地理資料儲存模式：向量模式 vs. 網格模式</h3>
+<p>電腦儲存空間資料主要分為「向量模式」與「網格模式」兩種架構 [5]：</p>
+<ol>
+<li>
+<p><strong>向量模式（Vector Model）</strong>：<br />
+   * <strong>原理</strong>：利用明確的二維坐標點 \((x_1, y_1), (x_2, y_2)\) 透過點、線、面連結來儲存地物 [5]。<br />
+   * <strong>特點</strong>：精確度高、圖像細緻、資料結構較複雜、佔用較多對應邏輯區域 [5, 6]。<br />
+   * <strong>適用對象</strong>：精密都市內部特徵、明確幾何邊界的現象，如道路線條、公園邊界、橋樑、公用設施、縣市行政界線與學校校區等 [6]。</p>
+</li>
+<li>
+<p><strong>網格模式（Raster Model）</strong>：<br />
+   * <strong>原理</strong>：將空間分割成規則的方形格子（網格/像素），每一格賦予單一屬性值 [5]。<br />
+   * <strong>特點</strong>：結構簡單、易於進行多圖層疊加計算，但圖元解析度受限於格子大小 [5, 6]。<br />
+   * <strong>適用對象</strong>：</p>
+<ul>
+<li><strong>均勻且連續的地理現象</strong>：如一望無際的沙漠、連綿森林、廣袤草原 [6]。</li>
+<li><strong>隨時間或空間連續變化的數值</strong>：如氣溫等溫線、空氣品質（AQI / \(\text{PM}_{2.5}\)）、大氣壓力等 [12]。</li>
+</ul>
+</li>
+</ol>
+<h4>🎨 老師比喻說明：畫同學「私一凱」的人像圖</h4>
+<p>老師於黑板舉例，若要在電腦中儲存「私一凱」同學的畫像 [5, 13]：<br />
+* 若使用<strong>向量模式</strong>繪製，能精準描繪出其可愛的中分髮型與燦爛笑容，細節清晰可辨 [5, 13]。<br />
+* 若使用<strong>網格模式</strong>繪製，則會因為格子解析度限制，填滿格子後呈現出類似小綠人或像素點陣圖的輪廓，無法看清具體面貌特徵 [5, 13]。</p>
+<hr />
+<h3>三、 GIS 四大核心空間分析功能（Spatial Analysis）</h3>
+<div class="mermaid">
+graph TD
+  Problem["課堂實務應用與考題情境"] --> Decision{"分析需求判斷"}
+
+  Decision -- "中心向外輻射特定距離/範圍" --> Buffer["緩衝區分析 (Buffer)"]
+  Decision -- "道路路網/最短時間與避塞車" --> Network["路網分析 (Network)"]
+  Decision -- "高程/坡度/視線瞭望/淹水" --> Terrain["地形分析 (Terrain/DTM)"]
+  Decision -- "多圖層比對/交集/歷史演變" --> Overlay["疊圖分析 (Overlay)"]
+
+  Buffer --> Ex1["例：飛彈射程、工廠噪音、機場航高管制、高鐵震動區"]
+  Network --> Ex2["例：台北車站開車路線選擇、救災最速規劃"]
+  Terrain --> Ex3["例：涼亭/瞭望台選址、藍陽平原淹水模擬、土石流潛勢區"]
+  Overlay --> Ex4["例：300年海岸線變遷、買房條件篩選、新市鎮選址"]
+</div>
+<h4>1. 緩衝區分析（Buffer Analysis）</h4>
+<ul>
+<li><strong>定義</strong>：以點、線、面等空間單元為中心，向外擴散劃定特定距離或範圍的區域 [7]。</li>
+<li><strong>課堂經典實例</strong>：</li>
+<li><strong>點的緩衝區</strong>：鐵工廠噪音影響範圍 [7]；張惠妹（阿妹）於台北小巨蛋舉辦演唱會時唱《三天三夜》，因萬人同時跳動引發周邊居民房屋震動與噪音抗議，遭裁罰與禁唱規定 [8]；北韓發射飛彈射程設定 4,000 公里所能涵蓋的地理範圍 [14]。</li>
+<li><strong>線的緩衝區</strong>：蘇花改或公路沿線的空氣污染擴散範圍 [9, 15]；基隆河沿岸的河川氾濫影響範圍 [14]；高鐵行經路段因行駛震動而劃定的「半導體晶圓廠禁設管制範圍」[9]。</li>
+<li><strong>面的緩衝區</strong>：展覽館周邊音量干擾區域 [7]；松山機場周邊飛航管制區限制樓層高度不得超過 14 樓（防止飛機起降碰撞）[16]。</li>
+<li><strong>生態與防救災延伸</strong>：基隆河兩側氾濫平原因水患風險，大多僅能規劃為籃球場、網球場、匹克球場（Pickleball）、停車場或流動廁所等非固定式簡易設施，避免洪水沖毀鋼筋水泥建築 [14, 16]。</li>
+</ul>
+<h4>2. 路網分析（Network Analysis）</h4>
+<ul>
+<li><strong>定義</strong>：基於線形交通路網圖層，進行最佳路徑規劃、時間成本計算、避開塞車或事故路段分析 [8, 17]。</li>
+<li><strong>課堂經典實例</strong>：</li>
+<li><strong>前往台北車站路徑選擇</strong>：走承德路直行需 20 分鐘（路程短但紅綠燈多、易塞車）；若改走環河北路/清昌橋快速道路雖行駛里程較遠，但僅需 18 分鐘 [17]。</li>
+<li><strong>高速公路塞車救援與替代道路導引</strong> [17]。</li>
+</ul>
+<h4>3. 地形分析（Terrain / Topographic Analysis）</h4>
+<ul>
+<li><strong>定義</strong>：利用數值地形模型（DTM/DEM）針對高度、坡度、坡向、水流方向及視線範圍進行計算與模擬 [17, 18]。</li>
+<li><strong>課堂經典實例</strong>：</li>
+<li><strong>視網與瞭望台選址</strong>：森林火災防火瞭望台或觀景涼亭選址，需登高極目四方並進行「兩點連線視線分析」以確保無地形遮蔽 [17, 18]。</li>
+<li><strong>淹水高度模擬</strong>：模擬海平面或降雨水位上升 2 公分、5 公分、1 公尺、5 公尺至 10 公尺時，宜蘭蘭陽平原將被淹沒的土地面積與範圍 [17, 18]。</li>
+<li><strong>土石流潛勢區評估</strong>：結合雨量、土石鬆散堆積量與地形坡度剖面進行綜合判讀 [9, 19]。</li>
+</ul>
+<h4>4. 疊圖分析（Overlay Analysis）</h4>
+<ul>
+<li><strong>定義</strong>：將兩幅或多幅同坐標系、同投影、同比例尺的空間圖層進行交集（AND）、聯集（OR）或差集計算 [9, 20]。</li>
+<li><strong>課堂經典實例</strong>：</li>
+<li><strong>跨時間地景變遷</strong>：比對近 300 年台灣西部海岸線變遷（透過多張歷史地圖套疊，觀察陸地淤積增長或海水侵蝕退縮狀況）[9, 20]。</li>
+<li><strong>複合條件篩選</strong>：小明委託房屋仲介購屋，輸入預算、鄰近捷運站、非災害區等多重條件進行圖層交集篩選 [9, 15]。</li>
+<li><strong>最佳區位選址</strong>：新市鎮開發（如林口新市鎮開發選址）或大型工業區最佳地點評估 [9, 19]。</li>
+</ul>
+<hr />
+<h3>📊 觀念與易混淆對比表</h3>
+<h4>表一：向量模式 vs. 網格模式對比</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">對比項目</th>
+<th style="text-align: left;">向量模式 (Vector Model)</th>
+<th style="text-align: left;">網格模式 (Raster Model)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>基本單元</strong></td>
+<td style="text-align: left;">明確的點 \((x, y)\)、線、面幾何坐標 [5]</td>
+<td style="text-align: left;">規則的方形網格（像素 Grid/Pixel）[5]</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>圖形品質</strong></td>
+<td style="text-align: left;">細緻、邊界明確、解析度高 [5, 13]</td>
+<td style="text-align: left;">呈網格狀（像素化/小綠人圖案）[13]</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>資料結構</strong></td>
+<td style="text-align: left;">較複雜 [5, 6]</td>
+<td style="text-align: left;">簡單、便於圖層運算 [5, 6]</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>代表性應用</strong></td>
+<td style="text-align: left;">精密都市特徵（道路、行政界線、校園建物）[6]</td>
+<td style="text-align: left;">連續地理現象（沙漠、森林、氣溫、AQI、氣壓）[6, 12]</td>
+</tr>
+</tbody>
+</table>
+<h4>表二：GIS 四大空間分析應用場景對比</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">空間分析功能</th>
+<th style="text-align: left;">核心判斷關鍵字</th>
+<th style="text-align: left;">課堂典型考題範例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>緩衝區分析</strong></td>
+<td style="text-align: left;">環狀範圍、輻射距離、影響區域 [7]</td>
+<td style="text-align: left;">飛彈射程 [14]、工廠/演唱會噪音 [7, 8]、機場防航高管制 [16]</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>路網分析</strong></td>
+<td style="text-align: left;">最佳路徑、最短時間、塞車替代道路 [8, 17]</td>
+<td style="text-align: left;">前往台北車站最速路線選擇 [17]、高速公路塞車導引 [17]</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>地形分析</strong></td>
+<td style="text-align: left;">高程、坡度、視網、瞭望、淹水模擬 [17]</td>
+<td style="text-align: left;">防火瞭望台/涼亭選址 [17]、蘭陽平原淹水高度模擬 [18]</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>疊圖分析</strong></td>
+<td style="text-align: left;">多圖套疊、複合條件交集、跨時間比對 [9, 20]</td>
+<td style="text-align: left;">近300年西部海岸線變遷 [9]、購屋條件多重篩選 [9]</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>⚠️ 老師強調考點與易錯陷阱 (Exam Focus &amp; Pitfalls)</h2>
+<h3>📌 必考重點 (Exam Focus)</h3>
+<ol>
+<li><strong>地理資料判讀</strong>：考試給定一組資料，必須精準分辨何者為「空間資料」（如 TWD97 坐標、坐標點）、何者為「屬性資料」（如校名、電話、人數），兩者結合方為「地理資料」[1, 4]。</li>
+<li><strong>空間分析題型破題</strong>：<br />
+   * 題目出現「擴散距離、受影響範圍、管制區」\(\rightarrow\) 必選 <strong>緩衝區分析</strong> [7, 9]。<br />
+   * 題目出現「淹水深度、看得到/看不到、涼亭觀景」\(\rightarrow\) 必選 <strong>地形分析</strong> [9, 17]。<br />
+   * 題目出現「找出同時符合 A、B、C 三種條件的地點」\(\rightarrow\) 必選 <strong>疊圖分析</strong> [9, 15]。</li>
+</ol>
+<h3>❌ 常見易錯陷阱 (Common Pitfalls)</h3>
+<ol>
+<li><strong>GIS 與 GPS 概念混淆</strong>：GPS（全球定位系統）僅為提供坐標定位的硬體工具，僅屬 GIS 系統中的一部分資料來源，不可將 GIS 與 GPS 劃上等號 [1]。</li>
+<li><strong>數值地形模型（DTM）模式誤判</strong>：DTM 雖然用來表示地形高程，但在電腦儲存上屬於「網格模式」（將空間劃分為若干網格，每格紀錄中心點的高程 \(Z\) 值）[18, 21]。</li>
+<li><strong>高鐵禁設晶圓廠區間分析</strong>：此考題旨在避免震動影響晶片精密生產，是以高鐵軌道（線）向外延伸特定距離，屬於典型的「緩衝區分析」，切勿誤選為路網或疊圖分析 [9]。</li>
+</ol>
+<hr />
+<h2>🔑 記憶口訣與解題技巧 (Mnemonics &amp; Shortcuts)</h2>
+<h3>💡 GIS 空間分析解題 SOP 判斷法</h3>
+<p>\[\text{讀題關鍵字} \longrightarrow \begin{cases} <br />
+\text{距離/影響範圍/管制界線} &amp;\Rightarrow \text{\textbf{緩衝區分析 (Buffer)}} [7] \<br />
+\text{路線/塞車/最短時間/運輸} &amp;\Rightarrow \text{\textbf{路網分析 (Network)}} [8, 17] \<br />
+\text{高程/坡度/視線/瞭望/淹水} &amp;\Rightarrow \text{\textbf{地形分析 (Terrain)}} [17] \<br />
+\text{多條件篩選/跨年代比對/交集} &amp;\Rightarrow \text{\textbf{疊圖分析 (Overlay)}} [9, 20]<br />
+\end{cases}\]</p>
+<hr />
+<h2>📝 課後作業與待辦事項 (Homework &amp; Tasks)</h2>
+<ul>
+<li><strong>課堂作業</strong>：本堂課無特定書面作業 [20, 21]。</li>
+<li><strong>課後待辦</strong>：<br />
+  1. 熟記向量模式與網格模式的適用時機（都市精密幾何用向量，連續氣候/面狀自然現象用網格）[6, 12]。<br />
+  2. 熟練五種以上空間分析實例判讀，預備下週一課堂單元測驗 [9, 21]。</li>
+</ul>
+<hr />
+<h2>📚 專有名詞與重要公式/定義 (Glossary &amp; Formulas)</h2>
+<ul>
+<li><strong>GIS（地理資訊系統）</strong>：結合硬體、軟體與地理空間資料，進行擷取、儲存、更新、操作、分析與展現空間資訊的電腦系統 [1]。</li>
+<li><strong>GPS（全球定位系統）</strong>：利用衛星群進行全球地表三維坐標定位的系統 [1]。</li>
+<li><strong>空間資料 (Spatial Data)</strong>：表達地物空間位置與幾何特徵之資料，如二度分帶平面坐標 \((X, Y)\) [1, 4]。</li>
+<li><strong>屬性資料 (Attribute Data)</strong>：說明地物非空間特徵之文字、表格、圖像或數值記錄 [1, 4]。</li>
+<li><strong>向量模式 (Vector Model)</strong>：利用精確幾何點坐標 \((x, y)\) 連結點、線、面來表示地物的資料結構 [5]。</li>
+<li><strong>網格模式 (Raster Model)</strong>：將空間切分為規則方形網格（Grid），以像素點矩陣儲存屬性值的資料結構 [5]。</li>
+<li><strong>數值地形模型 (DTM / DEM)</strong>：將地表高程以規則網格陣列化儲存，每一網格包含三維坐標 \((X, Y, Z)\)，其中 \(Z\) 為地形高度：<br />
+  \[Z = f(X, Y)\] [18, 21]<br />
+  例如課堂繪製之 \(16\text{ m} \times 16\text{ m}\) 網格 DTM，網格中心紀錄高程數值（如最高點 \(128\text{ m}\)，漸次向西南方降低至 \(64\text{ m}\) 與 \(6\text{ m}\)）[18, 21]。</li>
+</ul>
+<hr />
+<h2>🧠 課後自測題 (Quick Review Quiz)</h2>
+<h3>題一：空間分析功能判讀</h3>
+<p><strong>題目</strong>：竹科某半導體晶圓廠欲評估建廠位置，需同時滿足下列三個條件：（1）坡度小於 5% 的平坦地、（2）距離高鐵軌道 1.5 公里以外（避免微震動干擾）、（3）距離聯外交流道 3 公里以內。請問該科技廠應使用 GIS 的哪一種空間分析功能來找出最佳建廠用地？</p>
+<blockquote>
+<p><strong>解題思維與答案</strong>：<br />
+本題需先利用「地形分析」算出坡度 [17]，再利用「緩衝區分析」分別劃出高鐵軌道外 1.5 公里與交流道 3 公里範圍 [7, 9]，最後將上述三個圖層進行<strong>交集套疊</strong>。因此最終選出最佳地點的核心功能為<strong>疊圖分析（Overlay Analysis）</strong> [9]。</p>
+</blockquote>
+<h3>題二：資料模式選擇</h3>
+<p><strong>題目</strong>：環保署欲建立全台灣「即時空氣品質指標（AQI）」與「各縣市垃圾焚化爐位置」的 GIS 資料庫，請問這兩種資料分別最適合採用何種資料儲存模式？</p>
+<blockquote>
+<p><strong>解題思維與答案</strong>：<br />
+1. 即時空氣品質（AQI）屬於隨時間與空間連續變化的地理現象，最適合採用<strong>網格模式（Raster Model）</strong> [6, 12]。<br />
+2. 各縣市垃圾焚化爐為點狀明確設施，位址幾何界線精確，最適合採用<strong>向量模式（Vector Model）</strong> [5, 6]。</p>
+</blockquote>
+<hr />
+<p>👉 是否需要針對「DTM 數值地形模型的幾何運算」或「GIS 歷年學測指考經典真題拆解」進行更深入的延伸練習？</p>
+    </div>
+    <footer class="doc-foot">
+      自動生成於 NotebookLM Study Assistant • 專為高中學生課後複習與考前衝刺打造
+    </footer>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.mermaid) {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'neutral',
+          fontFamily: "'Noto Sans TC', 'Inter', sans-serif",
+          flowchart: { curve: 'basis', htmlLabels: true },
+          securityLevel: 'loose'
+        });
+      }
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+  
+  <script>
+    (function() {
+      const treeData = {"name": "地理資料構成", "children": [{"name": "空間資料 (坐標/圖元)"}, {"name": "屬性資料 (文字/數值)"}]};
+      const container = document.getElementById("tree-svg-container");
+      if (!container || !treeData) return;
+
+      const width = container.clientWidth || 880;
+      const height = 520;
+
+      const svg = d3.select("#tree-svg-container")
+        .append("svg")
+        .attr("width", "100%")
+        .attr("height", height)
+        .attr("viewBox", [0, 0, width, height]);
+
+      const g = svg.append("g");
+
+      const zoom = d3.zoom()
+        .scaleExtent([0.25, 2.5])
+        .on("zoom", (e) => g.attr("transform", e.transform));
+
+      svg.call(zoom);
+
+      const root = d3.hierarchy(treeData);
+      root.x0 = height / 2;
+      root.y0 = 0;
+
+      let i = 0;
+      const duration = 380;
+      // [dy, dx]: 垂直節距 58px (確保上下不重疊), 水平層級 320px (確保長文字不穿透父層)
+      const treeLayout = d3.tree().nodeSize([58, 320]);
+
+      function splitNodeText(text, maxChars) {
+        if (!text) return [""];
+        if (text.length <= maxChars) return [text];
+
+        // 優先在括號處斷行，例如：世風日下之自身矛盾對比（擇師教子 vs. 於身恥師）
+        const parenIdx = text.search(/[（(]/);
+        if (parenIdx >= 3 && parenIdx <= maxChars + 4) {
+          const p1 = text.slice(0, parenIdx).trim();
+          const p2 = text.slice(parenIdx).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 優先在冒號、破折號、頓號處斷行
+        const sepIdx = text.search(/[：:—、]/);
+        if (sepIdx >= 3 && sepIdx <= maxChars + 2) {
+          const p1 = text.slice(0, sepIdx + 1).trim();
+          const p2 = text.slice(sepIdx + 1).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 預設在 maxChars 處均勻斷行
+        return [text.slice(0, maxChars), text.slice(maxChars)];
+      }
+
+      if (root.children) {
+        root.children.forEach(c => {
+          if (c.children) {
+            c.children.forEach(collapse);
+          }
+        });
+      }
+
+      function collapse(d) {
+        if (d.children) {
+          d._children = d.children;
+          d._children.forEach(collapse);
+          d.children = null;
+        }
+      }
+
+      function expand(d) {
+        if (d._children) {
+          d.children = d._children;
+          d.children.forEach(expand);
+          d._children = null;
+        }
+      }
+
+      const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
+
+      function getNodeColor(d) {
+        if (d.depth === 0) return "#2563eb";
+        let p = d;
+        while (p.depth > 1) p = p.parent;
+        return colorScale(p.data.name);
+      }
+
+      function update(source) {
+        const nodes = root.descendants();
+        const links = root.links();
+
+        treeLayout(root);
+
+        const node = g.selectAll("g.node")
+          .data(nodes, d => d.id || (d.id = ++i));
+
+        const nodeEnter = node.enter().append("g")
+          .attr("class", "node")
+          .attr("transform", d => `translate(${source.y0},${source.x0})`)
+          .on("click", (event, d) => {
+            if (d.children) {
+              d._children = d.children;
+              d.children = null;
+            } else if (d._children) {
+              d.children = d._children;
+              d._children = null;
+            }
+            update(d);
+          });
+
+        nodeEnter.append("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        const textNode = nodeEnter.append("text")
+          .attr("class", "node-text")
+          .attr("text-anchor", d => (d.children || d._children) ? "end" : "start")
+          .style("fill-opacity", 0);
+
+        textNode.each(function(d) {
+          const el = d3.select(this);
+          const isParent = Boolean(d.children || d._children);
+          const xOffset = isParent ? -14 : 14;
+          const maxChars = isParent ? 13 : 18;
+          const lines = splitNodeText(d.data.name, maxChars);
+
+          if (lines.length === 1) {
+            el.attr("x", xOffset)
+              .attr("dy", "0.32em")
+              .text(lines[0]);
+          } else {
+            el.attr("x", xOffset)
+              .attr("dy", "-0.35em")
+              .text(lines[0]);
+            el.append("tspan")
+              .attr("x", xOffset)
+              .attr("dy", "1.25em")
+              .text(lines[1]);
+          }
+        });
+
+        const nodeUpdate = node.merge(nodeEnter).transition().duration(duration)
+          .attr("transform", d => `translate(${d.y},${d.x})`);
+
+        nodeUpdate.select("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        nodeUpdate.select("text")
+          .style("fill-opacity", 1);
+
+        const nodeExit = node.exit().transition().duration(duration)
+          .attr("transform", d => `translate(${source.y},${source.x})`)
+          .remove();
+
+        nodeExit.select("circle").attr("r", 1e-6);
+        nodeExit.select("text").style("fill-opacity", 1e-6);
+
+        const link = g.selectAll("path.link")
+          .data(links, d => d.target.id);
+
+        const linkEnter = link.enter().insert("path", "g")
+          .attr("class", "link")
+          .attr("d", d => {
+            const o = {x: source.x0, y: source.y0};
+            return diagonal(o, o);
+          });
+
+        link.merge(linkEnter).transition().duration(duration)
+          .attr("d", d => diagonal(d.source, d.target));
+
+        link.exit().transition().duration(duration)
+          .attr("d", d => {
+            const o = {x: source.x, y: source.y};
+            return diagonal(o, o);
+          })
+          .remove();
+
+        nodes.forEach(d => {
+          d.x0 = d.x;
+          d.y0 = d.y;
+        });
+      }
+
+      function diagonal(s, d) {
+        return `M ${s.y} ${s.x}
+                C ${(s.y + d.y) / 2} ${s.x},
+                  ${(s.y + d.y) / 2} ${d.x},
+                  ${d.y} ${d.x}`;
+      }
+
+      function autoFitTree(duration = 450) {
+        const nodes = root.descendants();
+        if (!nodes || nodes.length === 0) return;
+
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        nodes.forEach(d => {
+          const isParent = Boolean(d.children || d._children);
+          const leftBound = d.y - (isParent ? 180 : 20);
+          const rightBound = d.y + (isParent ? 20 : 220);
+          const topBound = d.x - 32;
+          const bottomBound = d.x + 32;
+
+          if (leftBound < minX) minX = leftBound;
+          if (rightBound > maxX) maxX = rightBound;
+          if (topBound < minY) minY = topBound;
+          if (bottomBound > maxY) maxY = bottomBound;
+        });
+
+        const fullWidth = container.clientWidth || 880;
+        const fullHeight = height;
+        const treeW = maxX - minX;
+        const treeH = maxY - minY;
+
+        if (treeW <= 0 || treeH <= 0) return;
+
+        const scale = Math.min(0.92, (fullWidth * 0.90) / treeW, (fullHeight * 0.90) / treeH);
+        const clampedScale = Math.max(scale, 0.42);
+
+        const midTreeX = (minX + maxX) / 2;
+        const midTreeY = (minY + maxY) / 2;
+        const tx = fullWidth / 2 - clampedScale * midTreeX;
+        const ty = fullHeight / 2 - clampedScale * midTreeY;
+
+        if (duration > 0) {
+          svg.transition().duration(duration).call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        } else {
+          svg.call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        }
+      }
+
+      window.expandAll = function() {
+        root.each(expand);
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.collapseAll = function() {
+        if (root.children) {
+          root.children.forEach(collapse);
+        }
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.resetZoom = function() {
+        autoFitTree(450);
+      };
+
+      // 首次繪製節點並自動縮放置中全覽
+      update(root);
+      autoFitTree(0);
+    })();
+  </script>
+
+</body>
+</html>

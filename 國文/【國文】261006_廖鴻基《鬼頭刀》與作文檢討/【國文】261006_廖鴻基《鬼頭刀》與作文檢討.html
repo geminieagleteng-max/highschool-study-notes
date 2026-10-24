@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【國文】261006_廖鴻基《鬼頭刀》與作文檢討</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --border: #e2e8f0;
+      --border-focus: #cbd5e1;
+      --tag-bg: #e0f2fe;
+      --tag-text: #0369a1;
+      --header-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans TC', 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.8;
+      font-size: 16px;
+      padding: 30px 16px 60px;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.06), 0 2px 6px -1px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    header.hero {
+      background: var(--header-gradient);
+      color: #ffffff;
+      padding: 36px 40px 30px;
+      position: relative;
+    }
+    header.hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      color: #f1f5f9;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    header.hero h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.5px;
+    }
+    header.hero .meta {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .content-body {
+      padding: 40px 48px;
+    }
+    @media (max-width: 640px) {
+      .content-body { padding: 24px 20px; }
+      header.hero { padding: 28px 24px 22px; }
+      header.hero h1 { font-size: 1.5rem; }
+    }
+    h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 2.2em;
+      margin-bottom: 0.9em;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h2:first-of-type { margin-top: 0.5em; }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1e3a8a;
+      margin-top: 1.6em;
+      margin-bottom: 0.6em;
+      padding-left: 10px;
+      border-left: 4px solid var(--accent);
+    }
+    p { margin-bottom: 1.1em; }
+    ul, ol { margin-bottom: 1.2em; padding-left: 1.8em; }
+    li { margin-bottom: 0.4em; }
+    .mermaid {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 16px;
+      margin: 1.6em 0;
+      text-align: center;
+      overflow-x: auto;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 1.6em 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    thead th {
+      background: #f1f5f9;
+      color: #1e293b;
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+    tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) { background: #fafafa; }
+    tbody tr:hover { background: #f0f7ff; }
+    tbody tr:last-child td { border-bottom: none; }
+    code {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      background: #f1f5f9;
+      color: #b91c1c;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 1.4em 0;
+      font-size: 0.92em;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; }
+    blockquote {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 14px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 1.4em 0;
+      color: #1e40af;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2.2em 0; }
+    .katex-display {
+      margin: 1.2em 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 6px 0;
+    }
+    .katex { font-size: 1.05em; }
+    
+    /* NotebookLM 原生 D3 互動心智圖樣式 */
+    .mindmap-box {
+      margin: 2em 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .mindmap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .mindmap-title {
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mindmap-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .mm-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: #334155;
+      transition: all 0.2s;
+    }
+    .mm-btn:hover { background: #f1f5f9; }
+    #tree-svg-container {
+      width: 100%;
+      height: 520px;
+      background: #ffffff;
+      cursor: grab;
+    }
+    #tree-svg-container:active { cursor: grabbing; }
+    .node circle {
+      cursor: pointer;
+      stroke-width: 2.5px;
+      transition: all 0.2s;
+    }
+    .node circle:hover { transform: scale(1.25); }
+    .node text {
+      font-size: 13px;
+      font-weight: 500;
+      font-family: inherit;
+      fill: #1e293b;
+      cursor: pointer;
+      paint-order: stroke fill;
+      stroke: #ffffff;
+      stroke-width: 4.5px;
+      stroke-linejoin: round;
+      user-select: none;
+    }
+    .link {
+      fill: none;
+      stroke: #cbd5e1;
+      stroke-width: 1.8px;
+      stroke-opacity: 0.85;
+      transition: stroke-width 0.2s;
+    }
+    .link:hover { stroke: #94a3b8; stroke-width: 2.5px; }
+
+    footer.doc-foot {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      background: #fcfdfe;
+    }
+    .print-btn {
+      position: absolute;
+      top: 36px;
+      right: 40px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .print-btn:hover { background: rgba(255,255,255,0.25); }
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      body {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+      }
+      .container {
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+      }
+      .print-btn, .mindmap-btns {
+        display: none !important;
+      }
+      header.hero {
+        background: var(--header-gradient) !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+        padding: 24px 30px !important;
+        margin-bottom: 20px !important;
+      }
+      header.hero h1 {
+        color: #ffffff !important;
+        font-size: 1.6rem !important;
+      }
+      header.hero .badge {
+        background: rgba(255,255,255,0.2) !important;
+        color: #ffffff !important;
+      }
+      header.hero .meta {
+        color: #cbd5e1 !important;
+      }
+      .content-body {
+        padding: 10px 0 !important;
+      }
+      h1, h2, h3, h4, table, tr, pre, .mermaid, .mindmap-box, blockquote {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      h2, h3 {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <div class="badge">📖 高中課堂互動圖文筆記</div>
+      <button class="print-btn" onclick="window.print()">🖨️ 列印 / 另存 PDF</button>
+      <h1>【國文】261006_廖鴻基《鬼頭刀》與作文檢討</h1>
+      <div class="meta">
+        <span>⏱️ 數位筆記儀表板</span>
+        <span>🏷️ 含可縮放互動心智圖、時間軸與觀念對比</span>
+      </div>
+    </header>
+    <div class="content-body">
+      
+      <div class="mindmap-box">
+        <div class="mindmap-header">
+          <div class="mindmap-title">
+            <span>🧠 本課核心知識脈絡（NotebookLM 原生互動心智圖 • 支援縮放與展開）</span>
+          </div>
+          <div class="mindmap-btns">
+            <button class="mm-btn" onclick="expandAll()">展開全部</button>
+            <button class="mm-btn" onclick="collapseAll()">收合分支</button>
+            <button class="mm-btn" onclick="resetZoom()">重設視角</button>
+          </div>
+        </div>
+        <div id="tree-svg-container"></div>
+      </div>
+        
+      <h2>📖 課堂主題與核心摘要 (Class Overview)</h2>
+<p>本堂國文課分為兩大核心模組：第一部分為廖鴻基現代海洋文學名篇〈鬼頭刀〉的課文深度解析與學習單討論，重點聚焦於作者捕抓鬼頭刀的最終結果論證、人與海洋生態關係的深刻省思，以及「首尾呼應」的結構寫作筆法；第二部分為學測國寫知性統整題（以《論語》子路與孔子對話為例）的作文批改檢討，老師特別針對同學首次寫作常見的格式扣分陷阱、字數控制（19行黃金法則）與客觀分析答題架構進行詳細拆解與提醒。</p>
+<p>【🌳 本課大綱樹狀心智導圖 (Mindmap)】：</p>
+<div class="mermaid">
+graph LR
+  Root["國文課：鬼頭刀與國寫檢討"] --> A["廖鴻基〈鬼頭刀〉課文解析"]
+  Root --> B["學測國寫規範與作文檢討"]
+
+  A --> A1["抓捕結果論證 (有抓到 vs 沒抓到)"]
+  A --> A2["作者的核心省思 (岸上鬥爭 vs 海洋共存)"]
+  A --> A3["寫作筆法 (首尾呼應結構)"]
+
+  B --> B1["基本格式與字數控管 (400字/19行)"]
+  B --> B2["知性題答題策略 (子路與孔子學習態度)"]
+  B --> B3["常見扣分陷阱與批改標準 (2分 vs 3-4分)"]
+</div>
+<hr />
+<h2>💡 核心知識點與觀念詳解 (Key Concepts)</h2>
+<h3>一、廖鴻基〈鬼頭刀〉文本深度解析與討論</h3>
+<h4>1. 抓捕鬼頭刀之結果與論證（學測混合題型拆解）</h4>
+<p>在學習單與課本「問題與討論」第二題中，針對「作者最終是否有成功將鬼頭刀抓回去」這一開放性議題，學測混合題型採取「先勾選立場，再說明判斷理由」的命題方式。老師強調：評分關鍵不在於勾選哪一個選項，而是在於<strong>引用課文原文作為證據的精準度與理由完整性</strong>。</p>
+<ul>
+<li><strong>立場 A：未抓到鬼頭刀</strong></li>
+<li><strong>課本證據 1（肢體反應）</strong>：課本第 45 頁第八段，作者的肩膀逐漸鬆垮放鬆，象徵其不再施力搏鬥，代表選擇放棄。</li>
+<li><strong>課本證據 2（工具狀態）</strong>：課本第 46 頁提及「還有伯撿起了折斷了的魚鉤」，魚鉤斷裂顯示魚隻最終脫鉤逃脫。</li>
+<li><strong>立場 B：有抓到鬼頭刀</strong></li>
+<li><strong>課本證據（心理轉折）</strong>：課本第 45 頁第八段，同行夥伴還有伯對作者說：「眼睛閉起來，如果當作是一場戰爭，就該忘掉眼淚。」勸導作者在人與魚的生克生存戰中不能心軟懦弱。作者聽從建議收起眼淚與同情心後，堅持奮戰至最後將其捕獲。</li>
+</ul>
+<h4>2. 作者的核心省思：岸上鬥爭 vs. 海洋共存</h4>
+<ul>
+<li><strong>關鍵原文字句</strong>：「把岸上的鬥爭習性帶來海洋，原本就是我最大的錯誤。」（課本第 46 頁）</li>
+<li><strong>文意深層剖析</strong>：</li>
+<li><strong>「岸上的鬥爭」</strong>：指人類社會中殘酷的人際競爭。在人類社會裡，展現溫馨或同情常被視為「懦弱的包袱」；人們從小經歷無休止的排名與勝負比較，習慣將競爭對手排除於後。</li>
+<li><strong>海洋生態反思</strong>：作者深愛海洋與海洋生物，因而產生深刻省思，質疑為何人類要將陸地上殘酷殘忍的競爭邏輯套用至大自然與海洋生物身上，進而思考「人與海洋生物和諧共存」的理性可能。</li>
+</ul>
+<h4>3. 文章結構特色：首尾呼應筆法</h4>
+<ul>
+<li><strong>時間軸呼應</strong>：第一段描繪「黎明」，最末段（第十段）描繪「黃昏」，運用時間的推移形成完整時間結構。</li>
+<li><strong>物象/意象呼應</strong>：第一段以「飛魚」破題，最末段同樣以「飛魚」收尾，達到前後緊密扣合、文章結構穩重之效果。</li>
+</ul>
+<hr />
+<h3>二、學測國寫/作文寫作規範與評分陷阱拆解</h3>
+<h4>1. 寫作基本格式與行數控管</h4>
+<ul>
+<li><strong>格式規範</strong>：題號必須標明清晰；無論是第 1 小題或第 2 小題，以及內文每段開頭，皆必須<strong>嚴格縮排（空兩格）</strong>。</li>
+<li><strong>行數與字數黃金比例</strong>：</li>
+<li>最佳篇幅為 <strong>19 行（約 400 字）</strong>，上限為 <strong>20 行</strong>。自第 <strong>21 行</strong>起開始實施扣分。</li>
+<li>下限警告：若僅撰寫 10–15 行（約 200 多字），常因篇幅過短、論述不完整而遭大幅扣分。</li>
+</ul>
+<h4>2. 引導式閱讀理解與摘要題型解析（以《論語》子路與孔子對話為例）</h4>
+<ul>
+<li><strong>題目要求</strong>：分析「孔子如何看待子路的學習態度」（限字數內摘要）。</li>
+<li><strong>高分完整架構</strong>：必須雙向涵蓋：<br />
+  1. <strong>子路的學習態度</strong>：倚仗天賦而不重視後天學習（如以南山之竹自喻）。<br />
+  2. <strong>孔子的觀點與回應</strong>：認為雖有天賦，仍需透過後天學習、切磋琢磨（如括羽刮摩）方能成材，因此不贊同子路輕視學習的態度。</li>
+</ul>
+<hr />
+<h3>【⏱️ 課文與寫作流程圖】</h3>
+<h4>1. 〈鬼頭刀〉捕抓轉折與省思脈絡圖</h4>
+<div class="mermaid">
+graph TD
+  A["捕獲母鬼頭刀"] --> B["公鬼頭刀隨侍不離 (展現深情)"]
+  B --> C["作者產生同情心軟 (肩膀逐漸鬆垮)"]
+  C --> D["還有伯提醒：這是戰爭，不可流淚心軟"]
+  D --> E1["立場一：收起眼淚奮戰 (成功捕獲)"]
+  D --> E2["立場二：魚鉤折斷/肩膀鬆弛 (魚脫鉤逃脫)"]
+  E1 --> F["核心省思：把岸上鬥爭帶到海洋是最大錯誤"]
+  E2 --> F
+</div>
+<h4>2. 學測國寫知性題（第一題）標準解題 SOP</h4>
+<div class="mermaid">
+graph TD
+  S1["審題：釐清題目問什麼 (例如：孔子如何看待子路)"] --> S2["雙向梳理原文：定位子路態度與孔子回應"]
+  S2 --> S3["歸納摘要：客觀分析原文明意，不加個人主觀觀點"]
+  S3 --> S4["格式字數檢查：空兩格、題號標明、控制在 19 行 (約 400 字)"]
+</div>
+<hr />
+<h3>【📊 觀念與易混淆對比表】</h3>
+<h4>表一：〈鬼頭刀〉抓捕結果立場與文本證據對比表</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">判斷立場</th>
+<th style="text-align: left;">課本文本證據與文意</th>
+<th style="text-align: left;">分析說明與論證邏輯</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>未抓到鬼頭刀</strong></td>
+<td style="text-align: left;">1. 作者肩頭完全鬆垮放鬆<br>2. 還有伯撿起折斷的魚鉤（第46頁）</td>
+<td style="text-align: left;">肩膀放鬆代表放棄抵抗；魚鉤斷裂直接證明魚隻脫鉤逃逸。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>有抓到鬼頭刀</strong></td>
+<td style="text-align: left;">還有伯告誡：「眼睛閉起來，如果當作是一場戰爭，就該忘掉眼淚」（第45頁）</td>
+<td style="text-align: left;">作者聽取勸告後，體認到人魚生存戰不應心軟，收起同情並堅持將魚捕獲。</td>
+</tr>
+</tbody>
+</table>
+<h4>表二：學測國寫第一題（知性統整）得分級距與扣分陷阱對比表</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">得分級距</th>
+<th style="text-align: left;">答題表現特徵</th>
+<th style="text-align: left;">常見錯誤與扣分陷阱</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>2 分 (偏低)</strong></td>
+<td style="text-align: left;">僅單向提及孔子的觀點，或僅單向提及子路的學習態度；或直接重述原文故事。</td>
+<td style="text-align: left;">1. 漏寫對比的另一方。<br>2. 僅重述故事對話過程，缺乏歸納分析。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>3 - 4 分 (良好/優秀)</strong></td>
+<td style="text-align: left;">完整寫出子路的態度與孔子的批判觀點，文意通順，標點符號運用正確。</td>
+<td style="text-align: left;">若未達 4 分，多因句型過於口語、標點使用不當，或格式未空兩格。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>致命扣分陷阱</strong></td>
+<td style="text-align: left;">格式錯誤（未空兩格、未寫題號）、字數超過 20 行（21 行起扣分）或少於 15 行。</td>
+<td style="text-align: left;">錯把第一小題當成第二小題抒發「個人主觀看法」，或大量抄襲原文。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>⚠️ 老師強調考點與易錯陷阱 (Exam Focus &amp; Pitfalls)</h2>
+<ul>
+<li><strong>學測混合題評分核心</strong>：勾選選項本身可能占分比重低，理由與文本依據才是得分關鍵！若勾選正確但理由錯誤或未引原文，老師將直接給予 0 分。</li>
+<li><strong>國寫格式大忌</strong>：</li>
+<li><strong>題號遺漏與未縮排</strong>：每小題開頭及段落開頭未「空兩格」，屬於非必要的致命失分。</li>
+<li><strong>字數與行數陷阱</strong>：國寫 400 字題目，最適行數為 19 行（上限 20 行）。<strong>第 21 行起開始扣分</strong>；低於 15 行（約 200 多字）則論述不完整。</li>
+<li><strong>國寫答題角色錯置</strong>：在第一小題（客觀分析摘要題）中，切勿加入「我認為…」、「我的看法是…」等個人主觀抒情或評論。個人觀點必須嚴格保留至第二小題發揮。</li>
+</ul>
+<hr />
+<h2>🔑 記憶口訣與解題技巧 (Mnemonics &amp; Shortcuts)</h2>
+<ul>
+<li><strong>國寫知性題答題 3 步驟 SOP</strong>：<br />
+  1. <strong>精準對應</strong>：問什麼答什麼，人物 A（子路態度）與人物 B（孔子評價）必須雙向兼顧。<br />
+  2. <strong>客觀摘要</strong>：用自己的話歸納原文明意，避免「直接大量抄錄原文」與「重複敘事故事」。<br />
+  3. <strong>分清題型</strong>：第一題寫「客觀分析」（零個人觀點），第二題寫「主觀立論」（個人見解）。</li>
+<li><strong>文章結尾穩重法則</strong>：「首尾呼應法」（利用時間「黎明—黃昏」或經典物象「飛魚—飛魚」形成包夾循環結構）。</li>
+</ul>
+<hr />
+<h2>📝 課後作業與待辦事項 (Homework &amp; Tasks)</h2>
+<ul>
+<li><strong>課後作業</strong>：<br />
+  1. 訂正並寫完《鬼頭刀》學習單（第 8、9 段問題與討論第 2 題，需寫明抓到/沒抓到的判斷立場與課本依據）。<br />
+  2. 依組別（1 至 7 組）於學習單填寫組別，由各組最後一位同學統整收齊繳交。</li>
+<li><strong>作文檢討待辦</strong>：</li>
+<li>詳閱發回的國寫作文，針對老師劃記之格式錯誤（題號、空兩格）、字數問題及第 1 小題寫作盲點進行個人訂正。</li>
+</ul>
+<hr />
+<h2>📚 專有名詞與重要公式/定義 (Glossary &amp; Formulas)</h2>
+<ul>
+<li><strong>首尾呼應</strong>：寫作修辭結構，指文章結尾處呼應開頭的描寫（如時間、地點、物象），使文章前後連貫、結構嚴謹完整。</li>
+<li><strong>知性統整題（學測國寫第一題）</strong>：學測國語文寫作能力測驗題型，要求考生根據文本進行客觀資訊梳理、分析與摘要，不宜摻雜個人主觀評價。</li>
+<li><strong>混合題型</strong>：結合單選/多選題與非選擇題的綜合考題，通常需先勾選立場或選項，再於限定字數內依據文本寫出判斷理由。</li>
+</ul>
+<hr />
+<h2>🧠 課後自測題 (Quick Review Quiz)</h2>
+<p><strong>第一題（文本解析）</strong>：在廖鴻基〈鬼頭刀〉中，作者提到「把岸上的鬥爭習性帶來海洋，原本就是我最大的錯誤」，請問「岸上的鬥爭」指什麼？作者對此有何反思？<br />
+- <strong>簡要解題思維與答案</strong>：「岸上的鬥爭」指人類社會中殘酷的人際競爭與排名排擠。作者反思人不應將陸地上的殘酷競爭意識帶入海洋，並進而思考人與海洋生物和諧共存的可能性。</p>
+<p><strong>第二題（國寫寫作規範）</strong>：進行學測國寫知性統整題（如分析孔子如何看待子路）時，若限字數 400 字（19 行），下列何者為高分寫作策略？<br />
+(A) 儘量抄錄原文中的比喻與對話以充實字數<br />
+(B) 深入發表「我認為不論有無天賦都應學習」的個人見解<br />
+(C) 客觀同時寫出子路的學習態度與孔子的回應評價，並保持格式空兩格、控制在 19 行內<br />
+- <strong>簡要解題思維與答案</strong>：答案為 (C)。第一小題旨在考查客觀分析歸納能力，不應過度抄錄原文，亦不應加入個人主觀意見，且須兼顧兩方態度並符合格式字數要求。</p>
+<hr />
+<p>💡 若需要針對作文改寫範例或《鬼頭刀》其他段落做延伸複習，隨時告訴我！</p>
+    </div>
+    <footer class="doc-foot">
+      自動生成於 NotebookLM Study Assistant • 專為高中學生課後複習與考前衝刺打造
+    </footer>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.mermaid) {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'neutral',
+          fontFamily: "'Noto Sans TC', 'Inter', sans-serif",
+          flowchart: { curve: 'basis', htmlLabels: true },
+          securityLevel: 'loose'
+        });
+      }
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+  
+  <script>
+    (function() {
+      const treeData = {"name": "課堂講義分析", "children": [{"name": "課本討論：廖鴻基《鬼頭刀》", "children": [{"name": "第八、九段捕抓結果判斷", "children": [{"name": "立場一：未抓到鬼頭刀", "children": [{"name": "文本依據：肩頭鬆垮放鬆（象徵放棄）"}, {"name": "文本依據：魚鉤折斷（證明脫鉤逃逸）"}]}, {"name": "立場二：有抓到鬼頭刀 / 未放棄", "children": [{"name": "文本依據：還有伯告誡眼睛閉起來"}, {"name": "文本依據：當作生存戰爭，忘掉眼淚同情"}]}]}, {"name": "作者的核心省思", "children": [{"name": "錯誤：將岸上的鬥爭習性帶來海洋"}, {"name": "陸地與海洋的競爭思考", "children": [{"name": "陸地：人類社會競爭極其殘酷"}, {"name": "海洋：省思人與海洋生物和諧共存的可能性"}]}]}, {"name": "文章結構與結尾特色", "children": [{"name": "首尾呼應寫作筆法"}, {"name": "時間推移：第一段黎明至末段黃昏"}, {"name": "物象呼應：首尾皆以飛魚破題與收尾"}]}]}, {"name": "作文寫作檢討與指導", "children": [{"name": "基本格式錯誤提醒", "children": [{"name": "必須明確標明題號"}, {"name": "每段開頭務必縮排（空兩格）"}]}, {"name": "字數與行數控管要求", "children": [{"name": "字數上限：約 400 字（黃金比例 19 行，最多 20 行）"}, {"name": "字數下限：少於 15 行（約 200 字）篇幅不足"}]}, {"name": "國寫第一題解析：孔子與子路", "children": [{"name": "必須涵蓋的核心內容", "children": [{"name": "說明子路的學習態度"}, {"name": "闡述孔子的觀點與回應理由"}]}, {"name": "常見應避免的扣分錯誤", "children": [{"name": "加入個人主觀意見（屬第二題範圍）"}, {"name": "過度使用比喻解釋"}, {"name": "直接大量抄錄原文"}, {"name": "僅逐行重述原本的故事對話"}]}, {"name": "得分級距分析", "children": [{"name": "2分：僅單向提及孔子或子路一方"}, {"name": "3-4分：雙向完整涵蓋兩方觀點且文意通順"}]}]}]}]};
+      const container = document.getElementById("tree-svg-container");
+      if (!container || !treeData) return;
+
+      const width = container.clientWidth || 880;
+      const height = 520;
+
+      const svg = d3.select("#tree-svg-container")
+        .append("svg")
+        .attr("width", "100%")
+        .attr("height", height)
+        .attr("viewBox", [0, 0, width, height]);
+
+      const g = svg.append("g");
+
+      const zoom = d3.zoom()
+        .scaleExtent([0.25, 2.5])
+        .on("zoom", (e) => g.attr("transform", e.transform));
+
+      svg.call(zoom);
+
+      const root = d3.hierarchy(treeData);
+      root.x0 = height / 2;
+      root.y0 = 0;
+
+      let i = 0;
+      const duration = 380;
+      // [dy, dx]: 垂直節距 58px (確保上下不重疊), 水平層級 320px (確保長文字不穿透父層)
+      const treeLayout = d3.tree().nodeSize([58, 320]);
+
+      function splitNodeText(text, maxChars) {
+        if (!text) return [""];
+        if (text.length <= maxChars) return [text];
+
+        // 優先在括號處斷行，例如：世風日下之自身矛盾對比（擇師教子 vs. 於身恥師）
+        const parenIdx = text.search(/[（(]/);
+        if (parenIdx >= 3 && parenIdx <= maxChars + 4) {
+          const p1 = text.slice(0, parenIdx).trim();
+          const p2 = text.slice(parenIdx).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 優先在冒號、破折號、頓號處斷行
+        const sepIdx = text.search(/[：:—、]/);
+        if (sepIdx >= 3 && sepIdx <= maxChars + 2) {
+          const p1 = text.slice(0, sepIdx + 1).trim();
+          const p2 = text.slice(sepIdx + 1).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 預設在 maxChars 處均勻斷行
+        return [text.slice(0, maxChars), text.slice(maxChars)];
+      }
+
+      if (root.children) {
+        root.children.forEach(c => {
+          if (c.children) {
+            c.children.forEach(collapse);
+          }
+        });
+      }
+
+      function collapse(d) {
+        if (d.children) {
+          d._children = d.children;
+          d._children.forEach(collapse);
+          d.children = null;
+        }
+      }
+
+      function expand(d) {
+        if (d._children) {
+          d.children = d._children;
+          d.children.forEach(expand);
+          d._children = null;
+        }
+      }
+
+      const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
+
+      function getNodeColor(d) {
+        if (d.depth === 0) return "#2563eb";
+        let p = d;
+        while (p.depth > 1) p = p.parent;
+        return colorScale(p.data.name);
+      }
+
+      function update(source) {
+        const nodes = root.descendants();
+        const links = root.links();
+
+        treeLayout(root);
+
+        const node = g.selectAll("g.node")
+          .data(nodes, d => d.id || (d.id = ++i));
+
+        const nodeEnter = node.enter().append("g")
+          .attr("class", "node")
+          .attr("transform", d => `translate(${source.y0},${source.x0})`)
+          .on("click", (event, d) => {
+            if (d.children) {
+              d._children = d.children;
+              d.children = null;
+            } else if (d._children) {
+              d.children = d._children;
+              d._children = null;
+            }
+            update(d);
+          });
+
+        nodeEnter.append("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        const textNode = nodeEnter.append("text")
+          .attr("class", "node-text")
+          .attr("text-anchor", d => (d.children || d._children) ? "end" : "start")
+          .style("fill-opacity", 0);
+
+        textNode.each(function(d) {
+          const el = d3.select(this);
+          const isParent = Boolean(d.children || d._children);
+          const xOffset = isParent ? -14 : 14;
+          const maxChars = isParent ? 13 : 18;
+          const lines = splitNodeText(d.data.name, maxChars);
+
+          if (lines.length === 1) {
+            el.attr("x", xOffset)
+              .attr("dy", "0.32em")
+              .text(lines[0]);
+          } else {
+            el.attr("x", xOffset)
+              .attr("dy", "-0.35em")
+              .text(lines[0]);
+            el.append("tspan")
+              .attr("x", xOffset)
+              .attr("dy", "1.25em")
+              .text(lines[1]);
+          }
+        });
+
+        const nodeUpdate = node.merge(nodeEnter).transition().duration(duration)
+          .attr("transform", d => `translate(${d.y},${d.x})`);
+
+        nodeUpdate.select("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        nodeUpdate.select("text")
+          .style("fill-opacity", 1);
+
+        const nodeExit = node.exit().transition().duration(duration)
+          .attr("transform", d => `translate(${source.y},${source.x})`)
+          .remove();
+
+        nodeExit.select("circle").attr("r", 1e-6);
+        nodeExit.select("text").style("fill-opacity", 1e-6);
+
+        const link = g.selectAll("path.link")
+          .data(links, d => d.target.id);
+
+        const linkEnter = link.enter().insert("path", "g")
+          .attr("class", "link")
+          .attr("d", d => {
+            const o = {x: source.x0, y: source.y0};
+            return diagonal(o, o);
+          });
+
+        link.merge(linkEnter).transition().duration(duration)
+          .attr("d", d => diagonal(d.source, d.target));
+
+        link.exit().transition().duration(duration)
+          .attr("d", d => {
+            const o = {x: source.x, y: source.y};
+            return diagonal(o, o);
+          })
+          .remove();
+
+        nodes.forEach(d => {
+          d.x0 = d.x;
+          d.y0 = d.y;
+        });
+      }
+
+      function diagonal(s, d) {
+        return `M ${s.y} ${s.x}
+                C ${(s.y + d.y) / 2} ${s.x},
+                  ${(s.y + d.y) / 2} ${d.x},
+                  ${d.y} ${d.x}`;
+      }
+
+      function autoFitTree(duration = 450) {
+        const nodes = root.descendants();
+        if (!nodes || nodes.length === 0) return;
+
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        nodes.forEach(d => {
+          const isParent = Boolean(d.children || d._children);
+          const leftBound = d.y - (isParent ? 180 : 20);
+          const rightBound = d.y + (isParent ? 20 : 220);
+          const topBound = d.x - 32;
+          const bottomBound = d.x + 32;
+
+          if (leftBound < minX) minX = leftBound;
+          if (rightBound > maxX) maxX = rightBound;
+          if (topBound < minY) minY = topBound;
+          if (bottomBound > maxY) maxY = bottomBound;
+        });
+
+        const fullWidth = container.clientWidth || 880;
+        const fullHeight = height;
+        const treeW = maxX - minX;
+        const treeH = maxY - minY;
+
+        if (treeW <= 0 || treeH <= 0) return;
+
+        const scale = Math.min(0.92, (fullWidth * 0.90) / treeW, (fullHeight * 0.90) / treeH);
+        const clampedScale = Math.max(scale, 0.42);
+
+        const midTreeX = (minX + maxX) / 2;
+        const midTreeY = (minY + maxY) / 2;
+        const tx = fullWidth / 2 - clampedScale * midTreeX;
+        const ty = fullHeight / 2 - clampedScale * midTreeY;
+
+        if (duration > 0) {
+          svg.transition().duration(duration).call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        } else {
+          svg.call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        }
+      }
+
+      window.expandAll = function() {
+        root.each(expand);
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.collapseAll = function() {
+        if (root.children) {
+          root.children.forEach(collapse);
+        }
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.resetZoom = function() {
+        autoFitTree(450);
+      };
+
+      // 首次繪製節點並自動縮放置中全覽
+      update(root);
+      autoFitTree(0);
+    })();
+  </script>
+
+</body>
+</html>

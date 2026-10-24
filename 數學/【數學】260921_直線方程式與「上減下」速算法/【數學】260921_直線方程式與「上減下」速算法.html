@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【數學】260921_直線方程式與「上減下」速算法</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --border: #e2e8f0;
+      --border-focus: #cbd5e1;
+      --tag-bg: #e0f2fe;
+      --tag-text: #0369a1;
+      --header-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans TC', 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.8;
+      font-size: 16px;
+      padding: 30px 16px 60px;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.06), 0 2px 6px -1px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    header.hero {
+      background: var(--header-gradient);
+      color: #ffffff;
+      padding: 36px 40px 30px;
+      position: relative;
+    }
+    header.hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      color: #f1f5f9;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    header.hero h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.5px;
+    }
+    header.hero .meta {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .content-body {
+      padding: 40px 48px;
+    }
+    @media (max-width: 640px) {
+      .content-body { padding: 24px 20px; }
+      header.hero { padding: 28px 24px 22px; }
+      header.hero h1 { font-size: 1.5rem; }
+    }
+    h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 2.2em;
+      margin-bottom: 0.9em;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h2:first-of-type { margin-top: 0.5em; }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1e3a8a;
+      margin-top: 1.6em;
+      margin-bottom: 0.6em;
+      padding-left: 10px;
+      border-left: 4px solid var(--accent);
+    }
+    p { margin-bottom: 1.1em; }
+    ul, ol { margin-bottom: 1.2em; padding-left: 1.8em; }
+    li { margin-bottom: 0.4em; }
+    .mermaid {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 16px;
+      margin: 1.6em 0;
+      text-align: center;
+      overflow-x: auto;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 1.6em 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    thead th {
+      background: #f1f5f9;
+      color: #1e293b;
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+    tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) { background: #fafafa; }
+    tbody tr:hover { background: #f0f7ff; }
+    tbody tr:last-child td { border-bottom: none; }
+    code {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      background: #f1f5f9;
+      color: #b91c1c;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 1.4em 0;
+      font-size: 0.92em;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; }
+    blockquote {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 14px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 1.4em 0;
+      color: #1e40af;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2.2em 0; }
+    .katex-display {
+      margin: 1.2em 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 6px 0;
+    }
+    .katex { font-size: 1.05em; }
+    
+    /* NotebookLM 原生 D3 互動心智圖樣式 */
+    .mindmap-box {
+      margin: 2em 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .mindmap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .mindmap-title {
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mindmap-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .mm-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: #334155;
+      transition: all 0.2s;
+    }
+    .mm-btn:hover { background: #f1f5f9; }
+    #tree-svg-container {
+      width: 100%;
+      height: 520px;
+      background: #ffffff;
+      cursor: grab;
+    }
+    #tree-svg-container:active { cursor: grabbing; }
+    .node circle {
+      cursor: pointer;
+      stroke-width: 2.5px;
+      transition: all 0.2s;
+    }
+    .node circle:hover { transform: scale(1.25); }
+    .node text {
+      font-size: 13px;
+      font-weight: 500;
+      font-family: inherit;
+      fill: #1e293b;
+      cursor: pointer;
+      paint-order: stroke fill;
+      stroke: #ffffff;
+      stroke-width: 4.5px;
+      stroke-linejoin: round;
+      user-select: none;
+    }
+    .link {
+      fill: none;
+      stroke: #cbd5e1;
+      stroke-width: 1.8px;
+      stroke-opacity: 0.85;
+      transition: stroke-width 0.2s;
+    }
+    .link:hover { stroke: #94a3b8; stroke-width: 2.5px; }
+
+    footer.doc-foot {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      background: #fcfdfe;
+    }
+    .print-btn {
+      position: absolute;
+      top: 36px;
+      right: 40px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .print-btn:hover { background: rgba(255,255,255,0.25); }
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      body {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+      }
+      .container {
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+      }
+      .print-btn, .mindmap-btns {
+        display: none !important;
+      }
+      header.hero {
+        background: var(--header-gradient) !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+        padding: 24px 30px !important;
+        margin-bottom: 20px !important;
+      }
+      header.hero h1 {
+        color: #ffffff !important;
+        font-size: 1.6rem !important;
+      }
+      header.hero .badge {
+        background: rgba(255,255,255,0.2) !important;
+        color: #ffffff !important;
+      }
+      header.hero .meta {
+        color: #cbd5e1 !important;
+      }
+      .content-body {
+        padding: 10px 0 !important;
+      }
+      h1, h2, h3, h4, table, tr, pre, .mermaid, .mindmap-box, blockquote {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      h2, h3 {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <div class="badge">📖 高中課堂互動圖文筆記</div>
+      <button class="print-btn" onclick="window.print()">🖨️ 列印 / 另存 PDF</button>
+      <h1>【數學】260921_直線方程式與「上減下」速算法</h1>
+      <div class="meta">
+        <span>⏱️ 數位筆記儀表板</span>
+        <span>🏷️ 含可縮放互動心智圖、時間軸與觀念對比</span>
+      </div>
+    </header>
+    <div class="content-body">
+      
+      <div class="mindmap-box">
+        <div class="mindmap-header">
+          <div class="mindmap-title">
+            <span>🧠 本課核心知識脈絡（NotebookLM 原生互動心智圖 • 支援縮放與展開）</span>
+          </div>
+          <div class="mindmap-btns">
+            <button class="mm-btn" onclick="expandAll()">展開全部</button>
+            <button class="mm-btn" onclick="collapseAll()">收合分支</button>
+            <button class="mm-btn" onclick="resetZoom()">重設視角</button>
+          </div>
+        </div>
+        <div id="tree-svg-container"></div>
+      </div>
+        
+      <h2>📖 課堂主題與核心摘要 (Class Overview)</h2>
+<p>本堂課為高中數學「平面幾何與直線方程式」的精華實戰課程，核心主題聚焦於<strong>直線方程式的極速寫法（「上減下」萬能速算法）</strong>、<strong>直線的平行與垂直關係</strong>，以及<strong>平行四邊形邊長方程式</strong>與<strong>垂足、對稱點、點到直線距離</strong>的綜合應用。老師透過觀念推導與豐富的經典例題，示範如何跳脫繁複的點斜式移項整理，改以直觀的「上減下」技巧秒殺各類直線方程式題目。學習目標為掌握直線斜率的代數與幾何意義，並能熟練運用變量相等法與聯立方程，快速解決高中大考的熱門幾何考題。</p>
+<div class="mermaid">
+graph LR
+  Root["直線方程式與平面幾何"] --> A["直線方程式速算法（上減下）"]
+  Root --> B["直線的平行與垂直關係"]
+  Root --> C["平行四邊形邊長方程式應用"]
+  Root --> D["垂足、對稱點與點到直線距離"]
+  A --> A1["斜率 m = A/B 與上減下觀念"]
+  A --> A2["點斜式簡化與帶入求常數"]
+  B --> B1["平行直線：斜率相等 (m1 = m2)"]
+  B --> B2["垂直直線：斜率相乘等於 -1 (m1 × m2 = -1)"]
+  C --> C1["判斷給定點是否在已知直線上"]
+  C --> C2["利用平行關係求相對邊方程式"]
+  D --> D1["求垂足 H (垂直線與已知線聯立)"]
+  D --> D2["求對稱點 P' (變量相等法 / 中點公式)"]
+  D --> D3["點到直線距離 d(P, L)"]
+</div>
+<hr />
+<h2>💡 核心知識點與觀念詳解 (Key Concepts)</h2>
+<h3>1. 直線方程式「上減下」萬能速算法推導</h3>
+<p>傳統點斜式若已知斜率 \(m = \frac{A}{B}\) 且通過點 \((s, t)\)，寫成：<br />
+\[ y - t = \frac{A}{B}(x - s) \]<br />
+將分母 \(B\) 乘至左式，分子 \(A\) 展開右式：<br />
+\[ B(y - t) = A(x - s) \Rightarrow B y - B t = A x - A s \]<br />
+移項整理得：<br />
+\[ A x - B y = A s - B t \]<br />
+由此可發現：<strong>左式的 \(x\) 係數為斜率分子 \(A\)，\(y\) 係數為斜率分母的負數 \(-B\)（即「分子乘以 \(x\) 減去 分母乘以 \(y\)」，簡稱「上減下」）</strong>；而右式的常數項，只需要將已知點 \((s, t)\) 直接代入左式的 \(A x - B y\) 即可求得。</p>
+<h4>經典例題步驟拆解 (課堂實戰練習)</h4>
+<ul>
+<li><strong>例題一（正分數斜率）：</strong> 斜率 \(m = \frac{3}{2}\)，過點 \(A(1, 5)\)</li>
+<li><strong>步驟 1</strong>：斜率分子為 \(3\)（上）、分母為 \(2\)（下），上減下寫出左式：\(3x - 2y\)。</li>
+<li><strong>步驟 2</strong>：代入點 \(A(1, 5)\) 求常數：\(3(1) - 2(5) = -7\)。</li>
+<li>
+<p><strong>結論</strong>：直線方程式為 \(3x - 2y = -7\)。</p>
+</li>
+<li>
+<p><strong>例題二（整數斜率）：</strong> 斜率 \(m = 3\)，過點 \(A(1, 5)\)</p>
+</li>
+<li><strong>步驟 1</strong>：將整數改寫成分數 \(m = \frac{3}{1}\)，上減下寫出左式：\(3x - 1y = 3x - y\)。</li>
+<li><strong>步驟 2</strong>：代入點 \(A(1, 5)\) 得常數：\(3(1) - 5 = -2\)。</li>
+<li>
+<p><strong>結論</strong>：直線方程式為 \(3x - y = -2\)。</p>
+</li>
+<li>
+<p><strong>例題三（負分數斜率與負號處理）：</strong> 斜率 \(m = -\frac{4}{3}\)，過點 \(A(1, 5)\)</p>
+</li>
+<li><strong>步驟 1（關鍵技巧）</strong>：將負號給<strong>分母</strong>，即斜率看成 \(\frac{4}{-3}\)。</li>
+<li><strong>步驟 2</strong>：上減下寫出左式：\(4x - (-3)y = 4x + 3y\)。</li>
+<li><strong>步驟 3</strong>：代入點 \(A(1, 5)\) 得常數：\(4(1) + 3(5) = 19\)。</li>
+<li>
+<p><strong>結論</strong>：直線方程式為 \(4x + 3y = 19\)。</p>
+</li>
+<li>
+<p><strong>例題四（負整數斜率）：</strong> 斜率 \(m = -3\)，過點 \(A(1, 5)\)</p>
+</li>
+<li><strong>步驟 1</strong>：改寫成分數 \(\frac{3}{-1}\)（負號給分母），上減下得左式：\(3x - (-1)y = 3x + y\)。</li>
+<li><strong>步驟 2</strong>：代入點 \(A(1, 5)\) 得常數：\(3(1) + 5 = 8\)。</li>
+<li><strong>結論</strong>：直線方程式為 \(3x + y = 8\)。</li>
+</ul>
+<hr />
+<h3>2. 直線的平行與垂直關係</h3>
+<p>已知直線 \(L: 3x + 2y - 6 = 0\)，其斜率為 \(m = -\frac{3}{2}\)。</p>
+<ul>
+<li><strong>平行直線（\(L_1 \parallel L\)）</strong>：</li>
+<li>斜率相同 \(m_1 = -\frac{3}{2}\)，前項 \(x, y\) 係數保持一致，直接設 \(3x + 2y = k\)。</li>
+<li>若過點 \(A(-3, 2)\)，代入得 \(3(-3) + 2(2) = -5\)，故平行線為 \(3x + 2y = -5\)。</li>
+<li><strong>垂直直線（\(L_2 \perp L\)）</strong>：</li>
+<li>垂直斜率相乘等於 \(-1\)（\(m_1 \cdot m_2 = -1\)），故 \(m_2 = \frac{2}{3}\)。</li>
+<li>上減下得左式：\(2x - 3y\)（即 \(x, y\) 係數對調，中間加減號改變）。</li>
+<li>代入點 \(A(-3, 2)\) 得常數：\(2(-3) - 3(2) = -12\)，故垂直線為 \(2x - 3y = -12\)。</li>
+</ul>
+<hr />
+<h3>3. 平行四邊形頂點與對邊方程式（必考經典題）</h3>
+<ul>
+<li><strong>題目條件</strong>：平行四邊形兩鄰邊直線分別為 \(L_1: 2x + 3y - 6 = 0\) 與 \(L_2: x - 3y + 3 = 0\)，已知一頂點為 \(P(5, 1)\)。</li>
+<li><strong>解題步驟拆解</strong>：<br />
+  1. <strong>點位檢驗</strong>：將 \(P(5, 1)\) 分別代入 \(L_1\) 與 \(L_2\)，發現 \(2(5) + 3(1) - 6 = 7 \neq 0\) 且 \(5 - 3(1) + 3 = 5 \neq 0\)。證明 \(P\) 點<strong>不在此兩條已知邊上</strong>，為其對角頂點。<br />
+  2. <strong>求平行對邊</strong>：<ul>
+<li>對邊平行 \(L_2 (x - 3y)\)，且通過 \(P(5, 1)\)：方程式為 \(x - 3y = 5 - 3(1) \Rightarrow x - 3y = 2\)。</li>
+<li>對邊平行 \(L_1 (2x + 3y)\)，且通過 \(P(5, 1)\)：方程式為 \(2x + 3y = 2(5) + 3(1) \Rightarrow 2x + 3y = 13\)。</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3>4. 垂足、對稱點與點到直線距離（大考十顆星焦點）</h3>
+<p>已知點 \(P(-1, 3)\) 與直線 \(L: x - y + 2 = 0\)：</p>
+<ul>
+<li><strong>求解三步驟流程圖</strong>：</li>
+</ul>
+<div class="mermaid">
+graph TD
+  Start["已知點 P(-1, 3) 與直線 L: x - y + 2 = 0"] --> Step1["1. 求過 P 且垂直 L 的直線 L1: x + y = 2"]
+  Step1 --> Step2["2. 解 L 與 L1 聯立方程式，得交點 H(0, 2) 即為垂足"]
+  Step2 --> Step3["3. 利用變量相等法求對稱點 P'(1, 1)"]
+  Step2 --> Step4["4. 計算線段 PH 長度，得距離 d(P, L) = √2"]
+</div>
+<ol>
+<li><strong>求垂足 \(H\)</strong>：<br />
+   * 原直線 \(L\) 斜率為 \(1\)。過 \(P(-1, 3)\) 之垂直線 \(L_1\) 斜率為 \(-1\)，寫成 \(x + y = (-1) + 3 = 2\)。<br />
+   * 解聯立：\(\begin{cases} x - y = -2 \ x + y = 2 \end{cases} \Rightarrow x = 0, y = 2\)，故垂足為 \(H(0, 2)\)。</li>
+<li><strong>求對稱點 \(P'\)</strong>：<br />
+   * <strong>變量相等法</strong>：點 \(P(-1, 3)\) 到垂足 \(H(0, 2)\) 的座標變化量為：\(x\) 增加 \(1\)（\(-1 \to 0\)），\(y\) 減少 \(1\)（\(3 \to 2\)）。<br />
+   * 鏡像延伸至對稱點 \(P'\)：\(x\) 座標再 \(+1 \Rightarrow 0 + 1 = 1\)；\(y\) 座標再 \(-1 \Rightarrow 2 - 1 = 1\)。故對稱點為 \(P'(1, 1)\)。</li>
+<li><strong>求點到直線距離 \(d(P, L)\)</strong>：<br />
+   * 距離即線段 \(\overline{PH}\) 的長度：<br />
+     \[ d(P, L) = \sqrt{[0 - (-1)]^2 + (2 - 3)^2} = \sqrt{1^2 + (-1)^2} = \sqrt{2} \]</li>
+</ol>
+<hr />
+<h3>📊 觀念與幾何性質對比表</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">對比項目</th>
+<th style="text-align: left;">平行直線關係 (\(L_1 \parallel L_2\))</th>
+<th style="text-align: left;">垂直直線關係 (\(L_1 \perp L_2\))</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>斜率幾何特徵</strong></td>
+<td style="text-align: left;">傾斜角度相同，兩直線不相交</td>
+<td style="text-align: left;">兩直線夾角為 \(90^\circ\)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>斜率代數關係</strong></td>
+<td style="text-align: left;">\(m_1 = m_2\)</td>
+<td style="text-align: left;">\(m_1 \cdot m_2 = -1\)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>方程式係數型態</strong></td>
+<td style="text-align: left;">\(Ax + By = k_1\) 與 \(Ax + By = k_2\) (\(x, y\) 係數相同)</td>
+<td style="text-align: left;">\(Ax + By = k_1\) 與 \(Bx - Ay = k_2\) (\(x, y\) 係數對調變號)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>求法快速口訣</strong></td>
+<td style="text-align: left;">前項照抄，帶點求常數</td>
+<td style="text-align: left;">前項係數對調變號，帶點求常數</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>⚠️ 老師強調考點與易錯陷阱 (Exam Focus &amp; Pitfalls)</h2>
+<ul>
+<li><strong>「上減下」三個字必記</strong>：老師叮嚀這是高中寫直線方程式最快的方法，上課特別指定同學用最特別顏色的筆劃上記號，務必熟練。</li>
+<li><strong>負號一定要給分母</strong>：遇到斜率為負數（如 \(m = -\frac{4}{3}\)），<strong>切記將負號指定給分母 \(\frac{4}{-3}\)</strong>，這樣寫出來的直線方程式首項 \(x\) 係數才會是漂亮的正數（\(4x + 3y = C\)），避免計算出錯。</li>
+<li><strong>平行四邊形點位先帶入檢驗</strong>：解平行四邊形題目時，給定的一點千萬不能直接假設在已知線上！必須先將點座標帶入方程式檢驗，確認該點是否滿足方程式，避免畫錯幾何結構。</li>
+<li><strong>截距定義陷阱（重點警告）</strong>：老師特別強調「<strong>截距有正有負，截距非距離</strong>」！</li>
+<li>\(x\) 截距為 \(-5\) 代表直線與 \(x\) 軸交於點 \((-5, 0)\)。</li>
+<li>\(y\) 截距為 \(-4\) 代表直線與 \(y\) 軸交於點 \((0, -4)\)。</li>
+<li>絕對不能因為看到「距」字就擅自加上絕對值算成距離。</li>
+<li><strong>作圖習慣叮嚀</strong>：數學幾何作圖求的是簡明精確，老師特別叮嚀不要像繪畫課一樣反覆描線（會「起毛球」/「Я融」），俐落一筆畫出幾何圖形才能輔助清晰思考。</li>
+</ul>
+<hr />
+<h2>🔑 記憶口訣與解題技巧 (Mnemonics &amp; Shortcuts)</h2>
+<ol>
+<li><strong>「上減下」萬能寫法口訣</strong>：<br />
+   * 斜率寫成分數 \(\frac{\text{上}}{\text{下}}\)，方程式左式直接寫成 \(\text{上} \cdot x - \text{下} \cdot y\)。<br />
+   * <strong>右邊數字不重要，點帶進去就知道！</strong></li>
+<li><strong>斜率正負號秒判法</strong>：<br />
+   * 直線方程式 \(Ax + By = C\)：<ul>
+<li>若 \(x, y\) 係數中間為<strong>減號</strong>（異號），斜率為<strong>正</strong>。</li>
+<li>若 \(x, y\) 係數中間為<strong>加號</strong>（同號），斜率為<strong>負</strong>。</li>
+</ul>
+</li>
+<li><strong>對稱點「變量相等」速解法</strong>：<br />
+   *求點 \(P\) 對直線 \(L\) 的對稱點 \(P'\)，算完垂足 \(H\) 後：<br />
+   \[\Delta x = x_H - x_P, \quad \Delta y = y_H - y_P\]<br />
+   \[x_{P'} = x_H + \Delta x, \quad y_{P'} = y_H + \Delta y\]<br />
+   不必使用複雜代數公式，直接看座標推移變量即可秒殺。</li>
+</ol>
+<hr />
+<h2>📝 課後作業與待辦事項 (Homework &amp; Tasks)</h2>
+<ul>
+<li><strong>課後作業</strong>：</li>
+<li>完成講義單元「類題三之五」（全員下課前演練，徹底落實垂足、對稱點與距離之計算）。</li>
+<li><strong>下次小考與待辦</strong>：</li>
+<li>老師預告後續課堂將抽考「三之五（垂足、對称點與距離）」，講義頭上已畫三個框框，列為本章最核心的十顆星必考題，請務必複習。</li>
+</ul>
+<hr />
+<h2>📚 專有名詞與重要公式/定義 (Glossary &amp; Formulas)</h2>
+<ul>
+<li><strong>斜率 (Slope) \(m\)</strong>：衡量平面上直線傾斜程度的量值，定義為 \(y\) 變化量與 \(x\) 變化量的比值：<br />
+  \[ m = \frac{\Delta y}{\Delta x} = \frac{y_2 - y_1}{x_2 - x_1} \]</li>
+<li><strong>「上減下」直線方程式萬能型態</strong>：當斜率 \(m = \frac{A}{B}\) 且通過點 \((s, t)\) 時，直線方程式可表示為：<br />
+  \[ A x - B y = A s - B t \]</li>
+<li><strong>平行線斜率性質</strong>：若兩不重合直線 \(L_1 \parallel L_2\)，則兩者斜率相等：<br />
+  \[ m_1 = m_2 \]</li>
+<li><strong>垂直線斜率性質</strong>：若兩直線相互垂直 \(L_1 \perp L_2\)，則兩者斜率乘積為 \(-1\)：<br />
+  \[ m_1 \cdot m_2 = -1 \]</li>
+<li><strong>截距 (Intercept)</strong>：直線與坐標軸交點的座標值（含正負號）。與 \(x\) 軸交於 \((a, 0)\) 則 \(x\) 截距為 \(a\)；與 \(y\) 軸交於 \((0, b)\) 則 \(y\) 截距為 \(b\)。</li>
+<li><strong>兩點間距離公式 (Distance Formula)</strong>：兩點 \(P(x_1, y_1)\) 與 \(H(x_2, y_2)\) 之直線距離為：<br />
+  \[ d(P, H) = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2} \]</li>
+</ul>
+<hr />
+<h2>🧠 課後自測題 (Quick Review Quiz)</h2>
+<h3>思考題一：上減下速算法演練</h3>
+<p><strong>題目</strong>：已知直線 \(L\) 過點 \(A(2, -3)\)，且斜率 \(m = -\frac{2}{5}\)，請利用「上減下」速算法求 \(L\) 的直線方程式。<br />
+* <strong>解題思維</strong>：<br />
+  1. 將負號給分母，將斜率看成 \(\frac{2}{-5}\)。<br />
+  2. 上減下寫出左式：\(2x - (-5)y = 2x + 5y\)。<br />
+  3. 將點 \(A(2, -3)\) 代入左式計算常數：\(2(2) + 5(-3) = 4 - 15 = -11\)。<br />
+* <strong>答案</strong>：\(2x + 5y = -11\)</p>
+<hr />
+<h3>思考題二：垂直線方程式求法</h3>
+<p><strong>題目</strong>：已知直線 \(L: 4x - 3y = 7\)，求過點 \(P(1, 2)\) 且垂直 \(L\) 的直線方程式。<br />
+* <strong>解題思維</strong>：<br />
+  1. 原直線 \(L\) 斜率為 \(\frac{4}{3}\)，故垂直線斜率為 \(-\frac{3}{4}\)（將負號給分母看作 \(\frac{3}{-4}\)）。<br />
+  2. 上減下寫出垂直線左式：\(3x - (-4)y = 3x + 4y\)。<br />
+  3. 代入點 \(P(1, 2)\) 求常數：\(3(1) + 4(2) = 11\)。<br />
+* <strong>答案</strong>：\(3x + 4y = 11\)</p>
+<hr />
+<h3>思考題三：變量相等法求對稱點</h3>
+<p><strong>題目</strong>：已知點 \(A(-2, 5)\) 對某直線作垂直投影得垂足 \(H(1, 2)\)，請求點 \(A\) 對該直線的對稱點 \(A'\) 座標。<br />
+* <strong>解題思維</strong>：<br />
+  1. 觀察 \(A(-2, 5) \to H(1, 2)\) 的座標變化：<br />
+     * \(x\) 座標由 \(-2\) 變為 \(1\)，增加 \(+3\)。<br />
+     * \(y\) 座標由 \(5\) 變為 \(2\)，減少 \(-3\)。<br />
+  2. 對稱點 \(A'\) 為垂足 \(H\) 沿相同方向推移相同變量：<br />
+     * \(x_{A'} = 1 + 3 = 4\)<br />
+     * \(y_{A'} = 2 - 3 = -1\)<br />
+* <strong>答案</strong>：對稱點 \(A'(4, -1)\)</p>
+    </div>
+    <footer class="doc-foot">
+      自動生成於 NotebookLM Study Assistant • 專為高中學生課後複習與考前衝刺打造
+    </footer>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.mermaid) {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'neutral',
+          fontFamily: "'Noto Sans TC', 'Inter', sans-serif",
+          flowchart: { curve: 'basis', htmlLabels: true },
+          securityLevel: 'loose'
+        });
+      }
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+  
+  <script>
+    (function() {
+      const treeData = {"name": "直線方程式解題技巧", "children": [{"name": "萬能速算法：「上減下」", "children": [{"name": "斜率化為分數 (A/B)", "children": [{"name": "方程式型態：Ax - By = 常數"}, {"name": "代入已知點求常數項"}]}, {"name": "不同斜率型態處理", "children": [{"name": "整數斜率 (看成 k/1)"}, {"name": "負數斜率 (負號指定給分母)"}]}]}, {"name": "直線的幾何關係", "children": [{"name": "平行直線", "children": [{"name": "斜率相等 (m1 = m2)"}, {"name": "前項 Ax + By 係數相同"}]}, {"name": "垂直直線", "children": [{"name": "斜率相乘等於 -1 (m1 × m2 = -1)"}, {"name": "係數對調變號"}]}]}, {"name": "坐標幾何綜合應用", "children": [{"name": "求垂足 (點的垂直投影)", "children": [{"name": "原直線與垂直線之交點"}]}, {"name": "求對稱點", "children": [{"name": "變量相等法 (坐標推移)"}, {"name": "中點公式應用"}]}, {"name": "點到直線距離公式", "children": [{"name": "點 P 到垂足 H 之線段長度"}]}]}, {"name": "經典大考題型脈絡", "children": [{"name": "平行四邊形邊長方程式性質"}, {"name": "兩軸截距 (X 軸與 Y 軸交點)"}]}]};
+      const container = document.getElementById("tree-svg-container");
+      if (!container || !treeData) return;
+
+      const width = container.clientWidth || 880;
+      const height = 520;
+
+      const svg = d3.select("#tree-svg-container")
+        .append("svg")
+        .attr("width", "100%")
+        .attr("height", height)
+        .attr("viewBox", [0, 0, width, height]);
+
+      const g = svg.append("g");
+
+      const zoom = d3.zoom()
+        .scaleExtent([0.25, 2.5])
+        .on("zoom", (e) => g.attr("transform", e.transform));
+
+      svg.call(zoom);
+
+      const root = d3.hierarchy(treeData);
+      root.x0 = height / 2;
+      root.y0 = 0;
+
+      let i = 0;
+      const duration = 380;
+      // [dy, dx]: 垂直節距 58px (確保上下不重疊), 水平層級 320px (確保長文字不穿透父層)
+      const treeLayout = d3.tree().nodeSize([58, 320]);
+
+      function splitNodeText(text, maxChars) {
+        if (!text) return [""];
+        if (text.length <= maxChars) return [text];
+
+        // 優先在括號處斷行，例如：世風日下之自身矛盾對比（擇師教子 vs. 於身恥師）
+        const parenIdx = text.search(/[（(]/);
+        if (parenIdx >= 3 && parenIdx <= maxChars + 4) {
+          const p1 = text.slice(0, parenIdx).trim();
+          const p2 = text.slice(parenIdx).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 優先在冒號、破折號、頓號處斷行
+        const sepIdx = text.search(/[：:—、]/);
+        if (sepIdx >= 3 && sepIdx <= maxChars + 2) {
+          const p1 = text.slice(0, sepIdx + 1).trim();
+          const p2 = text.slice(sepIdx + 1).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 預設在 maxChars 處均勻斷行
+        return [text.slice(0, maxChars), text.slice(maxChars)];
+      }
+
+      if (root.children) {
+        root.children.forEach(c => {
+          if (c.children) {
+            c.children.forEach(collapse);
+          }
+        });
+      }
+
+      function collapse(d) {
+        if (d.children) {
+          d._children = d.children;
+          d._children.forEach(collapse);
+          d.children = null;
+        }
+      }
+
+      function expand(d) {
+        if (d._children) {
+          d.children = d._children;
+          d.children.forEach(expand);
+          d._children = null;
+        }
+      }
+
+      const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
+
+      function getNodeColor(d) {
+        if (d.depth === 0) return "#2563eb";
+        let p = d;
+        while (p.depth > 1) p = p.parent;
+        return colorScale(p.data.name);
+      }
+
+      function update(source) {
+        const nodes = root.descendants();
+        const links = root.links();
+
+        treeLayout(root);
+
+        const node = g.selectAll("g.node")
+          .data(nodes, d => d.id || (d.id = ++i));
+
+        const nodeEnter = node.enter().append("g")
+          .attr("class", "node")
+          .attr("transform", d => `translate(${source.y0},${source.x0})`)
+          .on("click", (event, d) => {
+            if (d.children) {
+              d._children = d.children;
+              d.children = null;
+            } else if (d._children) {
+              d.children = d._children;
+              d._children = null;
+            }
+            update(d);
+          });
+
+        nodeEnter.append("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        const textNode = nodeEnter.append("text")
+          .attr("class", "node-text")
+          .attr("text-anchor", d => (d.children || d._children) ? "end" : "start")
+          .style("fill-opacity", 0);
+
+        textNode.each(function(d) {
+          const el = d3.select(this);
+          const isParent = Boolean(d.children || d._children);
+          const xOffset = isParent ? -14 : 14;
+          const maxChars = isParent ? 13 : 18;
+          const lines = splitNodeText(d.data.name, maxChars);
+
+          if (lines.length === 1) {
+            el.attr("x", xOffset)
+              .attr("dy", "0.32em")
+              .text(lines[0]);
+          } else {
+            el.attr("x", xOffset)
+              .attr("dy", "-0.35em")
+              .text(lines[0]);
+            el.append("tspan")
+              .attr("x", xOffset)
+              .attr("dy", "1.25em")
+              .text(lines[1]);
+          }
+        });
+
+        const nodeUpdate = node.merge(nodeEnter).transition().duration(duration)
+          .attr("transform", d => `translate(${d.y},${d.x})`);
+
+        nodeUpdate.select("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        nodeUpdate.select("text")
+          .style("fill-opacity", 1);
+
+        const nodeExit = node.exit().transition().duration(duration)
+          .attr("transform", d => `translate(${source.y},${source.x})`)
+          .remove();
+
+        nodeExit.select("circle").attr("r", 1e-6);
+        nodeExit.select("text").style("fill-opacity", 1e-6);
+
+        const link = g.selectAll("path.link")
+          .data(links, d => d.target.id);
+
+        const linkEnter = link.enter().insert("path", "g")
+          .attr("class", "link")
+          .attr("d", d => {
+            const o = {x: source.x0, y: source.y0};
+            return diagonal(o, o);
+          });
+
+        link.merge(linkEnter).transition().duration(duration)
+          .attr("d", d => diagonal(d.source, d.target));
+
+        link.exit().transition().duration(duration)
+          .attr("d", d => {
+            const o = {x: source.x, y: source.y};
+            return diagonal(o, o);
+          })
+          .remove();
+
+        nodes.forEach(d => {
+          d.x0 = d.x;
+          d.y0 = d.y;
+        });
+      }
+
+      function diagonal(s, d) {
+        return `M ${s.y} ${s.x}
+                C ${(s.y + d.y) / 2} ${s.x},
+                  ${(s.y + d.y) / 2} ${d.x},
+                  ${d.y} ${d.x}`;
+      }
+
+      function autoFitTree(duration = 450) {
+        const nodes = root.descendants();
+        if (!nodes || nodes.length === 0) return;
+
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        nodes.forEach(d => {
+          const isParent = Boolean(d.children || d._children);
+          const leftBound = d.y - (isParent ? 180 : 20);
+          const rightBound = d.y + (isParent ? 20 : 220);
+          const topBound = d.x - 32;
+          const bottomBound = d.x + 32;
+
+          if (leftBound < minX) minX = leftBound;
+          if (rightBound > maxX) maxX = rightBound;
+          if (topBound < minY) minY = topBound;
+          if (bottomBound > maxY) maxY = bottomBound;
+        });
+
+        const fullWidth = container.clientWidth || 880;
+        const fullHeight = height;
+        const treeW = maxX - minX;
+        const treeH = maxY - minY;
+
+        if (treeW <= 0 || treeH <= 0) return;
+
+        const scale = Math.min(0.92, (fullWidth * 0.90) / treeW, (fullHeight * 0.90) / treeH);
+        const clampedScale = Math.max(scale, 0.42);
+
+        const midTreeX = (minX + maxX) / 2;
+        const midTreeY = (minY + maxY) / 2;
+        const tx = fullWidth / 2 - clampedScale * midTreeX;
+        const ty = fullHeight / 2 - clampedScale * midTreeY;
+
+        if (duration > 0) {
+          svg.transition().duration(duration).call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        } else {
+          svg.call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        }
+      }
+
+      window.expandAll = function() {
+        root.each(expand);
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.collapseAll = function() {
+        if (root.children) {
+          root.children.forEach(collapse);
+        }
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.resetZoom = function() {
+        autoFitTree(450);
+      };
+
+      // 首次繪製節點並自動縮放置中全覽
+      update(root);
+      autoFitTree(0);
+    })();
+  </script>
+
+</body>
+</html>

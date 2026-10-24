@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【物理】261005_運動學圖形與鉛直上拋</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --border: #e2e8f0;
+      --border-focus: #cbd5e1;
+      --tag-bg: #e0f2fe;
+      --tag-text: #0369a1;
+      --header-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans TC', 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.8;
+      font-size: 16px;
+      padding: 30px 16px 60px;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.06), 0 2px 6px -1px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    header.hero {
+      background: var(--header-gradient);
+      color: #ffffff;
+      padding: 36px 40px 30px;
+      position: relative;
+    }
+    header.hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      color: #f1f5f9;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    header.hero h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.5px;
+    }
+    header.hero .meta {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .content-body {
+      padding: 40px 48px;
+    }
+    @media (max-width: 640px) {
+      .content-body { padding: 24px 20px; }
+      header.hero { padding: 28px 24px 22px; }
+      header.hero h1 { font-size: 1.5rem; }
+    }
+    h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 2.2em;
+      margin-bottom: 0.9em;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h2:first-of-type { margin-top: 0.5em; }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1e3a8a;
+      margin-top: 1.6em;
+      margin-bottom: 0.6em;
+      padding-left: 10px;
+      border-left: 4px solid var(--accent);
+    }
+    p { margin-bottom: 1.1em; }
+    ul, ol { margin-bottom: 1.2em; padding-left: 1.8em; }
+    li { margin-bottom: 0.4em; }
+    .mermaid {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 16px;
+      margin: 1.6em 0;
+      text-align: center;
+      overflow-x: auto;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 1.6em 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    thead th {
+      background: #f1f5f9;
+      color: #1e293b;
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+    tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) { background: #fafafa; }
+    tbody tr:hover { background: #f0f7ff; }
+    tbody tr:last-child td { border-bottom: none; }
+    code {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      background: #f1f5f9;
+      color: #b91c1c;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 1.4em 0;
+      font-size: 0.92em;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; }
+    blockquote {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 14px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 1.4em 0;
+      color: #1e40af;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2.2em 0; }
+    .katex-display {
+      margin: 1.2em 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 6px 0;
+    }
+    .katex { font-size: 1.05em; }
+    
+    /* NotebookLM 原生 D3 互動心智圖樣式 */
+    .mindmap-box {
+      margin: 2em 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .mindmap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .mindmap-title {
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mindmap-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .mm-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: #334155;
+      transition: all 0.2s;
+    }
+    .mm-btn:hover { background: #f1f5f9; }
+    #tree-svg-container {
+      width: 100%;
+      height: 520px;
+      background: #ffffff;
+      cursor: grab;
+    }
+    #tree-svg-container:active { cursor: grabbing; }
+    .node circle {
+      cursor: pointer;
+      stroke-width: 2.5px;
+      transition: all 0.2s;
+    }
+    .node circle:hover { transform: scale(1.25); }
+    .node text {
+      font-size: 13px;
+      font-weight: 500;
+      font-family: inherit;
+      fill: #1e293b;
+      cursor: pointer;
+      paint-order: stroke fill;
+      stroke: #ffffff;
+      stroke-width: 4.5px;
+      stroke-linejoin: round;
+      user-select: none;
+    }
+    .link {
+      fill: none;
+      stroke: #cbd5e1;
+      stroke-width: 1.8px;
+      stroke-opacity: 0.85;
+      transition: stroke-width 0.2s;
+    }
+    .link:hover { stroke: #94a3b8; stroke-width: 2.5px; }
+
+    footer.doc-foot {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      background: #fcfdfe;
+    }
+    .print-btn {
+      position: absolute;
+      top: 36px;
+      right: 40px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .print-btn:hover { background: rgba(255,255,255,0.25); }
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      body {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+      }
+      .container {
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+      }
+      .print-btn, .mindmap-btns {
+        display: none !important;
+      }
+      header.hero {
+        background: var(--header-gradient) !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+        padding: 24px 30px !important;
+        margin-bottom: 20px !important;
+      }
+      header.hero h1 {
+        color: #ffffff !important;
+        font-size: 1.6rem !important;
+      }
+      header.hero .badge {
+        background: rgba(255,255,255,0.2) !important;
+        color: #ffffff !important;
+      }
+      header.hero .meta {
+        color: #cbd5e1 !important;
+      }
+      .content-body {
+        padding: 10px 0 !important;
+      }
+      h1, h2, h3, h4, table, tr, pre, .mermaid, .mindmap-box, blockquote {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      h2, h3 {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <div class="badge">📖 高中課堂互動圖文筆記</div>
+      <button class="print-btn" onclick="window.print()">🖨️ 列印 / 另存 PDF</button>
+      <h1>【物理】261005_運動學圖形與鉛直上拋</h1>
+      <div class="meta">
+        <span>⏱️ 數位筆記儀表板</span>
+        <span>🏷️ 含可縮放互動心智圖、時間軸與觀念對比</span>
+      </div>
+    </header>
+    <div class="content-body">
+      
+      <div class="mindmap-box">
+        <div class="mindmap-header">
+          <div class="mindmap-title">
+            <span>🧠 本課核心知識脈絡（NotebookLM 原生互動心智圖 • 支援縮放與展開）</span>
+          </div>
+          <div class="mindmap-btns">
+            <button class="mm-btn" onclick="expandAll()">展開全部</button>
+            <button class="mm-btn" onclick="collapseAll()">收合分支</button>
+            <button class="mm-btn" onclick="resetZoom()">重設視角</button>
+          </div>
+        </div>
+        <div id="tree-svg-container"></div>
+      </div>
+        
+      <h2>📖 課堂主題與核心摘要 (Class Overview)</h2>
+<p>本堂課為高中物理運動學單元的精彩複習與進階深入，重點探討運動學三大圖形（\(X-t\)、\(V-t\)、\(A-t\)）之間的切換技巧與物理意義。課堂中詳細剖析了鉛直上拋運動、火箭發射等經典 VT 圖考題，並透過溜溜球與折返運動例題釐清「位移與路徑長」、「平均速度與平均速率」及「平均加速度」的向量方向陷阱。最後，課堂帶領同學們深入伽利略斜面實驗的物理歷史脈絡，利用 VT 圖導出連續等時距內位移成等差數列的關鍵推導。</p>
+<div class="mermaid">
+graph LR
+  Root["運動學圖形與鉛直上拋"] --> A["圖形變換與物理意義"]
+  Root --> B["鉛直上拋與火箭題型"]
+  Root --> C["課堂經典例題拆解"]
+  Root --> D["自由落體與伽利略斜面"]
+
+  A --> A1["X-t 圖斜率＝速度 v"]
+  A --> A2["V-t 圖斜率＝加速度 a"]
+  A --> A3["V-t 圖面積＝位移 Δx"]
+  A --> A4["A-t 圖面積＝速度變化量 Δv"]
+
+  B --> B1["軌跡(直線) vs 函數圖形(拋物線)"]
+  B --> B2["火箭發射：最高點為 v=0 之處"]
+
+  C --> C1["溜溜球運動 (平均速度/速率/加速度)"]
+  C --> C2["座標折返運動 (0-10秒物理量計算)"]
+  C --> C3["甲乙丙三圖形 (5秒速度與位移比較)"]
+
+  D --> D1["自由落體定義 (初速0、無空氣阻力)"]
+  D --> D2["斜面實驗：連續等時距位移比 1:3:5:7"]
+</div>
+<hr />
+<h2>💡 核心知識點與觀念詳解 (Key Concepts)</h2>
+<h3>1. 運動學三大圖形（\(X-t\)、\(V-t\)、\(A-t\)）的切換與物理意義</h3>
+<ul>
+<li><strong>斜率的物理意義</strong>：<ul>
+<li>\(X-t\) 圖（位置-時間圖）：圖形上一點的斜率代表該時刻的<strong>瞬時速度 \(v\)</strong>。</li>
+<li>\(V-t\) 圖（速度-時間圖）：圖形上一點的斜率代表該時刻的<strong>瞬時加速度 \(a\)</strong>。</li>
+</ul>
+</li>
+<li><strong>面積的物理意義</strong>：<ul>
+<li>\(V-t\) 圖下方的圖形面積：代表物體在該時間段內的<strong>位移 \(\Delta x\)</strong>（在時間軸上方面積為正，代表向正方向運動；下方為負，代表向負方向運動）。</li>
+<li>\(A-t\) 圖（加速度-時間圖）下方的圖形面積：代表物體在該時間段內的<strong>速度變化量 \(\Delta v\)</strong>。</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3>2. 鉛直上拋運動與火箭發射 VT 圖解析</h3>
+<ul>
+<li><strong>【觀念釐清】運動軌跡 vs 函數圖形</strong>：<ul>
+<li>鉛直上拋物體的<strong>實際運動軌跡</strong>是一條「鉛直直線」（原路上升、原路下降）。</li>
+<li>鉛直上拋物體的<strong>位置與時間關係（\(X-t\) 圖）</strong>才是一條向下開口的「拋物線」（二次時間函數 \(x(t) = v_0 t - \frac{1}{2}gt^2\)）。切勿看影就開槍，誤將 \(X-t\) 圖的拋物線當成實際運動軌跡。</li>
+</ul>
+</li>
+<li><strong>速度與加速度的動態變化</strong>：<ul>
+<li>若設向上為正，初速 \(v_0 = +30\text{ m/s}\)，重力加速度 \(g = 10\text{ m/s}^2\)（即 \(a = -10\text{ m/s}^2\)）：<ul>
+<li>\(t = 0\text{ s}\)：\(v = +30\text{ m/s}\)</li>
+<li>\(t = 1\text{ s}\)：\(v = +20\text{ m/s}\)</li>
+<li>\(t = 2\text{ s}\)：\(v = +10\text{ m/s}\)</li>
+<li>\(t = 3\text{ s}\)：\(v = 0\text{ m/s}\)（<strong>到達最高點</strong>）</li>
+<li>\(t = 4\text{ s}\)：\(v = -10\text{ m/s}\)</li>
+<li>\(t = 5\text{ s}\)：\(v = -20\text{ m/s}\)</li>
+<li>\(t = 6\text{ s}\)：\(v = -30\text{ m/s}\)（落回原出發點）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>【經典例題】火箭發射的 \(V-t\) 圖判讀</strong>：<ul>
+<li><strong>速度最大的點</strong>：並非最高點，而是<strong>燃料用盡的點</strong>（此時火箭加速結束，隨後靠慣性繼續向上做鉛直上拋運動）。</li>
+<li><strong>最高點</strong>：發生的時刻是 <strong>\(v = 0\) 的點</strong>（速度由正轉負的交點，此時正向累積面積最大）。</li>
+<li><strong>落回海平面的時刻</strong>：當 \(V-t\) 圖中「時間軸上方的正面積（上升最大高度）」等於「時間軸下方的負面積（下降高度）」時，即代表火箭回發射點/海平面。</li>
+</ul>
+</li>
+</ul>
+<div class="mermaid">
+graph TD
+  A["火箭點火發射 (等加速度上升)"] --> B["達到最大速度 (燃料用盡點)"]
+  B --> C["靠慣性繼續向上 (加速度變為 -g)"]
+  C --> D["速度減為零 v=0 (到達最高點)"]
+  D --> E["轉向向下掉落 (速度變為負值)"]
+  E --> F["負面積等於正面積 (落回地面/海平面)"]
+</div>
+<hr />
+<h3>3. 課堂經典例題拆解</h3>
+<h4>經典例題一：溜溜球運動（講義 p.67 第 1 題）</h4>
+<ul>
+<li><strong>題目描述</strong>：小聲將溜溜球以 \(1\text{ m/s}\) 的速率鉛直向下丟出，\(2\) 秒後以相同的速率相反方向回到手中。已知溜溜球的最低點離出發點為 \(0.5\text{ m}\) (\(50\text{ cm}\))。</li>
+<li><strong>解題拆解</strong>：<ol>
+<li><strong>\(2\) 秒內的平均速度</strong>：<br />
+    \[\bar{v} = \frac{\text{位移 }\Delta x}{\text{時間 }\Delta t} = \frac{0\text{ m}}{2\text{ s}} = 0\text{ m/s}\]<br />
+    （因為溜溜球回到原出發點，總位移為 \(0\)）。</li>
+<li><strong>\(2\) 秒內的平均速率</strong>：<br />
+    \[\text{平均速率} = \frac{\text{路徑長 }L}{\text{時間 }\Delta t} = \frac{0.5\text{ m} + 0.5\text{ m}}{2\text{ s}} = 0.5\text{ m/s}\]</li>
+<li><strong>\(2\) 秒內的平均加速度</strong>：<br />
+    令向上為正、向下為負。初速 \(v_i = -1\text{ m/s}\)（向下），末速 \(v_f = +1\text{ m/s}\)（向上）。<br />
+    \[\bar{a} = \frac{\Delta v}{\Delta t} = \frac{v_f - v_i}{\Delta t} = \frac{(+1) - (-1)}{2} = \frac{2}{2} = 1\text{ m/s}^2 \quad (\text{方向向上})\]</li>
+</ol>
+</li>
+</ul>
+<h4>經典例題二：直線座標折返運動（講義 p.67 類題）</h4>
+<ul>
+<li><strong>題目描述</strong>：靜止物體自原點 \(O\) (\(x=0\)) 出發，向右移動到 \(P\) 點折返，再經過原點 \(O\) 移動到 \(Q\) 點。已知 \(t=10\text{ s}\) 時物體位於 \(Q\) 點 (\(x=-3\text{ cm}\))，且此時瞬時速度 \(v_Q = -15\text{ cm/s}\)。</li>
+<li><strong>解題拆解</strong>：<ol>
+<li><strong>\(0 \sim 10\) 秒的位移</strong>：<br />
+    \[\Delta x = x_{10} - x_0 = (-3) - 0 = -3\text{ cm}\]</li>
+<li><strong>\(0 \sim 10\) 秒的平均速度</strong>：<br />
+    \[\bar{v} = \frac{\Delta x}{\Delta t} = \frac{-3\text{ cm}}{10\text{ s}} = -0.3\text{ cm/s}\]</li>
+<li><strong>\(0 \sim 10\) 秒的平均加速度</strong>：<br />
+    末速度 \(v_{10} = -15\text{ cm/s}\)，初速度 \(v_0 = 0\text{ cm/s}\)。<br />
+    \[\bar{a} = \frac{v_{10} - v_0}{\Delta t} = \frac{-15 - 0}{10} = -1.5\text{ cm/s}^2\]</li>
+</ol>
+</li>
+</ul>
+<h4>經典例題三：三物體圖形比較（講義 p.68 範例三）</h4>
+<ul>
+<li><strong>題目描述</strong>：甲、乙、丙三物體皆由靜止同地、同時出發。甲給定 \(X-t\) 圖（\(0\sim 5\text{ s}\) 為通過原點斜率為 \(1\) 的直線）；乙給定 \(V-t\) 圖（\(0\sim 4\text{ s}\) 等加速至 \(2\text{ m/s}\)，\(4\sim 5\text{ s}\) 保持 \(2\text{ m/s}\)）；丙給定 \(A-t\) 圖（加速度恆為 \(0.2\text{ m/s}^2\)）。</li>
+<li><strong>解題拆解</strong>：<ol>
+<li><strong>\(t = 5\text{ s}\) 時的速度比較</strong>：<ul>
+<li>\(v_甲 = \text{斜率} = \frac{5 - 0}{5 - 0} = 1\text{ m/s}\)</li>
+<li>\(v_乙 = 2\text{ m/s}\)</li>
+<li>\(v_丙 = \text{初速} + \Delta v = 0 + (0.2 \times 5) = 1\text{ m/s}\)</li>
+<li><strong>結論</strong>：\(v_乙 &gt; v_甲 = v_丙\)</li>
+</ul>
+</li>
+<li><strong>\(0 \sim 5\text{ s}\) 內的位移比較</strong>：<ul>
+<li>\(\Delta x_甲 = 5 - 0 = 5\text{ m}\)</li>
+<li>\(\Delta x_乙 = \text{梯形面積} = \frac{(1 + 5) \times 2}{2} = 6\text{ m}\)</li>
+<li>\Delta x_丙 = \frac{1}{2} a t^2 = \frac{1}{2} \times 0.2 \times 5^2 = 2.5\text{ m} （亦可用三角形面積計算）</li>
+<li><strong>結論</strong>：\(\Delta x_乙 &gt; \Delta x_甲 &gt; \Delta x_丙\)</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<hr />
+<h3>4. 伽利略斜面實驗與自由落體導推</h3>
+<ul>
+<li><strong>自由落體的物理定義</strong>：<ol>
+<li>初速等於零（\(v_0 = 0\)）。</li>
+<li>全程<strong>不考慮空氣阻力</strong>。<br />
+*   公式簡化：\(v = gt\)，落下距離 \(h = \frac{1}{2}gt^2\)。</li>
+</ol>
+</li>
+<li><strong>伽利略斜面實驗（緩慢版自由落體）</strong>：<ul>
+<li><strong>設計動機</strong>：自由落體下落極快（例如從 \(10\text{ m}\) 高處落下僅需約 \(1.41\) 秒，古代無精密電子計時器，無法精確測量），因此伽利略設計「斜面」來減緩運動速度，使其成為「緩慢版的自由落體」。</li>
+<li><strong>實驗過程</strong>：在斜面上設置節拍器與鈴鐺，調整鈴鐺位置使得物體滾下時撞擊鈴鐺的「時間間隔皆相等（例如每隔 1 秒）」。</li>
+<li><strong>重要發現</strong>：連續相同時間間隔內的位移比滿足：<br />
+    \[\Delta x_1 : \Delta x_2 : \Delta x_3 : \Delta x_4 : \dots = 1 : 3 : 5 : 7 : \dots\]</li>
+<li><strong>VT 圖證明</strong>：從 \(V-t\) 圖可看出，每隔相同的 \(\Delta t\)，各時間區段下的面積剛好分割為 \(1\) 塊、 \(3\) 塊、 \(5\) 塊、 \(7\) 塊相同的基本三角形。由此證明物體在斜面上做<strong>等加速度運動</strong>。</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3>📊 觀念與易混淆對比表</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">比較項目</th>
+<th style="text-align: left;">平均速度 (\(\bar{v}\))</th>
+<th style="text-align: left;">平均速率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>定義</strong></td>
+<td style="text-align: left;">位移除以總時間 (\(\Delta x / \Delta t\))</td>
+<td style="text-align: left;">路徑長除以總時間 (\(L / \Delta t\))</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>物理量性質</strong></td>
+<td style="text-align: left;">向量（具方向性，可正可負可為零）</td>
+<td style="text-align: left;">純量（僅有大小，恆為非負數）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>折返時的特徵</strong></td>
+<td style="text-align: left;">若回到出發點，位移為 \(0\)，平均速度必為 \(0\)</td>
+<td style="text-align: left;">路徑長持續累積，平均速率必大於 \(0\)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">比較項目</th>
+<th style="text-align: left;">運動軌跡 (Motion Path)</th>
+<th style="text-align: left;">函數圖形 (\(X-t\) Graph)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>代表意義</strong></td>
+<td style="text-align: left;">物體在空間中實際運動移動的幾何路線</td>
+<td style="text-align: left;">物體的位置座標隨時間變化的函數關係圖</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>鉛直上拋範例</strong></td>
+<td style="text-align: left;">鉛直直線（往上再原路往下）</td>
+<td style="text-align: left;">下開拋物線 (\(x = v_0 t - \frac{1}{2}gt^2\))</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">比較項目</th>
+<th style="text-align: left;">火箭發射 \(V-t\) 圖：最大速度點</th>
+<th style="text-align: left;">火箭發射 \(V-t\) 圖：最高點</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>物理特徵</strong></td>
+<td style="text-align: left;">燃料剛好用盡的時刻 (\(a\) 轉變為 \(-g\))</td>
+<td style="text-align: left;">速度減為零的時刻 (\(v = 0\))</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>運動狀態</strong></td>
+<td style="text-align: left;">正向加速度結束，準備開始做鉛直上拋</td>
+<td style="text-align: left;">物體達到最高位置，準備轉向向下掉落</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>⚠️ 老師強調考點與易錯陷阱 (Exam Focus &amp; Pitfalls)</h2>
+<ol>
+<li><strong>\(V-t\) 圖最高點判定陷阱</strong>：<ul>
+<li>星號必背：在火箭發射或鉛直上拋的 \(V-t\) 圖中，<strong>最高點絕對不是速度最大的點</strong>！最高點對應的是 <strong>\(v = 0\) 的時刻</strong>（正向面積累積至最大值之處）。</li>
+</ul>
+</li>
+<li><strong>加速度與速度的向量正負號</strong>：<ul>
+<li>計算 \(\bar{a} = \frac{v_f - v_i}{\Delta t}\) 時，必須先設定正方向。若去程向下（\(-1\text{ m/s}\)）、回程向上（\(+1\text{ m/s}\)），則速度變化量為 \((+1) - (-1) = +2\text{ m/s}\)，絕對不能直接算成 \(1 - 1 = 0\)。</li>
+</ul>
+</li>
+<li><strong>自由落體公式中 \(h\) 的物理意義</strong>：<ul>
+<li>在公式 \(h = \frac{1}{2}gt^2\) 中，\(h\) 代表物體<strong>落下的距離</strong>（Displacement/Distance fallen），而非離地高度。</li>
+</ul>
+</li>
+<li><strong>看圖勿「看影就開槍」</strong>：<ul>
+<li>切勿把位置-時間關係圖（\(X-t\) 圖）的幾何形狀當成物體的實際運動軌跡。</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2>🔑 記憶口訣與解題技巧 (Mnemonics &amp; Shortcuts)</h2>
+<ul>
+<li><strong>圖形轉換切換 SOP</strong>：<ul>
+<li><strong>微分/求斜率方向</strong>：\(x(t) \xrightarrow{\text{斜率}} v(t) \xrightarrow{\text{斜率}} a(t)\)</li>
+<li><strong>積分/求面積方向</strong>：\(a(t) \xrightarrow{\text{面積}} \Delta v \xrightarrow{\text{面積}} \Delta x\)</li>
+</ul>
+</li>
+<li><strong>初速為零等加速度運動——連續等時距速解律</strong>：<ul>
+<li>若物體由靜止出發（\(v_0 = 0\)）做等加速度運動，在連續相等的單位時間 \(\Delta t\) 內：<ul>
+<li><strong>各時段位移比</strong>：\(\Delta x_1 : \Delta x_2 : \Delta x_3 : \dots = 1 : 3 : 5 : 7 : 9 : \dots\) （奇數等差數列）</li>
+<li><strong>總累積位移比</strong>：\(x_1 : x_2 : x_3 : \dots = 1 : 4 : 9 : 16 : 25 : \dots\) （時間的平方比，\(x \propto t^2\)）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2>📝 課後作業與待辦事項 (Homework &amp; Tasks)</h2>
+<ul>
+<li><strong>講義作業</strong>：完成講義 p.67 至 p.74 所有練習題（包含歷屆學測題與北區模考試題）。</li>
+<li><strong>解答核對</strong>：可掃描講義 p.69 的 QR Code 核對詳細解題步驟。</li>
+<li><strong>預習章節</strong>：預習化學/物理跨科單元「盧瑟福（拉塞福）原子模型」（此為高中新增核心觀念，國中未詳述）。</li>
+<li><strong>生活提醒</strong>：近期氣溫轉冷、流感及 A 型流感流行，課堂叮嚀出入公共場所請戴好口罩，照顧好身體。</li>
+</ul>
+<hr />
+<h2>📚 專有名詞與重要公式/定義 (Glossary &amp; Formulas)</h2>
+<ul>
+<li><strong>平均速度 (Average Velocity)</strong>：物體在某段時間內的總位移與總時間的比值。<br />
+    \[\bar{v} = \frac{\Delta x}{\Delta t} = \frac{x_f - x_i}{t_f - t_i}\]</li>
+<li><strong>平均速率 (Average Speed)</strong>：物體在某段時間內所走過的總路徑長與總時間的比值。<br />
+    \[\text{平均速率} = \frac{L}{\Delta t}\]</li>
+<li><strong>平均加速度 (Average Acceleration)</strong>：物體在某段時間內的速度變化量與總時間的比值。<br />
+    \[\bar{a} = \frac{\Delta v}{\Delta t} = \frac{v_f - v_i}{t_f - t_i}\]</li>
+<li><strong>等加速度運動三大公式</strong>：<br />
+    \[v = v_0 + at\]<br />
+    \[\Delta x = v_0 t + \frac{1}{2} a t^2\]<br />
+    \[v^2 = v_0^2 + 2a \Delta x\]</li>
+<li><strong>自由落體公式 (\(v_0 = 0, a = g\))</strong>：<br />
+    \[v = gt\]<br />
+    \[h = \frac{1}{2} g t^2\]<br />
+    \[v^2 = 2gh\]</li>
+<li><strong>伽利略斜面實驗 (Galileo's Incline Experiment)</strong>：利用傾斜平面減緩重力加速度效果，藉由等時距撞擊鈴鐺導出位移奇數比 \(1:3:5:7\)，成功證實自由落體為等加速度運動。</li>
+</ul>
+<hr />
+<h2>🧠 課後自測題 (Quick Review Quiz)</h2>
+<h3>題目一：火箭發射 \(V-t\) 圖判讀</h3>
+<p><strong>問</strong>：一火箭由地面點火鉛直發射，其 \(V-t\) 圖在前 \(10\) 秒內為上升直線，於 \(t = 10\text{ s}\) 時達到最大速度 \(100\text{ m/s}\)，隨後燃料用盡，圖形呈斜率為 \(-10\text{ m/s}^2\) 的直線下降。請回答：(1) 火箭於第幾秒達到最高點？ (2) 火箭到達的最大高度為多少？</p>
+<ul>
+<li><strong>解題思維與答案</strong>：<ol>
+<li>燃料用盡後，火箭加速度為 \(-10\text{ m/s}^2\)。速度由 \(100\text{ m/s}\) 減至 \(0\text{ m/s}\) 所需時間為 \(\Delta t = \frac{100}{10} = 10\text{ s}\)。故最高點發生於 \(t = 10 + 10 = 20\text{ s}\) 時。</li>
+<li>最大高度即為 \(0 \sim 20\text{ s}\) 的 \(V-t\) 圖三角形面積：<br />
+    \[H_{\max} = \frac{20 \times 100}{2} = 1000\text{ m}\]</li>
+</ol>
+</li>
+</ul>
+<hr />
+<h3>題目二：平均加速度向量算術</h3>
+<p><strong>問</strong>：一棒球以 \(30\text{ m/s}\) 水平向左飛向打擊區，經打擊後以 \(40\text{ m/s}\) 水平向右飛回。若球與球棒接觸時間為 \(0.05\text{ s}\)，則棒球在接觸期間的平均加速度大小與方向為何？</p>
+<ul>
+<li><strong>解題思維與答案</strong>：<br />
+    設向右為正方向。初速 \(v_i = -30\text{ m/s}\)，末速 \(v_f = +40\text{ m/s}\)。<br />
+    \[\bar{a} = \frac{v_f - v_i}{\Delta t} = \frac{(+40) - (-30)}{0.05} = \frac{70}{0.05} = 1400\text{ m/s}^2\]<br />
+    答案：平均加速度大小為 \(1400\text{ m/s}^2\)，方向向右。</li>
+</ul>
+<hr />
+<h3>題目三：等時距位移比例應用</h3>
+<p><strong>問</strong>：一小球自光滑斜面頂端由靜止釋放，做等加速度直線運動。若小球在第 \(1\) 秒內的位移為 \(2\text{ m}\)，則小球在第 \(3\) 秒「單獨這一秒內」的位移為多少公尺？</p>
+<ul>
+<li><strong>解題思維與答案</strong>：<br />
+    初速為零的等加速度運動，連續各等時間間隔（每 \(1\) 秒）內的位移比為 \(1 : 3 : 5 : 7 \dots\)。<br />
+    第 \(1\) 秒內位移為 \(2\text{ m}\)（對應比例 \(1\)），則第 \(3\) 秒內位移對應比例 \(5\)：<br />
+    \[\Delta x_3 = 2\text{ m} \times 5 = 10\text{ m}\]<br />
+    答案：第 \(3\) 秒內的位移為 \(10\text{ m}\)。</li>
+</ul>
+    </div>
+    <footer class="doc-foot">
+      自動生成於 NotebookLM Study Assistant • 專為高中學生課後複習與考前衝刺打造
+    </footer>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.mermaid) {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'neutral',
+          fontFamily: "'Noto Sans TC', 'Inter', sans-serif",
+          flowchart: { curve: 'basis', htmlLabels: true },
+          securityLevel: 'loose'
+        });
+      }
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+  
+  <script>
+    (function() {
+      const treeData = {"name": "物理運動學與圖形觀念", "children": [{"name": "圖形關係與物理意義", "children": [{"name": "V-t 圖（速度-時間圖）", "children": [{"name": "斜率：加速度 (a)"}, {"name": "面積：位移 (Δx)"}, {"name": "最熱門常考圖形"}]}, {"name": "A-t 圖（加速度-時間圖）", "children": [{"name": "面積：速度變化量 (Δv)"}]}, {"name": "X-t 圖（位置-時間圖）", "children": [{"name": "斜率：速度 (v)"}]}]}, {"name": "基礎運動型態", "children": [{"name": "靜止狀態", "children": [{"name": "X-t 圖：水平直線"}, {"name": "速度 = 0"}, {"name": "加速度 = 0"}]}, {"name": "等速度直線運動", "children": [{"name": "X-t 圖：斜直線"}, {"name": "速度：定值（正向為右，負向為左）"}, {"name": "加速度 = 0"}]}, {"name": "等加速度運動", "children": [{"name": "X-t 圖：二次曲線（拋物線）"}, {"name": "V-t 圖：斜直線"}, {"name": "A-t 圖：水平直線"}]}]}, {"name": "鉛直上拋與運動學應用", "children": [{"name": "鉛直上拋運動特性", "children": [{"name": "運動軌跡：鉛直直線（非拋物線）"}, {"name": "X-t 圖：拋物線（時間函數）"}, {"name": "V-t 圖：負斜率斜直線"}, {"name": "最高點：速度 = 0（位移最大處）"}]}, {"name": "火箭發射題型（V-t 圖剖析）", "children": [{"name": "燃料用盡點：速度達到最大值"}, {"name": "到達最高點：速度減為 0"}, {"name": "落回發射地面：正面積等於負面積"}]}]}, {"name": "核心運動學定義與公式", "children": [{"name": "平均速度", "children": [{"name": "公式：位移除以時間 (Δx / Δt)"}, {"name": "具方向性（向量）"}]}, {"name": "平均速率", "children": [{"name": "公式：路徑長除以時間 (L / Δt)"}, {"name": "純量（無方向性）"}]}, {"name": "平均加速度", "children": [{"name": "公式：速度變化量除以時間 (Δv / Δt)"}, {"name": "需考量方向性 (v_末 - v_初)"}]}]}, {"name": "自由落體與伽利略斜面實驗", "children": [{"name": "自由落體", "children": [{"name": "條件：初速 = 0、無空氣阻力"}, {"name": "公式：v = gt, h = 1/2 * g * t^2"}, {"name": "h 代表落下距離（非離地高度）"}]}, {"name": "伽利略斜面實驗", "children": [{"name": "目的：減緩運動速度以測量等加速度"}, {"name": "方法：等時間間隔撞擊鈴鐺"}, {"name": "連續等時距位移比：1 : 3 : 5 : 7 : ..."}, {"name": "特性：連續等時距位移成等差數列"}]}]}]};
+      const container = document.getElementById("tree-svg-container");
+      if (!container || !treeData) return;
+
+      const width = container.clientWidth || 880;
+      const height = 520;
+
+      const svg = d3.select("#tree-svg-container")
+        .append("svg")
+        .attr("width", "100%")
+        .attr("height", height)
+        .attr("viewBox", [0, 0, width, height]);
+
+      const g = svg.append("g");
+
+      const zoom = d3.zoom()
+        .scaleExtent([0.25, 2.5])
+        .on("zoom", (e) => g.attr("transform", e.transform));
+
+      svg.call(zoom);
+
+      const root = d3.hierarchy(treeData);
+      root.x0 = height / 2;
+      root.y0 = 0;
+
+      let i = 0;
+      const duration = 380;
+      // [dy, dx]: 垂直節距 58px (確保上下不重疊), 水平層級 320px (確保長文字不穿透父層)
+      const treeLayout = d3.tree().nodeSize([58, 320]);
+
+      function splitNodeText(text, maxChars) {
+        if (!text) return [""];
+        if (text.length <= maxChars) return [text];
+
+        // 優先在括號處斷行，例如：世風日下之自身矛盾對比（擇師教子 vs. 於身恥師）
+        const parenIdx = text.search(/[（(]/);
+        if (parenIdx >= 3 && parenIdx <= maxChars + 4) {
+          const p1 = text.slice(0, parenIdx).trim();
+          const p2 = text.slice(parenIdx).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 優先在冒號、破折號、頓號處斷行
+        const sepIdx = text.search(/[：:—、]/);
+        if (sepIdx >= 3 && sepIdx <= maxChars + 2) {
+          const p1 = text.slice(0, sepIdx + 1).trim();
+          const p2 = text.slice(sepIdx + 1).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 預設在 maxChars 處均勻斷行
+        return [text.slice(0, maxChars), text.slice(maxChars)];
+      }
+
+      if (root.children) {
+        root.children.forEach(c => {
+          if (c.children) {
+            c.children.forEach(collapse);
+          }
+        });
+      }
+
+      function collapse(d) {
+        if (d.children) {
+          d._children = d.children;
+          d._children.forEach(collapse);
+          d.children = null;
+        }
+      }
+
+      function expand(d) {
+        if (d._children) {
+          d.children = d._children;
+          d.children.forEach(expand);
+          d._children = null;
+        }
+      }
+
+      const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
+
+      function getNodeColor(d) {
+        if (d.depth === 0) return "#2563eb";
+        let p = d;
+        while (p.depth > 1) p = p.parent;
+        return colorScale(p.data.name);
+      }
+
+      function update(source) {
+        const nodes = root.descendants();
+        const links = root.links();
+
+        treeLayout(root);
+
+        const node = g.selectAll("g.node")
+          .data(nodes, d => d.id || (d.id = ++i));
+
+        const nodeEnter = node.enter().append("g")
+          .attr("class", "node")
+          .attr("transform", d => `translate(${source.y0},${source.x0})`)
+          .on("click", (event, d) => {
+            if (d.children) {
+              d._children = d.children;
+              d.children = null;
+            } else if (d._children) {
+              d.children = d._children;
+              d._children = null;
+            }
+            update(d);
+          });
+
+        nodeEnter.append("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        const textNode = nodeEnter.append("text")
+          .attr("class", "node-text")
+          .attr("text-anchor", d => (d.children || d._children) ? "end" : "start")
+          .style("fill-opacity", 0);
+
+        textNode.each(function(d) {
+          const el = d3.select(this);
+          const isParent = Boolean(d.children || d._children);
+          const xOffset = isParent ? -14 : 14;
+          const maxChars = isParent ? 13 : 18;
+          const lines = splitNodeText(d.data.name, maxChars);
+
+          if (lines.length === 1) {
+            el.attr("x", xOffset)
+              .attr("dy", "0.32em")
+              .text(lines[0]);
+          } else {
+            el.attr("x", xOffset)
+              .attr("dy", "-0.35em")
+              .text(lines[0]);
+            el.append("tspan")
+              .attr("x", xOffset)
+              .attr("dy", "1.25em")
+              .text(lines[1]);
+          }
+        });
+
+        const nodeUpdate = node.merge(nodeEnter).transition().duration(duration)
+          .attr("transform", d => `translate(${d.y},${d.x})`);
+
+        nodeUpdate.select("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        nodeUpdate.select("text")
+          .style("fill-opacity", 1);
+
+        const nodeExit = node.exit().transition().duration(duration)
+          .attr("transform", d => `translate(${source.y},${source.x})`)
+          .remove();
+
+        nodeExit.select("circle").attr("r", 1e-6);
+        nodeExit.select("text").style("fill-opacity", 1e-6);
+
+        const link = g.selectAll("path.link")
+          .data(links, d => d.target.id);
+
+        const linkEnter = link.enter().insert("path", "g")
+          .attr("class", "link")
+          .attr("d", d => {
+            const o = {x: source.x0, y: source.y0};
+            return diagonal(o, o);
+          });
+
+        link.merge(linkEnter).transition().duration(duration)
+          .attr("d", d => diagonal(d.source, d.target));
+
+        link.exit().transition().duration(duration)
+          .attr("d", d => {
+            const o = {x: source.x, y: source.y};
+            return diagonal(o, o);
+          })
+          .remove();
+
+        nodes.forEach(d => {
+          d.x0 = d.x;
+          d.y0 = d.y;
+        });
+      }
+
+      function diagonal(s, d) {
+        return `M ${s.y} ${s.x}
+                C ${(s.y + d.y) / 2} ${s.x},
+                  ${(s.y + d.y) / 2} ${d.x},
+                  ${d.y} ${d.x}`;
+      }
+
+      function autoFitTree(duration = 450) {
+        const nodes = root.descendants();
+        if (!nodes || nodes.length === 0) return;
+
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        nodes.forEach(d => {
+          const isParent = Boolean(d.children || d._children);
+          const leftBound = d.y - (isParent ? 180 : 20);
+          const rightBound = d.y + (isParent ? 20 : 220);
+          const topBound = d.x - 32;
+          const bottomBound = d.x + 32;
+
+          if (leftBound < minX) minX = leftBound;
+          if (rightBound > maxX) maxX = rightBound;
+          if (topBound < minY) minY = topBound;
+          if (bottomBound > maxY) maxY = bottomBound;
+        });
+
+        const fullWidth = container.clientWidth || 880;
+        const fullHeight = height;
+        const treeW = maxX - minX;
+        const treeH = maxY - minY;
+
+        if (treeW <= 0 || treeH <= 0) return;
+
+        const scale = Math.min(0.92, (fullWidth * 0.90) / treeW, (fullHeight * 0.90) / treeH);
+        const clampedScale = Math.max(scale, 0.42);
+
+        const midTreeX = (minX + maxX) / 2;
+        const midTreeY = (minY + maxY) / 2;
+        const tx = fullWidth / 2 - clampedScale * midTreeX;
+        const ty = fullHeight / 2 - clampedScale * midTreeY;
+
+        if (duration > 0) {
+          svg.transition().duration(duration).call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        } else {
+          svg.call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        }
+      }
+
+      window.expandAll = function() {
+        root.each(expand);
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.collapseAll = function() {
+        if (root.children) {
+          root.children.forEach(collapse);
+        }
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.resetZoom = function() {
+        autoFitTree(450);
+      };
+
+      // 首次繪製節點並自動縮放置中全覽
+      update(root);
+      autoFitTree(0);
+    })();
+  </script>
+
+</body>
+</html>

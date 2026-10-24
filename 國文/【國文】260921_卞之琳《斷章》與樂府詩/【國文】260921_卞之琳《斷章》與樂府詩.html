@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【國文】260921_卞之琳《斷章》與樂府詩</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --border: #e2e8f0;
+      --border-focus: #cbd5e1;
+      --tag-bg: #e0f2fe;
+      --tag-text: #0369a1;
+      --header-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans TC', 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.8;
+      font-size: 16px;
+      padding: 30px 16px 60px;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.06), 0 2px 6px -1px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    header.hero {
+      background: var(--header-gradient);
+      color: #ffffff;
+      padding: 36px 40px 30px;
+      position: relative;
+    }
+    header.hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      color: #f1f5f9;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    header.hero h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.5px;
+    }
+    header.hero .meta {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .content-body {
+      padding: 40px 48px;
+    }
+    @media (max-width: 640px) {
+      .content-body { padding: 24px 20px; }
+      header.hero { padding: 28px 24px 22px; }
+      header.hero h1 { font-size: 1.5rem; }
+    }
+    h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 2.2em;
+      margin-bottom: 0.9em;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h2:first-of-type { margin-top: 0.5em; }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1e3a8a;
+      margin-top: 1.6em;
+      margin-bottom: 0.6em;
+      padding-left: 10px;
+      border-left: 4px solid var(--accent);
+    }
+    p { margin-bottom: 1.1em; }
+    ul, ol { margin-bottom: 1.2em; padding-left: 1.8em; }
+    li { margin-bottom: 0.4em; }
+    .mermaid {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 16px;
+      margin: 1.6em 0;
+      text-align: center;
+      overflow-x: auto;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 1.6em 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    thead th {
+      background: #f1f5f9;
+      color: #1e293b;
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+    tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) { background: #fafafa; }
+    tbody tr:hover { background: #f0f7ff; }
+    tbody tr:last-child td { border-bottom: none; }
+    code {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      background: #f1f5f9;
+      color: #b91c1c;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 1.4em 0;
+      font-size: 0.92em;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; }
+    blockquote {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 14px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 1.4em 0;
+      color: #1e40af;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2.2em 0; }
+    .katex-display {
+      margin: 1.2em 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 6px 0;
+    }
+    .katex { font-size: 1.05em; }
+    
+    /* NotebookLM 原生 D3 互動心智圖樣式 */
+    .mindmap-box {
+      margin: 2em 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .mindmap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .mindmap-title {
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mindmap-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .mm-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: #334155;
+      transition: all 0.2s;
+    }
+    .mm-btn:hover { background: #f1f5f9; }
+    #tree-svg-container {
+      width: 100%;
+      height: 520px;
+      background: #ffffff;
+      cursor: grab;
+    }
+    #tree-svg-container:active { cursor: grabbing; }
+    .node circle {
+      cursor: pointer;
+      stroke-width: 2.5px;
+      transition: all 0.2s;
+    }
+    .node circle:hover { transform: scale(1.25); }
+    .node text {
+      font-size: 13px;
+      font-weight: 500;
+      font-family: inherit;
+      fill: #1e293b;
+      cursor: pointer;
+      paint-order: stroke fill;
+      stroke: #ffffff;
+      stroke-width: 4.5px;
+      stroke-linejoin: round;
+      user-select: none;
+    }
+    .link {
+      fill: none;
+      stroke: #cbd5e1;
+      stroke-width: 1.8px;
+      stroke-opacity: 0.85;
+      transition: stroke-width 0.2s;
+    }
+    .link:hover { stroke: #94a3b8; stroke-width: 2.5px; }
+
+    footer.doc-foot {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      background: #fcfdfe;
+    }
+    .print-btn {
+      position: absolute;
+      top: 36px;
+      right: 40px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .print-btn:hover { background: rgba(255,255,255,0.25); }
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      body {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+      }
+      .container {
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+      }
+      .print-btn, .mindmap-btns {
+        display: none !important;
+      }
+      header.hero {
+        background: var(--header-gradient) !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+        padding: 24px 30px !important;
+        margin-bottom: 20px !important;
+      }
+      header.hero h1 {
+        color: #ffffff !important;
+        font-size: 1.6rem !important;
+      }
+      header.hero .badge {
+        background: rgba(255,255,255,0.2) !important;
+        color: #ffffff !important;
+      }
+      header.hero .meta {
+        color: #cbd5e1 !important;
+      }
+      .content-body {
+        padding: 10px 0 !important;
+      }
+      h1, h2, h3, h4, table, tr, pre, .mermaid, .mindmap-box, blockquote {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      h2, h3 {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <div class="badge">📖 高中課堂互動圖文筆記</div>
+      <button class="print-btn" onclick="window.print()">🖨️ 列印 / 另存 PDF</button>
+      <h1>【國文】260921_卞之琳《斷章》與樂府詩</h1>
+      <div class="meta">
+        <span>⏱️ 數位筆記儀表板</span>
+        <span>🏷️ 含可縮放互動心智圖、時間軸與觀念對比</span>
+      </div>
+    </header>
+    <div class="content-body">
+      
+      <div class="mindmap-box">
+        <div class="mindmap-header">
+          <div class="mindmap-title">
+            <span>🧠 本課核心知識脈絡（NotebookLM 原生互動心智圖 • 支援縮放與展開）</span>
+          </div>
+          <div class="mindmap-btns">
+            <button class="mm-btn" onclick="expandAll()">展開全部</button>
+            <button class="mm-btn" onclick="collapseAll()">收合分支</button>
+            <button class="mm-btn" onclick="resetZoom()">重設視角</button>
+          </div>
+        </div>
+        <div id="tree-svg-container"></div>
+      </div>
+        
+      <h2>📖 課堂主題與核心摘要 (Class Overview)</h2>
+<p>本堂課前半段深入解析卞之琳現代詩《斷章》的二元對比、主客體變換哲理與古典詩視角交錯題型；課間進行全校防災演習；後半段則正式進入第八課《陌上桑》（別名《燕歌羅敷行》），系統化梳理國學常識「樂府詩」的起源、官署職責演變、格律特色與「感於哀樂，緣事而發」的核心寫實精神。本課學習目標在於掌握現代詩的哲理解讀維度，並能精確判斷樂府詩的體裁特徵與學測常見命題考點。</p>
+<div class="mermaid">
+graph LR
+  Root["260921 國文課堂核心"] --> A["單元一：卞之琳《斷章》賞析"]
+  Root --> B["單元二：國學常識—樂府詩概述"]
+  Root --> C["課堂演練與作業事項"]
+
+  A --> A1["解讀維度：抒情情感 vs. 哲理思考"]
+  A --> A2["結構特色：由實入虛、日景對比夜景"]
+  A --> A3["延伸題型：古典詩視角交錯（張耒、黃庭堅詩句）"]
+
+  B --> B1["名稱三階段：官署名 $\rightarrow$ 詩歌體裁 $\rightarrow$ 配樂韻文"]
+  B --> B2["漢武帝樂府職責：製宗廟樂章與採集民間詩歌"]
+  B --> B3["格律特色：極自由、可轉韻、題目帶歌行吟引"]
+  B --> B4["核心精神：感於哀樂，緣事而發（寫實精神）"]
+
+  C --> C1["防災演習：趴下掩護穩住、不推不跑不語"]
+  C --> C2["待辦：禮拜三課堂作文、繳交第二課作業"]
+</div>
+<h2>💡 核心知識點與觀念詳解 (Key Concepts)</h2>
+<h3>一、 卞之琳《斷章》之深層賞析與哲理推導</h3>
+<p>《斷章》全詩僅四句：「你站在橋上看風景，看風景的人在樓上看你。明月裝飾了你的窗子，你裝飾了別人的夢。」課堂上老師帶領同學從兩大維度進行拆解：</p>
+<ol>
+<li><strong>抒情層面（情感解讀）：</strong><br />
+   - <strong>看與被看的多重可能</strong>：看風景的人在樓上看你，包含喜歡、監視、關注或尋找把柄等多元人性心理。<br />
+   - <strong>情景交融</strong>：前兩句寫白天的「實景」（橋、風景、樓）；後兩句寫夜晚月光下的「虛景」（窗子、夢境），展現「日有所思，夜有所夢」的情感延續。</li>
+<li><strong>哲理層面（主體與客體隨時變換）：</strong><br />
+   - <strong>主客體流動性</strong>：人常自視為觀察世界的「主體」，但同時也是他人眼中的「客體」。世界不以自我為中心，人與外在環境隨時發生牽連與互動。<br />
+   - <strong>萬物互相依存</strong>：即便個人產生厭世心理想遠離世界，人也無法孤立存在於社會之外，萬事萬物均處於隨時連結的動態網絡中。</li>
+</ol>
+<h4>經典例題拆解：古典詩中的「視角交錯」題型</h4>
+<p>老師特別強調，學測常考「視角交錯/視線互換」的古典詩句，並舉出兩大經典例題：<br />
+- <strong>例題一</strong>：「偶見行人回手卻，一眼老子立屏間」<br />
+  - <strong>解析</strong>：前句為「作者觀察行人」，後句轉換為「行人回頭觀察作者自身」，形成視角對調。<br />
+- <strong>例題二</strong>：「江亭上何人坐，看我偏舟望翠微」<br />
+  - <strong>解析</strong>：前句為「作者看江亭上坐著的人」，後句為「亭上之人看著偏舟上的作者」，同樣屬於主客觀察視角交錯。</p>
+<hr />
+<h3>二、 樂府詩之起源、演變與體裁特色（課本 p.114-115）</h3>
+<h4>【⏱️ 樂府演變與官署發展歷史時間軸】</h4>
+<div class="mermaid">
+timeline
+    title 樂府名稱與體裁之三階段歷史演變
+    秦代至漢代官署 : 官署名稱（秦代始設，漢武帝擴大規模） : 職責：製宗廟樂章與採集民間詩歌
+    魏晉至唐宋詩歌 : 詩歌體裁名（民間歌謠與文人擬作） : 特色：反映民間疾苦、集體創作演變（如《陌上桑》《木蘭詩》）
+    後世廣義韻文 : 配樂韻文之總稱 : 範疇：廣義涵蓋詞、曲等凡能配樂歌唱之韻文
+</div>
+<h4>1. 「樂府」名稱的三階段演變定義</h4>
+<ul>
+<li><strong>第一階段（官署名稱）</strong>：秦代已設，漢武帝時擴大規模，屬於政府機構名稱。</li>
+<li><strong>兩大核心職責</strong>：<ol>
+<li><strong>製作宗廟樂章</strong>：為朝廷典禮、上朝、祭祀等場合製作配樂與歌詞，內容多為歌頌功德。</li>
+<li><strong>採集民間詩歌（採風）</strong>：派官員深入民間聆聽百姓吟唱，藉由民間歌謠瞭解百姓生活疾苦、民情風俗與施政得失，作為政策調整依據。</li>
+</ol>
+</li>
+<li><strong>第二階段（詩歌體裁名稱）</strong>：指採集整理後的民間歌謠（如東漢《陌上桑》、北朝《木蘭詩》），以及後世文人模仿其形式所寫的「擬樂府/擬作」。</li>
+<li><strong>第三階段（廣義配樂韻文）</strong>：凡是能配合音樂歌唱的韻文總稱，廣義包含宋詞、元曲。</li>
+</ul>
+<h4>2. 樂府詩的格律特色</h4>
+<ul>
+<li><strong>題目識別標誌</strong>：題目常帶有「歌」、「行」、「吟」、「引」、「謠」、「詞」、「調」等字樣，代表具備配樂可唱之特質。</li>
+<li><strong>格律限制極為寬鬆</strong>：字數、句數、平仄、對仗皆<strong>無嚴格限制</strong>。</li>
+<li><strong>押韻規定</strong>：必須押韻，但<strong>「可以轉韻（換韻）」</strong>，且無規定第幾句才能換韻，極具創作彈性。</li>
+</ul>
+<h4>3. 核心精神與文學特色</h4>
+<ul>
+<li><strong>「感於哀樂，緣事而發」</strong>：因真實生活中的悲喜事件而觸發創作，具備強烈的<strong>寫實主義精神</strong>與反映民生疾苦的特質。</li>
+<li><strong>常用寫作手法</strong>：善用<strong>側面烘託</strong>、<strong>對話交談</strong>與<strong>民間歌謠風格</strong>（如《陌上桑》描繪羅敷之美即採用側面烘託）。</li>
+</ul>
+<hr />
+<h4>【📊 觀念與易混淆對比表】</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">對比維度</th>
+<th style="text-align: left;">樂府詩 (Yuefu Poetry)</th>
+<th style="text-align: left;">近體詩 (Regulated Poetry, 唐詩)</th>
+<th style="text-align: left;">現代詩 (Modern Poetry, 新詩)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>起源發展</strong></td>
+<td style="text-align: left;">秦漢官署採集民間歌謠演變</td>
+<td style="text-align: left;">唐代發展成熟之格律詩</td>
+<td style="text-align: left;">五四運動後興起之白話詩</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>音樂性</strong></td>
+<td style="text-align: left;"><strong>可配樂歌唱</strong> (採風音樂)</td>
+<td style="text-align: left;">不可歌唱 (僅供吟誦)</td>
+<td style="text-align: left;">多不可歌唱 (講求內部韻律)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>格律限制</strong></td>
+<td style="text-align: left;">極自由，平仄、句數、字數不限</td>
+<td style="text-align: left;">極嚴格，平仄、句數、字數皆有定格</td>
+<td style="text-align: left;">極自由，無格律限制</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>押韻要求</strong></td>
+<td style="text-align: left;"><strong>必須押韻，但可轉韻</strong></td>
+<td style="text-align: left;">一韻到底，不可轉韻</td>
+<td style="text-align: left;"><strong>可壓韻亦可不壓韻</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>核心精神</strong></td>
+<td style="text-align: left;"><strong>感於哀樂，緣事而發</strong> (寫實導向)</td>
+<td style="text-align: left;">寄情山水、邊塞、詠史等多重題材</td>
+<td style="text-align: left;">個人情感表現與哲理探討</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>⚠️ 老師強調考點與易錯陷阱 (Exam Focus &amp; Pitfalls)</h2>
+<ul>
+<li>📌 <strong>必考重點一：樂府官署的兩大職責</strong></li>
+<li>學測常見選擇題考題，務必區分「製作宗廟典禮樂章（歌功頌德）」與「採集民間詩歌（採風觀政）」的不同目的。</li>
+<li>📌 <strong>必考重點二：樂府詩的押韻與格律陷阱</strong></li>
+<li><strong>常見陷阱</strong>：學生常誤以為樂府詩與現代詩一樣「完全不需押韻」，或是誤以為樂府詩像近體詩一樣「必須一韻到底」。</li>
+<li><strong>正確觀念</strong>：樂府詩<strong>必須押韻</strong>，但允許<strong>「自由轉韻（換韻）」</strong>！</li>
+<li>📌 <strong>必考重點三：古典詩「視角交錯」判讀題</strong></li>
+<li>題目給予未讀過的古詩句時，需能精準區分「作者看客體」與「客體回看作者」的視線轉換（如「偶見行人回手卻，一眼老子立屏間」）。</li>
+<li>📌 <strong>必考重點四：八字真言與寫實特色</strong></li>
+<li><strong>必背標籤</strong>：「感於哀樂，緣事而發」為樂府詩的核心精神，與《詩經》同屬「寫實主義」傳統，切勿與《古詩十九首》或浪漫派混淆。</li>
+</ul>
+<hr />
+<h2>🔑 記憶口訣與解題技巧 (Mnemonics &amp; Shortcuts)</h2>
+<ul>
+<li>💡 <strong>樂府詩題目破題速解 Key Words</strong>：</li>
+<li>凡題目中包含 <strong>「歌、行、吟、引、謠、詞、調」</strong>（如《燕歌羅敷行》、《琵琶行》、《短歌行》），即可直接判定為樂府詩體裁！</li>
+<li>💡 <strong>樂府詩核心口訣</strong>：</li>
+<li><strong>「感於哀樂，緣事而發；字句不限，可以轉韻。」</strong></li>
+<li>💡 <strong>視角交錯題型解題 SOP</strong>：<br />
+  1. 標記詩句中的動作主體（誰在看）與對象（看誰）。<br />
+  2. 比對前後句主客位置是否互換（\(A \rightarrow B\) 變為 \(B \rightarrow A\)）。<br />
+  3. 若前後句發生「觀察者與被觀察者對調」，即為「視角交錯/主客互換」結構。</li>
+</ul>
+<hr />
+<h2>📝 課後作業與待辦事項 (Homework &amp; Tasks)</h2>
+<ul>
+<li>📅 <strong>禮拜三（預定事項）</strong>：</li>
+<li>課堂進行<strong>作文寫作</strong>。</li>
+<li>📥 <strong>作業繳交</strong>：</li>
+<li>課後將收取<strong>第二課作業</strong>（第一課語文與養分學習單）。</li>
+<li>🚨 <strong>校園防災演習花絮與提醒</strong>：</li>
+<li>本日課間完成地震演習（花費 9 分鐘清查人數完畢，符合北市府 10 分鐘合格標準）。</li>
+<li><strong>地震避難口訣</strong>：「趴下、掩護、穩住」。</li>
+<li><strong>撤離原則</strong>：「不推、不跑、不語（不聊天）」，沿途務必攜帶能充分保護頭部之物品。</li>
+<li>防災卡抽查班級：2 班、4 班、6 班、9 班、13 班、15 班。</li>
+</ul>
+<hr />
+<h2>📚 專有名詞與重要公式/定義 (Glossary &amp; Formulas)</h2>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+</ul>
+<hr />
+<h2>🧠 課後自測題 (Quick Review Quiz)</h2>
+<ol>
+<li>
+<p><strong>問答題</strong>：請說明「樂府」一詞在文學史發展上的三個階段定義演變，並列舉漢武帝時期樂府官署的兩大核心職責。<br />
+   - <em>解題思維/簡答</em>：</p>
+<ol>
+<li>三階段：(1) 秦漢官署名稱 \(\rightarrow\) (2) 民間歌謠與文人擬作之詩歌體裁 \(\rightarrow\) (3) 泛指一切可配樂歌唱之韻文（如詞、曲）。</li>
+<li>漢武帝樂府職責：(1) 製作宗廟典禮樂章（歌功頌德） (2) 採集民間詩歌（採風觀政、了解民疾）。</li>
+</ol>
+</li>
+<li>
+<p><strong>觀念判斷題</strong>：小明認為「樂府詩既然來自民間歌謠，格律自由，所以寫作時完全不需要押韻，且不能換韻」，請問小明的觀念是否正確？請予以修正。<br />
+   - <em>解題思維/簡答</em>：</p>
+<ul>
+<li>不正確。樂府詩雖然字數、句數、平仄、對仗皆無嚴格限制，但<strong>必須押韻</strong>；且樂府詩押韻的特點是<strong>「可以轉韻（換韻）」</strong>，並非完全不壓韻，亦非如近體詩般必須一韻到底。</li>
+</ul>
+</li>
+<li>
+<p><strong>視角分析題</strong>：詩句「江亭上何人坐，看我偏舟望翠微」運用了何種文學視角手法？其與卞之琳《斷章》有何相似之處？<br />
+   - <em>解題思維/簡答</em>：</p>
+<ul>
+<li>運用了「視角交錯/主客互換」手法。前句為作者觀察江亭上的人，後句為亭上之人回看偏舟上的作者。這與《斷章》中「你站在橋上看風景，看風景的人在樓上看你」的主客體隨視角隨時變換的哲理結構完全一致。</li>
+</ul>
+</li>
+</ol>
+    </div>
+    <footer class="doc-foot">
+      自動生成於 NotebookLM Study Assistant • 專為高中學生課後複習與考前衝刺打造
+    </footer>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.mermaid) {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'neutral',
+          fontFamily: "'Noto Sans TC', 'Inter', sans-serif",
+          flowchart: { curve: 'basis', htmlLabels: true },
+          securityLevel: 'loose'
+        });
+      }
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+  
+  <script>
+    (function() {
+      const treeData = {"name": "260921 國文課堂核心", "children": [{"name": "單元二：國學常識—樂府詩概述", "children": [{"name": "名稱三階段：官署名 \\(\\rightarrow\\) 詩歌體裁 \\(\\rightarrow\\) 配樂韻文"}, {"name": "漢武帝樂府職責：製宗廟樂章與採集民間詩歌"}, {"name": "格律特色：極自由、可轉韻、題目帶歌行吟引"}, {"name": "核心精神：感於哀樂，緣事而發（寫實精神）"}]}, {"name": "課堂演練與作業事項", "children": [{"name": "防災演習：趴下掩護穩住、不推不跑不語"}, {"name": "待辦：禮拜三課堂作文、繳交第二課作業"}]}]};
+      const container = document.getElementById("tree-svg-container");
+      if (!container || !treeData) return;
+
+      const width = container.clientWidth || 880;
+      const height = 520;
+
+      const svg = d3.select("#tree-svg-container")
+        .append("svg")
+        .attr("width", "100%")
+        .attr("height", height)
+        .attr("viewBox", [0, 0, width, height]);
+
+      const g = svg.append("g");
+
+      const zoom = d3.zoom()
+        .scaleExtent([0.25, 2.5])
+        .on("zoom", (e) => g.attr("transform", e.transform));
+
+      svg.call(zoom);
+
+      const root = d3.hierarchy(treeData);
+      root.x0 = height / 2;
+      root.y0 = 0;
+
+      let i = 0;
+      const duration = 380;
+      // [dy, dx]: 垂直節距 58px (確保上下不重疊), 水平層級 320px (確保長文字不穿透父層)
+      const treeLayout = d3.tree().nodeSize([58, 320]);
+
+      function splitNodeText(text, maxChars) {
+        if (!text) return [""];
+        if (text.length <= maxChars) return [text];
+
+        // 優先在括號處斷行，例如：世風日下之自身矛盾對比（擇師教子 vs. 於身恥師）
+        const parenIdx = text.search(/[（(]/);
+        if (parenIdx >= 3 && parenIdx <= maxChars + 4) {
+          const p1 = text.slice(0, parenIdx).trim();
+          const p2 = text.slice(parenIdx).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 優先在冒號、破折號、頓號處斷行
+        const sepIdx = text.search(/[：:—、]/);
+        if (sepIdx >= 3 && sepIdx <= maxChars + 2) {
+          const p1 = text.slice(0, sepIdx + 1).trim();
+          const p2 = text.slice(sepIdx + 1).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 預設在 maxChars 處均勻斷行
+        return [text.slice(0, maxChars), text.slice(maxChars)];
+      }
+
+      if (root.children) {
+        root.children.forEach(c => {
+          if (c.children) {
+            c.children.forEach(collapse);
+          }
+        });
+      }
+
+      function collapse(d) {
+        if (d.children) {
+          d._children = d.children;
+          d._children.forEach(collapse);
+          d.children = null;
+        }
+      }
+
+      function expand(d) {
+        if (d._children) {
+          d.children = d._children;
+          d.children.forEach(expand);
+          d._children = null;
+        }
+      }
+
+      const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
+
+      function getNodeColor(d) {
+        if (d.depth === 0) return "#2563eb";
+        let p = d;
+        while (p.depth > 1) p = p.parent;
+        return colorScale(p.data.name);
+      }
+
+      function update(source) {
+        const nodes = root.descendants();
+        const links = root.links();
+
+        treeLayout(root);
+
+        const node = g.selectAll("g.node")
+          .data(nodes, d => d.id || (d.id = ++i));
+
+        const nodeEnter = node.enter().append("g")
+          .attr("class", "node")
+          .attr("transform", d => `translate(${source.y0},${source.x0})`)
+          .on("click", (event, d) => {
+            if (d.children) {
+              d._children = d.children;
+              d.children = null;
+            } else if (d._children) {
+              d.children = d._children;
+              d._children = null;
+            }
+            update(d);
+          });
+
+        nodeEnter.append("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        const textNode = nodeEnter.append("text")
+          .attr("class", "node-text")
+          .attr("text-anchor", d => (d.children || d._children) ? "end" : "start")
+          .style("fill-opacity", 0);
+
+        textNode.each(function(d) {
+          const el = d3.select(this);
+          const isParent = Boolean(d.children || d._children);
+          const xOffset = isParent ? -14 : 14;
+          const maxChars = isParent ? 13 : 18;
+          const lines = splitNodeText(d.data.name, maxChars);
+
+          if (lines.length === 1) {
+            el.attr("x", xOffset)
+              .attr("dy", "0.32em")
+              .text(lines[0]);
+          } else {
+            el.attr("x", xOffset)
+              .attr("dy", "-0.35em")
+              .text(lines[0]);
+            el.append("tspan")
+              .attr("x", xOffset)
+              .attr("dy", "1.25em")
+              .text(lines[1]);
+          }
+        });
+
+        const nodeUpdate = node.merge(nodeEnter).transition().duration(duration)
+          .attr("transform", d => `translate(${d.y},${d.x})`);
+
+        nodeUpdate.select("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        nodeUpdate.select("text")
+          .style("fill-opacity", 1);
+
+        const nodeExit = node.exit().transition().duration(duration)
+          .attr("transform", d => `translate(${source.y},${source.x})`)
+          .remove();
+
+        nodeExit.select("circle").attr("r", 1e-6);
+        nodeExit.select("text").style("fill-opacity", 1e-6);
+
+        const link = g.selectAll("path.link")
+          .data(links, d => d.target.id);
+
+        const linkEnter = link.enter().insert("path", "g")
+          .attr("class", "link")
+          .attr("d", d => {
+            const o = {x: source.x0, y: source.y0};
+            return diagonal(o, o);
+          });
+
+        link.merge(linkEnter).transition().duration(duration)
+          .attr("d", d => diagonal(d.source, d.target));
+
+        link.exit().transition().duration(duration)
+          .attr("d", d => {
+            const o = {x: source.x, y: source.y};
+            return diagonal(o, o);
+          })
+          .remove();
+
+        nodes.forEach(d => {
+          d.x0 = d.x;
+          d.y0 = d.y;
+        });
+      }
+
+      function diagonal(s, d) {
+        return `M ${s.y} ${s.x}
+                C ${(s.y + d.y) / 2} ${s.x},
+                  ${(s.y + d.y) / 2} ${d.x},
+                  ${d.y} ${d.x}`;
+      }
+
+      function autoFitTree(duration = 450) {
+        const nodes = root.descendants();
+        if (!nodes || nodes.length === 0) return;
+
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        nodes.forEach(d => {
+          const isParent = Boolean(d.children || d._children);
+          const leftBound = d.y - (isParent ? 180 : 20);
+          const rightBound = d.y + (isParent ? 20 : 220);
+          const topBound = d.x - 32;
+          const bottomBound = d.x + 32;
+
+          if (leftBound < minX) minX = leftBound;
+          if (rightBound > maxX) maxX = rightBound;
+          if (topBound < minY) minY = topBound;
+          if (bottomBound > maxY) maxY = bottomBound;
+        });
+
+        const fullWidth = container.clientWidth || 880;
+        const fullHeight = height;
+        const treeW = maxX - minX;
+        const treeH = maxY - minY;
+
+        if (treeW <= 0 || treeH <= 0) return;
+
+        const scale = Math.min(0.92, (fullWidth * 0.90) / treeW, (fullHeight * 0.90) / treeH);
+        const clampedScale = Math.max(scale, 0.42);
+
+        const midTreeX = (minX + maxX) / 2;
+        const midTreeY = (minY + maxY) / 2;
+        const tx = fullWidth / 2 - clampedScale * midTreeX;
+        const ty = fullHeight / 2 - clampedScale * midTreeY;
+
+        if (duration > 0) {
+          svg.transition().duration(duration).call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        } else {
+          svg.call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        }
+      }
+
+      window.expandAll = function() {
+        root.each(expand);
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.collapseAll = function() {
+        if (root.children) {
+          root.children.forEach(collapse);
+        }
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.resetZoom = function() {
+        autoFitTree(450);
+      };
+
+      // 首次繪製節點並自動縮放置中全覽
+      update(root);
+      autoFitTree(0);
+    })();
+  </script>
+
+</body>
+</html>

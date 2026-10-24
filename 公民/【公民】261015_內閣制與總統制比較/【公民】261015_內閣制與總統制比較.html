@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【公民】261015_內閣制與總統制比較</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --border: #e2e8f0;
+      --border-focus: #cbd5e1;
+      --tag-bg: #e0f2fe;
+      --tag-text: #0369a1;
+      --header-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans TC', 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.8;
+      font-size: 16px;
+      padding: 30px 16px 60px;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.06), 0 2px 6px -1px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    header.hero {
+      background: var(--header-gradient);
+      color: #ffffff;
+      padding: 36px 40px 30px;
+      position: relative;
+    }
+    header.hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      color: #f1f5f9;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    header.hero h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.5px;
+    }
+    header.hero .meta {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .content-body {
+      padding: 40px 48px;
+    }
+    @media (max-width: 640px) {
+      .content-body { padding: 24px 20px; }
+      header.hero { padding: 28px 24px 22px; }
+      header.hero h1 { font-size: 1.5rem; }
+    }
+    h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 2.2em;
+      margin-bottom: 0.9em;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h2:first-of-type { margin-top: 0.5em; }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1e3a8a;
+      margin-top: 1.6em;
+      margin-bottom: 0.6em;
+      padding-left: 10px;
+      border-left: 4px solid var(--accent);
+    }
+    p { margin-bottom: 1.1em; }
+    ul, ol { margin-bottom: 1.2em; padding-left: 1.8em; }
+    li { margin-bottom: 0.4em; }
+    .mermaid {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 16px;
+      margin: 1.6em 0;
+      text-align: center;
+      overflow-x: auto;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 1.6em 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    thead th {
+      background: #f1f5f9;
+      color: #1e293b;
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+    tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) { background: #fafafa; }
+    tbody tr:hover { background: #f0f7ff; }
+    tbody tr:last-child td { border-bottom: none; }
+    code {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      background: #f1f5f9;
+      color: #b91c1c;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 1.4em 0;
+      font-size: 0.92em;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; }
+    blockquote {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 14px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 1.4em 0;
+      color: #1e40af;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2.2em 0; }
+    .katex-display {
+      margin: 1.2em 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 6px 0;
+    }
+    .katex { font-size: 1.05em; }
+    
+    /* NotebookLM 原生 D3 互動心智圖樣式 */
+    .mindmap-box {
+      margin: 2em 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .mindmap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .mindmap-title {
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mindmap-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .mm-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: #334155;
+      transition: all 0.2s;
+    }
+    .mm-btn:hover { background: #f1f5f9; }
+    #tree-svg-container {
+      width: 100%;
+      height: 520px;
+      background: #ffffff;
+      cursor: grab;
+    }
+    #tree-svg-container:active { cursor: grabbing; }
+    .node circle {
+      cursor: pointer;
+      stroke-width: 2.5px;
+      transition: all 0.2s;
+    }
+    .node circle:hover { transform: scale(1.25); }
+    .node text {
+      font-size: 13px;
+      font-weight: 500;
+      font-family: inherit;
+      fill: #1e293b;
+      cursor: pointer;
+      paint-order: stroke fill;
+      stroke: #ffffff;
+      stroke-width: 4.5px;
+      stroke-linejoin: round;
+      user-select: none;
+    }
+    .link {
+      fill: none;
+      stroke: #cbd5e1;
+      stroke-width: 1.8px;
+      stroke-opacity: 0.85;
+      transition: stroke-width 0.2s;
+    }
+    .link:hover { stroke: #94a3b8; stroke-width: 2.5px; }
+
+    footer.doc-foot {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      background: #fcfdfe;
+    }
+    .print-btn {
+      position: absolute;
+      top: 36px;
+      right: 40px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .print-btn:hover { background: rgba(255,255,255,0.25); }
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      body {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+      }
+      .container {
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+      }
+      .print-btn, .mindmap-btns {
+        display: none !important;
+      }
+      header.hero {
+        background: var(--header-gradient) !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+        padding: 24px 30px !important;
+        margin-bottom: 20px !important;
+      }
+      header.hero h1 {
+        color: #ffffff !important;
+        font-size: 1.6rem !important;
+      }
+      header.hero .badge {
+        background: rgba(255,255,255,0.2) !important;
+        color: #ffffff !important;
+      }
+      header.hero .meta {
+        color: #cbd5e1 !important;
+      }
+      .content-body {
+        padding: 10px 0 !important;
+      }
+      h1, h2, h3, h4, table, tr, pre, .mermaid, .mindmap-box, blockquote {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      h2, h3 {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <div class="badge">📖 高中課堂互動圖文筆記</div>
+      <button class="print-btn" onclick="window.print()">🖨️ 列印 / 另存 PDF</button>
+      <h1>【公民】261015_內閣制與總統制比較</h1>
+      <div class="meta">
+        <span>⏱️ 數位筆記儀表板</span>
+        <span>🏷️ 含可縮放互動心智圖、時間軸與觀念對比</span>
+      </div>
+    </header>
+    <div class="content-body">
+      
+      <div class="mindmap-box">
+        <div class="mindmap-header">
+          <div class="mindmap-title">
+            <span>🧠 本課核心知識脈絡（NotebookLM 原生互動心智圖 • 支援縮放與展開）</span>
+          </div>
+          <div class="mindmap-btns">
+            <button class="mm-btn" onclick="expandAll()">展開全部</button>
+            <button class="mm-btn" onclick="collapseAll()">收合分支</button>
+            <button class="mm-btn" onclick="resetZoom()">重設視角</button>
+          </div>
+        </div>
+        <div id="tree-svg-container"></div>
+      </div>
+        
+      <h2>📖 課堂主題與核心摘要 (Class Overview)</h2>
+<p>本堂課核心探討民主國家兩大主流憲政體制——「內閣制」與「總統制」的組織架構、運作邏輯及其優缺點比較。老師透過「虛位元首與吉祥物」、「做作業分組」以及「三頭龍與互相持刀對峙」等生動比喻，深入剖析內閣制的行政立法融合與總統制的嚴格三權分利。結合歷史脈絡（如美國十三殖民地背景）與各國實例（英國、德國、美國），幫助學生掌握不同制度下權力互動、民意基礎與政局穩定度的核心差異，為高中公民與社會科憲政專題奠定紮實基礎。</p>
+<p>【🌳 本課大綱樹狀心智導圖 (Mindmap)】：</p>
+<div class="mermaid">
+graph LR
+  Root["民主政府體制比較"] --> A["內閣制 (Parliamentary System)"]
+  Root --> B["總統制 (Presidential System)"]
+
+  A --> A1["核心特徵：行政與立法融合"]
+  A --> A2["元首定位：虛位元首 (吉祥物/凝聚力)"]
+  A --> A3["制衡機制：不信任案與解散國會"]
+  A --> A4["運作優缺點：高效率與權責分明 vs 政局易不穩/聯合內閣爭執"]
+
+  B --> B1["核心特徵：嚴格三權分利 (孟德斯鳩/三頭龍比喻)"]
+  B --> B2["元首定位：時權元首 (國家元首 + 行政首長)"]
+  B --> B3["民意基礎：雙元式民意 (總統與國會各自受權)"]
+  B --> B4["權力牽制：法律否決權、預算審查、人事同意與國情咨文"]
+</div>
+<h2>💡 核心知識點與觀念詳解 (Key Concepts)</h2>
+<h3>一、 內閣制（Parliamentary System）運作邏輯與特點</h3>
+<ol>
+<li>
+<p><strong>虛位元首的定位與比喻</strong><br />
+   - <strong>觀念解析</strong>：內閣制的國家元首（如英國國王、德意志聯邦共和國總統）為「虛位元首」，僅具象徵性地位，無實質行政大權。<br />
+   - <strong>課堂經典比喻（吉祥物與啦啦隊）</strong>：</p>
+<ul>
+<li><strong>吉祥物效應</strong>：老師將虛位元首比作球隊的吉祥物或啦啦隊。吉祥物的作用是提供凝聚力、讓大眾感到喜愛與安心，其可愛程度與球隊的實際戰績（政績）無關。</li>
+<li><strong>生活實例</strong>：台北市的「熊讚」、台南市的「虱目魚」、高雄市的吉祥物貓咪、新竹穿客家衣服的獅子。民眾喜歡吉祥物能增強認同感，但不代表吉祥物要負責市政決策。</li>
+<li><strong>各國體制差異</strong>：英國無總統（由君主擔任虛位元首）；德國設有「總統」，但德國總統屬於虛位元首，與美國的實權總統性質完全不同。</li>
+</ul>
+</li>
+<li>
+<p><strong>行政與立法的融合（以國會為核心）</strong><br />
+   - <strong>權力來源</strong>：行政權（內閣）來自立法權（國會多數黨或執政聯盟），內閣閣員通常兼任國會議員。<br />
+   - <strong>制度優勢</strong>：</p>
+<ul>
+<li><strong>施政效率高</strong>：行政與立法立場一致，法案與預算容易順利通過。</li>
+<li><strong>權責分明（政治責任明確）</strong>：由於行政與立法為同一執政團隊，政策成敗直接由該黨承擔，責任易於追究。</li>
+<li><strong>潛在風險（濫權疑慮與司法監督）</strong>：</li>
+<li>行政立法融合可能導致多數暴力或行政濫權。但老師特別強調：這<strong>不等於專制獨裁</strong>，因為內閣制國家仍保有「獨立運作的司法權」，司法機關仍可對違法或濫權行為進行監督與裁決。</li>
+</ul>
+</li>
+<li>
+<p><strong>雙向制衡機制：不信任案與解散國會</strong><br />
+   - <strong>國會對內閣</strong>：國會可對內閣提出「不信任案」（倒閣），迫使內閣總辭。<br />
+   - <strong>內閣對國會</strong>：內閣總理（首相）被倒閣時，亦可呈請元首「解散國會」，進行重新大選。<br />
+   - <strong>課堂比喻</strong>：雙方互相「打對方一拳」。國會打內閣一拳（不信任案），內閣反打國會一拳（解散國會），交由選民做最終裁判。<br />
+   - <strong>最新民意檢驗</strong>：由於民意如流水，此機制能隨時重新檢驗並反應最新民意；但缺點是若頻繁倒閣與重選，會導致「政局不穩定」。</p>
+</li>
+<li>
+<p><strong>聯合內閣（Coalition Cabinet）與分組做作業比喻</strong><br />
+   - <strong>形成背景</strong>：當國會無單一政黨取得過半席次時，必須由數個政黨聯合組成內閣。<br />
+   - <strong>課堂經典比喻（學生分組做作業）</strong>：</p>
+<ul>
+<li>聯合內閣就像學校課堂上的分組報告。為了湊足人數過關，有時必須跟立場或理念不完全相同的組員合作。</li>
+<li><strong>利益交換與抬高身價</strong>：小黨深知大黨需要自己的席次湊成多數，因此會進行政治叫牌（例如：「不給我特定部長職位，我就不合作」）。這種權力共享易引發內部爭執與政局動盪。</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h3>二、 總統制（Presidential System）運作邏輯與特點</h3>
+<ol>
+<li>
+<p><strong>歷史起源與美國十三殖民地背景</strong><br />
+   - <strong>歷史脈絡</strong>：美國獨立戰爭後，十三個殖民地（13 States）剛脫離英國殖民統治，極度反對並警惕強大且集權的中央政府。<br />
+   - <strong>國家名稱（United States of America）</strong>：全名即代表「許多獨立州的聯合體」，各州早期擁有各自的法律、軍隊與運作制度。為了防止產生獨裁者，憲法設計的核心理念是「相互牽制與嚴格分權」。</p>
+</li>
+<li>
+<p><strong>核心精神：嚴格的三權分利（Separation of Powers）</strong><br />
+   - <strong>理論來源</strong>：落實法國學者孟德斯鳩的三權分利理論。<br />
+   - <strong>課堂經典比喻（三頭龍與刀頂對方喉嚨）</strong>：</p>
+<ul>
+<li><strong>三頭龍（Three-headed Dragon）</strong>：三權（行政、立法、司法）就像一隻三頭龍的三顆頭，每顆頭有各自的想法，經常互相爭吵或牽制。雖然對外看似強大，但內部三頭互相吵架時容易引發施政僵局。</li>
+<li><strong>互相持刀對峙</strong>：三權之間的關係並非和睦相處，而是彼此拿著刀頂著對方的喉嚨，保持極度緊張的動態平衡。</li>
+</ul>
+</li>
+<li>
+<p><strong>雙元式民意基礎（Dual Legitimacy）</strong><br />
+   - <strong>雙重授權</strong>：總統與國會議員分別由人民直接或間接選舉產生，各自擁有獨立的民意授權。<br />
+   - <strong>政局影響</strong>：當總統與國會多數黨屬於不同政黨時（分府政府），雙方均代表民意，容易出現「各說各話」、互不相讓的政策僵局。</p>
+</li>
+<li>
+<p><strong>時權元首（兼具雙重身份）</strong><br />
+   - <strong>公式定義</strong>：\(\text{總統權利} = \text{國家元首身份 (1)} + \text{最高行政首長身份 (2)}\)。<br />
+   - <strong>公佈法律與簽署責任</strong>：總統公佈法律命令時<strong>不需要</strong>部長副署（背署），因為總統本身就是最高行政首長，直接對全民負責。</p>
+</li>
+<li>
+<p><strong>行政與立法的相互牽制機制</strong><br />
+   - <strong>總統對國會</strong>：</p>
+<ul>
+<li><strong>法律否決權（Veto）</strong>：國會通過的法案，總統可以退回否決。</li>
+<li><strong>國情咨文（State of the Union）</strong>：總統得至國會發表演說，但僅具政治宣示與道德說服作用，總統無權直接向國會提出法案。</li>
+<li><strong>國會對總統</strong>：</li>
+<li><strong>財政權（預算審查權）</strong>：總統提出預算案，但審查與通過權完全掌握在國會手上（「錢袋子」在國會）。</li>
+<li><strong>人事同意權與人事調查</strong>：總統任命重要官員與法官，需經國會審查與同意。</li>
+<li><strong>條約與宣戰同意權</strong>：總統對外簽署條約或宣戰需經國會批准。</li>
+<li><strong>無法解散與倒閣</strong>：總統無權解散國會，國會亦無法通過不信任案解散內閣，雙方各自任期固定、各司其職。</li>
+</ul>
+</li>
+</ol>
+<hr />
+<p>【⏱️ 時序時間軸 / 步驟流程圖】：</p>
+<h4>1. 內閣制「不信任案與解散國會」互動流程圖</h4>
+<div class="mermaid">
+graph TD
+  A["國會對內閣不滿"] --> B["國會通過『不信任案』(倒閣)"]
+  B --> C{"首相/總理之抉擇"}
+  C -->|選擇一| D["內閣率全體閣員總辭"]
+  C -->|選擇二| E["呈請國家元首『解散國會』"]
+  E --> F["舉行國會重新大選"]
+  F --> G["由最新國會多數重新組閣 (檢驗最新民意)"]
+</div>
+<h4>2. 美國總統制起源與嚴格三權分利架構圖</h4>
+<div class="mermaid">
+graph TD
+  A["美東13殖民地獨立戰勝英國"] --> B["警惕強權政府/反對獨裁專制"]
+  B --> C["採納孟德斯鳩『三權分利』理論"]
+  C --> D1["行政權 (總統/時權元首)"]
+  C --> D2["立法權 (國會/參眾兩院)"]
+  C --> D3["司法權 (最高法院)"]
+
+  D1 -- "提出預算 / 法律否決權" --> D2
+  D2 -- "預算審查 / 人事同意 / 條約批准" --> D1
+  D3 -- "違憲審查權" --> D1
+  D3 -- "違憲審查權" --> D2
+</div>
+<hr />
+<p>【📊 觀念與易混淆對比表】：內閣制 vs. 總統制深度比較</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">比較項目</th>
+<th style="text-align: left;">內閣制 (Parliamentary System)</th>
+<th style="text-align: left;">總統制 (Presidential System)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>元首定位</strong></td>
+<td style="text-align: left;"><strong>虛位元首</strong>（僅象徵國家，如吉祥物/啦啦隊）</td>
+<td style="text-align: left;"><strong>時權元首</strong>（兼任國家元首與最高行政首長）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>權力結構</strong></td>
+<td style="text-align: left;"><strong>行政與立法融合</strong>（以國會為核心）</td>
+<td style="text-align: left;"><strong>嚴格三權分利</strong>（行政、立法、司法互相獨立）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>民意基礎</strong></td>
+<td style="text-align: left;"><strong>單一民意</strong>（人民僅選舉國會議員，內閣由國會產生）</td>
+<td style="text-align: left;"><strong>雙元式民意</strong>（人民分別選舉總統與國會議員）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>法案與預算提出</strong></td>
+<td style="text-align: left;">由內閣直接向國會提出</td>
+<td style="text-align: left;">總統提預算案；法案由國會議員提出，總統僅能發起國情咨文建議</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>公佈法律副署</strong></td>
+<td style="text-align: left;">需要行政首長（首相/部長）簽署副署</td>
+<td style="text-align: left;"><strong>不需要</strong>閣員副署（總統自行簽署並承擔全責）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>相互制衡機制</strong></td>
+<td style="text-align: left;">國會可提<strong>不信任案</strong>；內閣可<strong>解散國會</strong></td>
+<td style="text-align: left;">總統享有<strong>法律否決權</strong>；國會享有<strong>預算審查/人事同意/條約批准</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>政局運作優缺點</strong></td>
+<td style="text-align: left;"><strong>優點</strong>：施政效率高、責任明確。<br><strong>缺點</strong>：倒閣頻繁易致政局不穩；聯合內閣易爭吵。</td>
+<td style="text-align: left;"><strong>優點</strong>：行政權穩定（固定任期）。<br><strong>缺點</strong>：府會對立時易產生政治僵局、各說各話。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>代表國家範例</strong></td>
+<td style="text-align: left;">英國、德國（德國總統為虛位）、日本</td>
+<td style="text-align: left;">美國、拉丁美洲國家、菲律賓</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>⚠️ 老師強調考點與易錯陷阱 (Exam Focus &amp; Pitfalls)</h2>
+<ol>
+<li>
+<p><strong>考點一：德國總統 vs. 美國總統的制度差異（高頻星號考題）</strong><br />
+   - <strong>易錯陷阱</strong>：看到「總統」二字就以為是總統制！<br />
+   - <strong>觀念釐清</strong>：德國雖然設有總統，但屬於「內閣制」下的虛位元首（主要負責象徵性外交與儀式）；美國總統才是「總統制」下兼具國家元首與行政首長的「時權元首」。</p>
+</li>
+<li>
+<p><strong>考點二：內閣制的行政立法融合不等於專制獨裁</strong><br />
+   - <strong>易錯陷阱</strong>：認為內閣制行政與立法權力融合成一體，就會演變成專制或極權。<br />
+   - <strong>觀念釐清</strong>：內閣制雖然沒有傳統行政與立法的嚴格分立，但其運作仍受民主機制監督，且<strong>存在獨立運作的司法權</strong>進行合憲性與合法性審查，因此與無法律約束的專制獨裁有本質上的不同。</p>
+</li>
+<li>
+<p><strong>考點三：總統公佈法律命令「不需要副署」</strong><br />
+   - <strong>易錯陷阱</strong>：誤以為所有民主國家公佈法律都需要閣員副署。<br />
+   - <strong>觀念釐清</strong>：副署制度是內閣制下為了保護「虛位元首不擔負政治責任」而設計（由實際行政首長背書）。總統制的總統本身即為最高行政首長，自己決策並向選民負責，因此公佈法律不需要部長副署。</p>
+</li>
+<li>
+<p><strong>考點四：國情咨文（State of the Union）非立法提案</strong><br />
+   - <strong>易錯陷阱</strong>：以為美國總統至國會發表國情咨文是在「提出法案」。<br />
+   - <strong>觀念釐清</strong>：在嚴格三權分立下，總統無權向國會直接提案。國情咨文僅為總統向國會發表的政策演說與政治建議，屬於道德說服性質，國會無義務必須照單全收。</p>
+</li>
+</ol>
+<hr />
+<h2>🔑 記憶口訣與解題技巧 (Mnemonics &amp; Shortcuts)</h2>
+<ol>
+<li>
+<p><strong>破題速記口訣：【內閣吉祥融國會，總統三頭雙民意】</strong><br />
+   - <strong>內閣吉祥融國會</strong>：內閣制元首是「吉祥物」（虛位）；行政立法「融合」；核心在「國會」（行政權源自國會）。<br />
+   - <strong>總統三頭雙民意</strong>：總統制像「三頭龍」（嚴格三權分利）；具備總統與國會的「雙元民意」授權。</p>
+</li>
+<li>
+<p><strong>解題判斷 SOP（三步驟快速鎖定題型）</strong><br />
+   - <strong>Step 1 查元首與行政首長關係</strong>：</p>
+<ul>
+<li>元首無實權、僅為象徵 \(\rightarrow\) 內閣制（虛位元首）。</li>
+<li>元首即最高行政首長 \(\rightarrow\) 總統制（時權元首）。</li>
+<li><strong>Step 2 查制衡工具</strong>：</li>
+<li>出現「倒閣（不信任案）」或「解散國會」 \(\rightarrow\) 內閣制。</li>
+<li>出現「法律否決權」、「預算審議與人事同意」且無解散國會權 \(\rightarrow\) 總統制。</li>
+<li><strong>Step 3 查責任背署</strong>：</li>
+<li>公佈法律需行政首長副署背書 \(\rightarrow\) 內閣制。</li>
+<li>總統直接簽署公佈免副署 \(\rightarrow\) 總統制。</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2>📝 課後作業與待辦事項 (Homework &amp; Tasks)</h2>
+<ul>
+<li><strong>課堂交代事項</strong>：無特定作業。</li>
+<li><strong>自主延伸學習建議</strong>：課後可自行上網搜尋「台灣各縣市吉祥物」（例如台北熊讚、台南虱目魚等），加深對「虛位元首/凝聚力象徵」概念的理解與印象。</li>
+</ul>
+<hr />
+<h2>📚 專有名詞與重要公式/定義 (Glossary &amp; Formulas)</h2>
+<ul>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li></li>
+<li>[總統行政權公式]: \(\text{總統權力} = \text{國家元首身份 (1)} + \text{最高行政首長身份 (2)}\)。</li>
+</ul>
+<hr />
+<h2>🧠 課後自測題 (Quick Review Quiz)</h2>
+<p><strong>【思考題一】</strong><br />
+某國舉辦全國大選，選出新一屆國會議員，隨後由國會佔多數的政黨領袖出任總理，而該國國王僅出席開幕典禮與頒發勳章。請問該國屬於何種憲政體制？若國會對總理政策不滿，可採取何種制衡機制？</p>
+<blockquote>
+<p><strong>解題思維與簡答</strong>：該國屬於<strong>內閣制</strong>（國王為虛位元首，總理由國會多數黨產生）。若國會不滿總理政策，可對內閣提出<strong>「不信任案」（倒閣）</strong>；而總理亦可呈請國王<strong>「解散國會」</strong>重新大選。</p>
+</blockquote>
+<p><strong>【思考題二】</strong><br />
+甲國總統與國會多數黨屬於不同政黨。當總統向國會提出年度預算案時，國會大幅刪減預算，總統憤而召開記者會批評國會，但無法解散國會。請問甲國最可能屬於何種制度？為何總統無法解散國會？</p>
+<blockquote>
+<p><strong>解題思維與簡答</strong>：甲國屬於<strong>總統制</strong>。因為總統制實施嚴格的<strong>三權分利</strong>與<strong>雙元式民意</strong>，總統與國會任期固定且各自對選民負責，國會掌握預算審查權，而總統無權解散國會。</p>
+</blockquote>
+<p><strong>【思考題三】</strong><br />
+為什麼內閣制國家雖然行政與立法權力融合，卻不會輕易變成專制獨裁國家？</p>
+<blockquote>
+<p><strong>解題思維與簡答</strong>：因為內閣制國家仍設有<strong>獨立運作的司法權</strong>，能進行違憲審查與違法監督；此外，內閣隨時面臨國會不信任案的監督以及定期民意選舉的洗禮，故與專制獨裁有實質差異。</p>
+</blockquote>
+<hr />
+<p>💡 這份筆記已完整歸納本堂課關於「內閣制與總統制」的所有重點與生動比喻。如果你希望進一步針對「雙首長制（半總統制）」進行延伸對比，或想嘗試做幾道模擬測驗題，隨時告訴我！</p>
+    </div>
+    <footer class="doc-foot">
+      自動生成於 NotebookLM Study Assistant • 專為高中學生課後複習與考前衝刺打造
+    </footer>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.mermaid) {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'neutral',
+          fontFamily: "'Noto Sans TC', 'Inter', sans-serif",
+          flowchart: { curve: 'basis', htmlLabels: true },
+          securityLevel: 'loose'
+        });
+      }
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+  
+  <script>
+    (function() {
+      const treeData = {"name": "內閣制 (Parliamentary System)", "children": [{"name": "核心特徵：行政與立法融合"}, {"name": "元首定位：虛位元首 (吉祥物/凝聚力)"}, {"name": "制衡機制：不信任案與解散國會"}, {"name": "運作優缺點：高效率與權責分明 vs 政局易不穩/聯合內閣爭執"}]};
+      const container = document.getElementById("tree-svg-container");
+      if (!container || !treeData) return;
+
+      const width = container.clientWidth || 880;
+      const height = 520;
+
+      const svg = d3.select("#tree-svg-container")
+        .append("svg")
+        .attr("width", "100%")
+        .attr("height", height)
+        .attr("viewBox", [0, 0, width, height]);
+
+      const g = svg.append("g");
+
+      const zoom = d3.zoom()
+        .scaleExtent([0.25, 2.5])
+        .on("zoom", (e) => g.attr("transform", e.transform));
+
+      svg.call(zoom);
+
+      const root = d3.hierarchy(treeData);
+      root.x0 = height / 2;
+      root.y0 = 0;
+
+      let i = 0;
+      const duration = 380;
+      // [dy, dx]: 垂直節距 58px (確保上下不重疊), 水平層級 320px (確保長文字不穿透父層)
+      const treeLayout = d3.tree().nodeSize([58, 320]);
+
+      function splitNodeText(text, maxChars) {
+        if (!text) return [""];
+        if (text.length <= maxChars) return [text];
+
+        // 優先在括號處斷行，例如：世風日下之自身矛盾對比（擇師教子 vs. 於身恥師）
+        const parenIdx = text.search(/[（(]/);
+        if (parenIdx >= 3 && parenIdx <= maxChars + 4) {
+          const p1 = text.slice(0, parenIdx).trim();
+          const p2 = text.slice(parenIdx).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 優先在冒號、破折號、頓號處斷行
+        const sepIdx = text.search(/[：:—、]/);
+        if (sepIdx >= 3 && sepIdx <= maxChars + 2) {
+          const p1 = text.slice(0, sepIdx + 1).trim();
+          const p2 = text.slice(sepIdx + 1).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 預設在 maxChars 處均勻斷行
+        return [text.slice(0, maxChars), text.slice(maxChars)];
+      }
+
+      if (root.children) {
+        root.children.forEach(c => {
+          if (c.children) {
+            c.children.forEach(collapse);
+          }
+        });
+      }
+
+      function collapse(d) {
+        if (d.children) {
+          d._children = d.children;
+          d._children.forEach(collapse);
+          d.children = null;
+        }
+      }
+
+      function expand(d) {
+        if (d._children) {
+          d.children = d._children;
+          d.children.forEach(expand);
+          d._children = null;
+        }
+      }
+
+      const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
+
+      function getNodeColor(d) {
+        if (d.depth === 0) return "#2563eb";
+        let p = d;
+        while (p.depth > 1) p = p.parent;
+        return colorScale(p.data.name);
+      }
+
+      function update(source) {
+        const nodes = root.descendants();
+        const links = root.links();
+
+        treeLayout(root);
+
+        const node = g.selectAll("g.node")
+          .data(nodes, d => d.id || (d.id = ++i));
+
+        const nodeEnter = node.enter().append("g")
+          .attr("class", "node")
+          .attr("transform", d => `translate(${source.y0},${source.x0})`)
+          .on("click", (event, d) => {
+            if (d.children) {
+              d._children = d.children;
+              d.children = null;
+            } else if (d._children) {
+              d.children = d._children;
+              d._children = null;
+            }
+            update(d);
+          });
+
+        nodeEnter.append("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        const textNode = nodeEnter.append("text")
+          .attr("class", "node-text")
+          .attr("text-anchor", d => (d.children || d._children) ? "end" : "start")
+          .style("fill-opacity", 0);
+
+        textNode.each(function(d) {
+          const el = d3.select(this);
+          const isParent = Boolean(d.children || d._children);
+          const xOffset = isParent ? -14 : 14;
+          const maxChars = isParent ? 13 : 18;
+          const lines = splitNodeText(d.data.name, maxChars);
+
+          if (lines.length === 1) {
+            el.attr("x", xOffset)
+              .attr("dy", "0.32em")
+              .text(lines[0]);
+          } else {
+            el.attr("x", xOffset)
+              .attr("dy", "-0.35em")
+              .text(lines[0]);
+            el.append("tspan")
+              .attr("x", xOffset)
+              .attr("dy", "1.25em")
+              .text(lines[1]);
+          }
+        });
+
+        const nodeUpdate = node.merge(nodeEnter).transition().duration(duration)
+          .attr("transform", d => `translate(${d.y},${d.x})`);
+
+        nodeUpdate.select("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        nodeUpdate.select("text")
+          .style("fill-opacity", 1);
+
+        const nodeExit = node.exit().transition().duration(duration)
+          .attr("transform", d => `translate(${source.y},${source.x})`)
+          .remove();
+
+        nodeExit.select("circle").attr("r", 1e-6);
+        nodeExit.select("text").style("fill-opacity", 1e-6);
+
+        const link = g.selectAll("path.link")
+          .data(links, d => d.target.id);
+
+        const linkEnter = link.enter().insert("path", "g")
+          .attr("class", "link")
+          .attr("d", d => {
+            const o = {x: source.x0, y: source.y0};
+            return diagonal(o, o);
+          });
+
+        link.merge(linkEnter).transition().duration(duration)
+          .attr("d", d => diagonal(d.source, d.target));
+
+        link.exit().transition().duration(duration)
+          .attr("d", d => {
+            const o = {x: source.x, y: source.y};
+            return diagonal(o, o);
+          })
+          .remove();
+
+        nodes.forEach(d => {
+          d.x0 = d.x;
+          d.y0 = d.y;
+        });
+      }
+
+      function diagonal(s, d) {
+        return `M ${s.y} ${s.x}
+                C ${(s.y + d.y) / 2} ${s.x},
+                  ${(s.y + d.y) / 2} ${d.x},
+                  ${d.y} ${d.x}`;
+      }
+
+      function autoFitTree(duration = 450) {
+        const nodes = root.descendants();
+        if (!nodes || nodes.length === 0) return;
+
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        nodes.forEach(d => {
+          const isParent = Boolean(d.children || d._children);
+          const leftBound = d.y - (isParent ? 180 : 20);
+          const rightBound = d.y + (isParent ? 20 : 220);
+          const topBound = d.x - 32;
+          const bottomBound = d.x + 32;
+
+          if (leftBound < minX) minX = leftBound;
+          if (rightBound > maxX) maxX = rightBound;
+          if (topBound < minY) minY = topBound;
+          if (bottomBound > maxY) maxY = bottomBound;
+        });
+
+        const fullWidth = container.clientWidth || 880;
+        const fullHeight = height;
+        const treeW = maxX - minX;
+        const treeH = maxY - minY;
+
+        if (treeW <= 0 || treeH <= 0) return;
+
+        const scale = Math.min(0.92, (fullWidth * 0.90) / treeW, (fullHeight * 0.90) / treeH);
+        const clampedScale = Math.max(scale, 0.42);
+
+        const midTreeX = (minX + maxX) / 2;
+        const midTreeY = (minY + maxY) / 2;
+        const tx = fullWidth / 2 - clampedScale * midTreeX;
+        const ty = fullHeight / 2 - clampedScale * midTreeY;
+
+        if (duration > 0) {
+          svg.transition().duration(duration).call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        } else {
+          svg.call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        }
+      }
+
+      window.expandAll = function() {
+        root.each(expand);
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.collapseAll = function() {
+        if (root.children) {
+          root.children.forEach(collapse);
+        }
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.resetZoom = function() {
+        autoFitTree(450);
+      };
+
+      // 首次繪製節點並自動縮放置中全覽
+      update(root);
+      autoFitTree(0);
+    })();
+  </script>
+
+</body>
+</html>

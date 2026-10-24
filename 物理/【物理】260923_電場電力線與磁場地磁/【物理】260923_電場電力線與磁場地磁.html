@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【物理】260923_電場電力線與磁場地磁</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    :root {
+      --bg-primary: #f8fafc;
+      --bg-card: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-soft: #eff6ff;
+      --border: #e2e8f0;
+      --border-focus: #cbd5e1;
+      --tag-bg: #e0f2fe;
+      --tag-text: #0369a1;
+      --header-gradient: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans TC', 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.8;
+      font-size: 16px;
+      padding: 30px 16px 60px;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px -2px rgba(0,0,0,0.06), 0 2px 6px -1px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+    header.hero {
+      background: var(--header-gradient);
+      color: #ffffff;
+      padding: 36px 40px 30px;
+      position: relative;
+    }
+    header.hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      color: #f1f5f9;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+    header.hero h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.5px;
+    }
+    header.hero .meta {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .content-body {
+      padding: 40px 48px;
+    }
+    @media (max-width: 640px) {
+      .content-body { padding: 24px 20px; }
+      header.hero { padding: 28px 24px 22px; }
+      header.hero h1 { font-size: 1.5rem; }
+    }
+    h2 {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-top: 2.2em;
+      margin-bottom: 0.9em;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h2:first-of-type { margin-top: 0.5em; }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #1e3a8a;
+      margin-top: 1.6em;
+      margin-bottom: 0.6em;
+      padding-left: 10px;
+      border-left: 4px solid var(--accent);
+    }
+    p { margin-bottom: 1.1em; }
+    ul, ol { margin-bottom: 1.2em; padding-left: 1.8em; }
+    li { margin-bottom: 0.4em; }
+    .mermaid {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px 16px;
+      margin: 1.6em 0;
+      text-align: center;
+      overflow-x: auto;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.02);
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin: 1.6em 0;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    thead th {
+      background: #f1f5f9;
+      color: #1e293b;
+      font-weight: 600;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 2px solid var(--border);
+    }
+    tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) { background: #fafafa; }
+    tbody tr:hover { background: #f0f7ff; }
+    tbody tr:last-child td { border-bottom: none; }
+    code {
+      font-family: 'JetBrains Mono', Consolas, monospace;
+      background: #f1f5f9;
+      color: #b91c1c;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 16px;
+      border-radius: 10px;
+      overflow-x: auto;
+      margin: 1.4em 0;
+      font-size: 0.92em;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; }
+    blockquote {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 14px 20px;
+      border-radius: 0 8px 8px 0;
+      margin: 1.4em 0;
+      color: #1e40af;
+    }
+    hr { border: none; border-top: 1px solid var(--border); margin: 2.2em 0; }
+    .katex-display {
+      margin: 1.2em 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 6px 0;
+    }
+    .katex { font-size: 1.05em; }
+    
+    /* NotebookLM 原生 D3 互動心智圖樣式 */
+    .mindmap-box {
+      margin: 2em 0;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+    }
+    .mindmap-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      background: #f8fafc;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .mindmap-title {
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .mindmap-btns {
+      display: flex;
+      gap: 8px;
+    }
+    .mm-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: #334155;
+      transition: all 0.2s;
+    }
+    .mm-btn:hover { background: #f1f5f9; }
+    #tree-svg-container {
+      width: 100%;
+      height: 520px;
+      background: #ffffff;
+      cursor: grab;
+    }
+    #tree-svg-container:active { cursor: grabbing; }
+    .node circle {
+      cursor: pointer;
+      stroke-width: 2.5px;
+      transition: all 0.2s;
+    }
+    .node circle:hover { transform: scale(1.25); }
+    .node text {
+      font-size: 13px;
+      font-weight: 500;
+      font-family: inherit;
+      fill: #1e293b;
+      cursor: pointer;
+      paint-order: stroke fill;
+      stroke: #ffffff;
+      stroke-width: 4.5px;
+      stroke-linejoin: round;
+      user-select: none;
+    }
+    .link {
+      fill: none;
+      stroke: #cbd5e1;
+      stroke-width: 1.8px;
+      stroke-opacity: 0.85;
+      transition: stroke-width 0.2s;
+    }
+    .link:hover { stroke: #94a3b8; stroke-width: 2.5px; }
+
+    footer.doc-foot {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+      background: #fcfdfe;
+    }
+    .print-btn {
+      position: absolute;
+      top: 36px;
+      right: 40px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .print-btn:hover { background: rgba(255,255,255,0.25); }
+    @media print {
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      body {
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+      }
+      .container {
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        border-radius: 0 !important;
+        margin: 0 !important;
+      }
+      .print-btn, .mindmap-btns {
+        display: none !important;
+      }
+      header.hero {
+        background: var(--header-gradient) !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+        padding: 24px 30px !important;
+        margin-bottom: 20px !important;
+      }
+      header.hero h1 {
+        color: #ffffff !important;
+        font-size: 1.6rem !important;
+      }
+      header.hero .badge {
+        background: rgba(255,255,255,0.2) !important;
+        color: #ffffff !important;
+      }
+      header.hero .meta {
+        color: #cbd5e1 !important;
+      }
+      .content-body {
+        padding: 10px 0 !important;
+      }
+      h1, h2, h3, h4, table, tr, pre, .mermaid, .mindmap-box, blockquote {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      h2, h3 {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <div class="badge">📖 高中課堂互動圖文筆記</div>
+      <button class="print-btn" onclick="window.print()">🖨️ 列印 / 另存 PDF</button>
+      <h1>【物理】260923_電場電力線與磁場地磁</h1>
+      <div class="meta">
+        <span>⏱️ 數位筆記儀表板</span>
+        <span>🏷️ 含可縮放互動心智圖、時間軸與觀念對比</span>
+      </div>
+    </header>
+    <div class="content-body">
+      
+      <div class="mindmap-box">
+        <div class="mindmap-header">
+          <div class="mindmap-title">
+            <span>🧠 本課核心知識脈絡（NotebookLM 原生互動心智圖 • 支援縮放與展開）</span>
+          </div>
+          <div class="mindmap-btns">
+            <button class="mm-btn" onclick="expandAll()">展開全部</button>
+            <button class="mm-btn" onclick="collapseAll()">收合分支</button>
+            <button class="mm-btn" onclick="resetZoom()">重設視角</button>
+          </div>
+        </div>
+        <div id="tree-svg-container"></div>
+      </div>
+        
+      <h2>📖 課堂主題與核心摘要 (Class Overview)</h2>
+<p>本堂課為高中物理「靜電與磁場」單元（講義第 40 至 42 頁），核心圍繞於<strong>電場、電力線、庫侖定律應用與磁場、地磁觀念</strong>。課堂首先介紹法拉第如何透過圖像化的「電力線」與「磁力線」來描述場的強弱與方向，並深入解構電場疏密度的幾何推導；接著透過經典的「三點電荷受力平衡」學測改題，示範靜電力區域判定與物理雙邊開根號的速解技巧；最後延伸至磁場性質、鐵磁性物質、地磁成因與磁針指向判斷，並強調正向力與摩擦力在微觀上均歸類為電磁力。</p>
+<div class="mermaid">
+graph LR
+  Root["電與磁交互作用 (講義 P.40-42)"] --> A["電場與電力線"]
+  Root --> B["靜電力與受力平衡"]
+  Root --> C["磁場與磁力線"]
+  Root --> D["地磁與常見力歸類"]
+
+  A --> A1["法拉第圖像化觀念 & 馬克士威統合"]
+  A --> A2["電力線四大性質 (起正終負/疏密度/不交割/切線)"]
+  A --> A3["疏密度正比電場強度 (海膽/氣球面積推導)"]
+
+  B --> B1["庫侖定律 F = k|q1 q2|/r^2"]
+  B --> B2["三點電荷平衡區域判定法"]
+  B --> B3["靜電力平衡物理雙邊開根號速解"]
+
+  C --> C1["鐵磁性物質 (鐵鈷鎳) & 磁化"]
+  C --> C2["磁力線四大性質 (內外方向/封閉迴路/切線)"]
+
+  D --> D1["地磁成因 (液態金屬流動之電流磁效應)"]
+  D --> D2["地磁極位（地磁N極在地理南極）"]
+  D --> D3["正向力與摩擦力歸類為電磁力"]
+</div>
+<hr />
+<h2>💡 核心知識點與觀念詳解 (Key Concepts)</h2>
+<h3>觀念一：電場（Electric Field）與電力線（Electric Field Lines）</h3>
+<ol>
+<li>
+<p><strong>歷史脈絡與「場」的定義</strong>：<br />
+   - <strong>法拉第（Michael Faraday）</strong>：雖僅有國小程度數學，但發明了<strong>電力線</strong>與<strong>磁力線</strong>，將抽象的電場與磁場圖像化。<br />
+   - <strong>馬克士威（James Clerk Maxwell）</strong>：將法拉第的電場與磁場理論進行完美的數學統合（電磁學大一統）。<br />
+   - <strong>「場」（Field）</strong>：電荷或磁極之間傳遞交互作用力的<strong>媒介/介質</strong>。</p>
+</li>
+<li>
+<p><strong>電力線四大核心性質</strong>：<br />
+   - <strong>起於正，終於負</strong>：正電荷向外發出電力線，負電荷向內吸收/收回電力線。正負電荷一對擺放時稱為「電雙極」（Electric Dipole）。<br />
+   - <strong>疏密程度正比於電場強度</strong>：電力線越密集處，電場強度 \(E\) 越大。<br />
+   - <strong>收縮互斥不交割</strong>：電力線沿長度方向有收縮張力，側邊互相排斥，絕不相交，亦不會形成閉合迴路（不繞圈）。<br />
+   - <strong>切線方向即電場方向</strong>：電力線上任一點的切線方向，即該點的電場方向。</p>
+</li>
+<li>
+<p><strong>【課堂經典比喻】電場疏密度的幾何推導（每單位面積電力線數）</strong>：<br />
+   - <strong>疑問</strong>：為什麼是「疏密度」代表電場大小，而不是「電力線總條數」？<br />
+   - <strong>海膽與氣球比喻</strong>：</p>
+<ul>
+<li>想像座標中心放一顆生長著固定數量刺（如 1000 根刺）的海膽（象徵正電荷 \(Q\) 發出的固定電力線總數）。</li>
+<li>若用半徑較小的橘色氣球（小球，表面積小）與半徑較大的綠色氣球（大球，表面積大）將其包覆，穿過兩氣球的刺總數相同。</li>
+<li>但<strong>每平方公尺被穿過的刺數量</strong>，必然是<strong>橘色氣球（小球）比綠色氣球（大球）多</strong>！</li>
+<li><strong>數學意義</strong>：</li>
+<li>電場強度大小定義為「每單位面積通過的電力線條數」：<br />
+   \[ E \propto \frac{N}{A} = \frac{N}{4\pi r^2} \]</li>
+<li>由此可完美理解：距離點電荷越近（\(r\) 小），表面積 \(A\) 小，電力線越密集，電場 \(E\) 越大；距離越遠（\(r\) 大），表面積大，電力線稀疏，電場 \(E\) 越小（與距離平方成反比）。</li>
+<li>電荷發出的電力線總條數與帶電量成一次方正比（\(N \propto Q\)）。</li>
+</ul>
+</li>
+</ol>
+<div class="mermaid">
+graph TD
+  A["電荷 Q 發出固定總數 N 的電力線"] --> B["小半徑球面 (表面積 A1 較小)"]
+  A --> C["大半徑球面 (表面積 A2 較大)"]
+  B --> D["每單位面積電力線數 N/A1 較大 (電場 E 強)"]
+  C --> E["每單位面積電力線數 N/A2 較小 (電場 E 弱)"]
+  D --> F["結論：電場強度正比於電力線疏密度 (E ∝ N/A)"]
+  E --> F
+</div>
+<hr />
+<h3>觀念二：庫侖靜電定律與受力平衡經典題 (P.41)</h3>
+<ol>
+<li>
+<p><strong>庫侖靜電定律（Coulomb's Law）</strong>：<br />
+   - 兩點電荷間的靜電力大小公式為：<br />
+     \[ F = k \frac{|q_1 q_2|}{r^2} \]<br />
+     其中 \(k = 9 \times 10^9 \text{ N}\cdot\text{m}^2/\text{C}^2\)。<br />
+   - <strong>注意</strong>：計算時電荷正負號不帶入公式，僅代表「同性相斥、異性相吸」，作用力方向須另行判定。</p>
+</li>
+<li>
+<p><strong>經典考題（學測改題拆解）</strong>：<br />
+   - <strong>題目</strong>：直線上固定兩點電荷，於 \(x = 5a\) 處有帶電量 \(+4Q\)，於 \(x = 9a\) 處有帶電量 \(-Q\)。若放置第三個點電荷 \(+Q\)，欲使其所受靜電力合力為 0，應放在何處？<br />
+   - <strong>步驟一：區域平衡判定</strong>：</p>
+<ul>
+<li><strong>中間區（\(5a &lt; x &lt; 9a\)）</strong>：\(+4Q\) 對其排斥向右，\(-Q\) 對其吸引向右，兩力同向，合力不可能為 0（不合）。</li>
+<li><strong>左側區（\(x &lt; 5a\)）</strong>：離大電量 \(+4Q\) 太近，向左排斥力極大；離小電量 \(-Q\) 遠，向右吸引力小，無法平衡（不合）。</li>
+<li><strong>右側區（\(x &gt; 9a\)）</strong>：離小電量 \(-Q\) 近、離大電量 \(+4Q\) 遠，排斥力與吸引力大小可相等且方向相反，<strong>平衡點必定位於此區</strong>！</li>
+<li><strong>步驟二：列式與物理速解</strong>：</li>
+<li>設該點電荷 \(+Q\) 位於 \(-Q\) 右側距離 \(x\) 處（即座標為 \(9a + x\)）：<br />
+   \[ k \frac{(4Q)(Q)}{(4a + x)^2} = k \frac{(Q)(Q)}{x^2} \]</li>
+<li>約分同除以 \(k Q^2\)：<br />
+   \[ \frac{4}{(4a + x)^2} = \frac{1}{x^2} \]</li>
+<li><strong>物理速解法（雙邊開根號）</strong>：<br />
+   因為已預先經由物理邏輯確定位置在右側（\(x &gt; 0\)），免去繁複的解二次方程式，直接雙邊開根號：<br />
+   \[ \frac{2}{4a + x} = \frac{1}{x} \implies 2x = 4a + x \implies x = 4a \]</li>
+<li><strong>最終答案</strong>：位置落在 \(x = 9a + 4a = 13a\) 處。</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h3>觀念三：磁場（Magnetic Field）與磁力線（Magnetic Field Lines） (P.42)</h3>
+<ol>
+<li>
+<p><strong>鐵磁性物質與磁化</strong>：<br />
+   - <strong>鐵磁性物質</strong>：主要包含<strong>鐵（Fe）、鈷（Co）、鎳（Ni）</strong>及其合金，能被磁鐵強烈吸引。<br />
+   - <strong>磁化（Magnetization）</strong>：原本內部混亂無序的磁疇，在外加磁場作用下轉變為整齊排列，使物質展現磁性的過程。</p>
+</li>
+<li>
+<p><strong>磁極與磁力線性質</strong>：<br />
+   - <strong>磁極（Poles）</strong>：磁體磁性最強的兩端（N 極與 S 極）。目前自然界<strong>尚未發現單磁極</strong>，故磁力線必為連續的<strong>封閉迴路</strong>。<br />
+   - <strong>磁力線方向</strong>：</p>
+<ul>
+<li><strong>磁鐵外部</strong>：由 N 極發出，經外部空間指向 S 極。</li>
+<li><strong>磁鐵內部</strong>：由 S 極指向 N 極，形成完整閉合迴路。</li>
+<li><strong>磁針 N 極指向</strong>：磁力線上任意點的<strong>切線方向</strong>，即為置於該點之<strong>小磁針 N 極所指的方向</strong>。</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h3>觀念四：地球磁場（地磁）與基本交互作用歸類</h3>
+<ol>
+<li>
+<p><strong>地球磁場成因與結構</strong>：<br />
+   - <strong>成因</strong>：地核內部高溫高壓，存在大量熔融的<strong>流動液態金屬（鐵、鎳）</strong>，流動過程產生電流，透過「電流磁效應」建立全球性地磁。<br />
+   - <strong>磁極分佈</strong>：</p>
+<ul>
+<li>可假想為地球中心置有一條形磁鐵，其磁軸與地球自轉軸呈約 \(11^\circ\) 夾角。</li>
+<li><strong>地磁 N 極（Magnetic North Pole）位於地理南極附近</strong>。</li>
+<li><strong>地磁 S 極（Magnetic South Pole）位於地理北極附近</strong>。</li>
+<li>因此北半球指北針的 N 極會指向地理北方（被地理北方附近的「地磁 S 極」吸引）。</li>
+</ul>
+</li>
+<li>
+<p><strong>巨觀接觸力的微觀歸類</strong>：<br />
+   - 老師特別強調：課本定義之<strong>正向力（Normal Force）</strong>與<strong>摩擦力（Friction Force）</strong>，在微觀物理機制上均屬於<strong>電磁力</strong>（分子間靜電力與凡德瓦力之展現）。</p>
+</li>
+</ol>
+<hr />
+<h3>📊 觀念與易混淆對比表</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">比較項目</th>
+<th style="text-align: left;">電力線 (Electric Field Lines)</th>
+<th style="text-align: left;">磁力線 (Magnetic Field Lines)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>發明科學家</strong></td>
+<td style="text-align: left;">法拉第（Faraday）</td>
+<td style="text-align: left;">法拉第（Faraday）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>起點與終點</strong></td>
+<td style="text-align: left;">起於正電荷，終於負電荷</td>
+<td style="text-align: left;">無起點與終點（<strong>封閉迴路</strong>）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>內部與外部方向</strong></td>
+<td style="text-align: left;">無內部/外部之分（非閉合迴路）</td>
+<td style="text-align: left;">外部：\(\text{N} \rightarrow \text{S}\)；內部：\(\text{S} \rightarrow \text{N}\)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>是否存在單極</strong></td>
+<td style="text-align: left;">有（可單獨存在正電荷或負電荷）</td>
+<td style="text-align: left;">無（至今未發現單磁極）</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>疏密程度意義</strong></td>
+<td style="text-align: left;">正比於電場強度大 (\(E\))</td>
+<td style="text-align: left;">正比於磁場強度大小 (\(B\))</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>切線方向物理意義</strong></td>
+<td style="text-align: left;">該點之電場方向（\(\neq\) 帶電粒子運動軌跡）</td>
+<td style="text-align: left;">該點之磁場方向（即<strong>小磁針 N 極指向</strong>）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2>⚠️ 老師強調考點與易錯陷阱 (Exam Focus &amp; Pitfalls)</h2>
+<ol>
+<li>
+<p><strong>【考點一】電力線切線方向 \(\neq\) 粒子運動軌跡</strong>：<br />
+   - <strong>常見錯誤</strong>：學生常以為將電子釋放在電力線上，電子會順著電力線的軌跡運動。<br />
+   - <strong>正解</strong>：電力線切線僅代表該點受到的「電場力方向」（即加速度方向），粒子的實際運動軌跡還與「初速度」及「後續受力變化」有關，絕不等於電力線本身！</p>
+</li>
+<li>
+<p><strong>【考點二】磁力線內外部方向倒置陷阱</strong>：<br />
+   - 題目常考「磁鐵內部」的磁力線方向，學生習慣直覺選 \(\text{N} \rightarrow \text{S}\) 而犯錯。務必記住：<strong>內部是由 S 極指向 N 極</strong>。</p>
+</li>
+<li>
+<p><strong>【考點三】地理極與地磁極的對應關係</strong>：<br />
+   - 地理北極附近是<strong>地磁 S 極</strong>；地理南極附近是<strong>地磁 N 極</strong>。切勿將地理北極誤認為地磁 N 極。</p>
+</li>
+<li>
+<p><strong>【考點四】正向力與摩擦力的力學歸類</strong>：<br />
+   - 多重選擇題常考常見力的分類，請務必將「正向力」與「摩擦力」勾選為<strong>電磁力</strong>（基本交互作用四種力之一）。</p>
+</li>
+</ol>
+<hr />
+<h2>🔑 記憶口訣與解題技巧 (Mnemonics &amp; Shortcuts)</h2>
+<h3>1. 點電荷靜電力平衡「三區判定 SOP」：</h3>
+<ul>
+<li><strong>同性電荷</strong>：平衡點必落在兩電荷<strong>中間區域</strong>。</li>
+<li><strong>異性電荷</strong>：平衡點必落在兩電荷<strong>外側區域</strong>，且<strong>偏向帶電量較小的一側</strong>（因為電量小需靠較近的距離 \(r\) 來補足力的大小）。</li>
+</ul>
+<h3>2. 靜電力平衡「物理雙邊開根號」速解法：</h3>
+<ul>
+<li>於列式 \(\frac{Q_1}{(d+x)^2} = \frac{Q_2}{x^2}\) 後，經由物理邏輯先確定 \(x\) 的區域範圍與正負號，即可<strong>直接雙邊開根號</strong>（\(\frac{\sqrt{Q_1}}{d+x} = \frac{\sqrt{Q_2}}{x}\)），直接交叉相乘求解，免去展開一元二次方程式的繁瑣計算。</li>
+</ul>
+<h3>3. 磁力線與磁針指向口訣：</h3>
+<ul>
+<li><strong>「切線即 N 極，外出 N 入 S，內由 S 到 N」</strong>。</li>
+</ul>
+<hr />
+<h2>📝 課後作業與待辦事項 (Homework &amp; Tasks)</h2>
+<ol>
+<li>
+<p><strong>物理課堂作業</strong>：<br />
+   - 預習與練習講義 <strong>第 45 頁</strong> 後續範例題目。<br />
+   - 完成今日發放之物理練習考卷，於<strong>連假後（星期二）</strong>上課繳交。</p>
+</li>
+<li>
+<p><strong>學藝與各科小老師待辦事項</strong>：<br />
+   - 因適逢教師節前夕，請國文、英文、數學及學藝幹事（負責歷/地/公）於上課時代表全班向各科任老師表達感謝與祝福。</p>
+</li>
+<li>
+<p><strong>行政與刷卡紀錄提醒</strong>：<br />
+   - 提醒全班同學自主至校務系統查詢 9/1 至 9/23 之學生證刷卡紀錄，若有異常缺漏需及時至學務處生輔組更正，以免影響出缺勤權益。</p>
+</li>
+</ol>
+<hr />
+<h2>📚 專有名詞與重要公式/定義 (Glossary &amp; Formulas)</h2>
+<ul>
+<li><strong>電場强度（Electric Field Strength, \(E\)）</strong>：描述空間中電場強弱的物理量，單位面積通過的電力線條數正比於電場強度（\(E \propto \frac{N}{A}\)）。</li>
+<li><strong>庫侖定律公式（Coulomb's Law）</strong>：<br />
+  \[ F = k \frac{|q_1 q_2|}{r^2} \]<br />
+  描述兩點電荷間之靜電力大小，與電量乘積成正比，與距離平方成反比。</li>
+<li><strong>電雙極（Electric Dipole）</strong>：一對等量異號電荷相距微小距離組成的系統。</li>
+<li><strong>鐵磁性物質（Ferromagnetic Materials）</strong>：含鐵（Fe）、鈷（Co）、鎳（Ni）等能被強烈磁化的物質。</li>
+<li><strong>磁化（Magnetization）</strong>：磁性物質內部磁疇經外磁場作用導正為同向之過程。</li>
+<li><strong>地磁軸夾角</strong>：地球磁軸與自轉軸之間約存在 <strong>\(11^\circ\)</strong> 之交角。</li>
+</ul>
+<hr />
+<h2>🧠 課後自測題 (Quick Review Quiz)</h2>
+<h3>題一：電場與電力線觀念</h3>
+<p><strong>問題</strong>：下列關於電力線與電場的敘述，何者正確？<br />
+(A) 電力線必定為封閉的曲線<br />
+(B) 若將一靜止帶負電粒子釋放於電力線上，粒子必定沿著電力線的軌跡運動<br />
+(C) 電力線越密集的地方，該處的電場強度越大<br />
+(D) 正電荷會向內吸收電力線</p>
+<p><strong>解析與答案</strong>：<br />
+* <strong>答案</strong>：<strong>(C)</strong><br />
+* <strong>解析</strong>：(A) 電力線起於正電荷終於負電荷，非封閉曲線；(B) 切線方向為受力方向，粒子運動軌跡受初速與慣性影響，不一定等於電力線；(D) 正電荷向外發出電力線，負電荷才是吸收電力線。</p>
+<hr />
+<h3>題二：庫侖定律計算</h3>
+<p><strong>問題</strong>：兩靜止點電荷相距 \(r\) 時，相互作用之庫侖靜電力為 \(F\)。若將兩電荷的帶電量均變為原來的 3 倍，且將兩者間的距離縮短為原來的 \(\frac{1}{2}\)，則兩電荷間的靜電力將變為多少？</p>
+<p><strong>解析與答案</strong>：<br />
+* <strong>答案</strong>：\(36 F\)<br />
+* <strong>解析</strong>：根據庫侖定律 \(F = k \frac{|q_1 q_2|}{r^2}\)，新靜電力：<br />
+  \[ F' = k \frac{|(3q_1)(3q_2)|}{(\frac{1}{2}r)^2} = k \frac{9 |q_1 q_2|}{\frac{1}{4} r^2} = 36 \times \left(k \frac{|q_1 q_2|}{r^2}\right) = 36 F \]</p>
+<hr />
+<h3>題三：地磁與磁力線方向</h3>
+<p><strong>問題</strong>：若將一可自由轉動的小磁針置於地赤道上空，不考慮其他外加磁場，則磁針的 N 極主要會指向何方？磁鐵內部的磁力線方向為何？</p>
+<p><strong>解析與答案</strong>：<br />
+* <strong>答案</strong>：小磁針 N 極指向地理北方；磁鐵內部磁力線方向為由 S 極指向 N 極。<br />
+* <strong>解析</strong>：地球地理北方附近為地磁 S 極，故磁針 N 極會受吸引而指向地理北方。磁力線在外部由 N 指向 S，在內部則由 S 指向 N 以形成封閉迴路。</p>
+<hr />
+<p>💡 <strong>課後複習建議</strong>：請結合這份筆記與講義 P.40-42 頁之圖表對照複習，並務必親自動手計算一遍三點電荷受力平衡題型，確保徹底掌握「物理雙邊開根號」之區域判斷原理！</p>
+    </div>
+    <footer class="doc-foot">
+      自動生成於 NotebookLM Study Assistant • 專為高中學生課後複習與考前衝刺打造
+    </footer>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (window.mermaid) {
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'neutral',
+          fontFamily: "'Noto Sans TC', 'Inter', sans-serif",
+          flowchart: { curve: 'basis', htmlLabels: true },
+          securityLevel: 'loose'
+        });
+      }
+      if (window.renderMathInElement) {
+        renderMathInElement(document.body, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false},
+            {left: '\\(', right: '\\)', display: false},
+            {left: '\\[', right: '\\]', display: true}
+          ],
+          throwOnError: false
+        });
+      }
+    });
+  </script>
+  
+  <script>
+    (function() {
+      const treeData = {"name": "電場與電力線", "children": [{"name": "法拉第圖像化觀念 & 馬克士威統合"}, {"name": "電力線四大性質 (起正終負/疏密度/不交割/切線)"}, {"name": "疏密度正比電場強度 (海膽/氣球面積推導)"}]};
+      const container = document.getElementById("tree-svg-container");
+      if (!container || !treeData) return;
+
+      const width = container.clientWidth || 880;
+      const height = 520;
+
+      const svg = d3.select("#tree-svg-container")
+        .append("svg")
+        .attr("width", "100%")
+        .attr("height", height)
+        .attr("viewBox", [0, 0, width, height]);
+
+      const g = svg.append("g");
+
+      const zoom = d3.zoom()
+        .scaleExtent([0.25, 2.5])
+        .on("zoom", (e) => g.attr("transform", e.transform));
+
+      svg.call(zoom);
+
+      const root = d3.hierarchy(treeData);
+      root.x0 = height / 2;
+      root.y0 = 0;
+
+      let i = 0;
+      const duration = 380;
+      // [dy, dx]: 垂直節距 58px (確保上下不重疊), 水平層級 320px (確保長文字不穿透父層)
+      const treeLayout = d3.tree().nodeSize([58, 320]);
+
+      function splitNodeText(text, maxChars) {
+        if (!text) return [""];
+        if (text.length <= maxChars) return [text];
+
+        // 優先在括號處斷行，例如：世風日下之自身矛盾對比（擇師教子 vs. 於身恥師）
+        const parenIdx = text.search(/[（(]/);
+        if (parenIdx >= 3 && parenIdx <= maxChars + 4) {
+          const p1 = text.slice(0, parenIdx).trim();
+          const p2 = text.slice(parenIdx).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 優先在冒號、破折號、頓號處斷行
+        const sepIdx = text.search(/[：:—、]/);
+        if (sepIdx >= 3 && sepIdx <= maxChars + 2) {
+          const p1 = text.slice(0, sepIdx + 1).trim();
+          const p2 = text.slice(sepIdx + 1).trim();
+          if (p1 && p2) return [p1, p2];
+        }
+
+        // 預設在 maxChars 處均勻斷行
+        return [text.slice(0, maxChars), text.slice(maxChars)];
+      }
+
+      if (root.children) {
+        root.children.forEach(c => {
+          if (c.children) {
+            c.children.forEach(collapse);
+          }
+        });
+      }
+
+      function collapse(d) {
+        if (d.children) {
+          d._children = d.children;
+          d._children.forEach(collapse);
+          d.children = null;
+        }
+      }
+
+      function expand(d) {
+        if (d._children) {
+          d.children = d._children;
+          d.children.forEach(expand);
+          d._children = null;
+        }
+      }
+
+      const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
+
+      function getNodeColor(d) {
+        if (d.depth === 0) return "#2563eb";
+        let p = d;
+        while (p.depth > 1) p = p.parent;
+        return colorScale(p.data.name);
+      }
+
+      function update(source) {
+        const nodes = root.descendants();
+        const links = root.links();
+
+        treeLayout(root);
+
+        const node = g.selectAll("g.node")
+          .data(nodes, d => d.id || (d.id = ++i));
+
+        const nodeEnter = node.enter().append("g")
+          .attr("class", "node")
+          .attr("transform", d => `translate(${source.y0},${source.x0})`)
+          .on("click", (event, d) => {
+            if (d.children) {
+              d._children = d.children;
+              d.children = null;
+            } else if (d._children) {
+              d.children = d._children;
+              d._children = null;
+            }
+            update(d);
+          });
+
+        nodeEnter.append("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        const textNode = nodeEnter.append("text")
+          .attr("class", "node-text")
+          .attr("text-anchor", d => (d.children || d._children) ? "end" : "start")
+          .style("fill-opacity", 0);
+
+        textNode.each(function(d) {
+          const el = d3.select(this);
+          const isParent = Boolean(d.children || d._children);
+          const xOffset = isParent ? -14 : 14;
+          const maxChars = isParent ? 13 : 18;
+          const lines = splitNodeText(d.data.name, maxChars);
+
+          if (lines.length === 1) {
+            el.attr("x", xOffset)
+              .attr("dy", "0.32em")
+              .text(lines[0]);
+          } else {
+            el.attr("x", xOffset)
+              .attr("dy", "-0.35em")
+              .text(lines[0]);
+            el.append("tspan")
+              .attr("x", xOffset)
+              .attr("dy", "1.25em")
+              .text(lines[1]);
+          }
+        });
+
+        const nodeUpdate = node.merge(nodeEnter).transition().duration(duration)
+          .attr("transform", d => `translate(${d.y},${d.x})`);
+
+        nodeUpdate.select("circle")
+          .attr("r", d => d.depth === 0 ? 8 : (d._children || d.children ? 6 : 4))
+          .attr("fill", d => d._children ? getNodeColor(d) : "#ffffff")
+          .attr("stroke", d => getNodeColor(d));
+
+        nodeUpdate.select("text")
+          .style("fill-opacity", 1);
+
+        const nodeExit = node.exit().transition().duration(duration)
+          .attr("transform", d => `translate(${source.y},${source.x})`)
+          .remove();
+
+        nodeExit.select("circle").attr("r", 1e-6);
+        nodeExit.select("text").style("fill-opacity", 1e-6);
+
+        const link = g.selectAll("path.link")
+          .data(links, d => d.target.id);
+
+        const linkEnter = link.enter().insert("path", "g")
+          .attr("class", "link")
+          .attr("d", d => {
+            const o = {x: source.x0, y: source.y0};
+            return diagonal(o, o);
+          });
+
+        link.merge(linkEnter).transition().duration(duration)
+          .attr("d", d => diagonal(d.source, d.target));
+
+        link.exit().transition().duration(duration)
+          .attr("d", d => {
+            const o = {x: source.x, y: source.y};
+            return diagonal(o, o);
+          })
+          .remove();
+
+        nodes.forEach(d => {
+          d.x0 = d.x;
+          d.y0 = d.y;
+        });
+      }
+
+      function diagonal(s, d) {
+        return `M ${s.y} ${s.x}
+                C ${(s.y + d.y) / 2} ${s.x},
+                  ${(s.y + d.y) / 2} ${d.x},
+                  ${d.y} ${d.x}`;
+      }
+
+      function autoFitTree(duration = 450) {
+        const nodes = root.descendants();
+        if (!nodes || nodes.length === 0) return;
+
+        let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+        nodes.forEach(d => {
+          const isParent = Boolean(d.children || d._children);
+          const leftBound = d.y - (isParent ? 180 : 20);
+          const rightBound = d.y + (isParent ? 20 : 220);
+          const topBound = d.x - 32;
+          const bottomBound = d.x + 32;
+
+          if (leftBound < minX) minX = leftBound;
+          if (rightBound > maxX) maxX = rightBound;
+          if (topBound < minY) minY = topBound;
+          if (bottomBound > maxY) maxY = bottomBound;
+        });
+
+        const fullWidth = container.clientWidth || 880;
+        const fullHeight = height;
+        const treeW = maxX - minX;
+        const treeH = maxY - minY;
+
+        if (treeW <= 0 || treeH <= 0) return;
+
+        const scale = Math.min(0.92, (fullWidth * 0.90) / treeW, (fullHeight * 0.90) / treeH);
+        const clampedScale = Math.max(scale, 0.42);
+
+        const midTreeX = (minX + maxX) / 2;
+        const midTreeY = (minY + maxY) / 2;
+        const tx = fullWidth / 2 - clampedScale * midTreeX;
+        const ty = fullHeight / 2 - clampedScale * midTreeY;
+
+        if (duration > 0) {
+          svg.transition().duration(duration).call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        } else {
+          svg.call(
+            zoom.transform,
+            d3.zoomIdentity.translate(tx, ty).scale(clampedScale)
+          );
+        }
+      }
+
+      window.expandAll = function() {
+        root.each(expand);
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.collapseAll = function() {
+        if (root.children) {
+          root.children.forEach(collapse);
+        }
+        update(root);
+        autoFitTree(450);
+      };
+
+      window.resetZoom = function() {
+        autoFitTree(450);
+      };
+
+      // 首次繪製節點並自動縮放置中全覽
+      update(root);
+      autoFitTree(0);
+    })();
+  </script>
+
+</body>
+</html>
