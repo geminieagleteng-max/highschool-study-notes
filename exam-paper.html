@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <title>115學年度 高一第一次段考 全科綜合模擬試題【題目卷】</title>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"></script>
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --accent: #38bdf8;
+      --accent-hover: #0284c7;
+      --tag-bg: #0369a1;
+      --success: #10b981;
+      --warning: #f59e0b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Noto Sans TC', 'Inter', -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+      font-size: 16px;
+      padding-bottom: 120px;
+    }
+    .wrapper {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 30px 24px;
+    }
+    
+    /* Top Toolbar */
+    .top-toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .toolbar-left, .toolbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn {
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+      text-decoration: none;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #0f172a;
+    }
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      color: #fff;
+    }
+    .btn-outline {
+      background: #1e293b;
+      border-color: var(--border);
+      color: #cbd5e1;
+    }
+    .btn-outline:hover {
+      background: #334155;
+      color: #fff;
+    }
+    .btn-success {
+      background: #059669;
+      color: #fff;
+    }
+    .btn-success:hover {
+      background: #10b981;
+    }
+
+    /* Timer Widget */
+    .timer-widget {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #1e293b;
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.05rem;
+      color: #38bdf8;
+    }
+    .timer-btn {
+      background: none;
+      border: none;
+      color: #94a3b8;
+      cursor: pointer;
+      font-size: 0.85rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    .timer-btn:hover {
+      color: #fff;
+      background: #334155;
+    }
+
+    /* Subject Nav Bar */
+    .subject-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 20px 0 30px;
+      padding: 12px;
+      background: var(--card-bg);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+    .subject-nav a {
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #cbd5e1;
+      text-decoration: none;
+      background: #0f172a;
+      border: 1px solid #334155;
+      transition: all 0.2s;
+    }
+    .subject-nav a:hover {
+      background: #38bdf8;
+      color: #0f172a;
+      border-color: #38bdf8;
+    }
+
+    /* Paper Styling */
+    .exam-paper {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .exam-main-title {
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: #f8fafc;
+      text-align: center;
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+      line-height: 1.4;
+    }
+    .exam-notice-box {
+      background: rgba(56, 189, 248, 0.08);
+      border-left: 4px solid var(--accent);
+      padding: 14px 18px;
+      border-radius: 0 8px 8px 0;
+      margin: 16px 0;
+      color: #e2e8f0;
+      font-size: 0.95rem;
+    }
+    .subject-title {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #38bdf8;
+      margin: 40px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #334155;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .part-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #e2e8f0;
+      margin: 24px 0 12px;
+      background: rgba(255,255,255,0.04);
+      padding: 6px 12px;
+      border-radius: 6px;
+    }
+    .q-stem {
+      font-size: 1.05rem;
+      color: #f8fafc;
+      margin: 20px 0 10px;
+      font-weight: 500;
+    }
+    .q-stem strong {
+      color: #67e8f9;
+    }
+    .q-option {
+      display: flex;
+      align-items: flex-start;
+      margin: 6px 0 6px 18px;
+      gap: 10px;
+      color: #cbd5e1;
+      font-size: 0.98rem;
+    }
+    .opt-tag {
+      font-weight: 700;
+      color: #38bdf8;
+      min-width: 32px;
+    }
+    .opt-body {
+      flex: 1;
+    }
+    .bullet-item {
+      display: flex;
+      gap: 10px;
+      margin: 8px 0 8px 16px;
+      color: #cbd5e1;
+    }
+    .bullet-dot {
+      color: #38bdf8;
+      font-weight: bold;
+    }
+    .bullet-body {
+      flex: 1;
+    }
+    p {
+      margin: 10px 0;
+      color: #cbd5e1;
+    }
+    .spacer {
+      height: 12px;
+    }
+    .divider {
+      border: 0;
+      height: 1px;
+      background: #334155;
+      margin: 30px 0;
+    }
+
+    /* Table */
+    .table-container {
+      overflow-x: auto;
+      margin: 20px 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+    th, td {
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      text-align: left;
+    }
+    th {
+      background: #0f172a;
+      color: #38bdf8;
+      font-weight: 600;
+    }
+    td {
+      background: #1e293b;
+      color: #cbd5e1;
+    }
+
+    /* Print styles */
+    @media print {
+      body {
+        background: #fff !important;
+        color: #000 !important;
+        font-size: 11pt;
+        line-height: 1.5;
+        padding: 0;
+      }
+      .top-toolbar, .subject-nav, .no-print {
+        display: none !important;
+      }
+      .exam-paper {
+        background: #fff !important;
+        border: none !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+      }
+      .exam-main-title {
+        color: #000 !important;
+        font-size: 16pt !important;
+      }
+      .subject-title {
+        color: #000 !important;
+        border-bottom: 1.5pt solid #000 !important;
+        font-size: 13pt !important;
+        page-break-after: avoid;
+      }
+      .part-title {
+        color: #000 !important;
+        background: #f1f5f9 !important;
+        page-break-after: avoid;
+      }
+      .q-stem, .q-option, p {
+        color: #000 !important;
+      }
+      .q-stem strong {
+        color: #000 !important;
+      }
+      .opt-tag {
+        color: #000 !important;
+      }
+      .exam-notice-box {
+        background: #f8fafc !important;
+        border-left: 3pt solid #333 !important;
+        color: #000 !important;
+      }
+      th {
+        background: #f1f5f9 !important;
+        color: #000 !important;
+      }
+      td {
+        background: #fff !important;
+        color: #000 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-toolbar">
+    <div class="toolbar-left">
+      <a href="index.html" class="btn btn-outline">🏠 返回筆記目錄</a>
+      <a href="exam-solution.html" class="btn btn-success">💡 前往詳解解析卷</a>
+      <a href="quiz.html" class="btn btn-primary" style="background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%); border-color: #38bdf8; font-weight: 700; box-shadow: 0 0 12px rgba(14, 165, 233, 0.4);">⚡ 進入智慧題庫組卷與弱點診斷系統 (90題) ➔</a>
+    </div>
+    <div class="toolbar-right">
+      <div class="timer-widget">
+        <span>⏱️</span>
+        <span id="timerDisplay">90:00</span>
+        <button id="timerToggle" class="timer-btn">開始</button>
+        <button id="timerReset" class="timer-btn">重置</button>
+      </div>
+      <button onclick="window.print()" class="btn btn-primary">🖨️ 列印考卷 (A4)</button>
+    </div>
+  </div>
+
+  <div class="wrapper">
+    <div class="subject-nav no-print">
+      <a href="#壹國文科共10題佔20分">國文科 (10題)</a>
+      <a href="#貳英文科共8題佔16分">英文科 (8題)</a>
+      <a href="#參數學科共8題佔16分">數學科 (8題)</a>
+      <a href="#肆物理科共8題佔16分">物理科 (8題)</a>
+      <a href="#伍歷史科共8題佔16分">歷史科 (8題)</a>
+      <a href="#陸地理科共6題佔8分">地理科 (6題)</a>
+      <a href="#柒公民科共6題佔8分">公民科 (6題)</a>
+    </div>
+
+    <div class="exam-paper">
+      <h1 class="exam-main-title">115學年度第一學期 高一第一次段考 全科綜合模擬試題【題目卷】</h1>
+<div class="spacer"></div>
+<div class="exam-notice-box"><strong>考試科目</strong>：高一上學期全科總複習（國文、英文、數學、物理、歷史、地理、公民）</div>
+<div class="exam-notice-box"><strong>命題範圍</strong>：開學第 1 週至第 6 週課堂錄音整理筆記全部內容</div>
+<div class="exam-notice-box"><strong>作答時間</strong>：建議 80 ～ 100 分鐘（亦可按學科分段計時作答）</div>
+<div class="exam-notice-box"><strong>總　　分</strong>：100 分</div>
+<div class="exam-notice-box"><strong>考試說明</strong>：</div>
+<div class="exam-notice-box">1. 本試卷分為七大科，共 54 題。請同學詳讀題意後作答。</div>
+<div class="exam-notice-box">2. 單選題每題皆有四個選項，請選出一個最適當的答案。</div>
+<div class="exam-notice-box">3. 多選題每題有多個可能選項，全對得滿分，漏選或錯選依大考標準計分。</div>
+<div class="exam-notice-box">4. 填充題與計算題請將完整推導或數值寫於答題卷指定位置。</div>
+<div class="exam-notice-box">5. <strong>本卷為純題目卷，作答完成後請翻閱《詳解與解析卷》核對成績並複習盲點。</strong></div>
+<div class="spacer"></div>
+<hr class="divider">
+<div class="spacer"></div>
+<h2 id="壹國文科共10題佔20分" class="subject-title">壹、國文科（共 10 題，佔 20 分）</h2>
+<div class="spacer"></div>
+<h3 class="part-title">一、單選題（每題 2 分，共 16 分）</h3>
+<div class="spacer"></div>
+<p><strong>1. 下列各組「」中的字，讀音與字義「完全相同」的選項是：</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">巫醫樂師百工之人，不「恥」相師 ／ 於其身也，則「恥」師焉</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">羅敷喜蠶桑，採桑城南「隅」 ／ 歲末年終，各界愛心物資送抵社會弱勢「隅」角</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">師道之不「傳」也久矣 ／ 六藝經「傳」皆通習之</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">頭上倭墮「髻」，耳中明月珠 ／ 人生天地之間，若白「駒」之過隙</span></div>
+<div class="spacer"></div>
+<p><strong>2. 韓愈在《師說》中連續使用了三組對比手法以嚴厲諷刺當時唐代社會的病態風氣。下列有關這三組對比的說明，何者「錯誤」？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">「古之聖人」與「今之眾人」對比：聖人智出眾人仍從師而問，眾人智不及聖人卻恥學於師，語氣帶有強烈的推測與論證性</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">「愛其子擇師」與「於其身恥師」對比：對待兒子注重句讀之學而擇師教之，對待自己卻遺棄道德惑解的大道理，韓愈評之為「小惑而大遺」</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">「百工之人」與「士大夫之族」對比：古代地位低下的巫醫樂師不以相師為恥，自詡清高的士大夫聞人為師生則群聚而笑之</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">士大夫面對拜師時有「位卑則足羞，官盛則近諛」之心理，韓愈認為其根本原因在於當時士大夫階級的平均才德學問普遍已凌駕於百工之上</span></div>
+<div class="spacer"></div>
+<p><strong>3. 韓愈在《師說》第六段舉孔子為例，正面立論「聖人無常師」。下列對該段內容之詮釋，何者最切合課堂分析？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">孔子師事郯子問官、長弘問樂、師襄問琴、老聃問禮，旨在彰顯孔子才學不足，需要他人補強</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">「郯子之徒，其賢不及孔子」說明拜師的前提必須是老師的品德才智全面超越學生，方有受教之價值</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">韓愈提出「聞道有先後，術業有專攻」，強調教師的角色具有專業分工性，打破以年齡官位為尊的傳統迷思</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">韓愈寫作本篇表面以「贈李盤」為由，全文亦僅針對十七歲好古文之青年個人提供升學進修指導</span></div>
+<div class="spacer"></div>
+<p><strong>4. 現代詩名家徐志摩為新月派重要代表詩人，其代表作《再別康橋》嚴格實踐了聞一多所提倡的新月派「三美」理論。下列分析何者「不符合」三美特徵？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">音樂美：全詩節奏勻稱，各節押韻自然（如「來、彩」、「娘、漾」），展現輕快而柔和的旋律性</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">繪畫美：善用鮮明色彩詞彙，「夕陽中的新娘」、「波光裡的豔影」、「油油的在水底招搖的青荇」，營造如畫意象</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">建築美：全詩共七節，每節皆為四行，字數大體整齊對稱，視覺呈現如典雅的歐式拱門建築</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">音樂美：全詩通篇採用古典四言古詩與楚辭之急促排比節奏，以展現作者離別時痛徹心扉的呼天搶地之痛</span></div>
+<div class="spacer"></div>
+<p><strong>5. 卞之琳的名詩《斷章》：「你站在橋上看風景，看風景人在樓上看你。明月裝飾了你的窗子，你裝飾了別人的夢。」下列何者最符合本詩所展現的哲思意境？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">描寫都會男女在情場中爾虞我詐、彼此窺探的猜疑心態</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">體現相對主義視角：世間事物皆互為因果與觀照，主體與客體的界線在不同參照架構下相互轉換與交織</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">批判現代人沉迷於夢境幻想，未能正視現實生活中的殘酷生存競爭</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">展現莊子「萬物皆虛無」之虛無主義，強調人生如夢幻泡影，所有相遇皆無意義</span></div>
+<div class="spacer"></div>
+<p><strong>6. 漢代樂府詩多採集自民間，具有極高的敘事與寫實價值。下列有關漢樂府詩文體特徵與經典篇章之敘述，何者「正確」？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">樂府詩句式必須如近體詩般嚴格要求平仄對仗，且通篇一韻到底，不可轉韻</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">《有所思》描寫遠距離戀愛中女子得知男方變心後，決絕焚毀信物「當風揚其灰」，展現剛烈決絕的情感</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">《上邪》中女子列舉「山無陵，天地合」等現象，表達其深信自然規律不可逆，因而隨時準備接受失戀結局</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">樂府詩多出自宮廷文士之抒情修飾，不具備反映底層民間疾苦與社會百態的功能</span></div>
+<div class="spacer"></div>
+<p><strong>7. 在漢樂府《陌上桑》中，作者描寫女主角羅敷的美貌時，展現了高超的「側面烘托」修辭技巧。下列何者「並非」本詩所使用的側面描寫手法？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">「青絲為籠系，桂枝為籠鉤」——以精緻考究的採桑工具襯托主人的高雅脫俗</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">「行者見羅敷，下擔撫髭鬚；少年見羅敷，脫帽著帩頭」——藉由不同身分行人的驚艷反應烘托其美</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">「耕者忘其犁，鋤者忘其鋤；來歸相怨怒，但坐觀羅敷」——以農民忘卻勞作、歸家互怨展現羅敷攝人心魄的魅力</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">「目如點漆，膚如凝脂，領如蝤蛴，齒如瓠犀」——詳盡細緻地直接刻劃羅敷五官的嬌豔容貌</span></div>
+<div class="spacer"></div>
+<p><strong>8. 廖鴻基在《鬼頭刀》中細緻描寫了海洋生物的性格特質。下列關於課文中「海豚」與「鬼頭刀」之對比，何者「正確」？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">海豚性格暴躁孤僻，常單獨高速捕食飛魚；鬼頭刀則天性親人，習慣集體圍捕鰹魚</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">海豚捕食時成群分工合作並分享弱小，展現海洋生態之利他智慧；鬼頭刀則為單打獨鬥之掠食強者，算準飛魚落水瞬間果斷吞食</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">海豚完全不懼人類，面對漁船會肆無忌憚地直視挑釁；鬼頭刀則膽小溫順，靠近船舷時始終保持若即若離的戒心</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">在漁民市場經濟中，鬼頭刀被尊為極高經濟價值之頂級珍饈，海豚則因肉質粗糙而毫無商業市場價值</span></div>
+<div class="spacer"></div>
+<hr class="divider">
+<div class="spacer"></div>
+<h3 class="part-title">二、多選題（每題 2 分，共 4 分。全對得 2 分，錯一個選項扣 0.5 分，扣完為止）</h3>
+<div class="spacer"></div>
+<p><strong>9. 在《鬼頭刀》課文中，廖鴻基描寫自己首次與鬼頭刀交鋒搏鬥的情景：「80磅粗線拉直，時空似乎凍結住了……牠上鉤時眼神直視著我。」關於此段文字之修辭與象徵意涵，下列敘述哪些正確？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">「時空似乎凍結住了」將抽象的時間與空間化為具體可凍結之物，屬於修辭學中的轉化（形象化）</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">「80磅粗線拉直」具體呈現鬼頭刀在水下拉扯之狂暴生命力量與震撼力</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">課文中提到魚鉤形同「倒懸的問號」，象徵著人在面對浩瀚海洋與未知生命博弈時的終極追問</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">鬼頭刀失去生命進入魚市後，其魚體呈現更加耀眼燦爛的金黃與青綠色彩，象徵生命價值達到巔峰</span></div>
+<div class="q-option"><span class="opt-tag">(E) </span><span class="opt-body">作者在夢境中意識轉換，自身化身為鬼頭刀在深海游動，展現人與海洋生物同理共感的深度哲思</span></div>
+<div class="spacer"></div>
+<p><strong>10. 關於韓愈《師說》、徐志摩《再別康橋》與廖鴻基《鬼頭刀》三篇課文的寫作章法與主旨，下列敘述哪些正確？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">《師說》屬於先破後立的論說文，前段大力破斥不從師之陋習，後段樹立聖人無常師與聞道在先之正道</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">《再別康橋》全詩以「輕輕的我走了」開篇，以「悄悄的我走了」作結，首尾呼應，展現從依依不捨到豁達超然的灑脫情懷</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">《鬼頭刀》中作者讚頌鬼頭刀雄雌相伴的愛情，純粹是文學上的人性情感投射，並非完全等同於海洋生物學之繁殖本能</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">三篇文章皆創作於唐代古文運動時期，共同主張「文以載道」，反對形式浮誇的駢儷辭藻</span></div>
+<div class="q-option"><span class="opt-tag">(E) </span><span class="opt-body">漢樂府《陌上桑》中女主角羅敷面對使君的非分非禮搭訕，採取卑屈順從態度，反映漢代女性毫無自主權的社會現實</span></div>
+<div class="spacer"></div>
+<hr class="divider">
+<div class="spacer"></div>
+<h2 id="貳英文科共8題佔16分" class="subject-title">貳、英文科（共 8 題，佔 16 分）</h2>
+<div class="spacer"></div>
+<h3 class="part-title">一、綜合測驗（每題 2 分，共 8 分）</h3>
+<div class="spacer"></div>
+<p><strong>請閱讀下列短文，並根據語境與文法規則選出最適當的選項：</strong></p>
+<div class="spacer"></div>
+<div class="exam-notice-box">Marine scientists have discovered that certain marine mammals and birds possess an extraordinary survival mechanism known as unihemispheric slow-wave sleep. Unlike humans, dolphins cannot afford to fall completely unconscious, as they must continuously surface for air and stay vigilant against potential predators. Therefore, they rest only one half of their brain at a time.</div>
+<p>> </p>
+<div class="exam-notice-box">Interestingly, modern humans face their own behavioral dilemmas with technology. `___(11)___` smartphones emerged as indispensable tools in our daily life, millions of teenagers `___(12)___` from a constant state of distraction and sleep deprivation. Psychological studies indicate that `___(13)___` notifications late into the night significantly alters dopamine pathways, making it difficult for users to wind down. In addition, people who suffer from severe nomophobia (no-mobile-phone phobia) often feel anxious whenever they are forced to `___(14)___` other activities without their digital devices.</div>
+<div class="spacer"></div>
+<div class="q-stem"><strong>11.</strong> (A) For　(B) Since　(C) Although　(D) Unless</div>
+<div class="q-stem"><strong>12.</strong> (A) suffered　(B) had suffered　(C) have suffered　(D) will suffer</div>
+<div class="q-stem"><strong>13.</strong> (A) check　(B) checked　(C) checking　(D) be checked</div>
+<div class="q-stem"><strong>14.</strong> (A) turn to　(B) call off　(C) give up　(D) put out</div>
+<div class="spacer"></div>
+<hr class="divider">
+<div class="spacer"></div>
+<h3 class="part-title">二、文法與句型選擇（每題 2 分，共 8 分）</h3>
+<div class="spacer"></div>
+<p><strong>15. Select the sentence that uses the Present Perfect Tense correctly to describe an action that started in the past and continues into the present moment:</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">Mr. Lin moved to Taipei when he was forty years old, and he lived there yesterday.</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">Mr. Lin has moved to Taipei when he was forty years old and stays there now.</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">Mr. Lin has been living in Taipei since he moved to the city at the age of forty.</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">Mr. Lin was living in Taipei since he has moved to the city forty years ago.</span></div>
+<div class="spacer"></div>
+<p><strong>16. Which of the following sentences contains a grammatical ERROR regarding verb patterns and gerunds?</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">Having you around is really hurting my relationship with family and close friends.</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">The students were busy preparing for the upcoming midterm exam all afternoon.</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">After realizing that his phone was overheating, Kevin stopped charging it immediately.</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">Jessica spends three hours on play online video games every weekend.</span></div>
+<div class="spacer"></div>
+<p><strong>17. Choose the sentence with the correct spelling and adverb usage:</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">I am truelly grateful for all the support you provided during my difficult times.</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">The student was truly inspired by the professor's lecture on quantum mechanics.</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">She spoke very soft and gentely to calm down the frightened child.</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">He finished the assignment quick and accurate before the bell rang.</span></div>
+<div class="spacer"></div>
+<p><strong>18. "Fear of missing out (FOMO) causes frequent smartphone users to refresh their social media feeds repeatedly." Which sentence has the CLOSEST meaning to the statement above?</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">Smartphone users rarely check their updates because they are afraid of social drama.</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">Anxiety about being disconnected drives heavy phone users to check their screens again and again.</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">Checking social media repeatedly helps users overcome their fear of being left behind.</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">Refreshing social feeds prevents teenagers from developing problematic phone addiction.</span></div>
+<div class="spacer"></div>
+<hr class="divider">
+<div class="spacer"></div>
+<h2 id="參數學科共8題佔16分" class="subject-title">參、數學科（共 8 題，佔 16 分）</h2>
+<div class="spacer"></div>
+<h3 class="part-title">一、單選題（每題 2 分，共 4 分）</h3>
+<div class="spacer"></div>
+<p><strong>19. 下列五個分數中，化為小數後何者為「有限小數」？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">$\dfrac{21}{140}$</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">$\dfrac{17}{375}$</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">$\dfrac{13}{420}$</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">$\dfrac{33}{260}$</span></div>
+<div class="spacer"></div>
+<p><strong>20. 設 $x \in \mathbb{R}$，函數 $f(x) = |x + 4| + |x - 6|$ 的最小值為 $m$，且當 $a \le x \le b$ 時 $f(x)$ 恆等於最小值 $m$。則數對 $(m, b - a)$ 之值為何？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">$(10, 10)$</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">$(10, 2)$</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">$(2, 10)$</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">$(2, 2)$</span></div>
+<div class="spacer"></div>
+<hr class="divider">
+<div class="spacer"></div>
+<h3 class="part-title">二、多選題（每題 2 分，共 4 分。全對得 2 分，錯一個選項扣 0.5 分，扣完為止）</h3>
+<div class="spacer"></div>
+<p><strong>21. 關於實數與有理數性質之敘述，下列哪些選項是正確的？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">若 $a, b \in \mathbb{Q}$，且 $a + b\sqrt{3} = 0$，則必有 $a = 0$ 且 $b = 0$</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">若 $a, b \in \mathbb{R}$，且 $a + b\sqrt{3} = 0$，則必有 $a = 0$ 且 $b = 0$</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">循環小數 $0.\overline{27}$ 化為最簡分數為 $\dfrac{3}{11}$</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">任意兩相異實數之間必存在無限多個有理數，亦必存在無限多個無理數（稠密性）</span></div>
+<div class="q-option"><span class="opt-tag">(E) </span><span class="opt-body">若 $a, b$ 為實數，則 $|a| + |b| \ge |a - b|$ 恆成立，且等號成立之充要條件為 $ab \le 0$</span></div>
+<div class="spacer"></div>
+<p><strong>22. 在平面坐標系中，已知直線 $L_1: 3x - 4y = 7$。下列敘述哪些是正確的？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">直線 $L_1$ 的斜率為 $\dfrac{3}{4}$</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">直線 $L_1$ 的 $x$ 截距為 $\dfrac{7}{3}$，$y$ 截距為 $-\dfrac{7}{4}$</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">與 $L_1$ 平行且過點 $(1, 2)$ 的直線方程式為 $3x - 4y = -5$</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">與 $L_1$ 垂直且過點 $(1, 2)$ 的直線方程式為 $4x + 3y = 10$</span></div>
+<div class="q-option"><span class="opt-tag">(E) </span><span class="opt-body">若直線 $L_2: ax + by = c$ 與 $L_1$ 垂直，則必滿足 $3a - 4b = 0$</span></div>
+<div class="spacer"></div>
+<hr class="divider">
+<div class="spacer"></div>
+<h3 class="part-title">三、填充題（每題 2 分，共 4 分）</h3>
+<div class="spacer"></div>
+<div class="q-stem"><strong>23.</strong> 解絕對值不等式 $|x - 10| \le 2|x - 25|$，求實數 $x$ 的範圍為：`____________`。</div>
+<div class="spacer"></div>
+<div class="q-stem"><strong>24.</strong> 在直角坐標系中，有一條直線 $L$ 通過已知點 $A(-3, 5)$，且其斜率為 $m = -\dfrac{4}{7}$。請利用「分子配 $x$、分母配 $y$」的直線速算法，求出直線 $L$ 的一般式方程式（寫成 $Ax + By = C$ 且 $A > 0$，各係數互質）：`____________`。</div>
+<div class="spacer"></div>
+<hr class="divider">
+<div class="spacer"></div>
+<h3 class="part-title">四、綜合計算題（每題 2 分，共 4 分。請詳列計算步驟）</h3>
+<div class="spacer"></div>
+<div class="q-stem"><strong>25.</strong> 在平面坐標系中，已知點 $P(2, -1)$ 與直線 $L: 3x + 4y - 17 = 0$。</div>
+<p>(1) 求點 $P$ 到直線 $L$ 的垂直距離 $d(P, L)$。  </p>
+<p>(2) 求點 $P$ 關於直線 $L$ 的對稱點 $P'$ 之坐標。  </p>
+<div class="spacer"></div>
+<div class="q-stem"><strong>26.</strong> 解雙絕對值方程式 $|2x - 6| + |x + 2| = 11$。請詳列以 $x = -2$ 與 $x = 3$ 為分界點的分區間討論過程，並求出方程式的所有實數解。</div>
+<div class="spacer"></div>
+<hr class="divider">
+<div class="spacer"></div>
+<h2 id="肆物理科共8題佔16分" class="subject-title">肆、物理科（共 8 題，佔 16 分）</h2>
+<div class="spacer"></div>
+<h3 class="part-title">一、單選題（每題 2 分，共 8 分）</h3>
+<div class="spacer"></div>
+<p><strong>27. 物理學史上通常以西元 1900 年作為古典物理與近代物理的分水嶺。下列關於此歷史轉折之敘述，何者正確？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">普朗克提出「量子論」，主張微觀能量交換具有「最小單位」（能量非連續性），打破古典物理連續能量觀</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">馬克士威在 1900 年提出古典電磁學方程式，成功統一了電、磁、光三者，宣告近代物理誕生</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">愛因斯坦在狹義相對論中證明了宇宙充滿彈性介質「以太」，光波必須依託以太方能傳播</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">牛頓力學定律在微觀高速世界依然完美適用，量子論僅適用於巨觀天體運行之計算</span></div>
+<div class="spacer"></div>
+<p><strong>28. 國際單位制（SI 制）包含 7 個基本物理量。下列關於基本單位最新定義與導出單位的說明，何者「錯誤」？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">質量單位「公斤（$\text{kg}$）」在 2019 年正式改由自然物理常數「普朗克常數 $h$」進行嚴格定義</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">時間單位「秒（$\text{s}$）」是以銫-133（$\text{Cs-133}$）基態超精細能階躍遷輻射週期跳動次數來定義</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">功率單位「瓦特（$\text{W}$）」為導出單位，以 SI 基本單位表示為 $\text{kg}\cdot\text{m}^2\cdot\text{s}^{-3}$</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">能量單位「焦耳（$\text{J}$）」為 SI 基本單位之一，無法再拆解為其他基本物理量乘冪組合</span></div>
+<div class="spacer"></div>
+<p><strong>29. 一部升降電梯內部天花板懸掛一彈簧秤，下方懸吊質量為 $5\text{ kg}$ 的物體。設重力加速度 $g = 10\text{ m/s}^2$。當電梯以 $2\text{ m/s}^2$ 的加速度「向上減速」運動時，彈簧秤的讀數應為多少牛頓（$\text{N}$）？此時物體處於何種狀態？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">$60\text{ N}$，超重狀態</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">$40\text{ N}$，失重狀態</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">$40\text{ N}$，完全失重狀態</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">$50\text{ N}$，適重狀態</span></div>
+<div class="spacer"></div>
+<p><strong>30. 一小球自地面以初速度 $v_0 = 39.2\text{ m/s}$ 鉛直向上拋出，不計空氣阻力，重力加速度 $g = 9.8\text{ m/s}^2$。下列敘述何者「錯誤」？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">小球到達最高點所需時間為 $4\text{ s}$</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">小球能達到的最大高度為 $78.4\text{ m}$</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">小球拋出後第 $2\text{ s}$ 與第 $6\text{ s}$ 時的高度相同</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">小球落回地面的瞬時速度量值為 $39.2\text{ m/s}$，方向鉛直向下，全程歷時 $8\text{ s}$</span></div>
+<div class="spacer"></div>
+<hr class="divider">
+<div class="spacer"></div>
+<h3 class="part-title">二、多選題（每題 2 分，共 8 分。全對得 2 分，錯一個選項扣 0.5 分，扣完為止）</h3>
+<div class="spacer"></div>
+<p><strong>31. 關於物質的微觀結構探索史與標準模型，下列敘述哪些是正確的？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">拉塞福進行 $\alpha$ 粒子散射實驗，發現少數 $\alpha$ 粒子發生大角度偏折，從而推翻湯姆森葡萄乾布丁模型，提出「核原子模型」</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">質子與中子並非基本粒子，它們是由更基本的夸克（Quark）所構成</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">質子由兩個上夸克（$u$）與一個下夸克（$d$）組成（$uud$），其淨電荷為 $+1e$</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">中子由一個上夸克（$u$）與兩個下夸克（$d$）組成（$udd$），其淨電荷為 $0$</span></div>
+<div class="q-option"><span class="opt-tag">(E) </span><span class="opt-body">電子是由三個帶負電的下夸克所組成之強子複合粒子</span></div>
+<div class="spacer"></div>
+<p><strong>32. 關於自然界四大基本交互作用（基本力）的比較，下列敘述哪些是正確的？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">四大基本力按相對強度由大至小排序為：強交互作用 $>$ 電磁交互作用 $>$ 弱交互作用 $>$ 重力交互作用</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">強交互作用負責將質子與中子束縛在原子核內，其作用範圍極短（約 $10^{-15}\text{ m}$）</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">弱交互作用與放射性原子核的 $\beta$ 衰變有關，能改變夸克的種類（味）</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">重力交互作用與電磁交互作用皆為長程力，其力的大小皆與距離的平方成反比（反平方比定律）</span></div>
+<div class="q-option"><span class="opt-tag">(E) </span><span class="opt-body">日常生活中人體站在地面所受之正向力、繩索拉力與接觸摩擦力，微觀本質皆源於「萬有引力」的微小作用</span></div>
+<div class="spacer"></div>
+<p><strong>33. 關於電場與電力線、磁場與磁力線之性質，下列敘述哪些是正確的？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">靜電場的電力線始於正電荷，終止於負電荷，彼此絕不相交</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">磁力線是一條封閉且平滑的曲線，在磁鐵外部由 $\text{N}$ 極指向 $\text{S}$ 極，在磁鐵內部由 $\text{S}$ 極指向 $\text{N}$ 極</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">地球磁場的磁南極（$\text{S}$ 極）位於地理北極附近，故指南針的 $\text{N}$ 極會指向北方</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">電力線或磁力線愈密集的地方，代表該區域的場強愈大</span></div>
+<div class="q-option"><span class="opt-tag">(E) </span><span class="opt-body">沿著電力線的方向，電位逐漸升高</span></div>
+<div class="spacer"></div>
+<p><strong>34. 某質點自靜止出發沿直線運動，其速度—時間關係圖（$v-t$ 圖）如下描述：在 $0 \le t \le 2\text{ s}$ 內速度由 $0$ 均勻增加至 $10\text{ m/s}$；在 $2 \le t \le 6\text{ s}$ 內維持 $10\text{ m/s}$ 等速；在 $6 \le t \le 8\text{ s}$ 內速度由 $10\text{ m/s}$ 均勻減為 $0$。關於該質點之運動狀態，下列敘述哪些正確？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">在 $0 \le t \le 2\text{ s}$ 內的加速度大小為 $5\text{ m/s}^2$</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">在 $2 \le t \le 6\text{ s}$ 內的加速度為 $0$，合力為零</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">在 $6 \le t \le 8\text{ s}$ 內的加速度與速度方向相同</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">全程 $0 \le t \le 8\text{ s}$ 質點所走之總位移為 $60\text{ m}$</span></div>
+<div class="q-option"><span class="opt-tag">(E) </span><span class="opt-body">全程 $0 \le t \le 8\text{ s}$ 質點之平均速度為 $7.5\text{ m/s}$</span></div>
+<div class="spacer"></div>
+<hr class="divider">
+<div class="spacer"></div>
+<h2 id="伍歷史科共8題佔16分" class="subject-title">伍、歷史科（共 8 題，佔 16 分）</h2>
+<div class="spacer"></div>
+<h3 class="part-title">一、單選題（每題 2 分，共 8 分）</h3>
+<div class="spacer"></div>
+<p><strong>35. 清初康熙二十二年（1683年）施琅攻取臺灣後，清廷朝野爆發了激烈的「棄留之爭」。下列關於臺灣棄留決策之敘述，何者符合史實？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">康熙皇帝極具遠見，自始至終主張臺灣為海外金銀之島，力主全力招募移民開墾</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">朝中多數官員起初視臺灣為「海外彈丸之地，得之無所加，不得無所損」，甚至建議將住民遷回大陸、放棄海島</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">施琅上呈《恭陳臺灣棄留疏》，強調臺灣為東南四省之國防門戶，若棄之必落入日本浪人手中成為侵華基地</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">清廷最終保留臺灣並將其升格為獨立行省，立即開放內地全體漢人攜眷渡臺開墾</span></div>
+<div class="spacer"></div>
+<p><strong>36. 清廷治臺前期確立了「為防範而治理」的消極統治方針。下列何者「不屬於」清初著名的防範型禁令與管制制度？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">渡臺禁令：嚴格限制渡臺資格，嚴禁攜眷，致使臺灣社會長期男女比例失衡、羅漢腳充斥</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">劃界封山：立石或挖溝劃定漢番界線，禁止漢人越界私墾，防止漢番衝突</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">班兵制度：臺灣不設本土子弟軍，全由福建抽調官兵三年一輪換防，士兵素質低下且無心守備</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">鄉約結保：命令各地原住民族與漢人全面通婚，並強制興建高大磚石城池以防外敵入侵</span></div>
+<div class="spacer"></div>
+<p><strong>37. 清末臺灣因列強進逼而陸續發生數起涉外事件。其中西元 1871 年琉球宮古島漂流民遭排灣族人殺害，日本於 1874 年藉機出兵恆春半島（牡丹社事件）。清廷事後警覺臺灣海防重要性，派遣哪一位欽差大臣來臺督辦防務並推動「開山撫番」？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">劉銘傳</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">沈葆楨</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">丁日昌</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">邵友濂</span></div>
+<div class="spacer"></div>
+<p><strong>38. 清領時期臺灣分類械鬥頻繁，俗稱「三年一小亂，五年一大亂」。西元 1853 年艋舺發生著名的「頂下郊拚」，下列關於此事件前因後果之說明，何者「正確」？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">衝突雙方分別為漳州人與客家人，起因於爭奪水源灌溉利益</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">頂郊（泉州三邑人）在械鬥中戰勝，落敗之下郊（同安人）攜帶霞海城隍神像北遷至大稻埕</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">下郊遷往大稻埕後因河道徹底淤塞而迅速蕭條，促使同安人再次南遷回泉州</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">頂郊在 1860 年臺灣開港通商後壟斷了全臺茶葉出口外銷，成為北臺灣唯一貿易霸主</span></div>
+<div class="spacer"></div>
+<hr class="divider">
+<div class="spacer"></div>
+<h3 class="part-title">二、多選題（每題 2 分，共 8 分。全對得 2 分，錯一個選項扣 0.5 分，扣完為止）</h3>
+<div class="spacer"></div>
+<p><strong>39. 清代臺灣統治兩百餘年間發生了多次震撼全島的反清民變，其中朱一貴、林爽文與戴潮春合稱「三大民變」。下列關於三大民變之比較，哪些是正確的？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">朱一貴事件發生於康熙年間，號稱「鴨母王」，起事後官府因而准許臺灣聚落築木柵防禦（如木柵地名之由來）</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">林爽文事件發生於乾隆年間，由天地會發動，為清代臺灣波及範圍最廣、規模最大的民變</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">清廷平定林爽文事件後，正式准許臺灣重要縣城改築土城（如土城地名之由來），並賜匾官封「義民」與義民廟</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">戴潮春事件發生於同治年間，以八卦會為核心，歷時長達八年之久，為清代歷時最長的民變</span></div>
+<div class="q-option"><span class="opt-tag">(E) </span><span class="opt-body">三大民變的爆發全數源自外國勢力在背後軍事資助，與清廷地方吏治不良、官逼民反毫無關聯</span></div>
+<div class="spacer"></div>
+<p><strong>40. 臺灣社會由清初移民過渡為定居社會的過程中，民間祖先祭祀型態由「唐山祖」演變為「開台祖」。下列關於此轉變之敘述，哪些是正確的？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">「唐山祖」祭祀流行於移民初期，祭祀成員彼此多無直接血緣關係，僅憑同姓氏認祖歸宗</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">「唐山祖」多以原鄉歷史名人或傳說始祖為祭祀對象（如姓李祭老子、姓劉祭漢高祖劉邦）</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">「開台祖」祭祀形成於移民落地生根、繁衍數代之後，祭祀對象為第一代渡臺開基祖先</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">「開台祖」的祭祀成員具有明確的宗族血緣關係（分大房、二房、三房等）</span></div>
+<div class="q-option"><span class="opt-tag">(E) </span><span class="opt-body">祭祀型態由唐山祖轉變為開台祖，象徵著臺灣漢人社會「在地化（定居化）」的重要里程碑</span></div>
+<div class="spacer"></div>
+<p><strong>41. 關於 1860 年英法聯軍簽訂《天津條約》與《北京條約》後臺灣開港通商之影響，下列敘述哪些是正確的？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">正式開放基隆、淡水、安平、打狗四個港口通商（口訣：雞蛋安打）</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">臺灣對外貿易由長期入超轉變為出超，茶葉、樟腦取代稻米、蔗糖成為北部主要出口大宗</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">大稻埕因淡水開港而興起為茶葉精製集散重鎮，洋行林立，出現著名買辦李春生</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">經濟重心逐漸南移至安平與打狗，導致北臺灣政經地位急速沒落</span></div>
+<div class="q-option"><span class="opt-tag">(E) </span><span class="opt-body">外國傳教士（如馬雅各、馬偕）隨之來臺傳教，並引進現代西方醫療與教育體制</span></div>
+<div class="spacer"></div>
+<p><strong>42. 關於日治時期臺灣的族群政策與開墾移民，下列敘述哪些是正確的？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">日本總督府在花東地區推動官營移民村（如花蓮吉野村、豐田村），引進日本內地農民移住開墾</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">總督佐久間左馬太實施「理蕃事業五年計畫」，以強硬軍事手段收繳原住民槍械並開闢隘勇線</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">總督府在美濃與花蓮吉安等地推廣專賣經濟作物菸草，留下深具特色的菸樓建築文化</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">戰後初期中華民國政府接收臺灣，大量隨軍撤退之大陸各省軍民遷入，形成眷村多元族群景觀</span></div>
+<div class="q-option"><span class="opt-tag">(E) </span><span class="opt-body">日本統治臺灣期間全面廢除菸酒與鴉片專賣，實行完全自由市場經濟</span></div>
+<div class="spacer"></div>
+<hr class="divider">
+<div class="spacer"></div>
+<h2 id="陸地理科共6題佔8分" class="subject-title">陸、地理科（共 6 題，佔 8 分）</h2>
+<div class="spacer"></div>
+<h3 class="part-title">一、單選題（每題 1 分，共 4 分）</h3>
+<div class="spacer"></div>
+<p><strong>43. 地理學具有三大研究傳統分析法。若研究者想探討「某直轄市登革熱確診病例在各里之間的空間擴散路徑，以及鄰近排水溝渠半徑 100 公尺內的感染聚集點」，此項研究最屬於何種分析傳統？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">空間分析（Spatial Analysis）</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">區域複合體分析（Regional Complex Analysis）</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">生態分析（Ecological Analysis）</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">歷史地質分析（Geological Analysis）</span></div>
+<div class="spacer"></div>
+<p><strong>44. 地理事實發現與假說檢驗是現代地理探究的重要方法。下列各探究步驟之排列順序，何者最為嚴謹合理？</strong>  </p>
+<p>① 設定研究主題與提出假說　② 觀察地表真實地理現象　③ 歸納分析並建立地理通則原理　④ 收集地圖、航照與文獻資料　⑤ 整理與分析空間統計資料  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">② $\to$ ① $\to$ ④ $\to$ ⑤ $\to$ ③</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">① $\to$ ② $\to$ ④ $\to$ ③ $\to$ ⑤</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">② $\to$ ④ $\to$ ① $\to$ ⑤ $\to$ ③</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">④ $\to$ ② $\to$ ① $\to$ ⑤ $\to$ ③</span></div>
+<div class="spacer"></div>
+<p><strong>45. 關於地圖要素與經典投影法特徵之敘述，下列何者「錯誤」？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">麥卡托投影（Mercator Projection）屬於等角圓柱投影，圖上經緯線垂直相交，等角航線為直線，極利於遠洋航海</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">麥卡托投影在高緯度地區面積會嚴重放大（如格陵蘭島看似與非洲相當），故不適合用於全球面積比較</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">莫爾威投影（Mollweide Projection）屬於等積投影，能維持全球地表各區域面積比例之真實性</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">現代民航機在跨大洋長途飛行時，為了節省燃料與時間，一律沿著麥卡托投影圖上的直線航道飛行</span></div>
+<div class="spacer"></div>
+<p><strong>46. 某機場跑道編號標示為「09」，代表起飛降落時機頭朝向的方位角約為 $090^\circ$（正東方）。請問該跑道另一端的編號應標記為多少？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">18</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">27</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">36</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">00</span></div>
+<div class="spacer"></div>
+<hr class="divider">
+<div class="spacer"></div>
+<h3 class="part-title">二、多選題（每題 2 分，共 4 分。全對得 2 分，錯一個選項扣 0.5 分，扣完為止）</h3>
+<div class="spacer"></div>
+<p><strong>47. 現代地理資訊系統（GIS）廣泛應用於土地利用與防災監控。若將某山區集水區的衛星遙測影像空間解析度由原本的 $20\text{ m} \times 20\text{ m}$ 提升至高解析度的 $2\text{ m} \times 2\text{ m}$，關於此影像變更之敘述哪些正確？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">每個網格（Pixel）所代表的地表實際面積縮小為原本的 $\dfrac{1}{100}$</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">同一涵蓋範圍內的影像總網格像元數量將增加為原本的 $100$ 倍</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">該集水區影像的數位資料儲存量大約增加為原本的 $10$ 倍</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">高解析度影像能更清晰辨識崩塌地邊界與細小野溪林道</span></div>
+<div class="q-option"><span class="opt-tag">(E) </span><span class="opt-body">解析度提升後，影像將自動由網格資料模式轉換為向量點線面資料模式</span></div>
+<div class="spacer"></div>
+<p><strong>48. 關於地理資訊系統（GIS）資料模式與群眾協作地理資訊（VGI）之應用，下列敘述哪些正確？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">向量資料模式（Vector）利用點、線、面記錄幾何圖形，非常適合表達道路網路、行政區界與自來水管線</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">網格資料模式（Raster）利用連續方格陣列記錄數值，非常適合表達高程模型（DEM）、衛星遙測反射率與坡度</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">開放街圖（OpenStreetMap, OSM）是由志工與公眾自由協作編輯的全球開源數位地圖</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">在重大自然災害（如海地地震、花蓮地震）發生時，OSM 社群能快速動員繪製災區最新受損道路圖資供救援團隊使用</span></div>
+<div class="q-option"><span class="opt-tag">(E) </span><span class="opt-body">環域分析（Buffer）主要是將不同屬性的圖層進行重疊交集運算以挑選符合條件之土地</span></div>
+<div class="spacer"></div>
+<hr class="divider">
+<div class="spacer"></div>
+<h2 id="柒公民科共6題佔8分" class="subject-title">柒、公民科（共 6 題，佔 8 分）</h2>
+<div class="spacer"></div>
+<h3 class="part-title">一、單選題（每題 1 分，共 4 分）</h3>
+<div class="spacer"></div>
+<p><strong>49. 在公民學與當代法政哲學中，「正義」（Justice）一詞的最根本學術意涵為何？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">英雄挺身而出消滅邪惡惡霸的私力制裁與復仇行動</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">公平（Fairness），即建立合理公平的社會合作制度與利益負擔分配架構</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">多數人憑藉投票力量強制少數人服從其集體意志的功利極大化</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">遵循傳統世俗道德教化，懲罰一切背離主流社會風俗之人</span></div>
+<div class="spacer"></div>
+<p><strong>50. 「人性尊嚴」（Human Dignity）是當代憲法與人權法治的最核心基石。下列何者最符合人性尊嚴之本質定義？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">個人在社會中必須具備崇高的家族社會階級與榮譽頭銜</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">人人皆能免於勞動，享受國家提供之一切奢華物質生活保障</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">每個人皆為獨立自主的主體，得自主決定其生活方式與人生方向，並得以自我實現，絕不淪為他人客體或工具</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">為了實現國家經濟整體快速增長，個人之自由意志得被政府無條件犧牲</span></div>
+<div class="spacer"></div>
+<p><strong>51. 關於「形式平等」與「實質平等」之哲學辨析，下列敘述何者最適當？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">形式平等主張「不同者不同對待」，例如女性生理假與身心障礙者特考保障</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">實質平等主張「相同者相同對待」，例如民主選舉中的一人一票、票票等值</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">若在所有情境下一味強求形式上的無差別齊頭式對待（如強求行動不便者一律爬樓梯），反而會造成極大的實質不公</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">實質平等必然全面摧毀個人自由權，因此當代民主憲政國家已全面拋棄實質平等理念</span></div>
+<div class="spacer"></div>
+<p><strong>52. 當代政治哲學家羅爾斯（John Rawls）在《正義論》中設計了「無知之幕」（Veil of Ignorance）的思想實驗。在無知之幕背後，立約者處於何種狀態？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">清楚知道自己的智商高超、家族財富龐大，因而致力於制定維護富豪特權的租稅制度</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">不知道自己的性別、種族、天賦智力、社會階級與財富地位，出於避險考量將傾向照顧社會最弱勢群體</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">喪失一切理性思維與計算能力，完全憑藉個人宗教狂熱制定道德戒律</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">清楚知曉自己必定淪為社會底層奴隸，因而主張徹底廢除所有私有財產權</span></div>
+<div class="spacer"></div>
+<hr class="divider">
+<div class="spacer"></div>
+<h3 class="part-title">二、多選題（每題 2 分，共 4 分。全對得 2 分，錯一個選項扣 0.5 分，扣完為止）</h3>
+<div class="spacer"></div>
+<p><strong>53. 羅爾斯在《正義論》中提出了著名的正義兩大原則，並嚴格規定了原則間的操作順序。關於此兩大原則（含三個條件）之敘述，下列哪些正確？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">第一順位為「平等自由原則」：每個人都擁有平等享有一切基本自由權利（思想、言論、集會等）的權利</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">第二順位第一部分為「公平機會均等原則」：各項公職與社會職位必須在實質公平的機會下對所有人全面開放</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">第二順位第二部分為「差異原則」：社會允許經濟與地位的不平等存在，但其資源分配制度必須能使「處境最不利的成員獲得最大的利益」</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">當平等自由原則與差異原則發生衝突時，差異原則得優先凌駕並限制公民之基本自由權利</span></div>
+<div class="q-option"><span class="opt-tag">(E) </span><span class="opt-body">羅爾斯正義論之操作核心邏輯為「極小化中的極大化（Maximin）」決策準則</span></div>
+<div class="spacer"></div>
+<p><strong>54. 我國現行法律與政策中存在許多「積極性差別待遇」（Affirmative Action）措施，例如原住民族升學保障名額、身心障礙者定額進用制度、偏鄉偏遠地區公費醫學生養成計畫等。關於此類政策在公民法政哲學上的評析，下列哪些正確？</strong>  </p>
+<div class="q-option"><span class="opt-tag">(A) </span><span class="opt-body">屬於實質平等的具體實踐，旨在彌補弱勢群體因歷史、結構或生理限制所導致之起跑點不利</span></div>
+<div class="q-option"><span class="opt-tag">(B) </span><span class="opt-body">符合羅爾斯《正義論》中的「差異原則」，使社會處境最不利之成員獲得制度性扶助</span></div>
+<div class="q-option"><span class="opt-tag">(C) </span><span class="opt-body">屬於盲目的齊頭式形式平等，嚴重違背憲法平等權意旨</span></div>
+<div class="q-option"><span class="opt-tag">(D) </span><span class="opt-body">措施之推行仍須受比例原則與法律保留原則之約束，不可無限制侵蝕其他群體之核心基本自由</span></div>
+<div class="q-option"><span class="opt-tag">(E) </span><span class="opt-body">其終極目標在於打破社會階級流動障礙，促進實質公平與社會團結</span></div>
+<div class="spacer"></div>
+<hr class="divider">
+<div class="spacer"></div>
+<h3 class="part-title">📝【作答結束，請翻閱《詳解與解析卷》進行核對與考後檢討】</h3>
+<div class="spacer"></div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "$", right: "$", display: false},
+          {left: "\\(", right: "\\)", display: false},
+          {left: "\\[", right: "\\]", display: true}
+        ],
+        throwOnError: false
+      });
+    });
+
+    // Timer Logic
+    let totalSeconds = 90 * 60;
+    let timerInterval = null;
+    let isRunning = false;
+    const display = document.getElementById("timerDisplay");
+    const toggleBtn = document.getElementById("timerToggle");
+    const resetBtn = document.getElementById("timerReset");
+
+    function updateDisplay() {
+      const m = Math.floor(totalSeconds / 60);
+      const s = totalSeconds % 60;
+      display.textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+    }
+
+    toggleBtn.addEventListener("click", () => {
+      if (!isRunning) {
+        isRunning = true;
+        toggleBtn.textContent = "暫停";
+        timerInterval = setInterval(() => {
+          if (totalSeconds > 0) {
+            totalSeconds--;
+            updateDisplay();
+          } else {
+            clearInterval(timerInterval);
+            alert("⏰ 考試時間到！請翻閱《詳解與解析卷》進行核對。");
+          }
+        }, 1000);
+      } else {
+        isRunning = false;
+        toggleBtn.textContent = "繼續";
+        clearInterval(timerInterval);
+      }
+    });
+
+    resetBtn.addEventListener("click", () => {
+      clearInterval(timerInterval);
+      isRunning = false;
+      toggleBtn.textContent = "開始";
+      totalSeconds = 90 * 60;
+      updateDisplay();
+    });
+  </script>
+</body>
+</html>
